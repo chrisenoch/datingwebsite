@@ -15,7 +15,7 @@ public class QuestionImplTest  {
 	
 	@Test
 	public void shouldReturnQuestion() {
-		Question questionText = new QuestionImpl("What is your relationship status?");
+		Question questionText = new QuestionImpl(1, "What is your relationship status?");
 		
 		assertEquals("What is your relationship status?", questionText.getQuestionText());
 		

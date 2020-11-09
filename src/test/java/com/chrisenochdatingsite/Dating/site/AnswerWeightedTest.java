@@ -24,9 +24,9 @@ public class AnswerWeightedTest {
 	public void shouldReturnMatchingAnswerTextAndWeight() {
 		Category interests = mock(Category.class);
 		
-		AnswerWeightedImpl horror = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE, interests); // Answer text should also be enum?
+		AnswerWeightedImpl horror = new AnswerWeightedImpl(1, "Horror", AnswerWeight.FIVE, interests); // Answer text should also be enum?
 		assertEquals("Horror", horror.getAnswerText());
-		assertEquals(5, horror.getWeight().getWeight());
+		assertEquals(5, horror.getAnswerWeight().getWeight());
 	}
 	
 	

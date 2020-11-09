@@ -36,8 +36,7 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 		return answerOptions;
 	}
 
-	public QuestionWithOptionsImpl(int id, String questionText, Set<Answer> answerOptions) {
-		this.id = id;
+	public QuestionWithOptionsImpl(String questionText, Set<Answer> answerOptions) {
 		this.questionText = questionText;
 		this.answerOptions = answerOptions;
 	}

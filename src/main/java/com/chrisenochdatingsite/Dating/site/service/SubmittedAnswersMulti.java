@@ -1,11 +1,13 @@
 package com.chrisenochdatingsite.Dating.site.service;
 
+import java.util.Set;
+
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionImpl;
 
-public interface SubmittedAnswerSingle {
+public interface SubmittedAnswersMulti {
 	Question getQuestion();
 	User getUser();
-	Answer getAnswer();
-	
+	Set<Answer> getAnswerOptions();
+		
 }

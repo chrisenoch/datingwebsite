@@ -26,6 +26,10 @@ public class Category {
 		this.category = category;
 		this.id = id;
 	}
+
+	public Category(String category) {
+		this.category = category;
+	}
 	
 	
 	

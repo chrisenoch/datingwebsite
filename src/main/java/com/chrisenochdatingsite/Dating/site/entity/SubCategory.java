@@ -11,7 +11,7 @@ public class SubCategory extends Category {
 	public void setSubCategory(String subCategory) {
 		this.subCategory = subCategory;
 	}
-
+	
 	public SubCategory(int id, String category, String subCategory) {
 		super(id, category);
 		this.subCategory = subCategory;

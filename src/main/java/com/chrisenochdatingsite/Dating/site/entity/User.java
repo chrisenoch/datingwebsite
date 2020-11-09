@@ -2,21 +2,31 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
 
-public class Profile {
+public class User {
 
 	private Long id;
 	private String firstName;
 	private String surname;
 	private String email;
 	private LocalDate dateOfBirth;
+	private Sex sex;
 
-	public Profile(Long id, String firstName, String surname, String email, LocalDate dateOfBirth) {
+	public User(Long id, String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {
 		this.id = id;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
+		this.sex = sex;
 		
+	}
+
+	public User(String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {
+		this.firstName = firstName;
+		this.surname = surname;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.sex = sex;
 	}
 
 	public Long getId() {
@@ -57,6 +67,20 @@ public class Profile {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Sex getSex() {
+		return sex;
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
+
+
+	enum Sex{
+		MALE, FEMALE
 	}
 	
 	
