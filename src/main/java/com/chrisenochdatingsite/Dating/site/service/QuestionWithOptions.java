@@ -1,8 +1,10 @@
 package com.chrisenochdatingsite.Dating.site.service;
 
-import java.util.Set;
+import java.util.Map;
 
 public interface QuestionWithOptions extends Question {
-	Set<Answer> getAnswerOptions();
+	Map<String, Answer> getPossibleAnswers(); //Improve code: change String to enum?
 	
 }
+
+ 

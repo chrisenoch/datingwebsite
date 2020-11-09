@@ -8,6 +8,5 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionImpl;
 public interface SubmittedAnswersMulti {
 	Question getQuestion();
 	User getUser();
-	Set<Answer> getAnswerOptions();
 		
 }

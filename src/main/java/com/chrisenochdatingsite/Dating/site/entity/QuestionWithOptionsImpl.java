@@ -1,6 +1,6 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-import java.util.Set;
+import java.util.Map;
 
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.QuestionWithOptions;
@@ -9,7 +9,8 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 
 	private int id;
 	private String questionText;
-	private Set<Answer> answerOptions;
+	private Map<String, Answer> possibleAnswers; //Improve code: change String to answerText enum
+	private Answer selectedAnswer; //Improve code, abstract class for question?
 	
 	public int getId() {
 		return id;
@@ -27,22 +28,25 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 		this.questionText = questionText;
 	}
 
-	public void setAnswerOptions(Set<Answer> answerOptions) {
-		this.answerOptions = answerOptions;
+	public Map<String, Answer> getPossibleAnswers() {
+		return possibleAnswers;
 	}
 
-	@Override
-	public Set<Answer> getAnswerOptions() {
-		return answerOptions;
+	public void setPossibleAnswers(Map<String, Answer> possibleAnswers) {
+		this.possibleAnswers = possibleAnswers;
 	}
 
-	public QuestionWithOptionsImpl(String questionText, Set<Answer> answerOptions) {
+	public Answer getSelectedAnswer() {
+		return selectedAnswer;
+	}
+
+	public void setSelectedAnswer(Answer selectedAnswer) {
+		this.selectedAnswer = selectedAnswer;
+	}
+
+	public QuestionWithOptionsImpl(String questionText, Map<String, Answer> possibleAnswers) {
 		this.questionText = questionText;
-		this.answerOptions = answerOptions;
+		this.possibleAnswers = possibleAnswers;
 	}
-
-
-
-	
 
 }

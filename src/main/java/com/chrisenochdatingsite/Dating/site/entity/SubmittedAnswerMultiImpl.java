@@ -10,8 +10,8 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswer implements Submitt
 	
 	private long id;
 	private Question question;
-	private Set<Answer> answerOptions;
 	private User user;
+
 	public long getId() {
 		return id;
 	}
@@ -24,25 +24,23 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswer implements Submitt
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
-	public Set<Answer> getAnswerOptions() {
-		return answerOptions;
-	}
-	public void setAnswerOptions(Set<Answer> answerOptions) {
-		this.answerOptions = answerOptions;
-	}
+	
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public SubmittedAnswerMultiImpl(long id, Question question, Set<Answer> answerOptions, User user) {
-		super();
-		this.id = id;
+	
+	public SubmittedAnswerMultiImpl(Question question, User user) {
 		this.question = question;
-		this.answerOptions = answerOptions;
 		this.user = user;
 	}
+	
+	
+	
+
+	
 	
 
 

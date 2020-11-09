@@ -1,11 +1,13 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
+import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 
 public class QuestionImpl implements Question{
 
 	private int id;
 	private String questionText;
+	private Answer selectedAnswer;
 	
 	
 	public int getId() {
@@ -25,14 +27,20 @@ public class QuestionImpl implements Question{
 		this.questionText = questionText;
 	}
 
-	public QuestionImpl(int id, String questionText) {
-		super();
-		this.id = id;
-		this.questionText = questionText;
+	public Answer getSelectedAnswer() {
+		return selectedAnswer;
+	}
+
+	public void setSelectedAnswer(Answer selectedAnswer) {
+		this.selectedAnswer = selectedAnswer;
 	}
 
 	public QuestionImpl(String questionText) {
 		this.questionText = questionText;
 	}
+
+
+	
+	
 
 }

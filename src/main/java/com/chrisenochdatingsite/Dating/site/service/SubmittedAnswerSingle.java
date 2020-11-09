@@ -6,6 +6,5 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionImpl;
 public interface SubmittedAnswerSingle {
 	Question getQuestion();
 	User getUser();
-	Answer getAnswer();
 	
 }
