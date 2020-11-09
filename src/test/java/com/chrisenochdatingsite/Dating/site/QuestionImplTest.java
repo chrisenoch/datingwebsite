@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.chrisenochdatingsite.Dating.site.entity.QuestionImpl;
-import com.chrisenochdatingsite.Dating.site.entity.AnswerSingle;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 

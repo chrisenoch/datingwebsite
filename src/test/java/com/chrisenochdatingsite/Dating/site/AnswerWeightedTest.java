@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import static  org.mockito.Mockito.mock;
 
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
-import com.chrisenochdatingsite.Dating.site.entity.AnswerWeighted;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
+import com.chrisenochdatingsite.Dating.site.entity.Category;
 
 public class AnswerWeightedTest {
 	
@@ -20,7 +22,9 @@ public class AnswerWeightedTest {
 	
 	@Test
 	public void shouldReturnMatchingAnswerTextAndWeight() {
-		AnswerWeighted horror = new AnswerWeighted("Horror", AnswerWeight.FIVE); // Answer text should also be enum?
+		Category interests = mock(Category.class);
+		
+		AnswerWeightedImpl horror = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE, interests); // Answer text should also be enum?
 		assertEquals("Horror", horror.getAnswerText());
 		assertEquals(5, horror.getWeight().getWeight());
 	}

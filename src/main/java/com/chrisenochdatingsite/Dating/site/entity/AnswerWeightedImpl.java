@@ -2,7 +2,7 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import com.chrisenochdatingsite.Dating.site.service.AnswerScaled;
 
-public class AnswerWeighted implements AnswerScaled<AnswerWeight>{
+public class AnswerWeightedImpl implements AnswerScaled<AnswerWeight>{
 
 	private String answerText;
 	private AnswerWeight answerWeight;
@@ -17,11 +17,17 @@ public class AnswerWeighted implements AnswerScaled<AnswerWeight>{
 	public AnswerWeight getWeight() {
 		return answerWeight;
 	}
+	
+	@Override
+	public Category getCategory() {
+		return category;
+	}
 
-	public AnswerWeighted(String answerText, AnswerWeight answerWeight) {
+	public AnswerWeightedImpl(String answerText, AnswerWeight answerWeight, Category category) {
 		super();
 		this.answerText = answerText;
 		this.answerWeight = answerWeight;
+		this.category = category;
 	}
-	
+
 }

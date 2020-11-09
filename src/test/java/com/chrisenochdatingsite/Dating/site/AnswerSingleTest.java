@@ -3,15 +3,20 @@ package com.chrisenochdatingsite.Dating.site;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import com.chrisenochdatingsite.Dating.site.entity.AnswerSingle;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
+import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 
 public class AnswerSingleTest {
 	
 	@Test
 	public void shouldReturnAnswer() {
-		Answer relationshipStatusAnswer = new AnswerSingle(1, "Single");
+		
+		Category practical = Mockito.mock(Category.class);
+
+		Answer relationshipStatusAnswer = new AnswerImpl(1, "Single", practical);
 		
 		assertEquals("Single", relationshipStatusAnswer.getAnswerText());
 		

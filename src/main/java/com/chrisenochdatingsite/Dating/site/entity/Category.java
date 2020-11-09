@@ -21,7 +21,7 @@ public class Category {
 		this.id = id;
 	}
 
-	public Category(String category, int id) {
+	public Category(int id, String category) {
 		super();
 		this.category = category;
 		this.id = id;
