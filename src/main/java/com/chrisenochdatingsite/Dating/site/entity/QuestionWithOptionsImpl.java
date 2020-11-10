@@ -10,7 +10,7 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 	private int id;
 	private String questionText;
 	private Map<String, Answer> possibleAnswers; //Improve code: change String to answerText enum
-	private Answer selectedAnswer; //Improve code, abstract class for question?
+	Category category;
 	
 	public int getId() {
 		return id;
@@ -35,18 +35,21 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 	public void setPossibleAnswers(Map<String, Answer> possibleAnswers) {
 		this.possibleAnswers = possibleAnswers;
 	}
-
-	public Answer getSelectedAnswer() {
-		return selectedAnswer;
+	
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setSelectedAnswer(Answer selectedAnswer) {
-		this.selectedAnswer = selectedAnswer;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
-	public QuestionWithOptionsImpl(String questionText, Map<String, Answer> possibleAnswers) {
+	public QuestionWithOptionsImpl(String questionText, Map<String, Answer> possibleAnswers, Category category) {
 		this.questionText = questionText;
 		this.possibleAnswers = possibleAnswers;
+		this.category = category;
 	}
+
+	
 
 }

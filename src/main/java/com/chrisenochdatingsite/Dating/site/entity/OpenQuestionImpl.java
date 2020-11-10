@@ -5,11 +5,12 @@ import java.util.Map;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 
-public class QuestionImpl implements Question{
+//This is for questions with no options. E.g. profile questions where user writes about himself/herself
+public class OpenQuestionImpl implements Question{
 
 	private int id;
 	private String questionText;
-	private Answer selectedAnswer;
+	Category category;
 	//Add private Map<String, Answer> possibleAnswers
 	
 	public int getId() {
@@ -29,16 +30,21 @@ public class QuestionImpl implements Question{
 		this.questionText = questionText;
 	}
 
-	public Answer getSelectedAnswer() {
-		return selectedAnswer;
-	}
-
-	public void setSelectedAnswer(Answer selectedAnswer) {
-		this.selectedAnswer = selectedAnswer;
-	}
-
-	public QuestionImpl(String questionText) {
+	public OpenQuestionImpl(String questionText) {
 		this.questionText = questionText;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public OpenQuestionImpl(String questionText, Category category) {
+		this.questionText = questionText;
+		this.category = category;
 	}
 
 
