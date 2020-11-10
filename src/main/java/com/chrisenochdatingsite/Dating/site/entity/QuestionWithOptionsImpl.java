@@ -13,7 +13,7 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 	Category category;
 	
 	public int getId() {
-		return id;
+		return id; 
 	}
 
 	public void setId(int id) {

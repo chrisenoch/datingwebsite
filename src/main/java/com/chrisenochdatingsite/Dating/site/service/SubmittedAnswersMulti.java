@@ -1,12 +1,12 @@
 package com.chrisenochdatingsite.Dating.site.service;
 
-import java.util.List;
+import java.util.Set;
 
 import com.chrisenochdatingsite.Dating.site.entity.User;
 
 public interface SubmittedAnswersMulti {
 	Question getQuestion();
 	User getUser();
-	List<Answer> getSelectedAnswers();
+	Set<Answer> getSelectedAnswers();
 		
 }

@@ -23,27 +23,27 @@ public class Matcher {
 			//Set up answer objects ready to insert into QuestionWithObjects object constructor
 			//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
 			//Weight selected at runtime by user.
-			var horror = new AnswerWeightedImpl("Horror", movies);
-			var action =  new AnswerWeightedImpl("Action", movies);
-			var romance = new AnswerWeightedImpl("Romance", movies);
+			var horror = new AnswerWeightedImpl("Horror");
+			var action =  new AnswerWeightedImpl("Action");
+			var romance = new AnswerWeightedImpl("Romance");
 			
 			Map<String, Answer> movieAnswerOptions = new HashMap<>();
 			movieAnswerOptions.put(horror.getAnswerText(), horror);
 			movieAnswerOptions.put(action.getAnswerText(), action);
 			movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
 
-			var basketball = new AnswerWeightedImpl("Basketball", sports);
-			var football = new AnswerWeightedImpl("Football", sports);
-			var swimming = new AnswerWeightedImpl("Swimming", sports);
+			var basketball = new AnswerWeightedImpl("Basketball");
+			var football = new AnswerWeightedImpl("Football");
+			var swimming = new AnswerWeightedImpl("Swimming");
 				
 			Map<String, Answer> sportsAnswerOptions = new HashMap<>();
 			sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
 			sportsAnswerOptions.put(football.getAnswerText(), football);
 			sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
 			
-			var hiking = 	new AnswerWeightedImpl("Hiking", travel);
-			var sightseeing =  new AnswerWeightedImpl("Sightseeing", travel);
-			var camping =  new AnswerWeightedImpl("Camping", travel);
+			var hiking = 	new AnswerWeightedImpl("Hiking");
+			var sightseeing =  new AnswerWeightedImpl("Sightseeing");
+			var camping =  new AnswerWeightedImpl("Camping");
 	
 			Map<String, Answer> travelAnswerOptions = new HashMap<>();
 			travelAnswerOptions.put(hiking.getAnswerText(), hiking);
@@ -52,11 +52,11 @@ public class Matcher {
 			
 			//Set up questions objects ready to be inserted into SubmitAnswer constructors
 			var questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
-					, movieAnswerOptions);
+					, movieAnswerOptions, movies);
 			var questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
-					, sportsAnswerOptions);
+					, sportsAnswerOptions, sports);
 			var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
-					, travelAnswerOptions);
+					, travelAnswerOptions, travel);
 			
 			User dave = new User("Dave", "Smith", "dave@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
 			User jane = new User("Jane", "Jones", "jane@yahoo.com", LocalDate.of(1984,  10,  24), Sex.FEMALE);
@@ -66,45 +66,51 @@ public class Matcher {
 			//Create answer objects with weight
 			//Set selected answers for questions objects. Set here to reflect real-life flow of control.
 
-			var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE, movies);
-			var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR, movies);
-			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE, sports);
-			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO, travel);
+			var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE);
+			var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR);
+			var movieChoiceDave3 = new AnswerWeightedImpl("Romance", AnswerWeight.THREE);
+			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
+			var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
+			var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
+			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
+			var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
+			var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
 			
-			//Problem: cannot add more than one answer 
-			questionMovies.setSelectedAnswer(movieChoiceDave1);
-			questionSports.setSelectedAnswer(sportsChoiceDave1);
-			questionTravel.setSelectedAnswer(travelStyleChoiceDave1);
-			
-			var submittedAnsDaveMovies1 = new SubmittedAnswerSingleImpl(questionMovies, dave);
-			var submittedAnsDaveSports1 = new SubmittedAnswerSingleImpl(questionSports, dave);
-			var submittedAnsDaveTravel1 = new SubmittedAnswerSingleImpl(questionTravel, dave);
+			var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
+			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
+			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2, travelStyleChoiceDave3);
 			
 			//USER 2
-			var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX, movies); //Improve code: Could mistakingly add a string that does not exist as answer option.
-			var sportsChoiceJane1 = new AnswerWeightedImpl("Basketball", AnswerWeight.ZERO, sports);
-			var travelStyleChoiceJane1 = new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE, travel);
-			
-			questionMovies.setSelectedAnswer(movieChoiceJane1);
-			questionSports.setSelectedAnswer(sportsChoiceJane1);
-			questionTravel.setSelectedAnswer(travelStyleChoiceJane1);
-			
-			var submittedAnsJaneMovies1 = new SubmittedAnswerSingleImpl(questionMovies, jane);
-			var submittedAnsJaneSports1 = new SubmittedAnswerSingleImpl(questionSports, jane);
-			var submittedAnsJaneTravel1 = new SubmittedAnswerSingleImpl(questionTravel, jane);
+			var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
+			var movieChoiceJane2 = new AnswerWeightedImpl("Action", AnswerWeight.FIVE);
+			var movieChoiceJane3 = new AnswerWeightedImpl("Romance", AnswerWeight.FOUR);
+			var sportsChoiceJane1 = new AnswerWeightedImpl("Basketball", AnswerWeight.ZERO);
+			var sportsChoiceJane2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
+			var sportsChoiceJane3 = new AnswerWeightedImpl("Football", AnswerWeight.SIX);	
+			var travelStyleChoiceJane1 = new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
+			var travelStyleChoiceJane2 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.FIVE);
+			var travelStyleChoiceJane3 = new AnswerWeightedImpl("Camping", AnswerWeight.FIVE);
+
+			var submittedAnsJaneMovies1 = new SubmittedAnswerMultiImpl(questionMovies, jane, movieChoiceJane1, movieChoiceJane2, movieChoiceJane3);
+			var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
+			var submittedAnsJaneTravel1 = new SubmittedAnswerMultiImpl(questionTravel, jane, travelStyleChoiceJane1, travelStyleChoiceJane2, travelStyleChoiceJane3);
  			
 			//USER 3
-			var movieChoicePeter1 = new AnswerWeightedImpl("Horror", AnswerWeight.ZERO, movies); //Improve code: Could mistakingly add a string that does not exist as answer option.
-			var sportsChoicePeter1 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE, sports);
-			var travelStyleChoicePeter1 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.SIX, travel);
+			var movieChoicePeter1 = new AnswerWeightedImpl("Horror", AnswerWeight.ZERO); //Improve code: Could mistakingly add a string that does not exist as answer option.
+			var movieChoicePeter2 = new AnswerWeightedImpl("Romance", AnswerWeight.ZERO);
+			var movieChoicePeter3 = new AnswerWeightedImpl("Action", AnswerWeight.SIX);
+	
+			var sportsChoicePeter1 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
+			var sportsChoicePeter2 = new AnswerWeightedImpl("Football", AnswerWeight.FIVE);
+			var sportsChoicePeter3 = new AnswerWeightedImpl("Basketball", AnswerWeight.FOUR);
 			
-			questionMovies.setSelectedAnswer(movieChoicePeter1);
-			questionSports.setSelectedAnswer(sportsChoicePeter1);
-			questionTravel.setSelectedAnswer(travelStyleChoicePeter1);
+			var travelStyleChoicePeter1 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.SIX);
+			var travelStyleChoicePeter2 = new AnswerWeightedImpl("Camping", AnswerWeight.SIX);
+			var travelStyleChoicePeter3 = new AnswerWeightedImpl("Hiking", AnswerWeight.THREE);
 			
-			var submittedAnsPeterMovies1 = new SubmittedAnswerSingleImpl(questionMovies, peter);
-			var submittedAnsPeterSports1 = new SubmittedAnswerSingleImpl(questionSports, peter);
-			var submittedAnsPeterTravelStyle1 = new SubmittedAnswerSingleImpl(questionTravel, peter);
+			var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoicePeter1, movieChoicePeter2, movieChoicePeter3);
+			var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
+			var submittedAnsPeterTravelStyle1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 			
 		}
 		

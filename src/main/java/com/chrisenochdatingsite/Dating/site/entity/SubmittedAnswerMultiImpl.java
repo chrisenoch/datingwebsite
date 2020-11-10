@@ -1,6 +1,8 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
@@ -11,7 +13,7 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswer implements Submitt
 	private long id;
 	private Question question;
 	private User user;
-	private List<Answer> selectedAnswers;
+	private Set<Answer> selectedAnswers;
 
 	public long getId() {
 		return id;
@@ -32,19 +34,27 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswer implements Submitt
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<Answer> getSelectedAnswers() {
+
+	public Set<Answer> getSelectedAnswers() {
 		return selectedAnswers;
 	}
-	public void setSelectedAnswers(List<Answer> selectedAnswers) {
+	public void setSelectedAnswers(Set<Answer> selectedAnswers) {
 		this.selectedAnswers = selectedAnswers;
 	}
 	
-	public SubmittedAnswerMultiImpl(Question question, User user, List<Answer> selectedAnswers) {
+	
+	public SubmittedAnswerMultiImpl(Question question, User user, Set<Answer> selectedAnswers) {
 		this.question = question;
 		this.user = user;
 		this.selectedAnswers = selectedAnswers;
 	}
 	
+	public SubmittedAnswerMultiImpl(Question question, User user, Answer ... selectedAnswers) {
+		this.question = question;
+		this.user = user;
+		this.selectedAnswers = new HashSet<Answer>(Arrays.asList(selectedAnswers));
+				
+	}
 	
 
 
