@@ -67,9 +67,11 @@ public class Matcher {
 			//Set selected answers for questions objects. Set here to reflect real-life flow of control.
 
 			var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE, movies);
+			var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR, movies);
 			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE, sports);
 			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO, travel);
 			
+			//Problem: cannot add more than one answer 
 			questionMovies.setSelectedAnswer(movieChoiceDave1);
 			questionSports.setSelectedAnswer(sportsChoiceDave1);
 			questionTravel.setSelectedAnswer(travelStyleChoiceDave1);
