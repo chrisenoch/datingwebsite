@@ -9,6 +9,7 @@ public class SubmittedAnswerSingleImpl  extends SubmittedAnswer implements Submi
 	private long id;
 	private Question question;
 	private User user;
+	private Answer selectedAnswer;
 	
 	public long getId() {
 		return id;
@@ -29,10 +30,18 @@ public class SubmittedAnswerSingleImpl  extends SubmittedAnswer implements Submi
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Answer getSelectedAnswer() {
+		return selectedAnswer;
+	}
+	public void setSelectedAnswer(Answer selectedAnswer) {
+		this.selectedAnswer = selectedAnswer;
+	}
 	
-	public SubmittedAnswerSingleImpl(Question question, User user) {
+	public SubmittedAnswerSingleImpl(Question question, User user, Answer selectedAnswer) {
 		this.question = question;
 		this.user = user;
+		this.selectedAnswer = selectedAnswer;
 	}
 	
 
