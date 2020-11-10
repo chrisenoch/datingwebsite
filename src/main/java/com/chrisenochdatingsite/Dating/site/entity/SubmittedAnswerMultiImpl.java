@@ -46,7 +46,7 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswer implements Submitt
 	public SubmittedAnswerMultiImpl(Question question, User user, Set<Answer> selectedAnswers) {
 		this.question = question;
 		this.user = user;
-		this.selectedAnswers = selectedAnswers;
+		this.selectedAnswers = selectedAnswers; 
 	}
 	
 	public SubmittedAnswerMultiImpl(Question question, User user, Answer ... selectedAnswers) {

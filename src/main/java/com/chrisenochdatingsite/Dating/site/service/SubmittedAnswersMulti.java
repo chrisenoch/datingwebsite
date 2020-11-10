@@ -4,9 +4,8 @@ import java.util.Set;
 
 import com.chrisenochdatingsite.Dating.site.entity.User;
 
-public interface SubmittedAnswersMulti {
-	Question getQuestion();
-	User getUser();
+public interface SubmittedAnswersMulti extends SubmittedAnswer {
+	
 	Set<Answer> getSelectedAnswers();
 		
 }

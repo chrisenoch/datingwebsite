@@ -1,11 +1,12 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
@@ -14,7 +15,7 @@ import com.chrisenochdatingsite.Dating.site.service.Answer;
 public class Matcher {
 		private Set<SubmittedAnswer> submittedAnswers;	
 		
-		private void init() {
+		private static Set<SubmittedAnswer> init() {
 			
 			Category movies = new Category("Movies");
 			Category sports = new Category("Sports");
@@ -110,8 +111,40 @@ public class Matcher {
 			
 			var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoicePeter1, movieChoicePeter2, movieChoicePeter3);
 			var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
-			var submittedAnsPeterTravelStyle1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
+			var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 			
+			Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
+			submittedAnswers.add(submittedAnsDaveMovies1);
+			submittedAnswers.add(submittedAnsDaveSports1);
+			submittedAnswers.add(submittedAnsDaveTravel1);
+			submittedAnswers.add(submittedAnsJaneMovies1);
+			submittedAnswers.add(submittedAnsJaneSports1);
+			submittedAnswers.add(submittedAnsJaneTravel1);
+			submittedAnswers.add(submittedAnsPeterMovies1);
+			submittedAnswers.add(submittedAnsPeterSports1);
+			submittedAnswers.add(submittedAnsPeterTravel1);
+			
+			return submittedAnswers;
+		
+		}
+		
+		private Map<Category,Set<SubmittedAnswer>> testJava8(List<Integer> testList){
+			testList.stream().map(a-> a.doubleValue()).collect(Collectors.toList());
+			return null;
+		}
+		
+		//Problem could be using an interface?
+		private static Map<Category,Set<SubmittedAnswer>> calculateMatch(Set<SubmittedAnswer> submittedAnswers){
+			List<String> test = submittedAnswers.stream().map(a -> a.getClass().getName()).collect(Collectors.toList());
+			test.forEach(System.out::println);
+			
+			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
+			return null;
+			
+		}
+		
+		public static void main(String[] args) {
+			calculateMatch(init());
 		}
 		
 		//Thoughts. If i use answerkey as key for hashmap.
