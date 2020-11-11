@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
+import com.chrisenochdatingsite.Dating.site.service.Question;
+import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
+
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 
 public class Matcher {
@@ -133,8 +137,34 @@ public class Matcher {
 			return null;
 		}
 		
+		private static Map<Category,Set<SubmittedAnswer>> calculateMatch3(Set<SubmittedAnswer> submittedAnswers){
+			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
+			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
+			test.forEach((a, b)-> System.out.println(a + " " + b.size() + "\n"));
+			
+			//Print individual list items with nested method
+			
+			
+			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
+			return null;
+			
+		}
+		
+		private static Map<Category,Set<SubmittedAnswer>> calculateMatch2(Set<SubmittedAnswer> submittedAnswers){
+			Map<Object, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getClass().getName()));
+			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
+			test.forEach((a, b)-> System.out.println(a + " " + b.size() + "\n"));
+			
+			//Print individual list items
+			
+			
+			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
+			return null;
+			
+		}
+		
 		//Problem could be using an interface?
-		private static Map<Category,Set<SubmittedAnswer>> calculateMatch(Set<SubmittedAnswer> submittedAnswers){
+		private static Map<Category,Set<SubmittedAnswer>> calculateMatch1(Set<SubmittedAnswer> submittedAnswers){
 			List<String> test = submittedAnswers.stream().map(a -> a.getClass().getName()).collect(Collectors.toList());
 			test.forEach(System.out::println);
 			
@@ -144,7 +174,11 @@ public class Matcher {
 		}
 		
 		public static void main(String[] args) {
-			calculateMatch(init());
+			calculateMatch1(init());
+			System.out.println();
+			calculateMatch2(init());
+			System.out.println();
+			calculateMatch3(init());
 		}
 		
 		//Thoughts. If i use answerkey as key for hashmap.

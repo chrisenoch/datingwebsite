@@ -4,7 +4,7 @@ import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswerSingle;
 
-public class SubmittedAnswerSingleImpl  extends SubmittedAnswer implements SubmittedAnswerSingle  {
+public class SubmittedAnswerSingleImpl  extends SubmittedAnswerImpl implements SubmittedAnswerSingle  {
 	
 	private long id;
 	private Question question;

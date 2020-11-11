@@ -8,7 +8,7 @@ import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswersMulti;
 
-public class SubmittedAnswerMultiImpl extends SubmittedAnswer implements SubmittedAnswersMulti {
+public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements SubmittedAnswersMulti {
 	
 	private long id;
 	private Question question;
