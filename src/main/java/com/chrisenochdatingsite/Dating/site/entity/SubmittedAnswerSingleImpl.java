@@ -43,6 +43,12 @@ public class SubmittedAnswerSingleImpl  extends SubmittedAnswerImpl implements S
 		this.user = user;
 		this.selectedAnswer = selectedAnswer;
 	}
+	@Override
+	public String toString() {
+		return "SubmittedAnswerSingleImpl [id=" + id + ", question=" + question + ", user=" + user + ", selectedAnswer="
+				+ selectedAnswer + "]";
+	}
+	
 	
 
 }

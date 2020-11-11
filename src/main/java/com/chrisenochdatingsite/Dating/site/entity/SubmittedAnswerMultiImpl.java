@@ -55,6 +55,13 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 		this.selectedAnswers = new HashSet<Answer>(Arrays.asList(selectedAnswers));
 				
 	}
+	@Override
+	public String toString() {
+		return "SubmittedAnswerMultiImpl [id=" + id + ", question=" + question + ", user=" + user + ", selectedAnswers="
+				+ selectedAnswers + "]";
+	}
+	
+	
 	
 
 

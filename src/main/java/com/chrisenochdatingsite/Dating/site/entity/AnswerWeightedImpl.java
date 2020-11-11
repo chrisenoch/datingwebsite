@@ -42,4 +42,11 @@ public class AnswerWeightedImpl implements AnswerScaled<AnswerWeight>{
 		this.answerWeight = answerWeight;
 	}
 
+	@Override
+	public String toString() {
+		return "AnswerWeightedImpl [id=" + id + ", answerText=" + answerText + ", answerWeight=" + answerWeight + "]";
+	}
+	
+	
+
 }

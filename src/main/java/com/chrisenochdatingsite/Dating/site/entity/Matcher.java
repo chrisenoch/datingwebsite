@@ -141,8 +141,22 @@ public class Matcher {
 			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
 			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
 			test.forEach((a, b)-> System.out.println(a + " " + b.size() + "\n"));
-			
-			//Print individual list items with nested method
+															
+			//Print individual list items with nested method as a stream.
+			for (Map.Entry<Category, List<SubmittedAnswer>> entry : test.entrySet()){
+				System.out.println(entry.getKey().getCategory());
+				for (SubmittedAnswer ans : entry.getValue()) {
+					//Need instanceof check here
+					if (ans instanceof SubmittedAnswerMultiImpl) {
+						SubmittedAnswerMultiImpl subMultiImpl = (SubmittedAnswerMultiImpl)ans;
+						System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
+						+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
+						
+						subMultiImpl.getSelectedAnswers().forEach(System.out::println);
+						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
+					}
+				}		 
+			}
 			
 			
 			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
@@ -155,7 +169,9 @@ public class Matcher {
 			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
 			test.forEach((a, b)-> System.out.println(a + " " + b.size() + "\n"));
 			
-			//Print individual list items
+			//Print individual list items. Maybe use a range method.
+			
+			
 			
 			
 			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
