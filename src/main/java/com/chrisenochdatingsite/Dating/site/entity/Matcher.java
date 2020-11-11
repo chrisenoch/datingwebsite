@@ -153,24 +153,14 @@ public class Matcher {
 			
 			
 			System.out.println("testing with maps start");
-			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream().map(c-> c.getQuestion().getQuestionText()).collect(Collectors.toList()) + "\n"));
-			System.out.println("testing with maps finish");
-			
-			//Print individual list items with nested method as a stream.
-			for (Map.Entry<Category, List<SubmittedAnswer>> entry : test.entrySet()){
-				//System.out.println(entry.getKey().getCategory());
-				for (SubmittedAnswer ans : entry.getValue()) {
-					//Need instanceof check here
-					if (ans instanceof SubmittedAnswerMultiImpl) {
-						SubmittedAnswerMultiImpl subMultiImpl = (SubmittedAnswerMultiImpl)ans;
-						//System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
-						//+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
-						
-						subMultiImpl.getSelectedAnswers().forEach(System.out::println);
-						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
-					}
-				}		 
+			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream()
+			.filter(c->c instanceof SubmittedAnswerMultiImpl).map(c->(SubmittedAnswerMultiImpl)c)
+			.map((c)-> {return "\n" + c.getQuestion().getQuestionText() 
+					+ "\n" +  c.getUser().getFirstName() + "\n" + c.getSelectedAnswers() + "\n" ;
+					
 			}
+					).collect(Collectors.toList()) + "\n"));
+			System.out.println("testing with maps finish");
 
 			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
 			return null;
