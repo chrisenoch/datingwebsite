@@ -137,6 +137,77 @@ public class Matcher {
 			return null;
 		}
 		
+		public static void main(String[] args) {
+//			calculateMatch1(init());
+//			System.out.println();
+//			calculateMatch2(init());
+//			System.out.println();
+//			calculateMatch3(init());
+			System.out.println();
+			calculateMatch5(init());
+		}
+		
+		private static Map<Category,Set<SubmittedAnswer>> calculateMatch5(Set<SubmittedAnswer> submittedAnswers){
+			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
+			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
+			
+			
+			System.out.println("testing with maps start");
+			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream().map(c-> c.getQuestion().getQuestionText()).collect(Collectors.toList()) + "\n"));
+			System.out.println("testing with maps finish");
+			
+			//Print individual list items with nested method as a stream.
+			for (Map.Entry<Category, List<SubmittedAnswer>> entry : test.entrySet()){
+				//System.out.println(entry.getKey().getCategory());
+				for (SubmittedAnswer ans : entry.getValue()) {
+					//Need instanceof check here
+					if (ans instanceof SubmittedAnswerMultiImpl) {
+						SubmittedAnswerMultiImpl subMultiImpl = (SubmittedAnswerMultiImpl)ans;
+						//System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
+						//+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
+						
+						subMultiImpl.getSelectedAnswers().forEach(System.out::println);
+						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
+					}
+				}		 
+			}
+
+			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
+			return null;
+			
+		}
+		
+		private static Map<Category,Set<SubmittedAnswer>> calculateMatch4(Set<SubmittedAnswer> submittedAnswers){
+			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
+			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
+			
+			
+			System.out.println("testing with maps start");
+			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream().map(c-> c.getQuestion().getQuestionText()).collect(Collectors.toList()) + "\n"));
+			System.out.println("testing with maps finish");
+			
+			//Print individual list items with nested method as a stream.
+			for (Map.Entry<Category, List<SubmittedAnswer>> entry : test.entrySet()){
+				System.out.println(entry.getKey().getCategory());
+				for (SubmittedAnswer ans : entry.getValue()) {
+					//Need instanceof check here
+					if (ans instanceof SubmittedAnswerMultiImpl) {
+						SubmittedAnswerMultiImpl subMultiImpl = (SubmittedAnswerMultiImpl)ans;
+						System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
+						+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
+						
+						subMultiImpl.getSelectedAnswers().forEach(System.out::println);
+						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
+					}
+				}		 
+			}
+
+			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
+			return null;
+			
+		}
+		
+		//Learn code: Learn how to return to Set, i.e. Map<Category, Set<SubmittedAnswer>> // Not simple
 		private static Map<Category,Set<SubmittedAnswer>> calculateMatch3(Set<SubmittedAnswer> submittedAnswers){
 			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
 			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
@@ -157,8 +228,7 @@ public class Matcher {
 					}
 				}		 
 			}
-			
-			
+
 			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
 			return null;
 			
@@ -189,13 +259,7 @@ public class Matcher {
 			
 		}
 		
-		public static void main(String[] args) {
-			calculateMatch1(init());
-			System.out.println();
-			calculateMatch2(init());
-			System.out.println();
-			calculateMatch3(init());
-		}
+
 		
 		//Thoughts. If i use answerkey as key for hashmap.
 		//then when I check that answerkey exisst in list of answers in questions class, can 
