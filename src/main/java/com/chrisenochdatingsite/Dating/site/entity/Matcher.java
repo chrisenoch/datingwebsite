@@ -144,7 +144,28 @@ public class Matcher {
 //			System.out.println();
 //			calculateMatch3(init());
 			System.out.println();
-			calculateMatch5(init());
+			calculateMatch6(init());
+		}
+		
+		private static Map<Category,Set<SubmittedAnswer>> calculateMatch6(Set<SubmittedAnswer> submittedAnswers){
+			Map<Category, Set<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion()
+					.getCategory(), Collectors.toSet()));
+			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
+			
+			
+			System.out.println("testing with maps start");
+			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream()
+			.filter(c->c instanceof SubmittedAnswerMultiImpl).map(c->(SubmittedAnswerMultiImpl)c)
+			.map((c)-> {return "\n" + c.getQuestion().getQuestionText() 
+					+ "\n" +  c.getUser().getFirstName() + "\n" + c.getSelectedAnswers() + "\n" ;
+					
+			}
+					).collect(Collectors.toList()) + "\n"));
+			System.out.println("testing with maps finish");
+
+			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
+			return null;
+			
 		}
 		
 		private static Map<Category,Set<SubmittedAnswer>> calculateMatch5(Set<SubmittedAnswer> submittedAnswers){
@@ -166,6 +187,7 @@ public class Matcher {
 			return null;
 			
 		}
+		
 		
 		private static Map<Category,Set<SubmittedAnswer>> calculateMatch4(Set<SubmittedAnswer> submittedAnswers){
 			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
@@ -250,54 +272,101 @@ public class Matcher {
 		}
 		
 
-		
+		//IDEAS
+		//Match formulas should be lambdas so can always change easily?
 		//Thoughts. If i use answerkey as key for hashmap.
-		//then when I check that answerkey exisst in list of answers in questions class, can 
+		//then when I check that answerkey exist in list of answers in questions class, can 
 		
+		//Category may be better being the final operation as it is a terminal operation.
 		//Arguments List<SubmittedAnswer> userAnswer, <SubmittedAnswer> otherPeoplesAnswers>, 
 		//First pair each SubmittedAnswer with each SubmittedAnswerList //Would TreeMap be useful here? make method faster? //Hashmap quicker
 			//Find question element in Hashset using contains. if true add to collection
 			//NEED FAST SEARCH
 			//End up with map questionid, SubmittedAnswer userAnswer, List<SubmittedAnswer>>
 			//NEED FAST ITERATION, FAST LOOKUP 
-		
 		//Check question and answer coincide  //Do I need the question? If just matching, do not need.If going to display, need.
 		//What about if user has selected multiple answers? In that case, need to be able search by question id?
 		//Need Question for multiselect answers. But will have different answerkeys?, so need by questionid
-		//In Answer class, setQuestion, then can get questionTextString from question if necessary and then don't need to worry about question and answer arguments not matching.
-		
-		
 		//End up with matching result for each category
 		//Separate map for each category
 		//End up with total matching percentage
-		//If use partion.... end up with deep arrays and take ages to retrieve data?
-			//Do by means of partition.
-			//Do by means of smaller methods
-		
-		
+		//Do by means of smaller methods?
 		//Some people may have answered more questions than others. How to account for this?
 		
+		
+		
+		//SIMPLE VERISON: One type of question
+		
+		//Map <User, Double percentage> for each category
+		//First group by category and then groupBy User
+		//Map <Category, Map <User, Double>> matchPercentageByCategory
+		
+		 //Firsta ssume that all the same type of answer?
+		//Real return type: Map <Category, Map <User, Double>>
+		private void matchPercentageByCategory(Set<SubmittedAnswer> submittedAnswers){
+			submittedAnswers.stream().map(a-> {
+				if (a instanceof SubmittedAnswerMultiImpl) {
+					//Method to calculate match
+
+					//get selected answers. Loop through and do instanceof check again
+					Set<Answer> subAnsMultiImplSet = ((SubmittedAnswerMultiImpl) a).getSelectedAnswers();
+					
+					subAnsMultiImplSet.stream()
+					.map((b)-> { 
+						if (b instanceof AnswerWeightedImpl) {
+							
+							return b; //Return Map <User, Double>
+						} else if (b instanceof AnswerImpl) {
+							
+							return b; //Return Map <User, Double>
+						} else {
+							
+							return b; //Return Map <User, Double>
+						}		
+					}
+					).forEach(System.out::println); //Change this line
+					
+		
+				} else if (a instanceof SubmittedAnswerSingleImpl){
+					return a;
+				} else {
+					return a;
+				}
+				
+			}	
+			) //Continue stream logic here
+			
+			//get instance of SubmittedAnsMulti
+			//All go into the same map, regardless of question type.
+			//What changes with question type is the matching algorithm
+			
+			return null;
+		}
+		
+
+		
+		
 		//Separate/Partition by category
-			//Use map function for if statements. Extract into method reference
+			//Use map function for if statements. Extract into method reference 
 			//If instanceof AnswerWeightedimpl
 				//Create map, <User, Double percentage>
 					//Testing, use double with margin for error. e.g. hamcrest Closeto method.
 				
 				//calculate matches method (could be added as a filter? via method reference?)BiFunction?
-					//Check tos ee if weight is set, if not, skip/continue
+					//Check to see if weight is set, if not, skip/continue
 				//Find difference between each score, if diff 0 100%, if difference 5-0% match
 					//find weight of Person A, find weight of Person B, map subtract one from other, 
 					//map convert into percentage double
 					//make sure ends up as stream, so can plug in the method to larger method?
 				//could be adding to existing map? (Pearl: Only calculate newly-answered questions/uncached results)
 		
-			//If instanceof SubmittedAnswerSingle
+			//If instanceof SubmittedAnswerMulti (AnswerWeighted)
 					//Need to add to same map as previous one. if same answer 100%, if diff answer 0% this matching algorithm seems to harsh. Maybe user doesn't care about other person beig difefrent.
 					//Create new map of answers. <User, Double percentage>
 					//Merge this map with previous map, combination part calculates new percentage based on the two percentages for each map
 					//Separate methods for? /Take into account if multianswer or singleanswer. Maybe SubmittedAnswerMulti should be subclass of SubmittedAnswerSingle? Or maybe they should implement a common inetrface. Abstract class Submitetd Answer
 					
-			//If instance of SubmittedAnswerMulti
+			//If instance of SubmittedAnswerMulti (singleAnswer) - match formula different
 					//For which questions are we going to have multianswers? looking for relationship status, if one selects one and other selects all, if anymatch then should be calculated as 100% compatible
 					//100% match if any coincide. if user chooses any/all, then 100% match
 		
