@@ -1,8 +1,8 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
@@ -13,7 +13,7 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	private long id;
 	private Question question;
 	private User user;
-	private Set<Answer> selectedAnswers;
+	private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText
 
 	public long getId() {
 		return id;
@@ -34,16 +34,14 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public Set<Answer> getSelectedAnswers() {
+	
+	public Map<String, Answer> getSelectedAnswers() {
 		return selectedAnswers;
 	}
-	public void setSelectedAnswers(Set<Answer> selectedAnswers) {
+	public void setSelectedAnswers(Map<String, Answer> selectedAnswers) {
 		this.selectedAnswers = selectedAnswers;
 	}
-	
-	
-	public SubmittedAnswerMultiImpl(Question question, User user, Set<Answer> selectedAnswers) {
+	public SubmittedAnswerMultiImpl(Question question, User user, Map<String, Answer> selectedAnswers) {
 		this.question = question;
 		this.user = user;
 		this.selectedAnswers = selectedAnswers; 
@@ -52,9 +50,15 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	public SubmittedAnswerMultiImpl(Question question, User user, Answer ... selectedAnswers) {
 		this.question = question;
 		this.user = user;
-		this.selectedAnswers = new HashSet<Answer>(Arrays.asList(selectedAnswers));
-				
+		
+		Map<String, Answer> selecAns = new HashMap<>();
+		for (Answer ans : selectedAnswers) {
+			selecAns.put(ans.getAnswerText(), ans);
+		}
+		this.selectedAnswers = selecAns;				
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "SubmittedAnswerMultiImpl [id=" + id + ", question=" + question + ", user=" + user + ", selectedAnswers="

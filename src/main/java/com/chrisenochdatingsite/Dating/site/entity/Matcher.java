@@ -13,8 +13,6 @@ import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
-
 
 public class Matcher {
 		private Set<SubmittedAnswer> submittedAnswers;	
@@ -132,10 +130,62 @@ public class Matcher {
 		
 		}
 		
-		private Map<Category,Set<SubmittedAnswer>> testJava8(List<Integer> testList){
-			testList.stream().map(a-> a.doubleValue()).collect(Collectors.toList());
-			return null;
-		}
+
+		
+
+		//IDEAS
+		//Match formulas should be lambdas so can always change easily?
+		//Thoughts. If i use answerkey as key for hashmap.
+		//then when I check that answerkey exist in list of answers in questions class, can 
+		
+		//Category may be better being the final operation as it is a terminal operation.
+		//Arguments List<SubmittedAnswer> userAnswer, <SubmittedAnswer> otherPeoplesAnswers>, 
+		//First pair each SubmittedAnswer with each SubmittedAnswerList //Would TreeMap be useful here? make method faster? //Hashmap quicker
+			//Find question element in Hashset using contains. if true add to collection
+			//NEED FAST SEARCH
+			//End up with map questionid, SubmittedAnswer userAnswer, List<SubmittedAnswer>>
+			//NEED FAST ITERATION, FAST LOOKUP 
+		//Check question and answer coincide  //Do I need the question? If just matching, do not need.If going to display, need.
+		//What about if user has selected multiple answers? In that case, need to be able search by question id?
+		//Need Question for multiselect answers. But will have different answerkeys?, so need by questionid
+		//End up with matching result for each category
+		//Separate map for each category
+		//End up with total matching percentage
+		//Do by means of smaller methods?
+		//Some people may have answered more questions than others. How to account for this?
+		
+		
+		
+		//SIMPLE VERISON: One type of question
+		
+		//Map <User, Double percentage> for each category
+		//First group by category and then groupBy User
+		//Map <Category, Map <User, Double>> matchPercentageByCategory
+		
+		 //This compares one user with one other user.
+		//Later this method will be fed into a another in order to calculate matches with all users.
+		//This is the one I will want to use parallel programming for as the user list could be in the millions.
+		// usersList.parallelstream().map(a-> Matchers.matchPercentageByCategory(a)  ..., groupBy category
+		//Map<Category, Map<User,Map<Question, AnswerWeight>>>
+		//First assume that all the same type of answer?
+		//Real return type: Map<Category, Map<Question, AnswerWeight>> 
+		/*
+		 * 0. 
+		 * 1. Get SubmittedAnswers from SearchingUser (will need to add this to User class)
+		 * 2. Get SubmittedAnswers from Comparing User;
+		 * 3. Loop through. Check  SUSer question with C user question.
+		 * 4. If no match, continue
+		 * 5. Get Weight from both Users and store in 2 diff vars.
+		 * 6. Subtract diff, making sure no minus value (absoluteValue?)
+		 * In future, calculate match percentage here depending on type of answer. 
+		 * This must be separate method / the place where a method ref can be inserted. - See Java 8 book on generalisign methods.
+		 * Switch/If conditions here. 
+		 * 7. Store in appropriate place of Map.
+		 * 8. Create separate method to calculate match percentage.
+		 * 
+		 * Do iteratively first and then change to streams.
+
+		 */
 		
 		public static void main(String[] args) {
 //			calculateMatch1(init());
@@ -146,6 +196,94 @@ public class Matcher {
 			System.out.println();
 			calculateMatch6(init());
 		}
+	
+		//Return type is temporary. This will need to be changed to returning: Map<Category, Map<Question, Double>> matchPercentagesByCategory
+		private Map<Category, Map<Question, Integer>> matchPercentageByCategory(User searchingUser, User comparedUser){
+			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
+			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
+			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
+			Map<Category, Map<Question, Double>> matchPercentagesByCategory;
+			Map<Category, Map<Question, Integer>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
+			
+			Map<String, SubmittedAnswer> searchingUserAnswers = searchingUser.getSubmittedAnswers();
+			Map<String, SubmittedAnswer> comparedUserAnswers = searchingUser.getSubmittedAnswers();
+			
+			//String is questionText
+			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserAnswers.entrySet()) {
+				SubmittedAnswer searchingUserAns = pair.getValue();
+				
+				if (searchingUserAns instanceof SubmittedAnswerMultiImpl) {
+					SubmittedAnswerMultiImpl searchingUserAnsMultiImpl = (SubmittedAnswerMultiImpl) searchingUserAns;
+					
+					String searchingUserQuestionText = searchingUserAns.getQuestion().getQuestionText();		
+					SubmittedAnswer comparedUserAns = comparedUserAnswers.get(searchingUserQuestionText);
+					
+					SubmittedAnswerMultiImpl comparedUserAnsMultiImpl = (SubmittedAnswerMultiImpl) comparedUserAns;
+					
+					//do null check
+					if (comparedUserAns == null) {
+						continue; //Not all users will have submitted the same answers. If no matching SubmittedAnswer, go on to the next one.
+					}
+		
+					Map<String, Answer> searchingUserSelectedAnswers = searchingUserAnsMultiImpl.getSelectedAnswers();
+					Map<String, Answer> comparedUserSelectedAnswers = comparedUserAnsMultiImpl.getSelectedAnswers();
+					
+					//Loop through and compare scores and add to right category.
+					AnswerWeightedImpl searchingUserAnsWeighted = null;
+					for (Map.Entry<String, Answer> map : searchingUserSelectedAnswers.entrySet()) {
+						Answer ans = map.getValue();
+						if (ans instanceof AnswerWeightedImpl) {
+							searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
+							
+							AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) comparedUserSelectedAnswers.get(searchingUserAnsWeighted.getAnswerText());
+							int diffInWeight;
+							if (comparedUserAnswerWeighted != null) {
+								diffInWeight = Math.abs(searchingUserAnsWeighted.getAnswerWeight().getWeight() - comparedUserAnswerWeighted.getAnswerWeight().getWeight());
+							
+							} else {
+								//throw exception. Do custom exception? / continue loop?
+								continue;
+							}
+							
+							//Get category and add score to Map<Category, Map<Question, AnswerWeight>> matchWeightsByCategory;
+							Category category = searchingUserAns.getQuestion().getCategory();
+							//Improve code: get comparedUser category and only proceed if categories match? Perhaps unnecessary
+							
+							//Dont overwrite current entries for specified category
+							if (matchWeightsByCategory.containsKey(category)) {
+								Map<Question, Integer> tempMap = matchWeightsByCategory.get(category);
+								tempMap.put(searchingUserAns.getQuestion(), diffInWeight);
+								matchWeightsByCategory.put(category, tempMap);	
+								
+							} else {
+								Map<Question, Integer> tempMap = new HashMap<>();
+								tempMap.put(searchingUserAns.getQuestion(), diffInWeight);
+								matchWeightsByCategory.put(category, tempMap);
+							}
+							
+							
+						} else {
+							//Do logic for other answer types later
+							continue; // THIS MUST BE CHANGED. ONLY ADDED TEMPRARILY WHILE NO OTHER ANSWER TYPES.
+						}		
+						
+					}
+					
+			
+				} else { //If not instanceof SubmittedAnswerMultiImpl		
+				}							
+			}
+			
+			return matchWeightsByCategory;
+		}
+		
+
+		
+		private Map<Category,Set<SubmittedAnswer>> testJava8(List<Integer> testList){
+			testList.stream().map(a-> a.doubleValue()).collect(Collectors.toList());
+			return null;
+		}
+		
 		
 		private static Map<Category,Set<SubmittedAnswer>> calculateMatch6(Set<SubmittedAnswer> submittedAnswers){
 			Map<Category, Set<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion()
@@ -208,7 +346,7 @@ public class Matcher {
 						System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
 						+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
 						
-						subMultiImpl.getSelectedAnswers().forEach(System.out::println);
+						//subMultiImpl.getSelectedAnswers().forEach(System.out::println);
 						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
 					}
 				}		 
@@ -235,7 +373,7 @@ public class Matcher {
 						System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
 						+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
 						
-						subMultiImpl.getSelectedAnswers().forEach(System.out::println);
+						//subMultiImpl.getSelectedAnswers().forEach(System.out::println);
 						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
 					}
 				}		 
@@ -270,80 +408,6 @@ public class Matcher {
 			return null;
 			
 		}
-		
-
-		//IDEAS
-		//Match formulas should be lambdas so can always change easily?
-		//Thoughts. If i use answerkey as key for hashmap.
-		//then when I check that answerkey exist in list of answers in questions class, can 
-		
-		//Category may be better being the final operation as it is a terminal operation.
-		//Arguments List<SubmittedAnswer> userAnswer, <SubmittedAnswer> otherPeoplesAnswers>, 
-		//First pair each SubmittedAnswer with each SubmittedAnswerList //Would TreeMap be useful here? make method faster? //Hashmap quicker
-			//Find question element in Hashset using contains. if true add to collection
-			//NEED FAST SEARCH
-			//End up with map questionid, SubmittedAnswer userAnswer, List<SubmittedAnswer>>
-			//NEED FAST ITERATION, FAST LOOKUP 
-		//Check question and answer coincide  //Do I need the question? If just matching, do not need.If going to display, need.
-		//What about if user has selected multiple answers? In that case, need to be able search by question id?
-		//Need Question for multiselect answers. But will have different answerkeys?, so need by questionid
-		//End up with matching result for each category
-		//Separate map for each category
-		//End up with total matching percentage
-		//Do by means of smaller methods?
-		//Some people may have answered more questions than others. How to account for this?
-		
-		
-		
-		//SIMPLE VERISON: One type of question
-		
-		//Map <User, Double percentage> for each category
-		//First group by category and then groupBy User
-		//Map <Category, Map <User, Double>> matchPercentageByCategory
-		
-		 //Firsta ssume that all the same type of answer?
-		//Real return type: Map <Category, Map <User, Double>>
-		private void matchPercentageByCategory(Set<SubmittedAnswer> submittedAnswers){
-			submittedAnswers.stream().map(a-> {
-				if (a instanceof SubmittedAnswerMultiImpl) {
-					//Method to calculate match
-
-					//get selected answers. Loop through and do instanceof check again
-					Set<Answer> subAnsMultiImplSet = ((SubmittedAnswerMultiImpl) a).getSelectedAnswers();
-					
-					subAnsMultiImplSet.stream()
-					.map((b)-> { 
-						if (b instanceof AnswerWeightedImpl) {
-							
-							return b; //Return Map <User, Double>
-						} else if (b instanceof AnswerImpl) {
-							
-							return b; //Return Map <User, Double>
-						} else {
-							
-							return b; //Return Map <User, Double>
-						}		
-					}
-					).forEach(System.out::println); //Change this line
-					
-		
-				} else if (a instanceof SubmittedAnswerSingleImpl){
-					return a;
-				} else {
-					return a;
-				}
-				
-			}	
-			) //Continue stream logic here
-			
-			//get instance of SubmittedAnsMulti
-			//All go into the same map, regardless of question type.
-			//What changes with question type is the matching algorithm
-			
-			return null;
-		}
-		
-
 		
 		
 		//Separate/Partition by category
@@ -382,5 +446,83 @@ public class Matcher {
 //				, new AnswerWeightedImpl("Football", sports)
 //				, new AnswerWeightedImpl("Swimming", sports)
 //				));
+		
+		
+//		private void matchPercentageByCategoryOld(User searchingUser, User comparedUser){
+//			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
+//			Map<Category, Map<Question, AnswerWeight>> matchScoresByCategory;
+//			
+//			Map<String, SubmittedAnswer> searchingUserAnswers = searchingUser.getSubmittedAnswers();
+//			Map<String, SubmittedAnswer> comparedUserAnswers = searchingUser.getSubmittedAnswers();
+//			
+//			//String is questionText
+//			//Don't like have to loop through all for each question. Should be able to access directly.
+//			//Need add a check that SubmittedAnswer is of the right type.
+//			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserAnswers.entrySet()) {
+//				SubmittedAnswer searchingUserAns = pair.getValue();
+//				String searchingUserQuestionText = searchingUserAns.getQuestion().getQuestionText();
+//				
+//				SubmittedAnswer comparedUserAns = comparedUserAnswers.get(searchingUserQuestionText);
+//				
+//				//do null check
+//				if (comparedUserAns == null) {
+//					continue; //Not all users will have submitted the same answers. If no matching SubmitetdAnswer, go on to the next one.
+//				}
+//				
+//				Set<Answer> searchingUserSelectedAnswers = searchingUserAns.get
+//				
+//					//String searchingUserQuestionText = ans.getQuestion().getQuestionText();
+//					//Use above String to find matching Submitted Answer from commparedUser
+//					//Loop though selectedAnswers
+//					//get category from SubmittedAnswer.question.category
+//					//If you insert into a map key/category that doesn't/already exists, what happens?
+//								
+//			}
+//			
+//			
+//			submittedAnswers.stream().map(a-> {
+//				if (a instanceof SubmittedAnswerMultiImpl) {
+//					//Method to calculate match
+//
+//					//get selected answers. Loop through and do instanceof check again
+//					Set<Answer> subAnsMultiImplSet = ((SubmittedAnswerMultiImpl) a).getSelectedAnswers();
+//					
+//					subAnsMultiImplSet.stream()
+//					.map((b)-> { 
+//						if (b instanceof AnswerWeightedImpl) {
+//							//Extract to local method?
+//							
+//							
+//						
+//							
+//							return b; //Return Map <User, Double>
+//						} else if (b instanceof AnswerImpl) {
+//							
+//							return b; //Return Map <User, Double>
+//						} else {
+//							
+//							return b; //Return Map <User, Double>
+//						}		
+//					}
+//					).forEach(System.out::println); //Change this line
+//					
+//		
+//				} else if (a instanceof SubmittedAnswerSingleImpl){
+//					return a;
+//				} else {
+//					return a;
+//				}
+//				
+//			}	
+//			) //Continue stream logic here
+//			
+//			//get instance of SubmittedAnsMulti
+//			//All go into the same map, regardless of question type.
+//			//What changes with question type is the matching algorithm
+//			
+//			return null;
+//		}
+		
+		
 		
 }		
