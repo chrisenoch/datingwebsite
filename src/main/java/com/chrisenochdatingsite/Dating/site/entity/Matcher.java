@@ -230,19 +230,24 @@ public class Matcher {
 //			//QuestionText , answer
 //			Map<String, Answer> map =  ansMulti.getSelectedAnswers();
 			
-			Map<Category, Map<Question,Map<String,Integer>>>  matches = matchPercentageByCategory(peter, dave, a-> a);
+			Map<Category, Map<Question,Map<String,Integer>>>  matches = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent() );
 			
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			System.out.println();
+			for (Map.Entry map1 : matches.entrySet()) {
+				System.out.println("Category: " + map1.getKey());
+				for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+					System.out.println("Question: " + map2.getKey());
+					for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+						System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+					}
+					System.out.println("------------------------------");
+				}		
 
-			 
+			}
 		}
 	
 		//Return type is temporary. This will need to be changed to returning: Map<Category, Map<Question, Double>> matchPercentagesByCategory
 		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
-				, User comparedUser, Function<Integer,? extends Number> convertWeightedAns){ //String = answerText. Improve code: update this to ANswerText class
+				, User comparedUser, Function<Integer,Integer> convertWeightedAns){ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
 			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
@@ -287,7 +292,7 @@ public class Matcher {
 							
 								//Insert conversion to percent method here.
 								//convertedDiffInWeight = (int) Math.ceil((double) convertWeightedAns.apply(diffInWeight));
-								convertedDiffInWeight = (int) convertWeightedAns.apply(diffInWeight);
+								convertedDiffInWeight = convertWeightedAns.apply(diffInWeight);
 							
 							} else {
 								//throw exception. Do custom exception? / continue loop?
@@ -603,6 +608,57 @@ public class Matcher {
 //			return null;
 //		}
 		
-		
+		class ConvertToPercent implements Function<Integer, Integer> {
+			@Override
+			public Integer apply(Integer t) {
+				double temp;
+				
+				switch(t) {
+				
+				case 0: 
+					temp = 6.0/6;
+					System.out.println(temp);
+					break;
+					
+				case 1:
+					temp = 5.0/6;
+					System.out.println(temp);
+					break;
+				case 2: 
+					temp = 4.0/6;
+					System.out.println(temp);
+					break;
+					
+				case 3:
+					temp = 3.0/6;
+					System.out.println(temp);
+					break;
+				case 4: 
+					temp = 2.0/6;
+					System.out.println(temp);
+					break;
+					
+				case 5:
+					temp = 1.0/6;
+					System.out.println(temp);
+					break;
+				
+				case 6: 
+					temp = 0;
+					System.out.println(temp);
+					break;
+					
+				default: 
+					temp = 3.0/6; //Improve code. This switch statement should take an enum of AnswerWeighted?
+				
+				}
+				System.out.println(temp);
+				temp *= 100;
+				System.out.println(temp);
+				temp = Math.ceil(temp);
+				
+				return (int) temp;
+			}
+		}
 		
 }		
