@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
@@ -227,7 +230,7 @@ public class Matcher {
 //			//QuestionText , answer
 //			Map<String, Answer> map =  ansMulti.getSelectedAnswers();
 			
-			Map<Category, Map<Question,Map<String,Integer>>>  matches = matchPercentageByCategory(peter, dave);
+			Map<Category, Map<Question,Map<String,Integer>>>  matches = matchPercentageByCategory(peter, dave, a-> a);
 			
 			System.out.println();
 			System.out.println();
@@ -238,7 +241,8 @@ public class Matcher {
 		}
 	
 		//Return type is temporary. This will need to be changed to returning: Map<Category, Map<Question, Double>> matchPercentagesByCategory
-		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser, User comparedUser){ //String = answerText. Improve code: update this to ANswerText class
+		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
+				, User comparedUser, Function<Integer,? extends Number> convertWeightedAns){ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
 			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
@@ -274,16 +278,17 @@ public class Matcher {
 						Answer ans = map.getValue();
 						if (ans instanceof AnswerWeightedImpl) {
 							searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
+							int convertedDiffInWeight;
 							
 							AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) comparedUserSelectedAnswers.get(searchingUserAnsWeighted.getAnswerText());
 							int diffInWeight; 
-							if (comparedUserAnswerWeighted != null) {
-								System.out.println("Suser weight calculated: " + searchingUserAnsWeighted.getAnswerWeight().getWeight());
-								System.out.println("Cuser weight calculated: " + comparedUserAnswerWeighted.getAnswerWeight().getWeight());
-								
-								
+							if (comparedUserAnswerWeighted != null) {								
 								diffInWeight = Math.abs(searchingUserAnsWeighted.getAnswerWeight().getWeight() - comparedUserAnswerWeighted.getAnswerWeight().getWeight());
-							System.out.println("diffInWeight calculated: " + diffInWeight);
+							
+								//Insert conversion to percent method here.
+								//convertedDiffInWeight = (int) Math.ceil((double) convertWeightedAns.apply(diffInWeight));
+								convertedDiffInWeight = (int) convertWeightedAns.apply(diffInWeight);
+							
 							} else {
 								//throw exception. Do custom exception? / continue loop?
 								continue;
@@ -300,7 +305,7 @@ public class Matcher {
 								if (matchWeightsByCategory.get(category).containsKey(question)) {
 									//fetch answer map
 									Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
-									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), diffInWeight);
+									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), convertedDiffInWeight);
 									
 									//add answer to question map
 									
@@ -314,7 +319,7 @@ public class Matcher {
 								} else { //if contains category but doesn't contain question
 									//Add new answer to answer map
 									Map<String, Integer> tempAnswerMap = new HashMap<>();
-									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), diffInWeight);
+									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), convertedDiffInWeight);
 									
 									//Add question to appropriate category
 									Map<Question,Map<String, Integer>> tempQuestionMap = matchWeightsByCategory.get(category);
@@ -326,7 +331,7 @@ public class Matcher {
 								
 							} else { //doesn't contain category
 								Map<String, Integer> tempMap = new HashMap<>(); 
-								tempMap.put(searchingUserAnsWeighted.getAnswerText(), diffInWeight);
+								tempMap.put(searchingUserAnsWeighted.getAnswerText(), convertedDiffInWeight);
 								
 								//Create question key in map and add answer information
 								Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
