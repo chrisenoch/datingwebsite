@@ -220,40 +220,30 @@ public class Matcher {
 			User jane = usersForTesting.get(1);
 			User peter = usersForTesting.get(2);
 			
-			Map<String, SubmittedAnswer> daveMap = dave.getSubmittedAnswers();
-			SubmittedAnswer ans = daveMap.get("Please indicate how much you like the following movie genres.");
-			SubmittedAnswerMultiImpl ansMulti = (SubmittedAnswerMultiImpl) ans;
+//			Map<String, SubmittedAnswer> daveMap = dave.getSubmittedAnswers();
+//			SubmittedAnswer ans = daveMap.get("Please indicate how much you like the following movie genres.");
+//			SubmittedAnswerMultiImpl ansMulti = (SubmittedAnswerMultiImpl) ans;
+//			
+//			//QuestionText , answer
+//			Map<String, Answer> map =  ansMulti.getSelectedAnswers();
 			
-			//QuestionText , answer
-			Map<String, Answer> map =  ansMulti.getSelectedAnswers();
+			Map<Category, Map<Question,Map<String,Integer>>>  matches = matchPercentageByCategory(peter, dave);
 			
-		
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
 
-
-			Map<Category, Map<Question, Integer>> matches = matchPercentageByCategory(peter, dave);
-
-			
-			for (Map.Entry pair : matches.entrySet()) {
-				System.out.println(pair.getKey());
-				for (Map.Entry pair2 : ((Map<String, Answer>) pair.getValue()).entrySet()) {
-					System.out.println("Key: " + pair2.getKey() + " Value: " + pair2.getValue());
-				}
-				
-				System.out.println("**************************");
-			}
-			
-			
-			 Map<Category, Map<Question,Map<AnswerWeightedImpl,Integer>>>testMap; //May be too complicated
-
+			 
 		}
 	
 		//Return type is temporary. This will need to be changed to returning: Map<Category, Map<Question, Double>> matchPercentagesByCategory
-		private static Map<Category, Map<Question, Integer>> matchPercentageByCategory(User searchingUser, User comparedUser){
+		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser, User comparedUser){ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
 			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
 			Map<Category, Map<Question, Double>> matchPercentagesByCategory;
-			Map<Category, Map<Question, Integer>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
+			Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
 			
 			Map<String, SubmittedAnswer> searchingUserAnswers = searchingUser.getSubmittedAnswers();
 			Map<String, SubmittedAnswer> comparedUserAnswers = comparedUser.getSubmittedAnswers();
@@ -301,18 +291,49 @@ public class Matcher {
 							
 							//Get category and add score to Map<Category, Map<Question, AnswerWeight>> matchWeightsByCategory;
 							Category category = searchingUserAns.getQuestion().getCategory();
+							Question question = searchingUserAns.getQuestion();
 							//Improve code: get comparedUser category and only proceed if categories match? Perhaps unnecessary
 							
 							//Dont overwrite current entries for specified category
 							if (matchWeightsByCategory.containsKey(category)) {
-								Map<Question, Integer> tempMap = matchWeightsByCategory.get(category);
-								tempMap.put(searchingUserAns.getQuestion(), diffInWeight);
-								matchWeightsByCategory.put(category, tempMap);	
 								
-							} else {
-								Map<Question, Integer> tempMap = new HashMap<>();
-								tempMap.put(searchingUserAns.getQuestion(), diffInWeight);
-								matchWeightsByCategory.put(category, tempMap);
+								if (matchWeightsByCategory.get(category).containsKey(question)) {
+									//fetch answer map
+									Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
+									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), diffInWeight);
+									
+									//add answer to question map
+									
+									Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
+									tempMapWithQuestion.put(question, tempAnswerMap);
+									
+									//add to category map
+									//Overwrite category key in map with new updated question (and thus answer) information
+									matchWeightsByCategory.put(category,tempMapWithQuestion);
+										
+								} else { //if contains category but doesn't contain question
+									//Add new answer to answer map
+									Map<String, Integer> tempAnswerMap = new HashMap<>();
+									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), diffInWeight);
+									
+									//Add question to appropriate category
+									Map<Question,Map<String, Integer>> tempQuestionMap = matchWeightsByCategory.get(category);
+									tempQuestionMap.put(question, tempAnswerMap);
+									
+									matchWeightsByCategory.put(category,tempQuestionMap);
+									
+								}					
+								
+							} else { //doesn't contain category
+								Map<String, Integer> tempMap = new HashMap<>(); 
+								tempMap.put(searchingUserAnsWeighted.getAnswerText(), diffInWeight);
+								
+								//Create question key in map and add answer information
+								Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
+								tempMapWithQuestion.put(question, tempMap);
+								
+								//Create category key in map and add question (and thus answer) information
+								matchWeightsByCategory.put(category,tempMapWithQuestion);
 							}
 							
 							
@@ -325,7 +346,7 @@ public class Matcher {
 					
 			
 				} else { //If not instanceof SubmittedAnswerMultiImpl		
-				}							
+						}							
 			}
 			
 			return matchWeightsByCategory;
