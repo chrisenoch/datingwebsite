@@ -1,6 +1,8 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +19,8 @@ import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
 public class Matcher {
 		private Set<SubmittedAnswer> submittedAnswers;	
 		
-		private static Set<SubmittedAnswer> init() {
+		//private static Set<SubmittedAnswer> init()
+		private static List<User> init() {
 			
 			Category movies = new Category("Movies");
 			Category sports = new Category("Sports");
@@ -83,6 +86,13 @@ public class Matcher {
 			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
 			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2, travelStyleChoiceDave3);
 			
+			Map<String, SubmittedAnswer> daveAns = new HashMap<>();
+			daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
+			daveAns.put(submittedAnsDaveSports1.getQuestion().getQuestionText(), submittedAnsDaveSports1);
+			daveAns.put(submittedAnsDaveTravel1.getQuestion().getQuestionText(), submittedAnsDaveTravel1);
+			
+			dave.setSubmittedAnswers(daveAns);
+			
 			//USER 2
 			var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
 			var movieChoiceJane2 = new AnswerWeightedImpl("Action", AnswerWeight.FIVE);
@@ -98,6 +108,13 @@ public class Matcher {
 			var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
 			var submittedAnsJaneTravel1 = new SubmittedAnswerMultiImpl(questionTravel, jane, travelStyleChoiceJane1, travelStyleChoiceJane2, travelStyleChoiceJane3);
  			
+			Map<String, SubmittedAnswer> janeAns = new HashMap<>();
+			janeAns.put(submittedAnsJaneMovies1.getQuestion().getQuestionText(), submittedAnsJaneMovies1);
+			janeAns.put(submittedAnsJaneSports1.getQuestion().getQuestionText(), submittedAnsJaneSports1);
+			janeAns.put(submittedAnsJaneTravel1.getQuestion().getQuestionText(), submittedAnsJaneTravel1 );
+			
+			jane.setSubmittedAnswers(janeAns); 
+			
 			//USER 3
 			var movieChoicePeter1 = new AnswerWeightedImpl("Horror", AnswerWeight.ZERO); //Improve code: Could mistakingly add a string that does not exist as answer option.
 			var movieChoicePeter2 = new AnswerWeightedImpl("Romance", AnswerWeight.ZERO);
@@ -115,6 +132,15 @@ public class Matcher {
 			var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 			var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 			
+			Map<String, SubmittedAnswer> peterAns = new HashMap<>();
+			peterAns.put(submittedAnsPeterMovies1.getQuestion().getQuestionText(), submittedAnsPeterMovies1);
+			peterAns.put(submittedAnsPeterSports1 .getQuestion().getQuestionText(), submittedAnsPeterSports1);
+			peterAns.put(submittedAnsPeterTravel1.getQuestion().getQuestionText(), submittedAnsPeterTravel1);
+			
+			peter.setSubmittedAnswers(peterAns);
+			
+			List<User> users = Arrays.asList(dave, jane, peter);
+			
 			Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
 			submittedAnswers.add(submittedAnsDaveMovies1);
 			submittedAnswers.add(submittedAnsDaveSports1);
@@ -126,7 +152,7 @@ public class Matcher {
 			submittedAnswers.add(submittedAnsPeterSports1);
 			submittedAnswers.add(submittedAnsPeterTravel1);
 			
-			return submittedAnswers;
+			return users;
 		
 		}
 		
@@ -188,17 +214,41 @@ public class Matcher {
 		 */
 		
 		public static void main(String[] args) {
-//			calculateMatch1(init());
-//			System.out.println();
-//			calculateMatch2(init());
-//			System.out.println();
-//			calculateMatch3(init());
-			System.out.println();
-			calculateMatch6(init());
+			//calculateMatch6(init());
+			List<User> usersForTesting = init();
+			User dave = usersForTesting.get(0);
+			User jane = usersForTesting.get(1);
+			User peter = usersForTesting.get(2);
+			
+			Map<String, SubmittedAnswer> daveMap = dave.getSubmittedAnswers();
+			SubmittedAnswer ans = daveMap.get("Please indicate how much you like the following movie genres.");
+			SubmittedAnswerMultiImpl ansMulti = (SubmittedAnswerMultiImpl) ans;
+			
+			//QuestionText , answer
+			Map<String, Answer> map =  ansMulti.getSelectedAnswers();
+			
+		
+
+
+			Map<Category, Map<Question, Integer>> matches = matchPercentageByCategory(peter, dave);
+
+			
+			for (Map.Entry pair : matches.entrySet()) {
+				System.out.println(pair.getKey());
+				for (Map.Entry pair2 : ((Map<String, Answer>) pair.getValue()).entrySet()) {
+					System.out.println("Key: " + pair2.getKey() + " Value: " + pair2.getValue());
+				}
+				
+				System.out.println("**************************");
+			}
+			
+			
+			 Map<Category, Map<Question,Map<AnswerWeightedImpl,Integer>>>testMap; //May be too complicated
+
 		}
 	
 		//Return type is temporary. This will need to be changed to returning: Map<Category, Map<Question, Double>> matchPercentagesByCategory
-		private Map<Category, Map<Question, Integer>> matchPercentageByCategory(User searchingUser, User comparedUser){
+		private static Map<Category, Map<Question, Integer>> matchPercentageByCategory(User searchingUser, User comparedUser){
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
 			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
@@ -206,7 +256,7 @@ public class Matcher {
 			Map<Category, Map<Question, Integer>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
 			
 			Map<String, SubmittedAnswer> searchingUserAnswers = searchingUser.getSubmittedAnswers();
-			Map<String, SubmittedAnswer> comparedUserAnswers = searchingUser.getSubmittedAnswers();
+			Map<String, SubmittedAnswer> comparedUserAnswers = comparedUser.getSubmittedAnswers();
 			
 			//String is questionText
 			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserAnswers.entrySet()) {
@@ -236,10 +286,14 @@ public class Matcher {
 							searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
 							
 							AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) comparedUserSelectedAnswers.get(searchingUserAnsWeighted.getAnswerText());
-							int diffInWeight;
+							int diffInWeight; 
 							if (comparedUserAnswerWeighted != null) {
+								System.out.println("Suser weight calculated: " + searchingUserAnsWeighted.getAnswerWeight().getWeight());
+								System.out.println("Cuser weight calculated: " + comparedUserAnswerWeighted.getAnswerWeight().getWeight());
+								
+								
 								diffInWeight = Math.abs(searchingUserAnsWeighted.getAnswerWeight().getWeight() - comparedUserAnswerWeighted.getAnswerWeight().getWeight());
-							
+							System.out.println("diffInWeight calculated: " + diffInWeight);
 							} else {
 								//throw exception. Do custom exception? / continue loop?
 								continue;

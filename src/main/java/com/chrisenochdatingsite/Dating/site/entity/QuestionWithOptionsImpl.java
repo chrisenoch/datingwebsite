@@ -50,6 +50,14 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 		this.category = category;
 	}
 
+	@Override
+	public String toString() {
+		return "QuestionWithOptionsImpl [id=" + id + ", questionText=" + questionText + ", possibleAnswers="
+				+ possibleAnswers + ", category=" + category + "]";
+	}
+	
+	
+
 	
 
 }
