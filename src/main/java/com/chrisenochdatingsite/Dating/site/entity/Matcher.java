@@ -74,32 +74,40 @@ public class Matcher {
 			//USER 1
 			//Create answer objects with weight
 			//Set selected answers for questions objects. Set here to reflect real-life flow of control.
-
+//
 //			var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE);
 //			var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR);
 //			var movieChoiceDave3 = new AnswerWeightedImpl("Romance", AnswerWeight.THREE);
-//			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
-//			var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-//			var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
-//			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
-//			var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
-//			var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
-//			
-//			var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
-//			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
-//			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
-//			
-//			Map<String, SubmittedAnswer> daveAns = new HashMap<>();
-//			daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
-//			daveAns.put(submittedAnsDaveSports1.getQuestion().getQuestionText(), submittedAnsDaveSports1);
-//			daveAns.put(submittedAnsDaveTravel1.getQuestion().getQuestionText(), submittedAnsDaveTravel1);
-//			
-//			dave.setSubmittedAnswers(daveAns);
+			var movieChoiceDave1 = new AnswerImpl(1, "Horror");
+			var movieChoiceDave2 = new AnswerImpl(2, "Action");
+			var movieChoiceDave3 = new AnswerImpl(3,"Romance");
+			
+			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
+			var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
+			var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
+			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
+			var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
+			var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
+			
+			var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
+			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
+			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
+			
+			Map<String, SubmittedAnswer> daveAns = new HashMap<>();
+			daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
+			daveAns.put(submittedAnsDaveSports1.getQuestion().getQuestionText(), submittedAnsDaveSports1);
+			daveAns.put(submittedAnsDaveTravel1.getQuestion().getQuestionText(), submittedAnsDaveTravel1);
+			
+			dave.setSubmittedAnswers(daveAns);
 			
 			//USER 2
-			var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
-			var movieChoiceJane2 = new AnswerWeightedImpl("Action", AnswerWeight.FIVE);
-			var movieChoiceJane3 = new AnswerWeightedImpl("Romance", AnswerWeight.FOUR);
+//			var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
+//			var movieChoiceJane2 = new AnswerWeightedImpl("Action", AnswerWeight.FIVE);
+//			var movieChoiceJane3 = new AnswerWeightedImpl("Romance", AnswerWeight.FOUR);
+			var movieChoiceJane1 = new AnswerImpl(1, "Horror"); //Improve code: Could mistakingly add a string that does not exist as answer option.
+			var movieChoiceJane2 = new AnswerImpl(2, "Action");
+			var movieChoiceJane3 = new AnswerImpl(3, "Romance");
+			
 			var sportsChoiceJane1 = new AnswerWeightedImpl("Basketball", AnswerWeight.ZERO);
 			var sportsChoiceJane2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
 			var sportsChoiceJane3 = new AnswerWeightedImpl("Football", AnswerWeight.SIX);	
@@ -119,9 +127,13 @@ public class Matcher {
 			jane.setSubmittedAnswers(janeAns); 
 			
 			//USER 3
-			var movieChoicePeter1 = new AnswerWeightedImpl("Horror", AnswerWeight.ZERO); //Improve code: Could mistakingly add a string that does not exist as answer option.
-			var movieChoicePeter2 = new AnswerWeightedImpl("Romance", AnswerWeight.ZERO);
-			var movieChoicePeter3 = new AnswerWeightedImpl("Action", AnswerWeight.SIX);
+//			var movieChoicePeter1 = new AnswerWeightedImpl("Horror", AnswerWeight.ZERO); //Improve code: Could mistakingly add a string that does not exist as answer option.
+//			var movieChoicePeter2 = new AnswerWeightedImpl("Romance", AnswerWeight.ZERO);
+//			var movieChoicePeter3 = new AnswerWeightedImpl("Action", AnswerWeight.SIX);
+			var movieChoicePeter1 = new AnswerImpl(1, "Horror"); //Improve code: Could mistakingly add a string that does not exist as answer option.
+			var movieChoicePeter2 = new AnswerImpl(2, "Action");
+			var movieChoicePeter3 = new AnswerImpl(3, "Romance");
+			
 	
 			var sportsChoicePeter1 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
 			var sportsChoicePeter2 = new AnswerWeightedImpl("Football", AnswerWeight.FIVE);
@@ -131,7 +143,7 @@ public class Matcher {
 			var travelStyleChoicePeter2 = new AnswerWeightedImpl("Camping", AnswerWeight.SIX);
 			var travelStyleChoicePeter3 = new AnswerWeightedImpl("Hiking", AnswerWeight.THREE);
 			
-			var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoicePeter1, movieChoicePeter2, movieChoicePeter3);
+			var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoiceDave1, movieChoiceDave2, movieChoicePeter3);
 			var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 			var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 			
@@ -145,13 +157,13 @@ public class Matcher {
 			List<User> users = Arrays.asList(dave, jane, peter);
 			
 			Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
-//			submittedAnswers.add(submittedAnsDaveMovies1);
-//			submittedAnswers.add(submittedAnsDaveSports1);
-//			submittedAnswers.add(submittedAnsDaveTravel1);
-			submittedAnswers.add(submittedAnsJaneMovies1);
+			//submittedAnswers.add(submittedAnsDaveMovies1);
+			submittedAnswers.add(submittedAnsDaveSports1);
+			submittedAnswers.add(submittedAnsDaveTravel1);
+			//submittedAnswers.add(submittedAnsJaneMovies1);
 			submittedAnswers.add(submittedAnsJaneSports1);
 			submittedAnswers.add(submittedAnsJaneTravel1);
-			submittedAnswers.add(submittedAnsPeterMovies1);
+			//submittedAnswers.add(submittedAnsPeterMovies1);
 			submittedAnswers.add(submittedAnsPeterSports1);
 			submittedAnswers.add(submittedAnsPeterTravel1);
 			
@@ -360,10 +372,29 @@ public class Matcher {
 							//Do inner for loop and if find match 100% and if do not find match 0%
 							//When comparing with selected answers, if not instanceof AnswerImpl, continue
 							//Make sure, do not compare answer with self? Needs to be found twice then..?
+							//Need count variable?
 							
+							int count = 0;
+							boolean isMatch;
+							for (Map.Entry<String, Answer> map2 : comparedUserSelectedAnswers.entrySet()) {
+								if (map2.getValue() instanceof AnswerImpl && ans == map2.getValue()) { //Debugging: Will probably have to override equals method (and thus hash), compare by id
+									count++;
+								}
+							}
+							if (count >= 1) {
+								//If there should be duplicate answers, the score will only get counted once because after the first time, the entry int he map below ill simply be overwritten.
+								//100% match, add to score variable. Score variable will then go through functional interface method to convert the score
+								//Add logging for duplicate answers to warn of potential problems? i.e. if count >= 1 ? Great idea, but extra step in the code...
+								isMatch = true;
+								System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
 							
+							} else  {
+								//0% match, add to score variable. Score variable will then go through functional interface method to convert the score
+								isMatch = false;
+								System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
+							} 
 							
-							
+							//To Do: convertedScore = convertWeightedAns.apply(diffInWeight);
 							
 							
 							

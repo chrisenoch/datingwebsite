@@ -25,11 +25,15 @@ public class AnswerImpl implements Answer{
 		return this.answerText;
 	}
 
-
 	public AnswerImpl(int id, String answerText) {
 		super();
 		this.id = id;
 		this.answerText = answerText;
+	}
+
+	@Override
+	public String toString() {
+		return "AnswerImpl [id=" + id + ", answerText=" + answerText + "]";
 	}
 
 }
