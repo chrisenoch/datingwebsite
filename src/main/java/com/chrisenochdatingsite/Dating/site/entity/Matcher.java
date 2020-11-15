@@ -87,7 +87,7 @@ public class Matcher {
 			
 			var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
 			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
-			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2, travelStyleChoiceDave3);
+			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
 			
 			Map<String, SubmittedAnswer> daveAns = new HashMap<>();
 			daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
@@ -221,16 +221,11 @@ public class Matcher {
 			List<User> usersForTesting = init();
 			User dave = usersForTesting.get(0);
 			User jane = usersForTesting.get(1);
-			User peter = usersForTesting.get(2);
-			
-//			Map<String, SubmittedAnswer> daveMap = dave.getSubmittedAnswers();
-//			SubmittedAnswer ans = daveMap.get("Please indicate how much you like the following movie genres.");
-//			SubmittedAnswerMultiImpl ansMulti = (SubmittedAnswerMultiImpl) ans;
-//			
-//			//QuestionText , answer
-//			Map<String, Answer> map =  ansMulti.getSelectedAnswers();
+			User peter = usersForTesting.get(2);		
 			
 			Map<Category, Map<Question,Map<String,Integer>>>  matches = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent() );
+			
+			
 			
 			for (Map.Entry map1 : matches.entrySet()) {
 				System.out.println("Category: " + map1.getKey());
@@ -243,9 +238,43 @@ public class Matcher {
 				}		
 
 			}
+			
+			System.out.println("------------------------------");
+			Map<Category, Integer> percentages = totalMatchPercentageByCategory(matches);
+			percentages.entrySet().stream().forEach(System.out::println);
+			
 		}
 	
-		//Return type is temporary. This will need to be changed to returning: Map<Category, Map<Question, Double>> matchPercentagesByCategory
+		
+		private static Map<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory) {
+			//Change to mapToInt
+//			 matchPercentageByCategory.entrySet().stream().map(a-> a.getValue().entrySet().stream()
+//					.map(b-> b.getValue().entrySet().stream().mapToInt(c->c.getValue()).sum()));
+							
+			 Map<Category, Integer> totals = new HashMap<>();
+			 Double sum = 0.0;
+			 for (Map.Entry pair : matchPercentageByCategory.entrySet()) {	 
+				 Category category = (Category) pair.getKey();
+				 int answerCount = 0;
+				 for (Map.Entry pair2 : ((Map<String, Answer>) pair.getValue()).entrySet()) {
+					 for (Map.Entry pair3 :  ((Map<String, Answer>) pair2.getValue()).entrySet()) {
+						 sum += (Integer)pair3.getValue();
+						 System.out.println("Sum" + sum);
+						 answerCount++;
+					 }
+									 
+				 }	
+				 
+				 sum = sum/answerCount;
+				 int sumIntValue = sum.intValue(); //Avoid integer division	 
+				 totals.put(category, sumIntValue);
+				 sum = 0.0;
+				 answerCount = 0;
+			 }
+
+			return totals;
+		}
+		
 		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
 				, User comparedUser, Function<Integer,Integer> convertWeightedAns){ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
@@ -363,136 +392,58 @@ public class Matcher {
 		}
 		
 
-		
-		private Map<Category,Set<SubmittedAnswer>> testJava8(List<Integer> testList){
-			testList.stream().map(a-> a.doubleValue()).collect(Collectors.toList());
-			return null;
-		}
-		
-		
-		private static Map<Category,Set<SubmittedAnswer>> calculateMatch6(Set<SubmittedAnswer> submittedAnswers){
-			Map<Category, Set<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion()
-					.getCategory(), Collectors.toSet()));
-			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
-			
-			
-			System.out.println("testing with maps start");
-			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream()
-			.filter(c->c instanceof SubmittedAnswerMultiImpl).map(c->(SubmittedAnswerMultiImpl)c)
-			.map((c)-> {return "\n" + c.getQuestion().getQuestionText() 
-					+ "\n" +  c.getUser().getFirstName() + "\n" + c.getSelectedAnswers() + "\n" ;
+		class ConvertToPercent implements Function<Integer, Integer> {
+			@Override
+			public Integer apply(Integer t) {
+				double percentage;
+				
+				switch(t) {
+				
+				case 0: 
+					percentage = 6.0/6;
+					System.out.println(percentage);
+					break;
 					
-			}
-					).collect(Collectors.toList()) + "\n"));
-			System.out.println("testing with maps finish");
-
-			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
-			return null;
-			
-		}
-		
-		private static Map<Category,Set<SubmittedAnswer>> calculateMatch5(Set<SubmittedAnswer> submittedAnswers){
-			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
-			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
-			
-			
-			System.out.println("testing with maps start");
-			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream()
-			.filter(c->c instanceof SubmittedAnswerMultiImpl).map(c->(SubmittedAnswerMultiImpl)c)
-			.map((c)-> {return "\n" + c.getQuestion().getQuestionText() 
-					+ "\n" +  c.getUser().getFirstName() + "\n" + c.getSelectedAnswers() + "\n" ;
+				case 1:
+					percentage = 5.0/6;
+					System.out.println(percentage);
+					break;
+				case 2: 
+					percentage = 4.0/6;
+					System.out.println(percentage);
+					break;
 					
-			}
-					).collect(Collectors.toList()) + "\n"));
-			System.out.println("testing with maps finish");
-
-			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
-			return null;
-			
-		}
-		
-		
-		private static Map<Category,Set<SubmittedAnswer>> calculateMatch4(Set<SubmittedAnswer> submittedAnswers){
-			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
-			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
-			
-			
-			System.out.println("testing with maps start");
-			test.forEach((a, b)-> System.out.println(a.getCategory() + " " + b.stream().map(c-> c.getQuestion().getQuestionText()).collect(Collectors.toList()) + "\n"));
-			System.out.println("testing with maps finish");
-			
-			//Print individual list items with nested method as a stream.
-			for (Map.Entry<Category, List<SubmittedAnswer>> entry : test.entrySet()){
-				System.out.println(entry.getKey().getCategory());
-				for (SubmittedAnswer ans : entry.getValue()) {
-					//Need instanceof check here
-					if (ans instanceof SubmittedAnswerMultiImpl) {
-						SubmittedAnswerMultiImpl subMultiImpl = (SubmittedAnswerMultiImpl)ans;
-						System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
-						+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
-						
-						//subMultiImpl.getSelectedAnswers().forEach(System.out::println);
-						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
-					}
-				}		 
+				case 3:
+					percentage = 3.0/6;
+					System.out.println(percentage);
+					break;
+				case 4: 
+					percentage = 2.0/6;
+					System.out.println(percentage);
+					break;
+					
+				case 5:
+					percentage = 1.0/6;
+					System.out.println(percentage);
+					break;
+				
+				case 6: 
+					percentage = 0;
+					System.out.println(percentage);
+					break;
+					
+				default: 
+					percentage = 3.0/6; //Improve code. This switch statement should take an enum of AnswerWeighted?
+				
+				}
+				System.out.println(percentage);
+				percentage *= 100;
+				System.out.println(percentage);
+				percentage = Math.ceil(percentage);
+				
+				return (int) percentage;
 			}
 
-			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
-			return null;
-			
-		}
-		
-		//Learn code: Learn how to return to Set, i.e. Map<Category, Set<SubmittedAnswer>> // Not simple
-		private static Map<Category,Set<SubmittedAnswer>> calculateMatch3(Set<SubmittedAnswer> submittedAnswers){
-			Map<Category, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getQuestion().getCategory()));
-			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
-			test.forEach((a, b)-> System.out.println(a + " " + b.size() + "\n"));
-															
-			//Print individual list items with nested method as a stream.
-			for (Map.Entry<Category, List<SubmittedAnswer>> entry : test.entrySet()){
-				System.out.println(entry.getKey().getCategory());
-				for (SubmittedAnswer ans : entry.getValue()) {
-					//Need instanceof check here
-					if (ans instanceof SubmittedAnswerMultiImpl) {
-						SubmittedAnswerMultiImpl subMultiImpl = (SubmittedAnswerMultiImpl)ans;
-						System.out.println("Question: " +  subMultiImpl.getQuestion().getQuestionText() + "\n User: " 
-						+ subMultiImpl.getUser().getFirstName() + "\n Id: " + subMultiImpl.getId());
-						
-						//subMultiImpl.getSelectedAnswers().forEach(System.out::println);
-						//+ " SelectedAnswers: " + subMultiImpl.getSelectedAnswers().forEach(System.out::println));
-					}
-				}		 
-			}
-
-			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
-			return null;
-			
-		}
-		
-		private static Map<Category,Set<SubmittedAnswer>> calculateMatch2(Set<SubmittedAnswer> submittedAnswers){
-			Map<Object, List<SubmittedAnswer>> test = submittedAnswers.stream().collect(Collectors.groupingBy(a-> a.getClass().getName()));
-			//List<String> test = submittedAnswers.stream().map(a -> a.getQuestion().getCategory()
-			test.forEach((a, b)-> System.out.println(a + " " + b.size() + "\n"));
-			
-			//Print individual list items. Maybe use a range method.
-			
-			
-			
-			
-			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
-			return null;
-			
-		}
-		
-		//Problem could be using an interface?
-		private static Map<Category,Set<SubmittedAnswer>> calculateMatch1(Set<SubmittedAnswer> submittedAnswers){
-			List<String> test = submittedAnswers.stream().map(a -> a.getClass().getName()).collect(Collectors.toList());
-			test.forEach(System.out::println);
-			
-			//submittedAnswers.stream().map(SubmittedAnswer::getUser()collect(Collectors.groupingBy(submittedAnswers::getUser());
-			return null;
-			
-		}
 		
 		
 		//Separate/Partition by category
@@ -608,57 +559,7 @@ public class Matcher {
 //			return null;
 //		}
 		
-		class ConvertToPercent implements Function<Integer, Integer> {
-			@Override
-			public Integer apply(Integer t) {
-				double temp;
-				
-				switch(t) {
-				
-				case 0: 
-					temp = 6.0/6;
-					System.out.println(temp);
-					break;
-					
-				case 1:
-					temp = 5.0/6;
-					System.out.println(temp);
-					break;
-				case 2: 
-					temp = 4.0/6;
-					System.out.println(temp);
-					break;
-					
-				case 3:
-					temp = 3.0/6;
-					System.out.println(temp);
-					break;
-				case 4: 
-					temp = 2.0/6;
-					System.out.println(temp);
-					break;
-					
-				case 5:
-					temp = 1.0/6;
-					System.out.println(temp);
-					break;
-				
-				case 6: 
-					temp = 0;
-					System.out.println(temp);
-					break;
-					
-				default: 
-					temp = 3.0/6; //Improve code. This switch statement should take an enum of AnswerWeighted?
-				
-				}
-				System.out.println(temp);
-				temp *= 100;
-				System.out.println(temp);
-				temp = Math.ceil(temp);
-				
-				return (int) temp;
-			}
+		
 		}
 		
 }		
