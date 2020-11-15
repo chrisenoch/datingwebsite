@@ -299,11 +299,7 @@ public class Matcher {
 		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
 				, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
-			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
-			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
-			Map<Category, Map<Question, Double>> matchPercentagesByCategory;
 			Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
-			
 			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = searchingUser.getSubmittedAnswers();
 			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = comparedUser.getSubmittedAnswers();
 			
@@ -313,10 +309,9 @@ public class Matcher {
 			if (comparedUserSubmittedAnswers == null) {
 				throw new Exception(comparedUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
+
 			
-			
-			//String is questionText
-			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserSubmittedAnswers.entrySet()) {
+			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserSubmittedAnswers.entrySet()) { //String is questionText
 				SubmittedAnswer searchingUserAns = pair.getValue();
 				
 				if (searchingUserAns instanceof SubmittedAnswerMultiImpl) {
@@ -343,18 +338,13 @@ public class Matcher {
 						int convertedScore;
 						if (ans instanceof AnswerWeightedImpl) {
 							
-							//AnswerWeightedImpl searchingUserAnsWeighted = null;
-							
 							AnswerWeightedImpl searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
-							
-							
+
 							AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) comparedUserSelectedAnswers.get(searchingUserAnsWeighted.getAnswerText());
 							int diffInWeight; 
 							if (comparedUserAnswerWeighted != null) {								
 								diffInWeight = Math.abs(searchingUserAnsWeighted.getAnswerWeight().getWeight() - comparedUserAnswerWeighted.getAnswerWeight().getWeight());
 							
-								//Insert conversion to percent method here.
-								//convertedDiffInWeight = (int) Math.ceil((double) convertWeightedAns.apply(diffInWeight));
 								convertedScore = convertWeightedAns.apply(diffInWeight);
 							
 							} else {
@@ -364,93 +354,25 @@ public class Matcher {
 							
 							
 						} else if (ans instanceof AnswerImpl) { 
-							//Separate method here
-							//convertedScore = 4; //DELETE THIS. THIS VALUE IS JUST TO COMPILE CODE
-							
-							//
 							//loop through 
-							//Can I make this functional interface? - Not so much, a little
-							//Do inner for loop and if find match 100% and if do not find match 0%
-							//When comparing with selected answers, if not instanceof AnswerImpl, continue
-							//Make sure, do not compare answer with self? Needs to be found twice then..?
-							//Need count variable?
-							
-							int count = 0;
-							boolean isMatch;
-							for (Map.Entry<String, Answer> map2 : comparedUserSelectedAnswers.entrySet()) {
-								if (map2.getValue() instanceof AnswerImpl && ans.equals(map2.getValue()) ) { //Debugging: Will probably have to override equals method (and thus hash), compare by id
-									count++;
-								}
-							}
-							if (count >= 1) {
-								//If there should be duplicate answers, the score will only get counted once because after the first time, the entry int he map below ill simply be overwritten.
-								//100% match, add to score variable. Score variable will then go through functional interface method to convert the score
-								//Add logging for duplicate answers to warn of potential problems? i.e. if count >= 1 ? Great idea, but extra step in the code...
-								isMatch = true;
-								System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
-							
-							} else  {
-								//0% match, add to score variable. Score variable will then go through functional interface method to convert the score
-								isMatch = false;
-								System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
-							} 
+
+							boolean isMatch = scoreAnswerImpls(comparedUserSelectedAnswers, ans); 
 							
 							convertedScore = convertCheckboxAns.apply(isMatch);
 							
-							
-							
+		
 						} else {
 							//Do logic for other answer types later
 						  continue; // THIS MUST BE CHANGED. ONLY ADDED TEMPRARILY WHILE NO OTHER ANSWER TYPES.
 						}
-							
-							
+
 							//Get category and add score to Map<Category, Map<Question, AnswerWeight>> matchWeightsByCategory;
 							Category category = searchingUserAns.getQuestion().getCategory();
 							Question question = searchingUserAns.getQuestion();
 							//Improve code: get comparedUser category and only proceed if categories match? Perhaps unnecessary
 							
 							//Dont overwrite current entries for specified category
-							if (matchWeightsByCategory.containsKey(category)) {
-								
-								if (matchWeightsByCategory.get(category).containsKey(question)) {
-									//fetch answer map
-									Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
-									tempAnswerMap.put(ans.getAnswerText(), convertedScore);
-									
-									//add answer to question map
-									
-									Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
-									tempMapWithQuestion.put(question, tempAnswerMap);
-									
-									//add to category map
-									//Overwrite category key in map with new updated question (and thus answer) information
-									matchWeightsByCategory.put(category,tempMapWithQuestion);
-										
-								} else { //if contains category but doesn't contain question
-									//Add new answer to answer map
-									Map<String, Integer> tempAnswerMap = new HashMap<>();
-									tempAnswerMap.put(ans.getAnswerText(), convertedScore);
-									
-									//Add question to appropriate category
-									Map<Question,Map<String, Integer>> tempQuestionMap = matchWeightsByCategory.get(category);
-									tempQuestionMap.put(question, tempAnswerMap);
-									
-									matchWeightsByCategory.put(category,tempQuestionMap);
-									
-								}					
-								
-							} else { //doesn't contain category
-								Map<String, Integer> tempMap = new HashMap<>(); 
-								tempMap.put(ans.getAnswerText(), convertedScore);
-								
-								//Create question key in map and add answer information
-								Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
-								tempMapWithQuestion.put(question, tempMap);
-								
-								//Create category key in map and add question (and thus answer) information
-								matchWeightsByCategory.put(category,tempMapWithQuestion);
-							}
+							addScoresToMap(matchWeightsByCategory, ans, convertedScore, category, question);
 								
 					}
 					
@@ -460,6 +382,79 @@ public class Matcher {
 			}
 			
 			return matchWeightsByCategory;
+		}
+
+
+
+
+		private static void addScoresToMap(Map<Category, Map<Question, Map<String, Integer>>> matchWeightsByCategory,
+				Answer ans, int convertedScore, Category category, Question question) {
+			if (matchWeightsByCategory.containsKey(category)) {
+				
+				if (matchWeightsByCategory.get(category).containsKey(question)) {
+					//fetch answer map
+					Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
+					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
+					
+					//add answer to question map
+					
+					Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
+					tempMapWithQuestion.put(question, tempAnswerMap);
+					
+					//add to category map
+					//Overwrite category key in map with new updated question (and thus answer) information
+					matchWeightsByCategory.put(category,tempMapWithQuestion);
+						
+				} else { //if contains category but doesn't contain question
+					//Add new answer to answer map
+					Map<String, Integer> tempAnswerMap = new HashMap<>();
+					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
+					
+					//Add question to appropriate category
+					Map<Question,Map<String, Integer>> tempQuestionMap = matchWeightsByCategory.get(category);
+					tempQuestionMap.put(question, tempAnswerMap);
+					
+					matchWeightsByCategory.put(category,tempQuestionMap);
+					
+				}					
+				
+			} else { //doesn't contain category
+				Map<String, Integer> tempMap = new HashMap<>(); 
+				tempMap.put(ans.getAnswerText(), convertedScore);
+				
+				//Create question key in map and add answer information
+				Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
+				tempMapWithQuestion.put(question, tempMap);
+				
+				//Create category key in map and add question (and thus answer) information
+				matchWeightsByCategory.put(category,tempMapWithQuestion);
+			}
+		}
+
+
+
+
+		private static boolean scoreAnswerImpls(Map<String, Answer> comparedUserSelectedAnswers, Answer ans) {
+			int count = 0;
+			boolean isMatch;
+			for (Map.Entry<String, Answer> map2 : comparedUserSelectedAnswers.entrySet()) {
+				if (map2.getValue() instanceof AnswerImpl && ans.equals(map2.getValue()) ) { //Debugging: Will probably have to override equals method (and thus hash), compare by id
+					count++;
+				}
+			}
+			if (count >= 1) {
+				//If there should be duplicate answers, the score will only get counted once because after the first time, the entry int he map below ill simply be overwritten.
+				//100% match, add to score variable. Score variable will then go through functional interface method to convert the score
+				//Add logging for duplicate answers to warn of potential problems? i.e. if count >= 1 ? Great idea, but extra step in the code...
+				isMatch = true;
+				System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
+			
+			} else  {
+				//0% match, add to score variable. Score variable will then go through functional interface method to convert the score
+				isMatch = false;
+				System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
+			}
+			return isMatch;
 		}
 		
 
