@@ -291,26 +291,26 @@ public class Matcher {
 			Map<Category, Map<Question, Double>> matchPercentagesByCategory;
 			Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
 			
-			Map<String, SubmittedAnswer> searchingUserAnswers = searchingUser.getSubmittedAnswers();
-			Map<String, SubmittedAnswer> comparedUserAnswers = comparedUser.getSubmittedAnswers();
+			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = searchingUser.getSubmittedAnswers();
+			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = comparedUser.getSubmittedAnswers();
 			
-			if (searchingUserAnswers == null) {
+			if (searchingUserSubmittedAnswers == null) {
 				throw new Exception(searchingUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
-			if (comparedUserAnswers == null) {
+			if (comparedUserSubmittedAnswers == null) {
 				throw new Exception(comparedUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
 			
 			
 			//String is questionText
-			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserAnswers.entrySet()) {
+			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserSubmittedAnswers.entrySet()) {
 				SubmittedAnswer searchingUserAns = pair.getValue();
 				
 				if (searchingUserAns instanceof SubmittedAnswerMultiImpl) {
 					SubmittedAnswerMultiImpl searchingUserAnsMultiImpl = (SubmittedAnswerMultiImpl) searchingUserAns;
 					
 					String searchingUserQuestionText = searchingUserAns.getQuestion().getQuestionText();		
-					SubmittedAnswer comparedUserAns = comparedUserAnswers.get(searchingUserQuestionText);
+					SubmittedAnswer comparedUserAns = comparedUserSubmittedAnswers.get(searchingUserQuestionText);
 					 
 					SubmittedAnswerMultiImpl comparedUserAnsMultiImpl = (SubmittedAnswerMultiImpl) comparedUserAns;
 					
@@ -323,12 +323,17 @@ public class Matcher {
 					Map<String, Answer> comparedUserSelectedAnswers = comparedUserAnsMultiImpl.getSelectedAnswers();
 					
 					//Loop through and compare scores and add to right category.
-					AnswerWeightedImpl searchingUserAnsWeighted = null;
+					
 					for (Map.Entry<String, Answer> map : searchingUserSelectedAnswers.entrySet()) {
 						Answer ans = map.getValue();
+						
+						int convertedScore;
 						if (ans instanceof AnswerWeightedImpl) {
-							searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
-							int convertedDiffInWeight;
+							
+							//AnswerWeightedImpl searchingUserAnsWeighted = null;
+							
+							AnswerWeightedImpl searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
+							
 							
 							AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) comparedUserSelectedAnswers.get(searchingUserAnsWeighted.getAnswerText());
 							int diffInWeight; 
@@ -337,12 +342,36 @@ public class Matcher {
 							
 								//Insert conversion to percent method here.
 								//convertedDiffInWeight = (int) Math.ceil((double) convertWeightedAns.apply(diffInWeight));
-								convertedDiffInWeight = convertWeightedAns.apply(diffInWeight);
+								convertedScore = convertWeightedAns.apply(diffInWeight);
 							
 							} else {
 								//throw exception. Do custom exception? / continue loop?
 								continue;
 							}
+							
+							
+						} else if (ans instanceof AnswerImpl) { 
+							//Separate method here
+							convertedScore = 4; //DELETE THIS. THIS VALUE IS JUST TO COMPILE CODE
+							
+							//
+							//loop through 
+							//Can I make this functional interface? - Not so much, a little
+							//Do inner for loop and if find match 100% and if do not find match 0%
+							//When comparing with selected answers, if not instanceof AnswerImpl, continue
+							//Make sure, do not compare answer with self? Needs to be found twice then..?
+							
+							
+							
+							
+							
+							
+							
+						} else {
+							//Do logic for other answer types later
+						  continue; // THIS MUST BE CHANGED. ONLY ADDED TEMPRARILY WHILE NO OTHER ANSWER TYPES.
+						}
+							
 							
 							//Get category and add score to Map<Category, Map<Question, AnswerWeight>> matchWeightsByCategory;
 							Category category = searchingUserAns.getQuestion().getCategory();
@@ -355,7 +384,7 @@ public class Matcher {
 								if (matchWeightsByCategory.get(category).containsKey(question)) {
 									//fetch answer map
 									Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
-									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), convertedDiffInWeight);
+									tempAnswerMap.put(ans.getAnswerText(), convertedScore);
 									
 									//add answer to question map
 									
@@ -369,7 +398,7 @@ public class Matcher {
 								} else { //if contains category but doesn't contain question
 									//Add new answer to answer map
 									Map<String, Integer> tempAnswerMap = new HashMap<>();
-									tempAnswerMap.put(searchingUserAnsWeighted.getAnswerText(), convertedDiffInWeight);
+									tempAnswerMap.put(ans.getAnswerText(), convertedScore);
 									
 									//Add question to appropriate category
 									Map<Question,Map<String, Integer>> tempQuestionMap = matchWeightsByCategory.get(category);
@@ -381,7 +410,7 @@ public class Matcher {
 								
 							} else { //doesn't contain category
 								Map<String, Integer> tempMap = new HashMap<>(); 
-								tempMap.put(searchingUserAnsWeighted.getAnswerText(), convertedDiffInWeight);
+								tempMap.put(ans.getAnswerText(), convertedScore);
 								
 								//Create question key in map and add answer information
 								Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
@@ -390,13 +419,7 @@ public class Matcher {
 								//Create category key in map and add question (and thus answer) information
 								matchWeightsByCategory.put(category,tempMapWithQuestion);
 							}
-							
-							
-						} else {
-							//Do logic for other answer types later
-							continue; // THIS MUST BE CHANGED. ONLY ADDED TEMPRARILY WHILE NO OTHER ANSWER TYPES.
-						}		
-						
+								
 					}
 					
 			
