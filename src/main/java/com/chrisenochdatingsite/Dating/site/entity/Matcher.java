@@ -75,26 +75,26 @@ public class Matcher {
 			//Create answer objects with weight
 			//Set selected answers for questions objects. Set here to reflect real-life flow of control.
 
-			var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE);
-			var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR);
-			var movieChoiceDave3 = new AnswerWeightedImpl("Romance", AnswerWeight.THREE);
-			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
-			var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-			var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
-			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
-			var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
-			var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
-			
-			var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
-			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
-			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
-			
-			Map<String, SubmittedAnswer> daveAns = new HashMap<>();
-			daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
-			daveAns.put(submittedAnsDaveSports1.getQuestion().getQuestionText(), submittedAnsDaveSports1);
-			daveAns.put(submittedAnsDaveTravel1.getQuestion().getQuestionText(), submittedAnsDaveTravel1);
-			
-			dave.setSubmittedAnswers(daveAns);
+//			var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE);
+//			var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR);
+//			var movieChoiceDave3 = new AnswerWeightedImpl("Romance", AnswerWeight.THREE);
+//			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
+//			var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
+//			var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
+//			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
+//			var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
+//			var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
+//			
+//			var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
+//			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
+//			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
+//			
+//			Map<String, SubmittedAnswer> daveAns = new HashMap<>();
+//			daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
+//			daveAns.put(submittedAnsDaveSports1.getQuestion().getQuestionText(), submittedAnsDaveSports1);
+//			daveAns.put(submittedAnsDaveTravel1.getQuestion().getQuestionText(), submittedAnsDaveTravel1);
+//			
+//			dave.setSubmittedAnswers(daveAns);
 			
 			//USER 2
 			var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
@@ -145,9 +145,9 @@ public class Matcher {
 			List<User> users = Arrays.asList(dave, jane, peter);
 			
 			Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
-			submittedAnswers.add(submittedAnsDaveMovies1);
-			submittedAnswers.add(submittedAnsDaveSports1);
-			submittedAnswers.add(submittedAnsDaveTravel1);
+//			submittedAnswers.add(submittedAnsDaveMovies1);
+//			submittedAnswers.add(submittedAnsDaveSports1);
+//			submittedAnswers.add(submittedAnsDaveTravel1);
 			submittedAnswers.add(submittedAnsJaneMovies1);
 			submittedAnswers.add(submittedAnsJaneSports1);
 			submittedAnswers.add(submittedAnsJaneTravel1);
@@ -223,8 +223,16 @@ public class Matcher {
 			User jane = usersForTesting.get(1);
 			User peter = usersForTesting.get(2);		
 			
-			Map<Category, Map<Question,Map<String,Integer>>>  matches = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent() );
+			Map<Category, Map<Question, Map<String, Integer>>> matches = null;
+			try {
+				matches = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent() );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//e.getMessage();
+			} 
 			
+			System.out.println("This should print");
 			
 			
 			for (Map.Entry map1 : matches.entrySet()) {
@@ -276,7 +284,7 @@ public class Matcher {
 		}
 		
 		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
-				, User comparedUser, Function<Integer,Integer> convertWeightedAns){ //String = answerText. Improve code: update this to ANswerText class
+				, User comparedUser, Function<Integer,Integer> convertWeightedAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
 			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
@@ -285,6 +293,14 @@ public class Matcher {
 			
 			Map<String, SubmittedAnswer> searchingUserAnswers = searchingUser.getSubmittedAnswers();
 			Map<String, SubmittedAnswer> comparedUserAnswers = comparedUser.getSubmittedAnswers();
+			
+			if (searchingUserAnswers == null) {
+				throw new Exception(searchingUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
+			}
+			if (comparedUserAnswers == null) {
+				throw new Exception(comparedUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
+			}
+			
 			
 			//String is questionText
 			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserAnswers.entrySet()) {
@@ -295,7 +311,7 @@ public class Matcher {
 					
 					String searchingUserQuestionText = searchingUserAns.getQuestion().getQuestionText();		
 					SubmittedAnswer comparedUserAns = comparedUserAnswers.get(searchingUserQuestionText);
-					
+					 
 					SubmittedAnswerMultiImpl comparedUserAnsMultiImpl = (SubmittedAnswerMultiImpl) comparedUserAns;
 					
 					//do null check
