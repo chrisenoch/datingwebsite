@@ -143,7 +143,7 @@ public class Matcher {
 			var travelStyleChoicePeter2 = new AnswerWeightedImpl("Camping", AnswerWeight.SIX);
 			var travelStyleChoicePeter3 = new AnswerWeightedImpl("Hiking", AnswerWeight.THREE);
 			
-			var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoiceDave1, movieChoiceDave2, movieChoicePeter3);
+			var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoicePeter1, movieChoicePeter2, movieChoicePeter3);
 			var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 			var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 			
@@ -285,8 +285,7 @@ public class Matcher {
 					 }
 									 
 				 }	
-				 
-				
+
 				 sum = Math.ceil(sum/answerCount);
 				 int sumIntValue = sum.intValue(); //Avoid integer division	 
 				 totals.put(category, sumIntValue);
@@ -379,7 +378,7 @@ public class Matcher {
 							int count = 0;
 							boolean isMatch;
 							for (Map.Entry<String, Answer> map2 : comparedUserSelectedAnswers.entrySet()) {
-								if (map2.getValue() instanceof AnswerImpl && ans == map2.getValue()) { //Debugging: Will probably have to override equals method (and thus hash), compare by id
+								if (map2.getValue() instanceof AnswerImpl && ans.equals(map2.getValue()) ) { //Debugging: Will probably have to override equals method (and thus hash), compare by id
 									count++;
 								}
 							}
