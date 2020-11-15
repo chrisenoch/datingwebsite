@@ -237,7 +237,8 @@ public class Matcher {
 			
 			Map<Category, Map<Question, Map<String, Integer>>> matches = null;
 			try {
-				matches = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent() );
+				matches = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent()
+						, a -> a.booleanValue() == true? 100 : 0 );
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -285,7 +286,8 @@ public class Matcher {
 									 
 				 }	
 				 
-				 sum = sum/answerCount;
+				
+				 sum = Math.ceil(sum/answerCount);
 				 int sumIntValue = sum.intValue(); //Avoid integer division	 
 				 totals.put(category, sumIntValue);
 				 sum = 0.0;
@@ -296,7 +298,7 @@ public class Matcher {
 		}
 		
 		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
-				, User comparedUser, Function<Integer,Integer> convertWeightedAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
+				, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//matchPercentagesByCategory gets calculated at end along with other maps. Then all get merged into one map, which gets returned from the method?
 			//method which calculates match scores should be one f functional inetrface, so can repolace matchign algorithm easily
@@ -364,7 +366,7 @@ public class Matcher {
 							
 						} else if (ans instanceof AnswerImpl) { 
 							//Separate method here
-							convertedScore = 4; //DELETE THIS. THIS VALUE IS JUST TO COMPILE CODE
+							//convertedScore = 4; //DELETE THIS. THIS VALUE IS JUST TO COMPILE CODE
 							
 							//
 							//loop through 
@@ -394,7 +396,7 @@ public class Matcher {
 								System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
 							} 
 							
-							//To Do: convertedScore = convertWeightedAns.apply(diffInWeight);
+							convertedScore = convertCheckboxAns.apply(isMatch);
 							
 							
 							
