@@ -2,13 +2,14 @@ package com.chrisenochdatingsite.Dating.site;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
-
+@Disabled
 public class QuestionImplTest  {
 
 	private String questionText;

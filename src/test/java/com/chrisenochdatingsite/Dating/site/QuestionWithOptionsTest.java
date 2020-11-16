@@ -6,12 +6,13 @@ import static org.mockito.Mockito.mock;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
-
+@Disabled
 public class QuestionWithOptionsTest {
 	
 	@Test

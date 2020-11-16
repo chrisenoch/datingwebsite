@@ -1,14 +1,7 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.OptionalDouble;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -224,10 +217,14 @@ public class Matcher {
 			User jane = usersForTesting.get(1);
 			User peter = usersForTesting.get(2);		
 			
-			Map<Category, Map<Question, Map<String, Integer>>> matches = null;
+			Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
+			Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 			try {
-				matches = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent()
+				matchesDave = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent()
 						, a -> a.booleanValue() == true? 100 : 0 );
+				matchesJane = matchPercentageByCategory(peter, jane, new Matcher().new ConvertToPercent()
+						, a -> a.booleanValue() == true? 100 : 0 );
+		
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -237,7 +234,7 @@ public class Matcher {
 			System.out.println("This should print");
 			
 			
-			for (Map.Entry map1 : matches.entrySet()) {
+			for (Map.Entry map1 : matchesDave.entrySet()) {
 				System.out.println("Category: " + map1.getKey());
 				for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
 					System.out.println("Question: " + map2.getKey());
@@ -250,13 +247,15 @@ public class Matcher {
 			}
 			
 			System.out.println("------------------------------");
-			Map<Category, Integer> percentages = totalMatchPercentageByCategory(matches);
-			percentages.entrySet().stream().forEach(System.out::println);
+			Map<Category, Integer> percentagesByCategoryDave = totalMatchPercentageByCategory(matchesDave);
+			Map<Category, Integer> percentagesByCategoryJane = totalMatchPercentageByCategory(matchesJane);
+			percentagesByCategoryDave.entrySet().stream().forEach(System.out::println);
 			
 			System.out.println("------------------------------");
 			
-			Map<User, Integer> totalMatchPercentagesByUser = new HashMap<>();
-			updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentages);
+			TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>();
+			updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentagesByCategoryDave);
+			updateTotalMatchPercentagesByUser(jane, totalMatchPercentagesByUser, percentagesByCategoryJane);
 			
 			//totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
 			
@@ -269,7 +268,8 @@ public class Matcher {
 			
 		}
 	
-		private static void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
+		private static void updateTotalMatchPercentagesByUser(User userToAdd, TreeMap<Integer, User>
+				totalMatchPercentagesByUser
 				, Map<Category, Integer> matchPercentageByCategory){	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
 			
@@ -282,11 +282,11 @@ public class Matcher {
 			
 			Long temp = Math.round(average.getAsDouble()); //Improve code. Perhaps change total var in map from Integer to Double
 			int averageAsInt =  temp.intValue();
-			totalMatchPercentagesByUser.put(userToAdd, averageAsInt);
+			totalMatchPercentagesByUser.put(averageAsInt, userToAdd);
 
 		}
 		
-		
+		//Need to get the following from totals: Map<Category, Map<User>, total>
 		
 		private static Map<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory) {
 			//Change to mapToInt
