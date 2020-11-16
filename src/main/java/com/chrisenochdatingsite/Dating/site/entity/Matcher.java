@@ -253,7 +253,9 @@ public class Matcher {
 			
 			System.out.println("------------------------------");
 			
-			TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>();
+			TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing((Integer a) -> a.intValue()).reversed());
+			//TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing(Integer::intValue()).reversed());
+			//TreeMap<User, Integer> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing((User a) -> a.getFirstName()).reversed());
 			updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentagesByCategoryDave);
 			updateTotalMatchPercentagesByUser(jane, totalMatchPercentagesByUser, percentagesByCategoryJane);
 			
