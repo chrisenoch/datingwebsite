@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -211,19 +212,7 @@ public class Matcher {
 		//First assume that all the same type of answer?
 		//Real return type: Map<Category, Map<Question, AnswerWeight>> 
 		/*
-		 * 0. 
-		 * 1. Get SubmittedAnswers from SearchingUser (will need to add this to User class)
-		 * 2. Get SubmittedAnswers from Comparing User;
-		 * 3. Loop through. Check  SUSer question with C user question.
-		 * 4. If no match, continue
-		 * 5. Get Weight from both Users and store in 2 diff vars.
-		 * 6. Subtract diff, making sure no minus value (absoluteValue?)
-		 * In future, calculate match percentage here depending on type of answer. 
-		 * This must be separate method / the place where a method ref can be inserted. - See Java 8 book on generalisign methods.
-		 * Switch/If conditions here. 
-		 * 7. Store in appropriate place of Map.
-		 * 8. Create separate method to calculate match percentage.
-		 * 
+
 		 * Do iteratively first and then change to streams.
 
 		 */
@@ -264,8 +253,40 @@ public class Matcher {
 			Map<Category, Integer> percentages = totalMatchPercentageByCategory(matches);
 			percentages.entrySet().stream().forEach(System.out::println);
 			
+			System.out.println("------------------------------");
+			
+			Map<User, Integer> totalMatchPercentagesByUser = new HashMap<>();
+			updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentages);
+			
+			//totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
+			
+			for (Map.Entry map : totalMatchPercentagesByUser.entrySet()) {
+				System.out.println(map.getKey() + " " + map.getValue());
+			}
+			
+//			private void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
+//					, Map<Category, Integer> matchPercentageByCategory){	
+			
 		}
 	
+		private static void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
+				, Map<Category, Integer> matchPercentageByCategory){	
+			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
+			
+			//Integer total = matchPercentageByCategory.entrySet().stream().map(a-> a.getValue()).reduce(0, Integer::sum);
+			OptionalDouble average = matchPercentageByCategory.entrySet().stream().mapToInt(categoryTotal-> categoryTotal.getValue()).average();
+			
+			if (average.isEmpty()) {
+				//throw eception here. //Improve code: Add exception. Customised exception?
+			}
+			
+			Long temp = Math.round(average.getAsDouble()); //Improve code. Perhaps change total var in map from Integer to Double
+			int averageAsInt =  temp.intValue();
+			totalMatchPercentagesByUser.put(userToAdd, averageAsInt);
+
+		}
+		
+		
 		
 		private static Map<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory) {
 			//Change to mapToInt
@@ -295,6 +316,29 @@ public class Matcher {
 
 			return totals;
 		}
+		
+	
+		
+		
+//		Return sorted list of best matches, all categories considered sorted by best to worst matching.
+		
+//		Map<User,Map<Category, Map<Question,Map<String,Integer>>>>
+//		Method structure
+		//get all Users (separate method). This becomes outerloop
+		//matchPercentageByCategory, searchignUser stays same, comparingUser changes depending on outerloop
+		//Results of previous method put into totalMatchPercentageByCategory method
+		//Add info to map: Map<Category, Map<User>, total>
+		//When user loop finished return Map<Category, TreeMap<User>, total> //Or some sorted map,
+		//Separate method: Total can be got from previous map easily? hash lookup so should be fast?
+			//Average total of all categories for each user and put into TreeMap?
+		//Could fill in two maps on one pass through loop but breaks single responsibility principle.
+		
+		//Go through matchPercentagebyCategory, return: Map<Category, Map<Question,Map<String,Integer>>>
+		//enter result into total method 
+		//Extra method to then extract results from total and add to: Map<Category, Map<User>, Integer  total> and returns this
+		//Another method takes previous returned statement as argument: Method to get absolute totals and put into another map
+		//add User into new map, along with corresponding total Map<Category, Map<User>, total>
+		// If comparing all, do not need keep record of answers and questions, so Map<Category, Map<User, Integer total>>
 		
 		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
 				, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class

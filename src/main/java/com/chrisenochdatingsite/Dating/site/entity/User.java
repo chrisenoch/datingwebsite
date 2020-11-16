@@ -94,6 +94,17 @@ public class User {
 	enum Sex{
 		MALE, FEMALE
 	}
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", surname=" + surname + "]";
+	}
+
+
+	
+	
+	
 	
 	
 
