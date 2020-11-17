@@ -1,12 +1,19 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
-import java.util.*;
-import java.util.function.BiFunction;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.OptionalDouble;
+import java.util.Set;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
+import java.util.Map.Entry;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
@@ -253,7 +260,7 @@ public class Matcher {
 			
 			System.out.println("------------------------------");
 			
-			TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing((Integer a) -> a.intValue()).reversed());
+			Map<User, Integer> totalMatchPercentagesByUser = new HashMap<>();
 			//TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing(Integer::intValue()).reversed());
 			//TreeMap<User, Integer> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing((User a) -> a.getFirstName()).reversed());
 			updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentagesByCategoryDave);
@@ -261,18 +268,44 @@ public class Matcher {
 			
 			//totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
 			
-			for (Map.Entry map : totalMatchPercentagesByUser.entrySet()) {
+			LinkedHashMap<User, Integer> totalMatchPercentagesByUserDescending = sortByPercentageDescending (totalMatchPercentagesByUser, new Matcher().new ValueComparator());
+			
+			for (Map.Entry map : totalMatchPercentagesByUserDescending.entrySet()) {
 				System.out.println(map.getKey() + " " + map.getValue());
 			}
 			
 //			private void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
 //					, Map<Category, Integer> matchPercentageByCategory){	
 			
-		}
+	}
+		
+		 
 	
-		private static void updateTotalMatchPercentagesByUser(User userToAdd, TreeMap<Integer, User>
-				totalMatchPercentagesByUser
-				, Map<Category, Integer> matchPercentageByCategory){	
+		//DOES NOT WORK. TRY SORTING LIST BY MAP VALUE
+		private static LinkedHashMap<User, Integer> sortByPercentageDescending (Map<User, Integer> totalMatchPercentagesByUser
+				, Comparator<Entry<User, Integer>> valueComparator) {
+			//Set<Map.Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
+			Set<Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
+			List<Entry<User, Integer>> listOfEntries = new ArrayList<Entry<User, Integer>>(entries);
+			
+			//Collections.sort(listOfEntries, Comparator.comparing((Integer a)-> a.intValue()));
+			Collections.sort(listOfEntries, valueComparator);
+			
+			LinkedHashMap<User, Integer> sortedByValue = new LinkedHashMap<User, Integer>(listOfEntries.size());
+			// copying entries from List to Map
+	        for(Entry<User, Integer> entry : listOfEntries){
+	            sortedByValue.put(entry.getKey(), entry.getValue());
+	        }
+	        
+	        return sortedByValue;
+	        
+	        
+			
+		}
+		
+		
+		private static void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer>
+				totalMatchPercentagesByUser , Map<Category, Integer> matchPercentageByCategory){	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
 			
 			//Integer total = matchPercentageByCategory.entrySet().stream().map(a-> a.getValue()).reduce(0, Integer::sum);
@@ -284,11 +317,25 @@ public class Matcher {
 			
 			Long temp = Math.round(average.getAsDouble()); //Improve code. Perhaps change total var in map from Integer to Double
 			int averageAsInt =  temp.intValue();
-			totalMatchPercentagesByUser.put(averageAsInt, userToAdd);
+			totalMatchPercentagesByUser.put(userToAdd, averageAsInt);
 
 		}
 		
-		//Need to get the following from totals: Map<Category, Map<User>, total>
+		//Need to get the following from totals: TreeMap<Category, Map<User>, total>
+		//MAJOR PRROBLEM. CANNOT HAVE DUPLICATE ENTRIES FOR MAP. COME BACK TO THIS METHOD
+		private static void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, Map<Category, Map<Integer, User>>
+		totalMatchPercentagesByCategoryAndUser , Map<Category, Integer> totalMatchPercentageByCategory){
+			
+			//Problem: If same category, would overwrite all values. SO if category exists
+			
+			for (Map.Entry map: totalMatchPercentageByCategory.entrySet()){
+				
+			}
+			
+			
+		}
+		
+		
 		
 		private static Map<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory) {
 			//Change to mapToInt
@@ -556,7 +603,18 @@ public class Matcher {
 				return (int) percentage;
 			}
 
+		}
 		
+		class ValueComparator implements Comparator<Entry<User, Integer>> {          
+			 @Override
+	            public int compare(Entry<User, Integer> e1, Entry<User, Integer> e2) {
+	                Integer v1 = e1.getValue();
+	                Integer v2 = e2.getValue();	            	
+//	            	String v1 = e1.getValue();
+//	                String v2 = e2.getValue();
+	                return v2.compareTo(v1);
+	            }      
+		}
 		
 		//Separate/Partition by category
 			//Use map function for if statements. Extract into method reference 
@@ -672,6 +730,5 @@ public class Matcher {
 //		}
 		
 		
-		}
 		
 }		
