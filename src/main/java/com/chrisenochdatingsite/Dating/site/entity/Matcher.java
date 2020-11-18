@@ -27,8 +27,8 @@ public class Matcher {
 		private Map<User, LinkedHashMap<User, Integer>> totalMatchPercentagesByUser = new HashMap<>();
 		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByCategory = new HashMap<>();
 		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();
-		
-		
+		//private Map<Category, LinkedHashMap<User, Integer>>
+		private Map<Category, Map<User, Integer>>totalMatchPercentagesByCategoryAndUser = new LinkedHashMap<>();
 		
 		
 		
@@ -74,6 +74,15 @@ public class Matcher {
 
 		 */
 
+		public Map<Category, Map<User, Integer>> getTotalMatchPercentagesByCategoryAndUser() {
+			return totalMatchPercentagesByCategoryAndUser;
+		}
+
+		public void setTotalMatchPercentagesByCategoryAndUser(
+				Map<Category, Map<User, Integer>> totalMatchPercentagesByCategoryAndUser) {
+			this.totalMatchPercentagesByCategoryAndUser = totalMatchPercentagesByCategoryAndUser;
+		}
+
 		public Set<SubmittedAnswer> getSubmittedAnswers() {
 			return submittedAnswers;
 		}
@@ -116,7 +125,7 @@ public class Matcher {
 			this.matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer;
 		}
 
-		//Change to LinkedhashMap
+		
 		private LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> totalMatchPercentagesByUser
 				, Comparator<Entry<User, Integer>> valueComparator) {
 			//Set<Map.Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
@@ -136,7 +145,7 @@ public class Matcher {
 	        
 		}
 		
-		//Change to LinkedhashMap
+		
 		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<User, Integer>
 				totalMatchPercentagesByUser , LinkedHashMap<Category, Integer> totalMatchPercentageByCategory){	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
@@ -219,14 +228,48 @@ public class Matcher {
 		//Problem is that userToAdd and totalMatchPercentageByCategory may end up out of sync
 		//User has knowledge of a MatchInfo class which holds all this info
 		//Keep this as match calculation class? 
-		public void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, Map<Category, Map<User, Integer>>
-		totalMatchPercentagesByCategoryAndUser , Map<Category, Integer> totalMatchPercentageByCategory){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
+		
+		//Will need to instantiate new Match objects every loop. Is this necessary?
+		//get Users
+		//Get all of their match objects
+		//Check userToAdd and totalMatchPercentageByCategory don't equal null, if they do, throw exception
+		public void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, LinkedHashMap<Category, 
+				Integer> totalMatchPercentageByCategory, Map<Category, Map<User, Integer>>
+				totalMatchPercentagesByCategoryAndUser){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
 			
 			//Problem: If same category, would overwrite all values. SO if category exists
+				//Solution: Get the map by category and then add
+			//How get the map by category? 
+			//Loop over them, all categories may not coincide if answered different questions
 			
-			for (Map.Entry map: totalMatchPercentageByCategory.entrySet()){
+			//Map<Category, Map<User, Integer>>
+		
+			for (Map.Entry<Category, Integer> map: totalMatchPercentageByCategory.entrySet()){
+				Category category = (Category) map.getKey();
+				
+				//What if doesn't already exist?
+				Map<User, Integer> scoresByUser = totalMatchPercentagesByCategoryAndUser.get(category);
+				if (scoresByUser == null) {
+					scoresByUser = new HashMap<>();
+				}
+				
+				//add score to scoresByUser
+				//if (scoresByUser == null) {
+					scoresByUser.put(userToAdd, (Integer) map.getValue());
+				//} //else {
+					scoresByUser.put(userToAdd, scoresByUser.get(userToAdd));
+				//}
+				
+				
+				
+				//add to category
+				totalMatchPercentagesByCategoryAndUser.put(category, scoresByUser); 
 				
 			}
+			
+			//Will also need to sort
+			//Will need to be LinkedHashMap. First get working, then sort.
+			
 			
 			
 		}

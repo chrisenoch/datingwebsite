@@ -179,9 +179,9 @@ public class MatcherPractice {
 				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
 				Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 				try {
-					matchesDave = matcher.matchPercentageByCategoryAndAnswer(peter, dave, new Matcher().new ConvertToPercent()
+					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave, new Matcher().new ConvertToPercent()
 							, a -> a.booleanValue() == true? 100 : 0 );
-					matchesJane = matcher.matchPercentageByCategoryAndAnswer(peter, jane, new Matcher().new ConvertToPercent()
+					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane, new Matcher().new ConvertToPercent()
 							, a -> a.booleanValue() == true? 100 : 0 );
 			
 				} catch (Exception e) {
@@ -226,10 +226,24 @@ public class MatcherPractice {
 					System.out.println("Total match Percentages By User: " + map.getKey() + " " + map.getValue());
 				}
 				
+				//matcher.setTotalMatchPercentagesByUser(totalMatchPercentagesByUser);
+				
 //				private void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
 //						, Map<Category, Integer> matchPercentageByCategory){	
 				
-		}
+				Map<Category, Map<User, Integer>> totalMatchPercentagesByCategoryAndUser = matcher.getTotalMatchPercentagesByCategoryAndUser();
+				matcher.updateTotalMatchPercentagesByCategoryAndUser(dave, percentagesByCategoryDave, totalMatchPercentagesByCategoryAndUser);
+				matcher.updateTotalMatchPercentagesByCategoryAndUser(jane, percentagesByCategoryJane, totalMatchPercentagesByCategoryAndUser);
+				
+				for (Map.Entry map : totalMatchPercentagesByCategoryAndUser.entrySet()) {
+					System.out.println("Category: " + map.getKey());
+					for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
+						System.out.println("User: " + map2.getKey() + " " + map2.getValue());
+					}
+					
+				}
+				
+			}
 	
 	
 
