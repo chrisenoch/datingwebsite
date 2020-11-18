@@ -21,166 +21,17 @@ import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
 
 
 public class Matcher {
+		//Improve code: Add id field here?
 		private Set<SubmittedAnswer> submittedAnswers;	
 		private User searchingUser;
-		
 		private Map<User, LinkedHashMap<User, Integer>> totalMatchPercentagesByUser = new HashMap<>();
 		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByCategory = new HashMap<>();
 		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();
 		
 		
-		//private static Set<SubmittedAnswer> init()
-		private static List<User> init() {
-			
-			Category movies = new Category("Movies");
-			Category sports = new Category("Sports");
-			Category travel = new Category("Travel");
-			
-			//Set up answer objects ready to insert into QuestionWithObjects object constructor
-			//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
-			//Weight selected at runtime by user.
-			var horror = new AnswerWeightedImpl("Horror");
-			var action =  new AnswerWeightedImpl("Action");
-			var romance = new AnswerWeightedImpl("Romance");
-			
-			Map<String, Answer> movieAnswerOptions = new HashMap<>();
-			movieAnswerOptions.put(horror.getAnswerText(), horror);
-			movieAnswerOptions.put(action.getAnswerText(), action);
-			movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
-
-			var basketball = new AnswerWeightedImpl("Basketball");
-			var football = new AnswerWeightedImpl("Football");
-			var swimming = new AnswerWeightedImpl("Swimming");
-				
-			Map<String, Answer> sportsAnswerOptions = new HashMap<>();
-			sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
-			sportsAnswerOptions.put(football.getAnswerText(), football);
-			sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
-			
-			var hiking = 	new AnswerWeightedImpl("Hiking");
-			var sightseeing =  new AnswerWeightedImpl("Sightseeing");
-			var camping =  new AnswerWeightedImpl("Camping");
-	
-			Map<String, Answer> travelAnswerOptions = new HashMap<>();
-			travelAnswerOptions.put(hiking.getAnswerText(), hiking);
-			travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
-			travelAnswerOptions.put(camping.getAnswerText(), camping);
-			
-			//Set up questions objects ready to be inserted into SubmitAnswer constructors
-			var questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
-					, movieAnswerOptions, movies);
-			var questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
-					, sportsAnswerOptions, sports);
-			var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
-					, travelAnswerOptions, travel);
-			
-			User dave = new User("Dave", "Smith", "dave@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
-			User jane = new User("Jane", "Jones", "jane@yahoo.com", LocalDate.of(1984,  10,  24), Sex.FEMALE);
-			User peter = new User("Peter", "Hanks", "peter@yahoo.com", LocalDate.of(1982,  8,  22), Sex.MALE);
-			
-			//USER 1
-			//Create answer objects with weight
-			//Set selected answers for questions objects. Set here to reflect real-life flow of control.
-//
-//			var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE);
-//			var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR);
-//			var movieChoiceDave3 = new AnswerWeightedImpl("Romance", AnswerWeight.THREE);
-			var movieChoiceDave1 = new AnswerImpl(1, "Horror");
-			var movieChoiceDave2 = new AnswerImpl(2, "Action");
-			var movieChoiceDave3 = new AnswerImpl(3,"Romance");
-			
-			var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
-			var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-			var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
-			var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
-			var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
-			var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
-			
-			var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
-			var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
-			var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
-			
-			Map<String, SubmittedAnswer> daveAns = new HashMap<>();
-			daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
-			daveAns.put(submittedAnsDaveSports1.getQuestion().getQuestionText(), submittedAnsDaveSports1);
-			daveAns.put(submittedAnsDaveTravel1.getQuestion().getQuestionText(), submittedAnsDaveTravel1);
-			
-			dave.setSubmittedAnswers(daveAns);
-			
-			//USER 2
-//			var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
-//			var movieChoiceJane2 = new AnswerWeightedImpl("Action", AnswerWeight.FIVE);
-//			var movieChoiceJane3 = new AnswerWeightedImpl("Romance", AnswerWeight.FOUR);
-			var movieChoiceJane1 = new AnswerImpl(1, "Horror"); //Improve code: Could mistakingly add a string that does not exist as answer option.
-			var movieChoiceJane2 = new AnswerImpl(2, "Action");
-			var movieChoiceJane3 = new AnswerImpl(3, "Romance");
-			
-			var sportsChoiceJane1 = new AnswerWeightedImpl("Basketball", AnswerWeight.ZERO);
-			var sportsChoiceJane2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-			var sportsChoiceJane3 = new AnswerWeightedImpl("Football", AnswerWeight.SIX);	
-			var travelStyleChoiceJane1 = new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
-			var travelStyleChoiceJane2 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.FIVE);
-			var travelStyleChoiceJane3 = new AnswerWeightedImpl("Camping", AnswerWeight.FIVE);
-
-			var submittedAnsJaneMovies1 = new SubmittedAnswerMultiImpl(questionMovies, jane, movieChoiceJane1, movieChoiceJane2, movieChoiceJane3);
-			var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
-			var submittedAnsJaneTravel1 = new SubmittedAnswerMultiImpl(questionTravel, jane, travelStyleChoiceJane1, travelStyleChoiceJane2, travelStyleChoiceJane3);
- 			
-			Map<String, SubmittedAnswer> janeAns = new HashMap<>();
-			janeAns.put(submittedAnsJaneMovies1.getQuestion().getQuestionText(), submittedAnsJaneMovies1);
-			janeAns.put(submittedAnsJaneSports1.getQuestion().getQuestionText(), submittedAnsJaneSports1);
-			janeAns.put(submittedAnsJaneTravel1.getQuestion().getQuestionText(), submittedAnsJaneTravel1 );
-			
-			jane.setSubmittedAnswers(janeAns); 
-			
-			//USER 3
-//			var movieChoicePeter1 = new AnswerWeightedImpl("Horror", AnswerWeight.ZERO); //Improve code: Could mistakingly add a string that does not exist as answer option.
-//			var movieChoicePeter2 = new AnswerWeightedImpl("Romance", AnswerWeight.ZERO);
-//			var movieChoicePeter3 = new AnswerWeightedImpl("Action", AnswerWeight.SIX);
-			var movieChoicePeter1 = new AnswerImpl(1, "Horror"); //Improve code: Could mistakingly add a string that does not exist as answer option.
-			var movieChoicePeter2 = new AnswerImpl(2, "Action");
-			var movieChoicePeter3 = new AnswerImpl(3, "Romance");
-			
-	
-			var sportsChoicePeter1 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-			var sportsChoicePeter2 = new AnswerWeightedImpl("Football", AnswerWeight.FIVE);
-			var sportsChoicePeter3 = new AnswerWeightedImpl("Basketball", AnswerWeight.FOUR);
-			
-			var travelStyleChoicePeter1 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.SIX);
-			var travelStyleChoicePeter2 = new AnswerWeightedImpl("Camping", AnswerWeight.SIX);
-			var travelStyleChoicePeter3 = new AnswerWeightedImpl("Hiking", AnswerWeight.THREE);
-			
-			var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoicePeter1, movieChoicePeter2, movieChoicePeter3);
-			var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
-			var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
-			
-			Map<String, SubmittedAnswer> peterAns = new HashMap<>();
-			peterAns.put(submittedAnsPeterMovies1.getQuestion().getQuestionText(), submittedAnsPeterMovies1);
-			peterAns.put(submittedAnsPeterSports1 .getQuestion().getQuestionText(), submittedAnsPeterSports1);
-			peterAns.put(submittedAnsPeterTravel1.getQuestion().getQuestionText(), submittedAnsPeterTravel1);
-			
-			peter.setSubmittedAnswers(peterAns);
-			
-			List<User> users = Arrays.asList(dave, jane, peter);
-			
-			Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
-			//submittedAnswers.add(submittedAnsDaveMovies1);
-			submittedAnswers.add(submittedAnsDaveSports1);
-			submittedAnswers.add(submittedAnsDaveTravel1);
-			//submittedAnswers.add(submittedAnsJaneMovies1);
-			submittedAnswers.add(submittedAnsJaneSports1);
-			submittedAnswers.add(submittedAnsJaneTravel1);
-			//submittedAnswers.add(submittedAnsPeterMovies1);
-			submittedAnswers.add(submittedAnsPeterSports1);
-			submittedAnswers.add(submittedAnsPeterTravel1);
-			
-			return users;
 		
-		}
 		
-
 		
-
 		//IDEAS
 		//Match formulas should be lambdas so can always change easily?
 		//Thoughts. If i use answerkey as key for hashmap.
@@ -222,71 +73,51 @@ public class Matcher {
 		 * Do iteratively first and then change to streams.
 
 		 */
-		
-		public static void main(String[] args) {
-			//calculateMatch6(init());
-			List<User> usersForTesting = init();
-			User dave = usersForTesting.get(0);
-			User jane = usersForTesting.get(1);
-			User peter = usersForTesting.get(2);		
-			
-			Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
-			Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
-			try {
-				matchesDave = matchPercentageByCategoryAndAnswer(peter, dave, new Matcher().new ConvertToPercent()
-						, a -> a.booleanValue() == true? 100 : 0 );
-				matchesJane = matchPercentageByCategoryAndAnswer(peter, jane, new Matcher().new ConvertToPercent()
-						, a -> a.booleanValue() == true? 100 : 0 );
-		
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				//e.getMessage();
-			} 
-			
-			System.out.println("This should print");
-			
-			
-			for (Map.Entry map1 : matchesDave.entrySet()) {
-				System.out.println("Category: " + map1.getKey());
-				for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-					System.out.println("Question: " + map2.getKey());
-					for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-						System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
-					}
-					System.out.println("------------------------------");
-				}		
 
-			}
-			
-			System.out.println("------------------------------");
-			LinkedHashMap<Category, Integer> percentagesByCategoryDave = totalMatchPercentageByCategory(matchesDave);
-			LinkedHashMap<Category, Integer> percentagesByCategoryJane = totalMatchPercentageByCategory(matchesJane);
-			percentagesByCategoryDave.entrySet().stream().forEach(System.out::println);
-			
-			System.out.println("------------------------------");
-			
-			LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();
-			//TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing(Integer::intValue()).reversed());
-			//TreeMap<User, Integer> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing((User a) -> a.getFirstName()).reversed());
-			updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentagesByCategoryDave);
-			updateTotalMatchPercentagesByUser(jane, totalMatchPercentagesByUser, percentagesByCategoryJane);
-			
-			//totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
-			
-			//LinkedHashMap<User, Integer> totalMatchPercentagesByUserDescending = sortByPercentageDescending (totalMatchPercentagesByUser, new Matcher().new ValueComparator());
-			
-			for (Map.Entry map : totalMatchPercentagesByUser.entrySet()) {
-				System.out.println("Total match Percentages By User: " + map.getKey() + " " + map.getValue());
-			}
-			
-//			private void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
-//					, Map<Category, Integer> matchPercentageByCategory){	
-			
-	}
-		
+		public Set<SubmittedAnswer> getSubmittedAnswers() {
+			return submittedAnswers;
+		}
+
+		public void setSubmittedAnswers(Set<SubmittedAnswer> submittedAnswers) {
+			this.submittedAnswers = submittedAnswers;
+		}
+
+		public User getSearchingUser() {
+			return searchingUser;
+		}
+
+		public void setSearchingUser(User searchingUser) {
+			this.searchingUser = searchingUser;
+		}
+
+		public Map<User, LinkedHashMap<User, Integer>> getTotalMatchPercentagesByUser() {
+			return totalMatchPercentagesByUser;
+		}
+
+		public void setTotalMatchPercentagesByUser(Map<User, LinkedHashMap<User, Integer>> totalMatchPercentagesByUser) {
+			this.totalMatchPercentagesByUser = totalMatchPercentagesByUser;
+		}
+
+		public Map<User, LinkedHashMap<Category, Integer>> getTotalMatchPercentageByCategory() {
+			return totalMatchPercentageByCategory;
+		}
+
+		public void setTotalMatchPercentageByCategory(
+				Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByCategory) {
+			this.totalMatchPercentageByCategory = totalMatchPercentageByCategory;
+		}
+
+		public Map<Category, Map<Question, Map<String, Integer>>> getMatchPercentageByCategoryAndAnswer() {
+			return matchPercentageByCategoryAndAnswer;
+		}
+
+		public void setMatchPercentageByCategoryAndAnswer(
+				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer) {
+			this.matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer;
+		}
+
 		//Change to LinkedhashMap
-		private static LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> totalMatchPercentagesByUser
+		private LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> totalMatchPercentagesByUser
 				, Comparator<Entry<User, Integer>> valueComparator) {
 			//Set<Map.Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
 			Set<Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
@@ -306,7 +137,7 @@ public class Matcher {
 		}
 		
 		//Change to LinkedhashMap
-		private static void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<User, Integer>
+		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<User, Integer>
 				totalMatchPercentagesByUser , LinkedHashMap<Category, Integer> totalMatchPercentageByCategory){	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
 			
@@ -331,10 +162,9 @@ public class Matcher {
 
 		}
 		
-	
+
 		
-		
-		private static LinkedHashMap<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer) {
+		public LinkedHashMap<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer) {
 			//Change to mapToInt
 //			 matchPercentageByCategory.entrySet().stream().map(a-> a.getValue().entrySet().stream()
 //					.map(b-> b.getValue().entrySet().stream().mapToInt(c->c.getValue()).sum()));
@@ -389,7 +219,7 @@ public class Matcher {
 		//Problem is that userToAdd and totalMatchPercentageByCategory may end up out of sync
 		//User has knowledge of a MatchInfo class which holds all this info
 		//Keep this as match calculation class? 
-		private static void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, Map<Category, Map<User, Integer>>
+		public void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, Map<Category, Map<User, Integer>>
 		totalMatchPercentagesByCategoryAndUser , Map<Category, Integer> totalMatchPercentageByCategory){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
 			
 			//Problem: If same category, would overwrite all values. SO if category exists
@@ -402,7 +232,7 @@ public class Matcher {
 		}
 		
 		
-		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
+		public Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
 				, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
@@ -493,7 +323,7 @@ public class Matcher {
 
 
 
-		private static void addScoresToMap(Map<Category, Map<Question, Map<String, Integer>>> matchWeightsByCategory,
+		private void addScoresToMap(Map<Category, Map<Question, Map<String, Integer>>> matchWeightsByCategory,
 				Answer ans, int convertedScore, Category category, Question question) {
 			if (matchWeightsByCategory.containsKey(category)) {
 				
@@ -540,7 +370,7 @@ public class Matcher {
 
 
 
-		private static boolean scoreAnswerImpls(Map<String, Answer> comparedUserSelectedAnswers, Answer ans) {
+		private boolean scoreAnswerImpls(Map<String, Answer> comparedUserSelectedAnswers, Answer ans) {
 			int count = 0;
 			boolean isMatch;
 			for (Map.Entry<String, Answer> map2 : comparedUserSelectedAnswers.entrySet()) {
@@ -618,7 +448,7 @@ public class Matcher {
 
 		}
 		
-		class ValueComparator implements Comparator<Entry<User, Integer>> {          
+		private class ValueComparator implements Comparator<Entry<User, Integer>> {          
 			 @Override
 	            public int compare(Entry<User, Integer> e1, Entry<User, Integer> e2) {
 	                Integer v1 = e1.getValue();
