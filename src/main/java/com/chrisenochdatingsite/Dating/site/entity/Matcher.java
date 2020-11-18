@@ -227,9 +227,9 @@ public class Matcher {
 			Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
 			Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 			try {
-				matchesDave = matchPercentageByCategory(peter, dave, new Matcher().new ConvertToPercent()
+				matchesDave = matchPercentageByCategoryAndAnswer(peter, dave, new Matcher().new ConvertToPercent()
 						, a -> a.booleanValue() == true? 100 : 0 );
-				matchesJane = matchPercentageByCategory(peter, jane, new Matcher().new ConvertToPercent()
+				matchesJane = matchPercentageByCategoryAndAnswer(peter, jane, new Matcher().new ConvertToPercent()
 						, a -> a.booleanValue() == true? 100 : 0 );
 		
 			} catch (Exception e) {
@@ -254,13 +254,13 @@ public class Matcher {
 			}
 			
 			System.out.println("------------------------------");
-			Map<Category, Integer> percentagesByCategoryDave = totalMatchPercentageByCategory(matchesDave);
-			Map<Category, Integer> percentagesByCategoryJane = totalMatchPercentageByCategory(matchesJane);
+			LinkedHashMap<Category, Integer> percentagesByCategoryDave = totalMatchPercentageByCategory(matchesDave);
+			LinkedHashMap<Category, Integer> percentagesByCategoryJane = totalMatchPercentageByCategory(matchesJane);
 			percentagesByCategoryDave.entrySet().stream().forEach(System.out::println);
 			
 			System.out.println("------------------------------");
 			
-			Map<User, Integer> totalMatchPercentagesByUser = new HashMap<>();
+			LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();
 			//TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing(Integer::intValue()).reversed());
 			//TreeMap<User, Integer> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing((User a) -> a.getFirstName()).reversed());
 			updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentagesByCategoryDave);
@@ -268,10 +268,10 @@ public class Matcher {
 			
 			//totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
 			
-			LinkedHashMap<User, Integer> totalMatchPercentagesByUserDescending = sortByPercentageDescending (totalMatchPercentagesByUser, new Matcher().new ValueComparator());
+			//LinkedHashMap<User, Integer> totalMatchPercentagesByUserDescending = sortByPercentageDescending (totalMatchPercentagesByUser, new Matcher().new ValueComparator());
 			
-			for (Map.Entry map : totalMatchPercentagesByUserDescending.entrySet()) {
-				System.out.println(map.getKey() + " " + map.getValue());
+			for (Map.Entry map : totalMatchPercentagesByUser.entrySet()) {
+				System.out.println("Total match Percentages By User: " + map.getKey() + " " + map.getValue());
 			}
 			
 //			private void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
@@ -279,10 +279,8 @@ public class Matcher {
 			
 	}
 		
-		 
-	
-		//DOES NOT WORK. TRY SORTING LIST BY MAP VALUE
-		private static LinkedHashMap<User, Integer> sortByPercentageDescending (Map<User, Integer> totalMatchPercentagesByUser
+		//Change to LinkedhashMap
+		private static LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> totalMatchPercentagesByUser
 				, Comparator<Entry<User, Integer>> valueComparator) {
 			//Set<Map.Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
 			Set<Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
@@ -299,17 +297,15 @@ public class Matcher {
 	        
 	        return sortedByValue;
 	        
-	        
-			
 		}
 		
-		
-		private static void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer>
-				totalMatchPercentagesByUser , Map<Category, Integer> matchPercentageByCategory){	
+		//Change to LinkedhashMap
+		private static void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<User, Integer>
+				totalMatchPercentagesByUser , LinkedHashMap<Category, Integer> totalMatchPercentageByCategory){	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
 			
 			//Integer total = matchPercentageByCategory.entrySet().stream().map(a-> a.getValue()).reduce(0, Integer::sum);
-			OptionalDouble average = matchPercentageByCategory.entrySet().stream().mapToInt(categoryTotal-> categoryTotal.getValue()).average();
+			OptionalDouble average = totalMatchPercentageByCategory.entrySet().stream().mapToInt(categoryTotal-> categoryTotal.getValue()).average();
 			
 			if (average.isEmpty()) {
 				//throw eception here. //Improve code: Add exception. Customised exception?
@@ -318,33 +314,28 @@ public class Matcher {
 			Long temp = Math.round(average.getAsDouble()); //Improve code. Perhaps change total var in map from Integer to Double
 			int averageAsInt =  temp.intValue();
 			totalMatchPercentagesByUser.put(userToAdd, averageAsInt);
+			
+			//Sort map so that higher match percentages are displayed first.
+			LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(totalMatchPercentagesByUser, new Matcher().new ValueComparator()); //Improve code
+			
+			//
+			//Update original map with values of the sorted map.
+			totalMatchPercentagesByUser.clear();
+			totalMatchPercentagesByUser.putAll(sortedMap);
 
 		}
 		
-		//Need to get the following from totals: TreeMap<Category, Map<User>, total>
-		//MAJOR PRROBLEM. CANNOT HAVE DUPLICATE ENTRIES FOR MAP. COME BACK TO THIS METHOD
-		private static void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, Map<Category, Map<Integer, User>>
-		totalMatchPercentagesByCategoryAndUser , Map<Category, Integer> totalMatchPercentageByCategory){
-			
-			//Problem: If same category, would overwrite all values. SO if category exists
-			
-			for (Map.Entry map: totalMatchPercentageByCategory.entrySet()){
-				
-			}
-			
-			
-		}
+	
 		
 		
-		
-		private static Map<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory) {
+		private static LinkedHashMap<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer) {
 			//Change to mapToInt
 //			 matchPercentageByCategory.entrySet().stream().map(a-> a.getValue().entrySet().stream()
 //					.map(b-> b.getValue().entrySet().stream().mapToInt(c->c.getValue()).sum()));
 							
-			 Map<Category, Integer> totals = new HashMap<>();
+			 LinkedHashMap<Category, Integer> totals = new LinkedHashMap<>();
 			 Double sum = 0.0;
-			 for (Map.Entry pair : matchPercentageByCategory.entrySet()) {	 
+			 for (Map.Entry pair : matchPercentageByCategoryAndAnswer.entrySet()) {	 
 				 Category category = (Category) pair.getKey();
 				 int answerCount = 0;
 				 for (Map.Entry pair2 : ((Map<String, Answer>) pair.getValue()).entrySet()) {
@@ -389,7 +380,23 @@ public class Matcher {
 		//add User into new map, along with corresponding total Map<Category, Map<User>, total>
 		// If comparing all, do not need keep record of answers and questions, so Map<Category, Map<User, Integer total>>
 		
-		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategory(User searchingUser
+		//Problem is that userToAdd and totalMatchPercentageByCategory may end up out of sync
+		//User has knowledge of a MatchInfo class which holds all this info
+		//Keep this as match calculation class? 
+		private static void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, Map<Category, Map<User, Integer>>
+		totalMatchPercentagesByCategoryAndUser , Map<Category, Integer> totalMatchPercentageByCategory){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
+			
+			//Problem: If same category, would overwrite all values. SO if category exists
+			
+			for (Map.Entry map: totalMatchPercentageByCategory.entrySet()){
+				
+			}
+			
+			
+		}
+		
+		
+		private static Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
 				, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
