@@ -22,6 +22,12 @@ import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
 
 public class Matcher {
 		private Set<SubmittedAnswer> submittedAnswers;	
+		private User searchingUser;
+		
+		private Map<User, LinkedHashMap<User, Integer>> totalMatchPercentagesByUser = new HashMap<>();
+		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByCategory = new HashMap<>();
+		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();
+		
 		
 		//private static Set<SubmittedAnswer> init()
 		private static List<User> init() {

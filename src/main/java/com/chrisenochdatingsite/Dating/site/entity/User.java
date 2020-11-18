@@ -15,6 +15,7 @@ public class User {
 	private LocalDate dateOfBirth;
 	private Sex sex;
 	private Map<String, SubmittedAnswer> submittedAnswers; //String is questionText. Improve: Change to enum or class.
+	private Matcher matcher;
 
 	public User(Long id, String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {
 		this.id = id;
@@ -89,6 +90,16 @@ public class User {
 	public void setSubmittedAnswers(Map<String, SubmittedAnswer> submittedAnswers) {
 		this.submittedAnswers = submittedAnswers;
 	}
+
+	public Matcher getMatcher() {
+		return matcher;
+	}
+
+	public void setMatcher(Matcher matcher) {
+		this.matcher = matcher;
+	}
+
+
 
 
 	enum Sex{
