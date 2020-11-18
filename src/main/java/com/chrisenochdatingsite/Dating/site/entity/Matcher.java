@@ -24,11 +24,11 @@ public class Matcher {
 		//Improve code: Add id field here?
 		private Set<SubmittedAnswer> submittedAnswers;	
 		private User searchingUser;
-		private Map<User, LinkedHashMap<User, Integer>> totalMatchPercentagesByUser = new HashMap<>();
+		private LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();
 		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByCategory = new HashMap<>();
 		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();
 		//private Map<Category, LinkedHashMap<User, Integer>>
-		private Map<Category, Map<User, Integer>>totalMatchPercentagesByCategoryAndUser = new LinkedHashMap<>();
+		private Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryAndUser = new LinkedHashMap<>();
 		
 		
 		
@@ -74,17 +74,18 @@ public class Matcher {
 
 		 */
 
-		public Map<Category, Map<User, Integer>> getTotalMatchPercentagesByCategoryAndUser() {
+
+		public Set<SubmittedAnswer> getSubmittedAnswers() {
+			return submittedAnswers;
+		}
+
+		public Map<Category, LinkedHashMap<User, Integer>> getTotalMatchPercentagesByCategoryAndUser() {
 			return totalMatchPercentagesByCategoryAndUser;
 		}
 
 		public void setTotalMatchPercentagesByCategoryAndUser(
-				Map<Category, Map<User, Integer>> totalMatchPercentagesByCategoryAndUser) {
+				Map<Category, LinkedHashMap<User, Integer>> totalMatchPercentagesByCategoryAndUser) {
 			this.totalMatchPercentagesByCategoryAndUser = totalMatchPercentagesByCategoryAndUser;
-		}
-
-		public Set<SubmittedAnswer> getSubmittedAnswers() {
-			return submittedAnswers;
 		}
 
 		public void setSubmittedAnswers(Set<SubmittedAnswer> submittedAnswers) {
@@ -99,11 +100,11 @@ public class Matcher {
 			this.searchingUser = searchingUser;
 		}
 
-		public Map<User, LinkedHashMap<User, Integer>> getTotalMatchPercentagesByUser() {
+		public LinkedHashMap<User, Integer> getTotalMatchPercentagesByUser() {
 			return totalMatchPercentagesByUser;
 		}
 
-		public void setTotalMatchPercentagesByUser(Map<User, LinkedHashMap<User, Integer>> totalMatchPercentagesByUser) {
+		public void setTotalMatchPercentagesByUser(LinkedHashMap<User, Integer> totalMatchPercentagesByUser) {
 			this.totalMatchPercentagesByUser = totalMatchPercentagesByUser;
 		}
 
@@ -168,6 +169,8 @@ public class Matcher {
 			//Update original map with values of the sorted map.
 			totalMatchPercentagesByUser.clear();
 			totalMatchPercentagesByUser.putAll(sortedMap);
+			
+			this.setTotalMatchPercentagesByUser(totalMatchPercentagesByUser);
 
 		}
 		
@@ -234,45 +237,32 @@ public class Matcher {
 		//Get all of their match objects
 		//Check userToAdd and totalMatchPercentageByCategory don't equal null, if they do, throw exception
 		public void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, LinkedHashMap<Category, 
-				Integer> totalMatchPercentageByCategory, Map<Category, Map<User, Integer>>
+				Integer> totalMatchPercentageByCategory, Map<Category, LinkedHashMap<User, Integer>>
 				totalMatchPercentagesByCategoryAndUser){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
-			
-			//Problem: If same category, would overwrite all values. SO if category exists
-				//Solution: Get the map by category and then add
-			//How get the map by category? 
-			//Loop over them, all categories may not coincide if answered different questions
-			
-			//Map<Category, Map<User, Integer>>
+
 		
 			for (Map.Entry<Category, Integer> map: totalMatchPercentageByCategory.entrySet()){
 				Category category = (Category) map.getKey();
 				
 				//What if doesn't already exist?
-				Map<User, Integer> scoresByUser = totalMatchPercentagesByCategoryAndUser.get(category);
+				LinkedHashMap<User, Integer> scoresByUser = totalMatchPercentagesByCategoryAndUser.get(category);
 				if (scoresByUser == null) {
-					scoresByUser = new HashMap<>();
+					scoresByUser = new LinkedHashMap<>();
 				}
-				
-				//add score to scoresByUser
-				//if (scoresByUser == null) {
-					scoresByUser.put(userToAdd, (Integer) map.getValue());
-				//} //else {
-					scoresByUser.put(userToAdd, scoresByUser.get(userToAdd));
-				//}
-				
-				
-				
+
+				scoresByUser.put(userToAdd, (Integer) map.getValue());
+
 				//add to category
 				totalMatchPercentagesByCategoryAndUser.put(category, scoresByUser); 
 				
+				this.setTotalMatchPercentagesByCategoryAndUser(totalMatchPercentagesByCategoryAndUser);
+				
 			}
-			
 			//Will also need to sort
 			//Will need to be LinkedHashMap. First get working, then sort.
-			
-			
-			
 		}
+		
+		
 		
 		
 		public Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser

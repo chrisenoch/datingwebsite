@@ -226,12 +226,14 @@ public class MatcherPractice {
 					System.out.println("Total match Percentages By User: " + map.getKey() + " " + map.getValue());
 				}
 				
+				System.out.println("TotalMatchPercentagesByUser set?" + matcher.getTotalMatchPercentagesByUser());
+				
 				//matcher.setTotalMatchPercentagesByUser(totalMatchPercentagesByUser);
 				
 //				private void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
 //						, Map<Category, Integer> matchPercentageByCategory){	
 				
-				Map<Category, Map<User, Integer>> totalMatchPercentagesByCategoryAndUser = matcher.getTotalMatchPercentagesByCategoryAndUser();
+				Map<Category, LinkedHashMap<User, Integer>> totalMatchPercentagesByCategoryAndUser = matcher.getTotalMatchPercentagesByCategoryAndUser();
 				matcher.updateTotalMatchPercentagesByCategoryAndUser(dave, percentagesByCategoryDave, totalMatchPercentagesByCategoryAndUser);
 				matcher.updateTotalMatchPercentagesByCategoryAndUser(jane, percentagesByCategoryJane, totalMatchPercentagesByCategoryAndUser);
 				
@@ -242,6 +244,8 @@ public class MatcherPractice {
 					}
 					
 				}
+				
+				System.out.println("TotalMatchPercentagesByCategoryAndUser set?" + matcher.getTotalMatchPercentagesByCategoryAndUser());
 				
 			}
 	
