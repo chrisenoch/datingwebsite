@@ -147,6 +147,8 @@ public class Matcher {
 		}
 		
 		
+		
+		
 		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<User, Integer>
 				totalMatchPercentagesByUser , LinkedHashMap<Category, Integer> totalMatchPercentageByCategory){	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
@@ -251,9 +253,18 @@ public class Matcher {
 				}
 
 				scoresByUser.put(userToAdd, (Integer) map.getValue());
+				
+				//Sort map so that higher match percentages are displayed first.
+				LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(scoresByUser, new Matcher().new ValueComparator()); //Improve code
+				
+				//
+				//Update original map with values of the sorted map.
+				scoresByUser.clear();
+				scoresByUser.putAll(sortedMap);
+				
 
 				//add to category
-				totalMatchPercentagesByCategoryAndUser.put(category, scoresByUser); 
+				totalMatchPercentagesByCategoryAndUser.put(category, scoresByUser); 			
 				
 				this.setTotalMatchPercentagesByCategoryAndUser(totalMatchPercentagesByCategoryAndUser);
 				
