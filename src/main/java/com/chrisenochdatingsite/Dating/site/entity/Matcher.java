@@ -160,9 +160,9 @@ public class Matcher {
 				
 				updateTotalMatchPercentagesByUser(user, totalMatchPercentageByCategory);
 				
-				updateTotalMatchPercentagesByCategoryAndUser(user,totalMatchPercentageByCategory);
+				updateTotalMatchPercentagesByCategoryForEveryUser(user,totalMatchPercentageByCategory);
 	
-				updateTotalPercentageByCategory(user, totalMatchPercentageByCategory);
+				updateTotalPercentageByUserForEveryCategory(user, totalMatchPercentageByCategory);
 			}
 			
 		}
@@ -216,7 +216,42 @@ public class Matcher {
 
 		}
 		
-		public void updateTotalPercentageByCategory(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory) {
+		public void updateTotalMatchPercentagesByCategoryForEveryUser(User userToAdd, LinkedHashMap<Category, 
+				Integer> totalMatchPercentageByCategory){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
+			System.out.println("updateTotalMatchPercentagesByCategoryAndUser" + userToAdd);
+		
+			for (Map.Entry<Category, Integer> map: totalMatchPercentageByCategory.entrySet()){
+				Category category = (Category) map.getKey();
+				
+				//What if doesn't already exist?
+				LinkedHashMap<User, Integer> scoresByUser = totalMatchPercentagesByCategoryForEveryUser.get(category);
+				if (scoresByUser == null) {
+					scoresByUser = new LinkedHashMap<>();
+				}
+
+				scoresByUser.put(userToAdd, (Integer) map.getValue());
+				
+				//Sort map so that higher match percentages are displayed first.
+				LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(scoresByUser, new Matcher().new ValueComparator()); //Improve code
+				
+				//
+				//Update original map with values of the sorted map.
+				scoresByUser.clear();
+				scoresByUser.putAll(sortedMap);
+				
+
+				//add to category
+				totalMatchPercentagesByCategoryForEveryUser.put(category, scoresByUser); 			
+				
+				//this.setTotalMatchPercentagesByCategoryForEveryUser(totalMatchPercentagesByCategoryForEveryUser);
+				
+			}
+			//Will also need to sort
+			//Will need to be LinkedHashMap. First get working, then sort.
+		}
+		
+		public void updateTotalPercentageByUserForEveryCategory(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory) {
+			System.out.println("updateTotalPercentageByCategory" + userToAdd);
 			
 			totalMatchPercentageByUserForEveryCategory.put(userToAdd, totalMatchPercentageByCategory);
 			
@@ -287,39 +322,7 @@ public class Matcher {
 		//get Users
 		//Get all of their match objects
 		//Check userToAdd and totalMatchPercentageByCategory don't equal null, if they do, throw exception
-		public void updateTotalMatchPercentagesByCategoryAndUser(User userToAdd, LinkedHashMap<Category, 
-				Integer> totalMatchPercentageByCategory){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
-
 		
-			for (Map.Entry<Category, Integer> map: totalMatchPercentageByCategory.entrySet()){
-				Category category = (Category) map.getKey();
-				
-				//What if doesn't already exist?
-				LinkedHashMap<User, Integer> scoresByUser = totalMatchPercentagesByCategoryForEveryUser.get(category);
-				if (scoresByUser == null) {
-					scoresByUser = new LinkedHashMap<>();
-				}
-
-				scoresByUser.put(userToAdd, (Integer) map.getValue());
-				
-				//Sort map so that higher match percentages are displayed first.
-				LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(scoresByUser, new Matcher().new ValueComparator()); //Improve code
-				
-				//
-				//Update original map with values of the sorted map.
-				scoresByUser.clear();
-				scoresByUser.putAll(sortedMap);
-				
-
-				//add to category
-				totalMatchPercentagesByCategoryForEveryUser.put(category, scoresByUser); 			
-				
-				//this.setTotalMatchPercentagesByCategoryForEveryUser(totalMatchPercentagesByCategoryForEveryUser);
-				
-			}
-			//Will also need to sort
-			//Will need to be LinkedHashMap. First get working, then sort.
-		}
 		
 		
 		

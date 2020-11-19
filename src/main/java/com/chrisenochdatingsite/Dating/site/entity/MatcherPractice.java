@@ -62,9 +62,9 @@ public class MatcherPractice {
 				var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
 						, travelAnswerOptions, travel);
 				
-				User dave = new User("Dave", "Smith", "dave@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
-				User jane = new User("Jane", "Jones", "jane@yahoo.com", LocalDate.of(1984,  10,  24), Sex.FEMALE);
-				User peter = new User("Peter", "Hanks", "peter@yahoo.com", LocalDate.of(1982,  8,  22), Sex.MALE);
+				User dave = new User(1L, "Dave", "Smith", "dave@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
+				User jane = new User(2L, "Jane", "Jones", "jane@yahoo.com", LocalDate.of(1984,  10,  24), Sex.FEMALE);
+				User peter = new User(3L, "Peter", "Hanks", "peter@yahoo.com", LocalDate.of(1982,  8,  22), Sex.MALE);
 				
 				//USER 1
 				//Create answer objects with weight
@@ -173,6 +173,8 @@ public class MatcherPractice {
 				User jane = usersForTesting.get(1);
 				User peter = usersForTesting.get(2);
 				
+				long startTime = System.currentTimeMillis();
+				
 				Matcher matcher = new Matcher();
 				matcher.setSearchingUser(peter);
 				
@@ -184,13 +186,14 @@ public class MatcherPractice {
 				}
 				
 				LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
-				Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryAndUser = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
-				Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserAndCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
+				Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
+				Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
+
+				totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
+				
+				 System.out.println();
 				 
-				 
-				 totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
-				 
-				 for (Map.Entry map : totalMatchPercentagesByCategoryAndUser.entrySet()) {
+				 for (Map.Entry map : totalMatchPercentagesByCategoryForEveryUser.entrySet()) {
 						System.out.println("Category: " + map.getKey());
 						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
 							System.out.println("User: " + map2.getKey() + " " + map2.getValue());
@@ -198,13 +201,18 @@ public class MatcherPractice {
 						
 				 }
 				 
-				 for (Map.Entry map :  totalMatchPercentageByUserAndCategory.entrySet()) {
-						System.out.println("User: " + map.getKey());
-						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
-							System.out.println("Category: " + map2.getKey() + " " + map2.getValue());
+				 System.out.println();
+				 
+				 for (Map.Entry map3 :  totalMatchPercentageByUserForEveryCategory.entrySet()) {
+						System.out.println("User: " + map3.getKey());
+						for (Map.Entry map4 : ((Map<User, Integer>) map3.getValue()).entrySet()) {
+							System.out.println("Category: " + map4.getKey() + " " + map4.getValue());
 						}
 						
 				 }
+				 
+				 long finishTime = System.currentTimeMillis();
+				 System.out.println("Run time: " + (finishTime - startTime)/1000.0);
 				
 				 
 //				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
