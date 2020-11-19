@@ -184,14 +184,24 @@ public class MatcherPractice {
 				}
 				
 				LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
-				 Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryAndUser = matcher.getTotalMatchPercentagesByCategoryAndUser();
-				
+				Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryAndUser = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
+				Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserAndCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
+				 
+				 
 				 totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
 				 
 				 for (Map.Entry map : totalMatchPercentagesByCategoryAndUser.entrySet()) {
 						System.out.println("Category: " + map.getKey());
 						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
 							System.out.println("User: " + map2.getKey() + " " + map2.getValue());
+						}
+						
+				 }
+				 
+				 for (Map.Entry map :  totalMatchPercentageByUserAndCategory.entrySet()) {
+						System.out.println("User: " + map.getKey());
+						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
+							System.out.println("Category: " + map2.getKey() + " " + map2.getValue());
 						}
 						
 				 }
