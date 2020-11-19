@@ -24,10 +24,11 @@ public class Matcher {
 		//Improve code: Add id field here?
 		private Set<SubmittedAnswer> submittedAnswers;	
 		private User searchingUser;
-		private LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();
-		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByCategory = new HashMap<>();
 		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();
-		//private Map<Category, LinkedHashMap<User, Integer>>
+		//Need update method for this one
+		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByCategory = new HashMap<>();
+		
+		private LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();
 		private Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryAndUser = new LinkedHashMap<>();
 		
 		
@@ -126,6 +127,33 @@ public class Matcher {
 			this.matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer;
 		}
 
+		
+		public void updateAllMatches(List<User> users, Function<Integer,Integer> convertWeightedAns
+				, Function<Boolean,Integer> convertCheckboxAns ) throws Exception {
+			
+			for (User user : users) {
+				
+				//Do not compare searchingUser with him/herself
+				if (user == this.searchingUser) { //Test equals method works.
+					continue;
+				}
+				
+				
+				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer(this.searchingUser
+							, user, convertWeightedAns, convertCheckboxAns);
+				
+				
+				LinkedHashMap<Category, Integer> totalMatchPercentageByCategory = totalMatchPercentageByCategory(matchPercentageByCategoryAndAnswer);
+				
+				updateTotalMatchPercentagesByUser(user, totalMatchPercentagesByUser, totalMatchPercentageByCategory);
+				
+				updateTotalMatchPercentagesByCategoryAndUser(user,totalMatchPercentageByCategory, totalMatchPercentagesByCategoryAndUser);
+	
+				
+			}
+			
+		}
+		
 		
 		private LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> totalMatchPercentagesByUser
 				, Comparator<Entry<User, Integer>> valueComparator) {
