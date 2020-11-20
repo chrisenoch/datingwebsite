@@ -3,7 +3,7 @@ package com.chrisenochdatingsite.Dating.site.entity;
 public class Category {
 	
 	private String category;
-	int id;
+	private int id;
 
 	public String getCategory() {
 		return category;

@@ -4,21 +4,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
+import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl;
-import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
-import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
-@Disabled
+
 public class QuestionImplTest  {
 
 	private String questionText;
 	
 	@Test
 	public void shouldReturnQuestion() {
-		Question questionText = new OpenQuestionImpl(1, "What is your relationship status?");
+		
+		Category category = Mockito.mock(Category.class);
+		Mockito.when(category.getCategory()).thenReturn("Sport");
+		
+		Question questionText = new OpenQuestionImpl("What is your relationship status?", category);
 		
 		assertEquals("What is your relationship status?", questionText.getQuestionText());
+		assertEquals("Sport", questionText.getCategory().getCategory());
 		
 	}
 

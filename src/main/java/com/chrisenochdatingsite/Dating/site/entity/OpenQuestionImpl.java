@@ -30,16 +30,16 @@ public class OpenQuestionImpl implements Question{
 		this.questionText = questionText;
 	}
 
-	public OpenQuestionImpl(String questionText) {
-		this.questionText = questionText;
-	}
-
 	public Category getCategory() {
 		return category;
 	}
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	public OpenQuestionImpl(String questionText) {
+		this.questionText = questionText;
 	}
 
 	public OpenQuestionImpl(String questionText, Category category) {

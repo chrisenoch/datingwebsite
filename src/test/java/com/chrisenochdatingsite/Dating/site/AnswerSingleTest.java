@@ -10,15 +10,12 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 
-@Disabled
 public class AnswerSingleTest {
 	
 	@Test
 	public void shouldReturnAnswer() {
-		
-		Category practical = Mockito.mock(Category.class);
 
-		Answer relationshipStatusAnswer = new AnswerImpl(1, "Single", practical);
+		Answer relationshipStatusAnswer = new AnswerImpl(1, "Single");
 		
 		assertEquals("Single", relationshipStatusAnswer.getAnswerText());
 		
