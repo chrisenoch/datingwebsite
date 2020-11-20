@@ -1,24 +1,22 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import com.chrisenochdatingsite.Dating.site.entity.Matcher.ConvertToPercent;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
 
+
 public class MatcherPractice {
 	
 	//private static Set<SubmittedAnswer> init()
-			private static List<User> init() {
+			private static Map<String, User> init() {
 				
 				Category movies = new Category("Movies");
 				Category sports = new Category("Sports");
@@ -149,18 +147,24 @@ public class MatcherPractice {
 				
 				peter.setSubmittedAnswers(peterAns);
 				
-				List<User> users = Arrays.asList(dave, jane, peter);
+				Map<String, User> users = new HashMap<>();
+				users.put("Dave", dave);
+				users.put("Jane", jane);
+				users.put("Peter", peter);
 				
-				Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
-				//submittedAnswers.add(submittedAnsDaveMovies1);
-				submittedAnswers.add(submittedAnsDaveSports1);
-				submittedAnswers.add(submittedAnsDaveTravel1);
-				//submittedAnswers.add(submittedAnsJaneMovies1);
-				submittedAnswers.add(submittedAnsJaneSports1);
-				submittedAnswers.add(submittedAnsJaneTravel1);
-				//submittedAnswers.add(submittedAnsPeterMovies1);
-				submittedAnswers.add(submittedAnsPeterSports1);
-				submittedAnswers.add(submittedAnsPeterTravel1);
+				
+				//List<User> users = Arrays.asList(dave, jane, peter);
+				
+//				Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
+//				//submittedAnswers.add(submittedAnsDaveMovies1);
+//				submittedAnswers.add(submittedAnsDaveSports1);
+//				submittedAnswers.add(submittedAnsDaveTravel1);
+//				//submittedAnswers.add(submittedAnsJaneMovies1);
+//				submittedAnswers.add(submittedAnsJaneSports1);
+//				submittedAnswers.add(submittedAnsJaneTravel1);
+//				//submittedAnswers.add(submittedAnsPeterMovies1);
+//				submittedAnswers.add(submittedAnsPeterSports1);
+//				submittedAnswers.add(submittedAnsPeterTravel1);
 				
 				return users;
 			
@@ -168,15 +172,18 @@ public class MatcherPractice {
 			
 			public static void main(String[] args) {
 				//calculateMatch6(init());
-				List<User> usersForTesting = init();
-				User dave = usersForTesting.get(0);
-				User jane = usersForTesting.get(1);
-				User peter = usersForTesting.get(2);
+				Map<String, User> users = init();
+				User dave = users.get("Dave");
+				User jane = users.get("Jane");
+				User peter = users.get("Peter");
 				
 				long startTime = System.currentTimeMillis();
 				
 				Matcher matcher = new Matcher();
 				matcher.setSearchingUser(peter);
+				
+				List<User> usersForTesting = new ArrayList<>(users.values());
+				
 				
 				try {
 					matcher.updateAllMatches(usersForTesting, new Matcher().new ConvertToPercent(), a -> a.booleanValue() == true? 100 : 0 );
@@ -215,34 +222,34 @@ public class MatcherPractice {
 				 System.out.println("Run time: " + (finishTime - startTime)/1000.0);
 				
 				 
-//				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
-//				Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
-//				try {
-//					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave, new Matcher().new ConvertToPercent()
-//							, a -> a.booleanValue() == true? 100 : 0 );
-//					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane, new Matcher().new ConvertToPercent()
-//							, a -> a.booleanValue() == true? 100 : 0 );
-//			
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//					//e.getMessage();
-//				} 
-//				
-//				System.out.println("This should print");
-//				
-//				
-//				for (Map.Entry map1 : matchesDave.entrySet()) {
-//					System.out.println("Category: " + map1.getKey());
-//					for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-//						System.out.println("Question: " + map2.getKey());
-//						for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-//							System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
-//						}
-//						System.out.println("------------------------------");
-//					}		
-//
-//				}
+				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
+				Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
+				try {
+					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave, new Matcher().new ConvertToPercent()
+							, a -> a.booleanValue() == true? 100 : 0 );
+					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane, new Matcher().new ConvertToPercent()
+							, a -> a.booleanValue() == true? 100 : 0 );
+			
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					//e.getMessage();
+				} 
+				
+				System.out.println("This should print");
+				
+				
+				for (Map.Entry map1 : matchesDave.entrySet()) {
+					System.out.println("Category: " + map1.getKey());
+					for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+						System.out.println("Question: " + map2.getKey());
+						for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+							System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+						}
+						System.out.println("------------------------------");
+					}		
+
+				}
 //				
 //				System.out.println("------------------------------");
 //				LinkedHashMap<Category, Integer> percentagesByCategoryDave = matcher.totalMatchPercentageByCategory(matchesDave);

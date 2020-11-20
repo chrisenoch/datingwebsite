@@ -1,4 +1,4 @@
-package com.chrisenochdatingsite.Dating.site.entity;
+ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
 
 public class Matcher {
 		//Improve code: Add id field here?
-		private Set<SubmittedAnswer> submittedAnswers;	
+		//private Set<SubmittedAnswer> submittedAnswers;	
 		private User searchingUser;
 		
 		//Need questions to be in order
@@ -75,17 +75,6 @@ public class Matcher {
 		 * Do iteratively first and then change to streams.
 
 		 */
-
-
-		public Set<SubmittedAnswer> getSubmittedAnswers() {
-			return submittedAnswers;
-		}
-
-	
-
-		public void setSubmittedAnswers(Set<SubmittedAnswer> submittedAnswers) {
-			this.submittedAnswers = submittedAnswers;
-		}
 
 		public User getSearchingUser() {
 			return searchingUser;
@@ -354,7 +343,7 @@ public class Matcher {
 					SubmittedAnswerMultiImpl comparedUserAnsMultiImpl = (SubmittedAnswerMultiImpl) comparedUserAns;
 					
 					//do null check
-					if (comparedUserAns == null) {
+					if (comparedUserAns == null) { 
 						continue; //Not all users will have submitted the same answers. If no matching SubmittedAnswer, go on to the next one.
 					}
 		
@@ -408,7 +397,7 @@ public class Matcher {
 					}
 					
 			
-				} else { //If not instanceof SubmittedAnswerMultiImpl		
+				} else { //If not instanceof SubmittedAnswerMultiImpl- Still need to do this.	
 						}							
 			}
 			
@@ -438,7 +427,7 @@ public class Matcher {
 						
 				} else { //if contains category but doesn't contain question
 					//Add new answer to answer map
-					Map<String, Integer> tempAnswerMap = new HashMap<>();
+				 	Map<String, Integer> tempAnswerMap = new HashMap<>();
 					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
 					
 					//Add question to appropriate category
@@ -489,7 +478,7 @@ public class Matcher {
 		}
 		
 
-		class ConvertToPercent implements Function<Integer, Integer> {
+		public class ConvertToPercent implements Function<Integer, Integer> {
 			@Override
 			public Integer apply(Integer t) {
 				double percentage;
