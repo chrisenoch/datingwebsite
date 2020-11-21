@@ -170,7 +170,7 @@ public class MatcherPractice {
 			
 			}
 			
-			public static void main(String[] args) {
+			public static Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {
 				Category movies = new Category("Movies");
 				Category sports = new Category("Sports");
 				Category travel = new Category("Travel");
@@ -213,21 +213,6 @@ public class MatcherPractice {
 				var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
 						, travelAnswerOptions, travel);
 				
-				
-				
-				//calculateMatch6(init());
-				Map<String, User> users = init();
-				User dave = users.get("Dave");
-				User jane = users.get("Jane");
-				User peter = users.get("Peter");
-				
-				long startTime = System.currentTimeMillis();
-				
-				Matcher matcher = new Matcher();
-				matcher.setSearchingUser(peter);
-				
-				List<User> usersForTesting = new ArrayList<>(users.values());
-				
 				//Prepopulate map
 				//preSetMovieAnswers
 				Map<String, Integer> presetMovieAnswers = new HashMap<>();
@@ -241,7 +226,27 @@ public class MatcherPractice {
 				Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = new HashMap<>();
 				prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero.put(movies, presetQuestionsAndAnswers);
 				
+				return prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
 				
+			}
+			
+			public static void main(String[] args) {
+
+				//calculateMatch6(init());
+				Map<String, User> users = init();
+				User dave = users.get("Dave");
+				User jane = users.get("Jane");
+				User peter = users.get("Peter");
+				
+				long startTime = System.currentTimeMillis();
+				
+				Matcher matcher = new Matcher();
+				matcher.setSearchingUser(peter);
+				
+				List<User> usersForTesting = new ArrayList<>(users.values());
+				
+				
+				 Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
 				
 				
 				try {
