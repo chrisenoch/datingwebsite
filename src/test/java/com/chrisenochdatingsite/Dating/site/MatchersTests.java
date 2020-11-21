@@ -1,9 +1,9 @@
 package com.chrisenochdatingsite.Dating.site;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.assertj.core.api.Assertions.entry;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -12,14 +12,15 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher;
-import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher.ConvertToPercent;
+import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
@@ -34,29 +35,78 @@ public class MatchersTests {
 	private User jane;
 	
 	private Matcher matcher;
-	
 	private Map<Category, Map<Question, Map<String, Integer>>> matchesDave;
+	
+	private Category movies;
+	private Category sports;
+	private Category travel;
+	
+	private Question questionMovies;
+	private Question questionSports;
+	private Question questionTravel;
+	
 	
 	@BeforeEach
 	void init(Map<String, User> users) {
 
-	this.dave = users.get("Dave");
-	this.peter = users.get("Peter");
-	this.jane = users.get("Jane");
+		this.dave = users.get("Dave");
+		this.peter = users.get("Peter");
+		this.jane = users.get("Jane");
+		
+		this.matcher = new Matcher();
+		this.matcher.setSearchingUser(peter);
+		
+		try {
+			this.matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave, new Matcher().new ConvertToPercent()
+					, a -> a.booleanValue() == true? 100 : 0 );
 	
-	this.matcher = new Matcher();
-	this.matcher.setSearchingUser(peter);
-	
-	try {
-		this.matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave, new Matcher().new ConvertToPercent()
-				, a -> a.booleanValue() == true? 100 : 0 );
+		} catch (Exception e) {
+				// TODO Auto-generated catch block
+			e.printStackTrace();
+				//e.getMessage();
+			}
 
-	} catch (Exception e) {
-			// TODO Auto-generated catch block
-		e.printStackTrace();
-			//e.getMessage();
-		}
+		
+		//Setup for testing Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
+		//, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception
+		this.movies = new Category(1, "Movies");
+		this.sports = new Category(2, "Sports");
+		this.travel = new Category(3, "Travel");
+		
+		var horror = new AnswerWeightedImpl("Horror");
+		var action =  new AnswerWeightedImpl("Action");
+		var romance = new AnswerWeightedImpl("Romance");
+		
+		Map<String, Answer> movieAnswerOptions = new HashMap<>();
+		movieAnswerOptions.put(horror.getAnswerText(), horror);
+		movieAnswerOptions.put(action.getAnswerText(), action);
+		movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
 
+		var basketball = new AnswerWeightedImpl("Basketball");
+		var football = new AnswerWeightedImpl("Football");
+		var swimming = new AnswerWeightedImpl("Swimming");
+			
+		Map<String, Answer> sportsAnswerOptions = new HashMap<>();
+		sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
+		sportsAnswerOptions.put(football.getAnswerText(), football);
+		sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
+		
+		var hiking = 	new AnswerWeightedImpl("Hiking");
+		var sightseeing =  new AnswerWeightedImpl("Sightseeing");
+		var camping =  new AnswerWeightedImpl("Camping");
+
+		Map<String, Answer> travelAnswerOptions = new HashMap<>();
+		travelAnswerOptions.put(hiking.getAnswerText(), hiking);
+		travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
+		travelAnswerOptions.put(camping.getAnswerText(), camping);
+		
+		this.questionMovies = new QuestionWithOptionsImpl(1, "Please indicate how much you like the following movie genres."
+				, movieAnswerOptions, movies);
+		this.questionSports = new QuestionWithOptionsImpl(2, "Please indicate how much you like the following sport."
+				, sportsAnswerOptions, sports);
+		this.questionTravel = new QuestionWithOptionsImpl(3, "Please indicate how much you like the following type of travel."
+				, travelAnswerOptions, travel);
+		
 	}
 	
 	@Test
@@ -108,43 +158,7 @@ public class MatchersTests {
 
 		}
 		
-		Category movies = new Category(1, "Movies");
-		Category sports = new Category(2, "Sports");
-		Category travel = new Category(3, "Travel");
 		
-		var horror = new AnswerWeightedImpl("Horror");
-		var action =  new AnswerWeightedImpl("Action");
-		var romance = new AnswerWeightedImpl("Romance");
-		
-		Map<String, Answer> movieAnswerOptions = new HashMap<>();
-		movieAnswerOptions.put(horror.getAnswerText(), horror);
-		movieAnswerOptions.put(action.getAnswerText(), action);
-		movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
-
-		var basketball = new AnswerWeightedImpl("Basketball");
-		var football = new AnswerWeightedImpl("Football");
-		var swimming = new AnswerWeightedImpl("Swimming");
-			
-		Map<String, Answer> sportsAnswerOptions = new HashMap<>();
-		sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
-		sportsAnswerOptions.put(football.getAnswerText(), football);
-		sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
-		
-		var hiking = 	new AnswerWeightedImpl("Hiking");
-		var sightseeing =  new AnswerWeightedImpl("Sightseeing");
-		var camping =  new AnswerWeightedImpl("Camping");
-
-		Map<String, Answer> travelAnswerOptions = new HashMap<>();
-		travelAnswerOptions.put(hiking.getAnswerText(), hiking);
-		travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
-		travelAnswerOptions.put(camping.getAnswerText(), camping);
-		
-		var questionMovies = new QuestionWithOptionsImpl(1, "Please indicate how much you like the following movie genres."
-				, movieAnswerOptions, movies);
-		var questionSports = new QuestionWithOptionsImpl(2, "Please indicate how much you like the following sport."
-				, sportsAnswerOptions, sports);
-		var questionTravel = new QuestionWithOptionsImpl(3, "Please indicate how much you like the following type of travel."
-				, travelAnswerOptions, travel);
 		
 		assertThat(categories).contains(movies, sports, travel);
 		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
@@ -160,7 +174,53 @@ public class MatchersTests {
 		
 	}
 	
-	
+	@Test
+	public void shouldReturnZeroWhenNoAnswersMatch() {
+	//Jane and Peter (the searchingUser have no movie answers in common
+		Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
+		try {
+			matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane, new Matcher().new ConvertToPercent()
+					, a -> a.booleanValue() == true? 100 : 0 );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Set<Category> categories = new HashSet<>();
+		Set<Question> questions = new HashSet<>();
+		Map<String, Integer> answers = new HashMap<>();
+		
+		for (Map.Entry map1 : matchesJane.entrySet()) {
+			System.out.println("Category: " + map1.getKey());
+			
+			categories.add((Category) map1.getKey());
+			
+			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+				System.out.println("Question: " + map2.getKey());
+				
+				questions.add((Question) map2.getKey());
+				
+				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+					
+					answers.put((String)map3.getKey(), (Integer)map3.getValue());
+						
+				}
+				System.out.println("------------------------------");
+			}		
+
+		}
+
+		assertThat(categories).contains(movies, sports, travel);
+		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
+		assertThat(answers).contains(entry("Action", 0), entry("Romance", 0));
+		assertThat(answers).doesNotContainKey("Horror");
+		
+		System.out.println(categories);
+		System.out.println(questions);
+		System.out.println(answers);		
+		
+	}
 	
 	//Test when no answers match
 	
@@ -193,26 +253,7 @@ public class MatchersTests {
 	}
 
 	
-	@Test
-	public void checkParameterResolverIsWorking() {
-		assertEquals("Dave", dave.getFirstName());
-		assertEquals(3, dave.getSubmittedAnswers().size());
-		assertThat(matchesDave).isNotEmpty();
-		assertEquals(3, matchesDave.size());
-		
-		for (Map.Entry map1 : matchesDave.entrySet()) {
-			System.out.println("Category: " + map1.getKey());
-			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-				System.out.println("Question: " + map2.getKey());
-				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
-				}
-				System.out.println("------------------------------");
-			}		
-
-		}
-		
-	}
+	
 		
 
 	
