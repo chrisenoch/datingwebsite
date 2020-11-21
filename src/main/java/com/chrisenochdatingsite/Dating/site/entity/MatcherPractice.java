@@ -136,7 +136,7 @@ public class MatcherPractice {
 				var travelStyleChoicePeter2 = new AnswerWeightedImpl("Camping", AnswerWeight.SIX);
 				var travelStyleChoicePeter3 = new AnswerWeightedImpl("Hiking", AnswerWeight.THREE);
 				
-				var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter,movieChoicePeter1, movieChoicePeter2, movieChoicePeter3);
+				var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter, movieChoicePeter2, movieChoicePeter3);
 				var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 				var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 				
@@ -171,6 +171,50 @@ public class MatcherPractice {
 			}
 			
 			public static void main(String[] args) {
+				Category movies = new Category("Movies");
+				Category sports = new Category("Sports");
+				Category travel = new Category("Travel");
+				
+				//Set up answer objects ready to insert into QuestionWithObjects object constructor
+				//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
+				//Weight selected at runtime by user.
+				var horror = new AnswerWeightedImpl("Horror");
+				var action =  new AnswerWeightedImpl("Action");
+				var romance = new AnswerWeightedImpl("Romance");
+				
+				Map<String, Answer> movieAnswerOptions = new HashMap<>();
+				movieAnswerOptions.put(horror.getAnswerText(), horror);
+				movieAnswerOptions.put(action.getAnswerText(), action);
+				movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
+
+				var basketball = new AnswerWeightedImpl("Basketball");
+				var football = new AnswerWeightedImpl("Football");
+				var swimming = new AnswerWeightedImpl("Swimming");
+					
+				Map<String, Answer> sportsAnswerOptions = new HashMap<>();
+				sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
+				sportsAnswerOptions.put(football.getAnswerText(), football);
+				sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
+				
+				var hiking = 	new AnswerWeightedImpl("Hiking");
+				var sightseeing =  new AnswerWeightedImpl("Sightseeing");
+				var camping =  new AnswerWeightedImpl("Camping");
+		
+				Map<String, Answer> travelAnswerOptions = new HashMap<>();
+				travelAnswerOptions.put(hiking.getAnswerText(), hiking);
+				travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
+				travelAnswerOptions.put(camping.getAnswerText(), camping);
+				
+				//Set up questions objects ready to be inserted into SubmitAnswer constructors
+				var questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
+						, movieAnswerOptions, movies);
+				var questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
+						, sportsAnswerOptions, sports);
+				var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
+						, travelAnswerOptions, travel);
+				
+				
+				
 				//calculateMatch6(init());
 				Map<String, User> users = init();
 				User dave = users.get("Dave");
@@ -184,9 +228,25 @@ public class MatcherPractice {
 				
 				List<User> usersForTesting = new ArrayList<>(users.values());
 				
+				//Prepopulate map
+				//preSetMovieAnswers
+				Map<String, Integer> presetMovieAnswers = new HashMap<>();
+				presetMovieAnswers.put("Horror", 0);
+				presetMovieAnswers.put("Action", 0);
+				presetMovieAnswers.put("Romance", 0);
+				
+				Map<Question, Map<String, Integer>> presetQuestionsAndAnswers = new HashMap<>();
+				presetQuestionsAndAnswers.put(questionMovies, presetMovieAnswers);
+
+				Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = new HashMap<>();
+				prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero.put(movies, presetQuestionsAndAnswers);
+				
+				
+				
 				
 				try {
-					matcher.updateAllMatches(usersForTesting, new Matcher().new ConvertToPercent(), a -> a.booleanValue() == true? 100 : 0 );
+					matcher.updateAllMatches(usersForTesting, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+							,new Matcher().new ConvertToPercent(), a -> a.booleanValue() == true? 100 : 0 );
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -225,9 +285,11 @@ public class MatcherPractice {
 				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
 				Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 				try {
-					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave, new Matcher().new ConvertToPercent()
+					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave
+							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
 							, a -> a.booleanValue() == true? 100 : 0 );
-					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane, new Matcher().new ConvertToPercent()
+					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane
+							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero,  new Matcher().new ConvertToPercent()
 							, a -> a.booleanValue() == true? 100 : 0 );
 			
 				} catch (Exception e) {

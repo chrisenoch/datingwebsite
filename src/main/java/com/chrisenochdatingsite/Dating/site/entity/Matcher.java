@@ -130,7 +130,8 @@ public class Matcher {
 		}
 
 		
-		public void updateAllMatches(List<User> users, Function<Integer,Integer> convertWeightedAns
+		public void updateAllMatches(List<User> users, Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+				, Function<Integer,Integer> convertWeightedAns
 				, Function<Boolean,Integer> convertCheckboxAns ) throws Exception {
 			
 			for (User user : users) {
@@ -142,7 +143,7 @@ public class Matcher {
 				
 				
 				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer(this.searchingUser
-							, user, convertWeightedAns, convertCheckboxAns);
+							, user, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, convertWeightedAns, convertCheckboxAns);
 				
 				
 				LinkedHashMap<Category, Integer> totalMatchPercentageByCategory = totalMatchPercentageByCategory(matchPercentageByCategoryAndAnswer);
@@ -317,13 +318,14 @@ public class Matcher {
 		
 		
 		public Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
-				, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
+				, User comparedUser, Map<Category, Map<Question,Map<String,Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
-			Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
+			//Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
+			Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory = prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
 			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = searchingUser.getSubmittedAnswers();
 			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = comparedUser.getSubmittedAnswers();
 			
-			if (searchingUserSubmittedAnswers == null) {
+			if (searchingUserSubmittedAnswers == null) { 
 				throw new Exception(searchingUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
 			if (comparedUserSubmittedAnswers == null) {
@@ -392,7 +394,7 @@ public class Matcher {
 							//Improve code: get comparedUser category and only proceed if categories match? Perhaps unnecessary
 							
 							//Dont overwrite current entries for specified category
-							addScoresToMap(matchWeightsByCategory, ans, convertedScore, category, question);
+							addScoresToMap(matchScoresByCategory, ans, convertedScore, category, question);
 								
 					}
 					
@@ -401,7 +403,7 @@ public class Matcher {
 						}							
 			}
 			
-			return matchWeightsByCategory;
+			return matchScoresByCategory;
 		}
 
 
