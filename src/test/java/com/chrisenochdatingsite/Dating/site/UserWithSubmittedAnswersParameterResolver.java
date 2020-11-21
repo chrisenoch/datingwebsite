@@ -41,13 +41,14 @@ public class UserWithSubmittedAnswersParameterResolver implements ParameterResol
 			throws ParameterResolutionException {
 		
 		
-		Category movies = new Category(1, "Movies");
-		Category sports = new Category(2, "Sports");
-		Category travel = new Category(3, "Travel");
+		Category movies = new Category( "Movies");
+		Category sports = new Category("Sports");
+		Category travel = new Category( "Travel");
 		
 		//Set up answer objects ready to insert into QuestionWithObjects object constructor
 		//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
 		//Weight selected at runtime by user.
+		
 		var horror = new AnswerWeightedImpl("Horror");
 		var action =  new AnswerWeightedImpl("Action");
 		var romance = new AnswerWeightedImpl("Romance");
@@ -76,11 +77,11 @@ public class UserWithSubmittedAnswersParameterResolver implements ParameterResol
 		travelAnswerOptions.put(camping.getAnswerText(), camping);
 		
 		//Set up questions objects ready to be inserted into SubmitAnswer constructors
-		var questionMovies = new QuestionWithOptionsImpl(1, "Please indicate how much you like the following movie genres."
+		var questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
 				, movieAnswerOptions, movies);
-		var questionSports = new QuestionWithOptionsImpl(2, "Please indicate how much you like the following sport."
+		var questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
 				, sportsAnswerOptions, sports);
-		var questionTravel = new QuestionWithOptionsImpl(3, "Please indicate how much you like the following type of travel."
+		var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
 				, travelAnswerOptions, travel);
 		
 		User dave = new User(1L, "Dave", "Smith", "dave@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
