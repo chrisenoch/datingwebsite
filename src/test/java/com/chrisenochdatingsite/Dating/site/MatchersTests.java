@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -31,8 +31,8 @@ import com.chrisenochdatingsite.Dating.site.service.Question;
 public class MatchersTests {
 	
 	private User dave;
-	private User peter;
 	private User jane;
+	private User peter;
 	
 	private Matcher matcher;
 	private Map<Category, Map<Question, Map<String, Integer>>> matchesDave;
@@ -58,6 +58,7 @@ public class MatchersTests {
 		this.matcher = new Matcher();
 		this.matcher.setSearchingUser(peter);
 		
+		//One of the main methods to be tested in this class. 
 		try {
 			this.matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave
 					, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
@@ -70,8 +71,7 @@ public class MatchersTests {
 			}
 
 		
-		//Setup for testing Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
-		//, User comparedUser, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception
+		//Setup for testing Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer
 		this.movies = new Category( "Movies");
 		this.sports = new Category( "Sports");
 		this.travel = new Category( "Travel");
@@ -135,9 +135,7 @@ public class MatchersTests {
 	//Test use case
 	@Test
 	//@Disabled
-	public void shouldReturnCorrectValuesDependingOnAnswerType() {
-		System.out.println("START OF METHOD");
-		
+	public void shouldReturnCorrectValuesDependingOnAnswerType() {	
 		
 		Set<Category> categories = new HashSet<>();
 		Set<Question> questions = new HashSet<>();
@@ -177,16 +175,12 @@ public class MatchersTests {
 		System.out.println(categories);
 		System.out.println(questions);
 		System.out.println(answers);
-		
-		System.out.println("END OF METHOD");
-		
-		
+
 	}
 	
 	@Test
-	
 	public void shouldReturnZeroWhenNoAnswersMatch() {
-	//Jane and Peter (the searchingUser have no movie answers in common
+	//Jane and Peter (the searchingUser) have no movie answers in common
 		Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 		 Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2 = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
 		System.out.println("prep in method: " + prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2);
@@ -234,8 +228,7 @@ public class MatchersTests {
 		System.out.println(answers);		
 		
 	}
-	
-	//Test when no answers match
+
 	
 	//Test with SubmittedAnswerSingleImpl
 
