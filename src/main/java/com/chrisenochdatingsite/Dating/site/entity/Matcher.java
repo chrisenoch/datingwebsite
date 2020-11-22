@@ -219,7 +219,7 @@ public class Matcher {
 					scoresByUser = new LinkedHashMap<>();
 				}
 
-				scoresByUser.put(userToAdd, (Integer) map.getValue());
+				scoresByUser.put(userToAdd, (Integer) map.getValue()); 
 				
 				//Sort map so that higher match percentages are displayed first.
 				LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(scoresByUser, new Matcher().new ValueComparator()); //Improve code

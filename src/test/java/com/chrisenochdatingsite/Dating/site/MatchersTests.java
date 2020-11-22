@@ -353,8 +353,86 @@ public class MatchersTests {
 		
 		
 		Exception exc = assertThrows(Exception.class, ()-> matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave));
-		assertEquals("More information needed in order to calculate match percentage.", exc.getMessage());
+		assertEquals("More information needed in order to calculate match percentage.", exc.getMessage());	
+	}
 	
+	@Test
+	public void shouldReturnRoundedUpTotalMatchPercentageByCategory() throws Exception {
+		//Arrange
+		Map<Category, Map<Question,Map<String,Integer>>> map = new HashMap<>();
+		
+		//Average of answerMovies = 25/3, which = 8.333. This should be rounded up to 9.
+		Map<String,Integer> answersMovies = new HashMap<>();
+		answersMovies.put("Adventure", 5);
+		answersMovies.put("Comedy", 10);
+		answersMovies.put("Drama", 10);
+		
+		Map<String,Integer> answersSports = new HashMap<>();
+		answersSports.put("Judo", 15);
+		answersSports.put("BMX", 5);
+		answersSports.put("Rowing", 25);
+		
+		Map<Question,Map<String,Integer>> questionsAndAnswersMovies = new HashMap<>();
+		questionsAndAnswersMovies.put(questionMovies, answersMovies);
+		
+		Map<Question,Map<String,Integer>> questionsAndAnswersSports = new HashMap<>();
+		questionsAndAnswersSports.put(questionSports, answersSports);
+		
+		map.put(movies,questionsAndAnswersMovies);
+		map.put(sports, questionsAndAnswersSports);
+		
+		//Act
+		LinkedHashMap<Category, Integer> totalMatchPercentageByCategory = matcher.totalMatchPercentageByCategory(map);
+	
+		//Assert
+		assertEquals(9,totalMatchPercentageByCategory.get(movies));
+		assertEquals(15,totalMatchPercentageByCategory.get(sports));
+		 
+	}
+	
+	@Test
+	public void shouldReturnTotalMatchPercentagesByCategoryForEveryUserInDescendingOrder() {
+		//Arrange
+		LinkedHashMap<Category, Integer> totalMatchPercentageByCategoryDave = new LinkedHashMap<>();
+		 totalMatchPercentageByCategoryDave.put(movies, 20);
+		 totalMatchPercentageByCategoryDave.put(sports, 40);
+		 totalMatchPercentageByCategoryDave.put(travel, 50);
+		 
+		 LinkedHashMap<Category, Integer> totalMatchPercentageByCategoryJane = new LinkedHashMap<>();
+		 totalMatchPercentageByCategoryJane.put(movies, 50);
+		 totalMatchPercentageByCategoryJane.put(sports, 10);
+		 totalMatchPercentageByCategoryJane.put(travel, 70);
+		 
+		 //Act
+		 matcher.updateTotalMatchPercentagesByCategoryForEveryUser(dave, totalMatchPercentageByCategoryDave);
+		 matcher.updateTotalMatchPercentagesByCategoryForEveryUser(jane, totalMatchPercentageByCategoryJane);
+		 
+		 //get the field that updateTotalMatchPercentagesByCategoryForEveryUser updates in Matcher class
+		 Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser 
+		 = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
+		 
+		//get inner map to test
+		 LinkedHashMap<User, Integer> moviesCategory = totalMatchPercentagesByCategoryForEveryUser.get(movies);
+		 LinkedHashMap<User, Integer> sportsCategory = totalMatchPercentagesByCategoryForEveryUser.get(sports);
+		 LinkedHashMap<User, Integer> travelCategory = totalMatchPercentagesByCategoryForEveryUser.get(travel);
+		 
+		 //Expected values
+		 LinkedHashMap<User, Integer> moviesExpected = new LinkedHashMap<>();
+		 LinkedHashMap<User, Integer> sportsExpected = new LinkedHashMap<>();
+		 LinkedHashMap<User, Integer> travelExpected = new LinkedHashMap<>();
+		 
+		 moviesExpected.put(jane, 50);
+		 moviesExpected.put(dave, 20);
+		 sportsExpected.put(dave, 40);
+		 sportsExpected.put(jane, 10);	 
+		 travelExpected.put(jane, 70);
+		 travelExpected.put(dave, 50);
+
+		 //Act
+		 assertThat(moviesCategory).containsExactlyEntriesOf(moviesExpected);
+		 assertThat(sportsCategory).containsExactlyEntriesOf(sportsExpected);
+		 assertThat(travelCategory).containsExactlyEntriesOf(travelExpected);
+		 	
 	}
 	
 	
