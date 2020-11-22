@@ -180,14 +180,14 @@ public class Matcher {
 		
 		
 		
-		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory){	
+		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory) throws Exception{	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
 			
 			//Integer total = matchPercentageByCategory.entrySet().stream().map(a-> a.getValue()).reduce(0, Integer::sum);
 			OptionalDouble average = totalMatchPercentageByCategory.entrySet().stream().mapToInt(categoryTotal-> categoryTotal.getValue()).average();
 			
-			if (average.isEmpty()) {
-				//throw eception here. //Improve code: Add exception. Customised exception?
+			if (average.isEmpty() || average.getAsDouble() <= 0) {
+				throw new Exception("More information needed in order to calculate match percentage.");
 			}
 			
 			Long temp = Math.round(average.getAsDouble()); //Improve code. Perhaps change total var in map from Integer to Double

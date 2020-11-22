@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -252,6 +253,111 @@ public class MatchersTests {
 		assertEquals("Mike has not submitted any answers so compatibility cannot be calculated.", exc2.getMessage());
 		
 	}
+	
+	@Test
+	public void shouldReturnTotalPercentageByUserForEveryCategory() {
+		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
+		LinkedHashMap<Category, Integer> totalPercentagesByCategoryJane = new LinkedHashMap<>();
+		
+		totalPercentagesByCategoryDave.put(movies, 45);
+		totalPercentagesByCategoryDave.put(sports, 55);
+		totalPercentagesByCategoryDave.put(travel, 65); 
+		
+		totalPercentagesByCategoryJane.put(movies, 15);
+		totalPercentagesByCategoryJane.put(sports, 25);
+		totalPercentagesByCategoryJane.put(travel, 40);
+		
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
+		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);
+		totalMatchPercentageByUserForEveryCategory.put(jane,totalPercentagesByCategoryJane);
+		
+		assertThat(totalMatchPercentageByUserForEveryCategory).hasSize(2).containsKeys(jane, dave)
+		.containsValues(totalPercentagesByCategoryDave,totalPercentagesByCategoryJane );	
+		
+	}
+	
+	@Test
+	public void shouldReturnUsersAndTotalScoresInDescendingOrder() throws Exception {
+		//Init
+		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
+		totalPercentagesByCategoryDave.put(movies, 45);
+		totalPercentagesByCategoryDave.put(sports, 55);
+		totalPercentagesByCategoryDave.put(travel, 65); 
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
+		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);
+		
+		
+		//Unordered - as final result should be in descending order
+		LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
+		totalMatchPercentagesByUser.put(jane, 5);
+		totalMatchPercentagesByUser.put(peter, 23);
+		
+		//Method being tested
+		matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave);
+		
+		//get updated field from Matcher class
+		LinkedHashMap<User, Integer> totalMatchPercentagesByUserUpdated = matcher.getTotalMatchPercentagesByUser();
+		
+		//Expected results
+		LinkedHashMap<User, Integer> totalPercentagesByUserOrdered = new LinkedHashMap<>();
+		totalPercentagesByUserOrdered.put(dave,  55);
+		totalPercentagesByUserOrdered.put(peter,  23);
+		totalPercentagesByUserOrdered.put(jane,  5);
+
+
+		assertThat(totalMatchPercentagesByUserUpdated).containsKeys(peter, dave, jane).containsExactlyEntriesOf( totalPercentagesByUserOrdered);
+		
+	}
+	
+	public void shouldReturnAverage() throws Exception {
+		//Init
+		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
+		totalPercentagesByCategoryDave.put(movies, 45);
+		totalPercentagesByCategoryDave.put(sports, 55);
+		totalPercentagesByCategoryDave.put(travel, 65); 
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
+		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);		
+		
+		//Method being tested
+		matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave);
+		
+		//get updated field from Matcher class
+		LinkedHashMap<User, Integer> totalMatchPercentagesByUserUpdated = matcher.getTotalMatchPercentagesByUser();
+		assertEquals(55, totalMatchPercentagesByUserUpdated.containsValue(55));
+		
+	}
+	
+	@Test
+	public void shouldThrowExceptionIfAverageEqualsZero() throws Exception {
+		//Init
+		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
+		totalPercentagesByCategoryDave.put(movies, 0);
+		totalPercentagesByCategoryDave.put(sports, 0);
+		totalPercentagesByCategoryDave.put(travel, 0); 
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
+		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);
+		
+		//Method being tested
+		
+		Exception exc = assertThrows(Exception.class, ()-> matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave));
+		assertEquals("More information needed in order to calculate match percentage.", exc.getMessage());
+	
+	}
+	
+	@Test
+	public void shouldThrowExceptionIfAverageIsEmpty() throws Exception {
+		//Init
+		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
+		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);
+		
+		
+		Exception exc = assertThrows(Exception.class, ()-> matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave));
+		assertEquals("More information needed in order to calculate match percentage.", exc.getMessage());
+	
+	}
+	
+	
 	
 	
 	//@Test
