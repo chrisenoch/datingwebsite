@@ -138,15 +138,17 @@ public class MatchersTests {
 	
 	//Test use case
 	@Test
-	//@Disabled
 	public void shouldReturnCorrectValuesDependingOnAnswerType() {	
+		//Testing method matchPercentageByCategoryAndAnswer, which can be found in @BeforeEach
 		
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer and will be used for testing.
 		Set<Category> categories = new HashSet<>();
 		Set<Question> questions = new HashSet<>();
 		Map<String, Integer> answers = new HashMap<>();
 		
 		System.out.println("matches dave: " + matchesDave);
 		
+		//Add values to collections ready for testing 
 		for (Map.Entry map1 : matchesDave.entrySet()) {
 			
 			System.out.println("Category: " + map1.getKey());
@@ -175,20 +177,16 @@ public class MatchersTests {
 				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
 				);
-		
-		System.out.println(categories);
-		System.out.println(questions);
-		System.out.println(answers);
-
 	}
 	
 	@Test
 	public void shouldReturnZeroWhenNoAnswersMatch() {
-	//Jane and Peter (the searchingUser) have no movie answers in common
+		//Jane and Peter (the searchingUser) have no movie answers in common
 		Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
-		 Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2 = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
+		Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2 = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
 		System.out.println("prep in method: " + prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2);
 		
+		//Act
 		try {
 			matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane
 					, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2, new Matcher().new ConvertToPercent()
@@ -198,10 +196,13 @@ public class MatchersTests {
 			e.printStackTrace();
 		}
 		
+
+		//Collections gather data from the nested map matchesJane and will be used for testing.
 		Set<Category> categories = new HashSet<>();
 		Set<Question> questions = new HashSet<>();
 		Map<String, Integer> answers = new HashMap<>();
 		
+		//Add values to collections ready for testing 
 		for (Map.Entry map1 : matchesJane.entrySet()) {
 			System.out.println("Category: " + map1.getKey());
 			
@@ -239,17 +240,18 @@ public class MatchersTests {
 		
 	@Test
 	public void shouldThrowExceptionIfNoAnswersSubmitted() {
-		User noSubmittedAnswers = new User("Harold", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
+		User noSubmittedAnswersHarold = new User("Harold", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
+		User noSubmittedAnswersMike = new User("Mike", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
 		
-		Exception exc = assertThrows(NoAnswersSubmittedException.class, ()-> matcher.matchPercentageByCategoryAndAnswer(noSubmittedAnswers, dave
+		
+		Exception exc = assertThrows(NoAnswersSubmittedException.class, ()-> matcher.matchPercentageByCategoryAndAnswer(noSubmittedAnswersHarold, dave
 				, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
 				, a -> a.booleanValue() == true? 100 : 0 ));
 		
 		assertEquals("Harold has not submitted any answers so compatibility cannot be calculated.", exc.getMessage());
 		
-		User noSubmittedAnswers2 = new User("Mike", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
 		
-		Exception exc2 = assertThrows(Exception.class, ()-> matcher.matchPercentageByCategoryAndAnswer(peter, noSubmittedAnswers2
+		Exception exc2 = assertThrows(Exception.class, ()-> matcher.matchPercentageByCategoryAndAnswer(peter, noSubmittedAnswersMike
 				, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
 				, a -> a.booleanValue() == true? 100 : 0 ));
 		
@@ -259,6 +261,7 @@ public class MatchersTests {
 	
 	@Test
 	public void shouldReturnTotalPercentageByUserForEveryCategory() {
+		//Arrange
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryJane = new LinkedHashMap<>();
 		
@@ -270,10 +273,14 @@ public class MatchersTests {
 		totalPercentagesByCategoryJane.put(sports, 25);
 		totalPercentagesByCategoryJane.put(travel, 40);
 		
-		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
-		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);
-		totalMatchPercentageByUserForEveryCategory.put(jane,totalPercentagesByCategoryJane);
+		//Act
+		matcher.updateTotalPercentageByUserForEveryCategory(dave, totalPercentagesByCategoryDave);
+		matcher.updateTotalPercentageByUserForEveryCategory(jane, totalPercentagesByCategoryJane);
 		
+		//Get updated map from Matcher() class
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
+		
+		//Assert
 		assertThat(totalMatchPercentageByUserForEveryCategory).hasSize(2).containsKeys(jane, dave)
 		.containsValues(totalPercentagesByCategoryDave,totalPercentagesByCategoryJane );	
 		
@@ -330,22 +337,6 @@ public class MatchersTests {
 		
 	}
 	
-	@Test
-	public void shouldThrowExceptionIfAverageEqualsZero() throws Exception {
-		//Init
-		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
-		totalPercentagesByCategoryDave.put(movies, 0);
-		totalPercentagesByCategoryDave.put(sports, 0);
-		totalPercentagesByCategoryDave.put(travel, 0); 
-		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
-		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);
-		
-		//Method being tested
-		
-		Exception exc = assertThrows(Exception.class, ()-> matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave));
-		assertEquals("More information needed in order to calculate match percentage.", exc.getMessage());
-	
-	}
 	
 	@Test
 	public void shouldThrowExceptionIfAverageIsEmpty() throws Exception {
@@ -469,10 +460,9 @@ public class MatchersTests {
 	@DisplayName("Should ignore any user who hasn't submitted any answers and calculate the match scores for the others.")
 	public void shouldIgnoreUserIfUserHasNotSubmittedAnyAnswers() throws Exception {
 		//Arrange
-		
 		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE);
-		
 		List<User> users = Arrays.asList(peter, dave, jane, userWithNoAns);
+		
 		//Act
 		matcher.updateAllMatches(users, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
 				, new Matcher().new ConvertToPercent() , a -> a.booleanValue() == true? 100 : 0);
@@ -493,6 +483,23 @@ public class MatchersTests {
 		assertThat(sportsCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
 		assertThat(travelCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
 	}
+	
+	public void shouldThrowNoAnswersSubmittedException() throws Exception {
+		//Arrange
+		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE);
+		List<User> users = Arrays.asList(peter, dave, jane, userWithNoAns);
+		
+		//Act
+		matcher.updateAllMatches(users, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+				, new Matcher().new ConvertToPercent() , a -> a.booleanValue() == true? 100 : 0);
+		
+		Exception exc = assertThrows(NoAnswersSubmittedException.class, ()-> matcher.updateAllMatches(users, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+				, new Matcher().new ConvertToPercent() , a -> a.booleanValue() == true? 100 : 0));
+		
+		assertEquals("Tom has not submitted any answers so compatibility cannot be calculated.", exc.getMessage());
+	}
+	
+
 	
 	
 	

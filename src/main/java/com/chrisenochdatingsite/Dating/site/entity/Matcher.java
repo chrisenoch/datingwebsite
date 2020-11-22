@@ -203,7 +203,7 @@ public class Matcher {
 			//Integer total = matchPercentageByCategory.entrySet().stream().map(a-> a.getValue()).reduce(0, Integer::sum);
 			OptionalDouble average = totalMatchPercentageByCategory.entrySet().stream().mapToInt(categoryTotal-> categoryTotal.getValue()).average();
 			
-			if (average.isEmpty() || average.getAsDouble() <= 0) {
+			if (average.isEmpty()) {
 				throw new NoAmountFoundException("More information needed in order to calculate match percentage.");
 			}
 			
