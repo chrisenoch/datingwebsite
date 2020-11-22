@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -14,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -26,6 +28,7 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
+import com.chrisenochdatingsite.Dating.site.util.NoAnswersSubmittedException;
 
 
 @ExtendWith(UserWithSubmittedAnswersParameterResolver.class)
@@ -238,7 +241,7 @@ public class MatchersTests {
 	public void shouldThrowExceptionIfNoAnswersSubmitted() {
 		User noSubmittedAnswers = new User("Harold", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
 		
-		Exception exc = assertThrows(Exception.class, ()-> matcher.matchPercentageByCategoryAndAnswer(noSubmittedAnswers, dave
+		Exception exc = assertThrows(NoAnswersSubmittedException.class, ()-> matcher.matchPercentageByCategoryAndAnswer(noSubmittedAnswers, dave
 				, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
 				, a -> a.booleanValue() == true? 100 : 0 ));
 		
@@ -435,6 +438,61 @@ public class MatchersTests {
 		 	
 	}
 	
+	@Test
+	@DisplayName("Should not add searchingUser to maps but should add all other users.")
+	public void shouldNotAddSearchingUserToMaps() throws Exception {
+		//Arrange
+		List<User> users = Arrays.asList(peter, dave, jane);
+		
+		//Act
+		matcher.updateAllMatches(users, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+				, new Matcher().new ConvertToPercent() , a -> a.booleanValue() == true? 100 : 0);
+		
+		//Get updated maps from Matcher class
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
+		LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
+		Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
+		
+		//Get inner map from totalMatchPercentagesByCategoryForEveryUser in order to test for presence of searchingUser
+		LinkedHashMap<User, Integer> movieCategory = totalMatchPercentagesByCategoryForEveryUser.get(movies);
+		LinkedHashMap<User, Integer> sportsCategory = totalMatchPercentagesByCategoryForEveryUser.get(sports);
+		LinkedHashMap<User, Integer> travelCategory = totalMatchPercentagesByCategoryForEveryUser.get(travel);
+		
+		assertThat(totalMatchPercentageByUserForEveryCategory).doesNotContainKeys(peter);
+		assertThat(totalMatchPercentagesByUser).doesNotContainKeys(peter).containsKeys(dave, jane);
+		assertThat(movieCategory).doesNotContainKey(peter).containsKeys(dave, jane);
+		assertThat(sportsCategory).doesNotContainKey(peter).containsKeys(dave, jane);
+		assertThat(travelCategory).doesNotContainKey(peter).containsKeys(dave, jane);
+	}
+	
+	@Test
+	@DisplayName("Should ignore any user who hasn't submitted any answers and calculate the match scores for the others.")
+	public void shouldIgnoreUserIfUserHasNotSubmittedAnyAnswers() throws Exception {
+		//Arrange
+		
+		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE);
+		
+		List<User> users = Arrays.asList(peter, dave, jane, userWithNoAns);
+		//Act
+		matcher.updateAllMatches(users, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+				, new Matcher().new ConvertToPercent() , a -> a.booleanValue() == true? 100 : 0);
+		
+		//Get updated maps from Matcher class
+		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
+		LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
+		Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
+		
+		//Get inner map from totalMatchPercentagesByCategoryForEveryUser in order to test for presence of searchingUser
+		LinkedHashMap<User, Integer> movieCategory = totalMatchPercentagesByCategoryForEveryUser.get(movies);
+		LinkedHashMap<User, Integer> sportsCategory = totalMatchPercentagesByCategoryForEveryUser.get(sports);
+		LinkedHashMap<User, Integer> travelCategory = totalMatchPercentagesByCategoryForEveryUser.get(travel);
+		
+		assertThat(totalMatchPercentageByUserForEveryCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
+		assertThat(totalMatchPercentagesByUser).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
+		assertThat(movieCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
+		assertThat(sportsCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
+		assertThat(travelCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
+	}
 	
 	
 	
@@ -487,8 +545,8 @@ public class MatchersTests {
 		var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
 				, travelAnswerOptions, travel);
 		
-		//Prepopulate map
-		//preSetMovieAnswers
+		//Pre-populate map
+		//preset movie answers
 		Map<String, Integer> presetMovieAnswers = new HashMap<>();
 		presetMovieAnswers.put("Horror", 0);
 		presetMovieAnswers.put("Action", 0);

@@ -18,6 +18,8 @@ import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.Answer;
 import com.chrisenochdatingsite.Dating.site.service.Question;
 import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
+import com.chrisenochdatingsite.Dating.site.util.NoAmountFoundException;
+import com.chrisenochdatingsite.Dating.site.util.NoAnswersSubmittedException;
 
 
 public class Matcher {
@@ -130,29 +132,44 @@ public class Matcher {
 		}
 
 		
-		public void updateAllMatches(List<User> users, Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+		public void  updateAllMatches(List<User> users, Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
 				, Function<Integer,Integer> convertWeightedAns
-				, Function<Boolean,Integer> convertCheckboxAns ) throws Exception {
+				, Function<Boolean,Integer> convertCheckboxAns ) {
 			
 			for (User user : users) {
 				
 				//Do not compare searchingUser with him/herself
-				if (user == this.searchingUser) { //Test equals method works.
+				if (user.equals(this.searchingUser)) { //Test equals method works.
 					continue;
 				}
 				
 				
-				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer(this.searchingUser
-							, user, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, convertWeightedAns, convertCheckboxAns);
+				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer;
+				try {
+					matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer(this.searchingUser
+								, user, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, convertWeightedAns, convertCheckboxAns);
+				
+					LinkedHashMap<Category, Integer> totalMatchPercentageByCategory = totalMatchPercentageByCategory(matchPercentageByCategoryAndAnswer);
+					
+					updateTotalMatchPercentagesByUser(user, totalMatchPercentageByCategory);
+					
+					updateTotalMatchPercentagesByCategoryForEveryUser(user,totalMatchPercentageByCategory);
+		
+					updateTotalPercentageByUserForEveryCategory(user, totalMatchPercentageByCategory);
 				
 				
-				LinkedHashMap<Category, Integer> totalMatchPercentageByCategory = totalMatchPercentageByCategory(matchPercentageByCategoryAndAnswer);
+				} catch (NoAnswersSubmittedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					continue;
+				} catch (NoAmountFoundException e) {
+					continue;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
-				updateTotalMatchPercentagesByUser(user, totalMatchPercentageByCategory);
 				
-				updateTotalMatchPercentagesByCategoryForEveryUser(user,totalMatchPercentageByCategory);
-	
-				updateTotalPercentageByUserForEveryCategory(user, totalMatchPercentageByCategory);
+				
 			}
 			
 		}
@@ -187,7 +204,7 @@ public class Matcher {
 			OptionalDouble average = totalMatchPercentageByCategory.entrySet().stream().mapToInt(categoryTotal-> categoryTotal.getValue()).average();
 			
 			if (average.isEmpty() || average.getAsDouble() <= 0) {
-				throw new Exception("More information needed in order to calculate match percentage.");
+				throw new NoAmountFoundException("More information needed in order to calculate match percentage.");
 			}
 			
 			Long temp = Math.round(average.getAsDouble()); //Improve code. Perhaps change total var in map from Integer to Double
@@ -314,11 +331,9 @@ public class Matcher {
 		//Check userToAdd and totalMatchPercentageByCategory don't equal null, if they do, throw exception
 		
 		
-		
-		
-		
 		public Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
-				, User comparedUser, Map<Category, Map<Question,Map<String,Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
+				, User comparedUser, Map<Category, Map<Question,Map<String,Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+				, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
 			Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory = prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
@@ -326,10 +341,10 @@ public class Matcher {
 			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = comparedUser.getSubmittedAnswers();
 			
 			if (searchingUserSubmittedAnswers == null) { 
-				throw new Exception(searchingUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
+				throw new NoAnswersSubmittedException(searchingUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
 			if (comparedUserSubmittedAnswers == null) {
-				throw new Exception(comparedUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
+				throw new NoAnswersSubmittedException(comparedUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
 
 			

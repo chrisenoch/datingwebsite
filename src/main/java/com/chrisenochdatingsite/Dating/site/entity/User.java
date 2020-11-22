@@ -100,8 +100,6 @@ public class User {
 	}
 
 
-
-
 	public enum Sex{
 		MALE, FEMALE
 	}
