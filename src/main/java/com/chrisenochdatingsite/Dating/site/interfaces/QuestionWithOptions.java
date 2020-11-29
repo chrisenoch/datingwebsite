@@ -1,9 +1,9 @@
 package com.chrisenochdatingsite.Dating.site.interfaces;
 
-import java.util.Map;
+import java.util.List;
 
 public interface QuestionWithOptions extends Question {
-	Map<String, Answer> getPossibleAnswers(); //Improve code: change String to enum?
+	List<Answer> getPossibleAnswers(); //Improve code: change String to enum?
 	
 }
 

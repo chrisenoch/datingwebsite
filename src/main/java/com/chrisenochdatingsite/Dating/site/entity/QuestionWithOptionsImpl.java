@@ -1,15 +1,33 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-import java.util.Map;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 import com.chrisenochdatingsite.Dating.site.interfaces.QuestionWithOptions;
 
+//@Entity
 public class QuestionWithOptionsImpl implements QuestionWithOptions {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	
 	private String questionText;
-	private Map<String, Answer> possibleAnswers; //Improve code: change String to answerText enum
+	private List<Answer> possibleAnswers;
+	//private Map<String, Answer> possibleAnswers; //Improve code: change String to answerText enum
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
 	Category category;
 	
 	public int getId() {
@@ -28,14 +46,15 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 		this.questionText = questionText;
 	}
 
-	public Map<String, Answer> getPossibleAnswers() {
+	
+	public List<Answer> getPossibleAnswers() {
 		return possibleAnswers;
 	}
 
-	public void setPossibleAnswers(Map<String, Answer> possibleAnswers) {
+	public void setPossibleAnswers(List<Answer> possibleAnswers) {
 		this.possibleAnswers = possibleAnswers;
 	}
-	
+
 	public Category getCategory() {
 		return category;
 	}
@@ -44,13 +63,13 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 		this.category = category;
 	}
 
-	public QuestionWithOptionsImpl(String questionText, Map<String, Answer> possibleAnswers, Category category) {
+	public QuestionWithOptionsImpl(String questionText, List<Answer> possibleAnswers, Category category) {
 		this.questionText = questionText;
 		this.possibleAnswers = possibleAnswers;
 		this.category = category;
 	}
 
-	public QuestionWithOptionsImpl(int id, String questionText, Map<String, Answer> possibleAnswers,
+	public QuestionWithOptionsImpl(int id, String questionText, List<Answer> possibleAnswers,
 			Category category) {
 		this.id = id;
 		this.questionText = questionText;

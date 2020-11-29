@@ -378,10 +378,15 @@ public class Matcher {
 					if (comparedUserAns == null) { 
 						continue; //Not all users will have submitted the same answers. If no matching SubmittedAnswer, go on to the next one.
 					}
-		
-					Map<String, Answer> searchingUserSelectedAnswers = searchingUserAnsMultiImpl.getSelectedAnswers();
-					Map<String, Answer> comparedUserSelectedAnswers = comparedUserAnsMultiImpl.getSelectedAnswers();
 					
+					List<Answer> searchingUserSelectedAnswersList = searchingUserAnsMultiImpl.getSelectedAnswers();
+					List<Answer> comparedUserSelectedAnswersList = comparedUserAnsMultiImpl.getSelectedAnswers();
+					
+					Map<String, Answer> searchingUserSelectedAnswers = convertToAnswerTextAnswerMap(
+							searchingUserSelectedAnswersList);
+					Map<String, Answer> comparedUserSelectedAnswers = convertToAnswerTextAnswerMap(
+							comparedUserSelectedAnswersList);
+							
 					//Loop through and compare scores and add to right category.
 					
 					for (Map.Entry<String, Answer> map : searchingUserSelectedAnswers.entrySet()) {
@@ -434,6 +439,14 @@ public class Matcher {
 			}
 			
 			return matchScoresByCategory;
+		}
+
+		private Map<String, Answer> convertToAnswerTextAnswerMap(List<Answer> userSelectedAnswersList) {
+			Map<String, Answer> userSelectedAnswers = new HashMap<>();
+			for (Answer ans : userSelectedAnswersList) {
+				userSelectedAnswers.put(ans.getAnswerText(), ans);
+			}
+			return userSelectedAnswers;
 		}
 
 		private Map<String, SubmittedAnswer> convertToQuestionTextSubmittedAnswerMap(

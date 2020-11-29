@@ -2,6 +2,7 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
@@ -11,9 +12,10 @@ import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswersMulti;
 public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements SubmittedAnswersMulti {
 	
 	private long id;
-	private Question question;
+	private Question question; 
 	private User user;
-	private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText
+	private List<Answer> selectedAnswers;
+	//private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText
 
 	public long getId() {
 		return id;
@@ -35,13 +37,13 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 		this.user = user;
 	}
 	
-	public Map<String, Answer> getSelectedAnswers() {
+	public List<Answer> getSelectedAnswers() {
 		return selectedAnswers;
 	}
-	public void setSelectedAnswers(Map<String, Answer> selectedAnswers) {
+	public void setSelectedAnswers(List<Answer> selectedAnswers) {
 		this.selectedAnswers = selectedAnswers;
 	}
-	public SubmittedAnswerMultiImpl(Question question, User user, Map<String, Answer> selectedAnswers) {
+	public SubmittedAnswerMultiImpl(Question question, User user, List<Answer> selectedAnswers) {
 		this.question = question;
 		this.user = user;
 		this.selectedAnswers = selectedAnswers; 
@@ -51,11 +53,7 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 		this.question = question;
 		this.user = user;
 		
-		Map<String, Answer> selecAns = new HashMap<>();
-		for (Answer ans : selectedAnswers) {
-			selecAns.put(ans.getAnswerText(), ans);
-		}
-		this.selectedAnswers = selecAns;				
+		this.selectedAnswers = Arrays.asList(selectedAnswers);				
 	}
 	
 	
