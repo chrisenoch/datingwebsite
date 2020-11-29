@@ -1,21 +1,30 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 
+@Entity
 public class AnswerImpl implements Answer{
-	
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private long id;
 	private String answerText; 	
 	
 	public void setAnswerText(String answerText) {
 		this.answerText = answerText;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -33,12 +42,13 @@ public class AnswerImpl implements Answer{
 	
 
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((answerText == null) ? 0 : answerText.hashCode());
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -65,5 +75,7 @@ public class AnswerImpl implements Answer{
 	public String toString() {
 		return "AnswerImpl [id=" + id + ", answerText=" + answerText + "]";
 	}
+
+	
 
 }

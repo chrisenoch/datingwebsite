@@ -2,20 +2,35 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
+@Entity
 public class User {
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
 	private String firstName;
 	private String surname;
 	private String email;
 	private LocalDate dateOfBirth;
 	private Sex sex;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<SubmittedAnswer> submittedAnswers; 
 	//Original: private Map<String, SubmittedAnswer> submittedAnswers; //String is questionText. Improve: Change to enum or class.
+	@Transient
 	private Matcher matcher;
 
 	public User(Long id, String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {

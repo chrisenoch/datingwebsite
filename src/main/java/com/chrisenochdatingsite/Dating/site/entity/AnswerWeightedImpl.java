@@ -1,10 +1,19 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-import com.chrisenochdatingsite.Dating.site.interfaces.AnswerScaled;
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import com.chrisenochdatingsite.Dating.site.interfaces.AnswerScaled;
+
+@Entity
 public class AnswerWeightedImpl implements AnswerScaled<AnswerWeight>{
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private long id;
 	private String answerText;
 	private AnswerWeight answerWeight;

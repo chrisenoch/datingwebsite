@@ -1,19 +1,41 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswersMulti;
 
+@Entity
 public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements SubmittedAnswersMulti {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private long id;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private Question question; 
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private User user;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private List<Answer> selectedAnswers;
 	//private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText
 
