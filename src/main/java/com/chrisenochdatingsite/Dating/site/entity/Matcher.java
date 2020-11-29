@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.Map.Entry;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
@@ -337,15 +338,29 @@ public class Matcher {
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			//Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
 			Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory = prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
-			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = searchingUser.getSubmittedAnswers();
-			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = comparedUser.getSubmittedAnswers();
 			
-			if (searchingUserSubmittedAnswers == null) { 
+			List<SubmittedAnswer> searchingUserSubmittedAnswersList = searchingUser.getSubmittedAnswers();
+			List<SubmittedAnswer> comparedUserSubmittedAnswersList = comparedUser.getSubmittedAnswers();
+			
+			if (searchingUserSubmittedAnswersList == null) { 
 				throw new NoAnswersSubmittedException(searchingUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
-			if (comparedUserSubmittedAnswers == null) {
+			if (comparedUserSubmittedAnswersList == null) {
 				throw new NoAnswersSubmittedException(comparedUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
 			}
+			
+			//Extract to method
+			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = convertToQuestionTextSubmittedAnswerMap(
+					searchingUserSubmittedAnswersList);	
+			
+			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = convertToQuestionTextSubmittedAnswerMap(
+					comparedUserSubmittedAnswersList);	
+			
+			
+//			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = searchingUser.getSubmittedAnswers();
+//			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = comparedUser.getSubmittedAnswers();
+			
+		
 
 			
 			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserSubmittedAnswers.entrySet()) { //String is questionText
@@ -419,6 +434,15 @@ public class Matcher {
 			}
 			
 			return matchScoresByCategory;
+		}
+
+		private Map<String, SubmittedAnswer> convertToQuestionTextSubmittedAnswerMap(
+			List<SubmittedAnswer> submittedAnswersList) {
+			Map<String, SubmittedAnswer> userSubmittedAnswers = new HashMap<>();	
+				for (SubmittedAnswer ans: submittedAnswersList) {
+				userSubmittedAnswers.put(ans.getQuestion().getQuestionText(), ans);
+				}
+			return userSubmittedAnswers;
 		}
 
 

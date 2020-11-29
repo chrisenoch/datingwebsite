@@ -1,8 +1,8 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
@@ -14,7 +14,8 @@ public class User {
 	private String email;
 	private LocalDate dateOfBirth;
 	private Sex sex;
-	private Map<String, SubmittedAnswer> submittedAnswers; //String is questionText. Improve: Change to enum or class.
+	private List<SubmittedAnswer> submittedAnswers; 
+	//Original: private Map<String, SubmittedAnswer> submittedAnswers; //String is questionText. Improve: Change to enum or class.
 	private Matcher matcher;
 
 	public User(Long id, String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {
@@ -82,12 +83,12 @@ public class User {
 	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
-	
-	public Map<String, SubmittedAnswer> getSubmittedAnswers() {
+
+	public List<SubmittedAnswer> getSubmittedAnswers() {
 		return submittedAnswers;
 	}
 
-	public void setSubmittedAnswers(Map<String, SubmittedAnswer> submittedAnswers) {
+	public void setSubmittedAnswers(List<SubmittedAnswer> submittedAnswers) {
 		this.submittedAnswers = submittedAnswers;
 	}
 
