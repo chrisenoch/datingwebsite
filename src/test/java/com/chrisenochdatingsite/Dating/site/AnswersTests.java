@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
-import com.chrisenochdatingsite.Dating.site.service.Answer;
-import com.chrisenochdatingsite.Dating.site.service.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 
 public class AnswersTests {
 	

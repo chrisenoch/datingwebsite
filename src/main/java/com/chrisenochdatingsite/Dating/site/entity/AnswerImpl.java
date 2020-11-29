@@ -1,6 +1,6 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-import com.chrisenochdatingsite.Dating.site.service.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 
 public class AnswerImpl implements Answer{
 	

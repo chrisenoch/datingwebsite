@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
-import com.chrisenochdatingsite.Dating.site.service.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 
 public class AnswerSingleTest {
 	

@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl;
-import com.chrisenochdatingsite.Dating.site.service.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 
 public class QuestionImplTest  {
 

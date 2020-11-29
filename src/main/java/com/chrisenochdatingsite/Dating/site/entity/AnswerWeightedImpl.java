@@ -1,7 +1,7 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-import com.chrisenochdatingsite.Dating.site.service.AnswerScaled;
-import com.chrisenochdatingsite.Dating.site.service.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.AnswerScaled;
+import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 
 public class AnswerWeightedImpl implements AnswerScaled<AnswerWeight>{
 

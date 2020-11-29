@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
+import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 public class Nested_GroupByPracticeStreams {
 

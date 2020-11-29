@@ -23,8 +23,8 @@ import com.chrisenochdatingsite.Dating.site.entity.Matcher.ConvertToPercent;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.service.Answer;
-import com.chrisenochdatingsite.Dating.site.service.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 
 
 @ExtendWith( UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver.class)

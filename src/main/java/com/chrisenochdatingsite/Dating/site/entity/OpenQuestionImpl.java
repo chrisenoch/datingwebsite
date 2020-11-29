@@ -2,8 +2,8 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.util.Map;
 
-import com.chrisenochdatingsite.Dating.site.service.Answer;
-import com.chrisenochdatingsite.Dating.site.service.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 
 //This is for questions with no options. E.g. profile questions where user writes about himself/herself
 public class OpenQuestionImpl implements Question{

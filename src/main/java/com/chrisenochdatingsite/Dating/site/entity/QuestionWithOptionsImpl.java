@@ -2,8 +2,8 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.util.Map;
 
-import com.chrisenochdatingsite.Dating.site.service.Answer;
-import com.chrisenochdatingsite.Dating.site.service.QuestionWithOptions;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.QuestionWithOptions;
 
 public class QuestionWithOptionsImpl implements QuestionWithOptions {
 

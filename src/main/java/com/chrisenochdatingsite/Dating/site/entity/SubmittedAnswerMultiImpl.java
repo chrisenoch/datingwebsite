@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.chrisenochdatingsite.Dating.site.service.Answer;
-import com.chrisenochdatingsite.Dating.site.service.Question;
-import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswersMulti;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswersMulti;
 
 public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements SubmittedAnswersMulti {
 	

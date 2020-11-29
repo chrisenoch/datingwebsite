@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.service.Answer;
-import com.chrisenochdatingsite.Dating.site.service.Question;
-import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 
 public class MatcherPractice {

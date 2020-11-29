@@ -1,4 +1,4 @@
-package com.chrisenochdatingsite.Dating.site.service;
+package com.chrisenochdatingsite.Dating.site.interfaces;
 
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 

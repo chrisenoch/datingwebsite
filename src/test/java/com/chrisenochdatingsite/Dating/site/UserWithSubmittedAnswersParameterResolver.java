@@ -13,8 +13,8 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.service.Answer;
-import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 import java.lang.reflect.Parameter;
 import java.time.LocalDate;

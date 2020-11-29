@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.Set;
 
-import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswer;
+import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 public class User {
 

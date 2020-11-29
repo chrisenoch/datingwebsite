@@ -1,4 +1,4 @@
-package com.chrisenochdatingsite.Dating.site.service;
+package com.chrisenochdatingsite.Dating.site.interfaces;
 
 import java.util.Map;
 

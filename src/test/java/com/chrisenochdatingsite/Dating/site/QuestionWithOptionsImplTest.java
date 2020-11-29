@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
-import com.chrisenochdatingsite.Dating.site.service.Answer;
+import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 
 public class QuestionWithOptionsImplTest {
 	
