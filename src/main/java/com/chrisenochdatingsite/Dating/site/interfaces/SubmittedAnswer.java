@@ -22,10 +22,11 @@ public interface SubmittedAnswer {
 	
 	public void setId(long id);
 	
-//	public Question getQuestion();
-//	public void setQuestion(Question question);
+	@ManyToOne
+	public Question getQuestion();
+	public void setQuestion(Question question);
+	
 	@ManyToOne
 	public User getUser();
-	
 	public void setUser(User user);
 }

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 
@@ -18,13 +19,12 @@ public interface Question {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	public int getId();
-	
 	public void setId(int id);
 	
 	public String getQuestionText();  //Improve code: Should this return Answer also?
-	
 	public void setQuestionText(String questionText);
 	
-	
-	//Category getCategory(); //Improve code. Is it necessary to have category option here?
+	@ManyToOne
+	public Category getCategory(); //Improve code. Is it necessary to have category option here?
+	public void setCategory(Category category);
 }

@@ -22,9 +22,9 @@ public class OpenQuestionImpl implements Question{
 	private int id;
 	
 	private String questionText;
-	//@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
-			//CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
-	//private Category category;
+	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
+	private Category category;
 	//Add private Map<String, Answer> possibleAnswers
 	
 	public int getId() {
@@ -44,22 +44,22 @@ public class OpenQuestionImpl implements Question{
 		this.questionText = questionText;
 	}
 
-//	public Category getCategory() {
-//		return category;
-//	}
-//
-//	public void setCategory(Category category) {
-//		this.category = category;
-//	}
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	
 	public OpenQuestionImpl(String questionText) {
 		this.questionText = questionText;
 	}
 
-//	public OpenQuestionImpl(String questionText, Category category) {
-//		this.questionText = questionText;
-//		this.category = category;
-//	}
+	public OpenQuestionImpl(String questionText, Category category) {
+		this.questionText = questionText;
+		this.category = category;
+	}
 
 
 	

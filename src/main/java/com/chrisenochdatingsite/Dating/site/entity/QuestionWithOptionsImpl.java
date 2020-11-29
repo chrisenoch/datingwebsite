@@ -30,9 +30,9 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 	private List<Answer> possibleAnswers;
 	//private Map<String, Answer> possibleAnswers; //Improve code: change String to answerText enum
 	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
-//			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
-//	private Category category;
+	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
+	private Category category;
 	
 	public int getId() {
 		return id; 
@@ -59,67 +59,67 @@ public class QuestionWithOptionsImpl implements QuestionWithOptions {
 		this.possibleAnswers = possibleAnswers;
 	}
 
-//	public Category getCategory() {
-//		return category;
-//	}
-//
-//	public void setCategory(Category category) {
-//		this.category = category;
-//	}
-//
-//	public QuestionWithOptionsImpl(String questionText, List<Answer> possibleAnswers, Category category) {
-//		this.questionText = questionText;
-//		this.possibleAnswers = possibleAnswers;
-//		this.category = category;
-//	}
-//
-//	public QuestionWithOptionsImpl(int id, String questionText, List<Answer> possibleAnswers,
-//			Category category) {
-//		this.id = id;
-//		this.questionText = questionText;
-//		this.possibleAnswers = possibleAnswers;
-//		this.category = category;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "QuestionWithOptionsImpl [id=" + id + ", questionText=" + questionText + ", possibleAnswers="
-//				+ possibleAnswers + ", category=" + category + "]";
-//	}
-//
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = 1;
-//		result = prime * result + ((category == null) ? 0 : category.hashCode());
-//		result = prime * result + id;
-//		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
-//		return result;
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		QuestionWithOptionsImpl other = (QuestionWithOptionsImpl) obj;
-//		if (category == null) {
-//			if (other.category != null)
-//				return false;
-//		} else if (!category.equals(other.category))
-//			return false;
-//		if (id != other.id)
-//			return false;
-//		if (questionText == null) {
-//			if (other.questionText != null)
-//				return false;
-//		} else if (!questionText.equals(other.questionText))
-//			return false;
-//		return true;
-//	}
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public QuestionWithOptionsImpl(String questionText, List<Answer> possibleAnswers, Category category) {
+		this.questionText = questionText;
+		this.possibleAnswers = possibleAnswers;
+		this.category = category;
+	}
+
+	public QuestionWithOptionsImpl(int id, String questionText, List<Answer> possibleAnswers,
+			Category category) {
+		this.id = id;
+		this.questionText = questionText;
+		this.possibleAnswers = possibleAnswers;
+		this.category = category;
+	}
+
+	@Override
+	public String toString() {
+		return "QuestionWithOptionsImpl [id=" + id + ", questionText=" + questionText + ", possibleAnswers="
+				+ possibleAnswers + ", category=" + category + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		QuestionWithOptionsImpl other = (QuestionWithOptionsImpl) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
+		if (id != other.id)
+			return false;
+		if (questionText == null) {
+			if (other.questionText != null)
+				return false;
+		} else if (!questionText.equals(other.questionText))
+			return false;
+		return true;
+	}
 
 	
 	
