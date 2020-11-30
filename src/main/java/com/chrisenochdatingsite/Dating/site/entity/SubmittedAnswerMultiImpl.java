@@ -1,4 +1,4 @@
-package com.chrisenochdatingsite.Dating.site.entity;
+ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,10 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswersMulti;
 
@@ -28,6 +28,7 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name="question_id")
 	private Question question; 
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 

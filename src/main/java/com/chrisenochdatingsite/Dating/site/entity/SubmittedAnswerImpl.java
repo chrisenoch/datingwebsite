@@ -1,5 +1,5 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-public class SubmittedAnswerImpl {
+public abstract class SubmittedAnswerImpl {
 
 }

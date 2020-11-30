@@ -1,6 +1,6 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
-import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
+
 import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswerSingle;
 
