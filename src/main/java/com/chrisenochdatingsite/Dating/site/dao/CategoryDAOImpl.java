@@ -22,7 +22,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
+
 		// save employee
 		currentSession.saveOrUpdate(theCategory);
 	}

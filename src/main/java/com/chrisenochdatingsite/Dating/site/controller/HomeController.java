@@ -46,11 +46,11 @@ public class HomeController {
 		this.utilService = utilService;
 	}
 
-	@GetMapping("/home")
-	public String home() {
-		System.out.println("Hello");
+	@GetMapping("/addcategory")
+	public String addCategory() {
+		System.out.println("Inside addCategory");
 		
-		Category category = new Category("Lifestyle");
+		Category category = new Category("Movies");
 		categoryService.save(category);
 		
 		List<Category> categories = categoryService.findAll();
@@ -61,7 +61,7 @@ public class HomeController {
 	
 	@GetMapping("/adduser")
 	public String addUser() {
-		System.out.println("Inside add user");
+		System.out.println("Inside addUser");
 		
 		User user = new User("Chris", "Enoch", "chris@yahoo.com", LocalDate.now(), Sex.MALE);
 
@@ -73,9 +73,9 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/addaw")
+	@GetMapping("/addanswerweighted")
 	public String addAnswerWeighted() {
-		System.out.println("Inside add answerweighted");
+		System.out.println("Inside addAnswerweighted");
 		
 		AnswerWeightedImpl aW = new AnswerWeightedImpl("Basketball", AnswerWeight.FOUR);
 
@@ -87,31 +87,20 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/addqops")
-	public String addqops() {
+	@GetMapping("/addqopswithrefs")
+	public String addQOpsWithrefs() {
 		System.out.println("Inside add answerweighted");
 		
-		AnswerWeightedImpl aW1 = new AnswerWeightedImpl("Basketball");
-		AnswerWeightedImpl aW2 = new AnswerWeightedImpl("Football");
-		AnswerWeightedImpl aW3 = new AnswerWeightedImpl("Swimming");
-		
-		aWService.save(aW1);
-		aWService.save(aW2);
-		aWService.save(aW3);
-		
-//		List<Category> categories = categoryService.findAll();
-//		
-//		
-//		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How mich do you like these sports?"
-//				, categories.get(0), Arrays.asList(aW1, aW2, aW3));
+		Answer aW1 =  utilService.getReference(Answer.class, 7L);
+		Answer aW2 =  utilService.getReference(Answer.class, 5L);
+		Answer aW3 =  utilService.getReference(Answer.class, 6L);
 		
 		Category category = utilService.getReference(Category.class, 1);
 		
 		
-		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How mich do you like these sports?"
+		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
 				, category, Arrays.asList(aW1, aW2, aW3));
 
-		
 		qOpsService.save(qops);
 		
 		List<Question> qs = qOpsService.findAll();
@@ -120,14 +109,40 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/addsams")
+	@GetMapping("/addqops")
+	public String addQOps() {
+		System.out.println("Inside add answerweighted");
+		
+		AnswerWeightedImpl aW1 =  new AnswerWeightedImpl("Hockey");
+		AnswerWeightedImpl aW2 =  new AnswerWeightedImpl("Waterpolo");
+		AnswerWeightedImpl aW3 =  new AnswerWeightedImpl("Gymnastics");
+		
+		aWService.save(aW1);
+		aWService.save(aW2);
+		aWService.save(aW3);
+		
+		Category category = utilService.getReference(Category.class, 1);
+		
+		
+		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
+				, category, Arrays.asList(aW1, aW2, aW3));
+
+		qOpsService.save(qops);
+		
+		List<Question> qs = qOpsService.findAll();
+		System.out.println(qs);
+
+		return "index";
+	}
+	
+	@GetMapping("/addsubmultiimpl")
 	public String addsams() {
 		System.out.println("Inside add answerweighted");
 		
 		List<User> users = userService.findAll();
 		User user = users.get(0);
 		
-		List<Question> qs = qOpsService.findAll();
+		Question q = utilService.getReference(Question.class, 10);
 		
 		AnswerWeightedImpl aW1 = new AnswerWeightedImpl("Basketball", AnswerWeight.FIVE);
 		AnswerWeightedImpl aW2 = new AnswerWeightedImpl("Football", AnswerWeight.FOUR);
@@ -137,8 +152,8 @@ public class HomeController {
 		aWService.save(aW2);
 		aWService.save(aW3);
 		
-		var sAMS = new SubmittedAnswerMultiImpl(qs.get(0), user, Arrays.asList(aW1, aW2, aW3));
-		sAMSService.save(sAMS);
+		var submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(q, user, Arrays.asList(aW1, aW2, aW3));
+		sAMSService.save(submittedAnswerMultiImpl);
 
 
 		return "index";
