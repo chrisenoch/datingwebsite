@@ -28,7 +28,6 @@ public class OpenQuestionImpl extends Question{
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
 	@JoinColumn(name= "category_id")
 	private Category category;
-	//Add private Map<String, Answer> possibleAnswers
 	
 	public int getId() {
 		return id;

@@ -1,6 +1,7 @@
 package com.chrisenochdatingsite.Dating.site.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -112,21 +113,52 @@ public class HomeController {
 	@GetMapping("/addqops")
 	public String addQOps() {
 		System.out.println("Inside add answerweighted");
+
+		Category category = utilService.getReference(Category.class, 1);
+
+		AnswerWeightedImpl aW1 =  new AnswerWeightedImpl("Hockey");
+		AnswerWeightedImpl aW2 =  new AnswerWeightedImpl("Waterpolo");
+		AnswerWeightedImpl aW3 =  new AnswerWeightedImpl("Gymnastics");
+		
+		List<Answer> answers = new ArrayList<>();
+		answers.add(aW1);
+		answers.add(aW2);
+		answers.add(aW3);
+		
+		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
+				, category, answers);
+		
+
+		qOpsService.save(qops);
+		
+		List<Question> qs = qOpsService.findAll();
+		System.out.println(qs);
+
+		return "index";
+	}
+	
+	@GetMapping("/checkforeach") //Add as a test method
+	public String checkforeach() {
+		System.out.println("Inside add answerweighted");
+
+		Category category = utilService.getReference(Category.class, 1);
 		
 		AnswerWeightedImpl aW1 =  new AnswerWeightedImpl("Hockey");
 		AnswerWeightedImpl aW2 =  new AnswerWeightedImpl("Waterpolo");
 		AnswerWeightedImpl aW3 =  new AnswerWeightedImpl("Gymnastics");
 		
-		aWService.save(aW1);
-		aWService.save(aW2);
-		aWService.save(aW3);
-		
-		Category category = utilService.getReference(Category.class, 1);
-		
-		
-		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
-				, category, Arrays.asList(aW1, aW2, aW3));
+		List<Answer> answers = new ArrayList<>();
+		answers.add(aW1);
+		answers.add(aW2);
+		answers.add(aW3);
 
+		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
+				, category, answers);
+		
+		System.out.println("before");
+		qops.getPossibleAnswers().forEach(System.out::println);
+		System.out.println("after");
+		
 		qOpsService.save(qops);
 		
 		List<Question> qs = qOpsService.findAll();

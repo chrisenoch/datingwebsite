@@ -32,8 +32,10 @@ public class AnswerWeightedImpl extends Answer{
 
 	@Override
 	public String toString() {
-		return "AnswerWeightedImpl [answerWeight=" + answerWeight + "]";
+		return super.toString() + " AnswerWeightedImpl [answerWeight=" + answerWeight + "]";
 	}
+
+
 
 
 }

@@ -1,13 +1,16 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -18,7 +21,11 @@ public abstract class Answer {
 	@Column(name="id")
 	private long id;
 	
-	private String answerText;
+	private String answerText; 
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	private Question question;
 
 
 	public long getId() {
@@ -41,9 +48,16 @@ public abstract class Answer {
 	}
 
 	
-	
-	
-	
+	public Question getQuestion() {
+		return question;
+	}
+
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+
 	public Answer() {
 		super();
 	}
@@ -61,11 +75,11 @@ public abstract class Answer {
 		this.answerText = answerText;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((answerText == null) ? 0 : answerText.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
@@ -80,15 +94,18 @@ public abstract class Answer {
 		if (getClass() != obj.getClass())
 			return false;
 		Answer other = (Answer) obj;
-		if (answerText == null) {
-			if (other.answerText != null)
-				return false;
-		} else if (!answerText.equals(other.answerText))
-			return false;
 		if (id != other.id)
 			return false;
 		return true;
-	} 	
+	}
+
+
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", answerText=" + answerText + ", question=" + question + "]";
+	}
+
+	
 	
 	
 	
