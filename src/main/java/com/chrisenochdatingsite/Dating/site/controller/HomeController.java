@@ -78,9 +78,11 @@ public class HomeController {
 	public String addAnswerWeighted() {
 		System.out.println("Inside addAnswerweighted");
 		
-		AnswerWeightedImpl aW = new AnswerWeightedImpl("Basketball", AnswerWeight.FOUR);
+		AnswerWeightedImpl aW = new AnswerWeightedImpl("Basketball", AnswerWeight.TWO);
 
 		aWService.save(aW);
+		
+		System.out.println("AnswerWeight int value: " + aW.getAnswerWeight().getWeight());
 		
 		List<Answer> answers = aWService.findAll();
 		System.out.println(answers);

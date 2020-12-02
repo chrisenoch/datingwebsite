@@ -13,7 +13,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
+//Check constraint added to database to ensure AnswerWeighted always inserts an AnswerWeight value.
 @DiscriminatorColumn(name = "answer_type")
 public abstract class Answer {
 	@Id

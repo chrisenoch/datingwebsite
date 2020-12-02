@@ -2,11 +2,14 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue("answer_weighted")
 public class AnswerWeightedImpl extends Answer{
 
+	@Enumerated(EnumType.STRING)
 	private AnswerWeight answerWeight;
 
 	public AnswerWeight getAnswerWeight() {

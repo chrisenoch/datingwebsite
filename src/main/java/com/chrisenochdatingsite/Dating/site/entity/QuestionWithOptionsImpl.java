@@ -15,10 +15,8 @@ public class QuestionWithOptionsImpl extends Question {
 
 	@OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
-	//@JoinColumn(name= "question_id") //Problem is it gets added to Answers table not the child answers tables.
-	//Maybe add a mappedBy here. But would have to include possibleAnswers in abstract superclass?
+	//Performance Optimisation: Managed from @ManyToOne so as to reduce database calls.
 	private List<Answer> possibleAnswers = new ArrayList<>();
-	//private Map<String, Answer> possibleAnswers; //Improve code: change String to answerText enum
 	
 	public void addPossibleAnswer(Answer answer) {
 		possibleAnswers.add(answer);
