@@ -1,8 +1,10 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("standard_answer")
 public class AnswerImpl extends Answer{
 
 	public AnswerImpl(int id, String answerText) {

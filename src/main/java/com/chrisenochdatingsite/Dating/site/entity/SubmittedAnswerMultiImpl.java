@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswersMulti;
 
 @Entity
@@ -33,11 +32,12 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	private List<Answer> selectedAnswers;
+	private List<Answer> selectedAnswers; //Might need to include mappedBy here, but to abstract superclass? mappedBy using both answer types?
 	//private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText
 
 	public long getId() {

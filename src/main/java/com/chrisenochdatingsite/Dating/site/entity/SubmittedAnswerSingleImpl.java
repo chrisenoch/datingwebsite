@@ -1,9 +1,11 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
-import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswerSingle;
 
+import javax.persistence.Entity;
+
+import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswerSingle;
+//@Entity //Get rest workign first. Thenh add this.
 public class SubmittedAnswerSingleImpl  extends SubmittedAnswerImpl implements SubmittedAnswerSingle  {
 	
 	private long id;

@@ -1,8 +1,10 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("answer_weighted")
 public class AnswerWeightedImpl extends Answer{
 
 	private AnswerWeight answerWeight;
@@ -13,6 +15,10 @@ public class AnswerWeightedImpl extends Answer{
 
 	public void setAnswerWeight(AnswerWeight answerWeight) {
 		this.answerWeight = answerWeight;
+	}
+
+	public AnswerWeightedImpl() {
+		super();
 	}
 
 	public AnswerWeightedImpl(String answerText) {

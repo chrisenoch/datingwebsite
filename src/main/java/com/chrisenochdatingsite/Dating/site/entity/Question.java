@@ -2,13 +2,20 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "question_type")
 public abstract class Question {
 	
 	@Id
@@ -45,6 +52,12 @@ public abstract class Question {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	
+	
+	public Question() {
+		super();
 	}
 
 	public Question(int id, String questionText, Category category) {

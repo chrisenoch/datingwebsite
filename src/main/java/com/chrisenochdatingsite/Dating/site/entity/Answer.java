@@ -1,31 +1,24 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "answer_type")
 public abstract class Answer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private long id;
+	
 	private String answerText;
-	
-	
-	
-	
-	public Answer(String answerText) {
-		super();
-		this.answerText = answerText;
-	}
-
-
-	public Answer(long id, String answerText) {
-		super();
-		this.id = id;
-		this.answerText = answerText;
-	}
 
 
 	public long getId() {
@@ -47,6 +40,26 @@ public abstract class Answer {
 		this.answerText = answerText;
 	}
 
+	
+	
+	
+	
+	public Answer() {
+		super();
+	}
+
+
+	public Answer(String answerText) {
+		super();
+		this.answerText = answerText;
+	}
+
+
+	public Answer(long id, String answerText) {
+		super();
+		this.id = id;
+		this.answerText = answerText;
+	}
 
 	@Override
 	public int hashCode() {

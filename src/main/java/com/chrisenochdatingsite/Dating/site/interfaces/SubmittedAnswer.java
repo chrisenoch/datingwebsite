@@ -9,6 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 
 @Entity

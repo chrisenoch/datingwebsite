@@ -29,11 +29,14 @@ public class User {
 	private Sex sex;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//@JoinColumn(name = "user_id")
 	private List<SubmittedAnswer> submittedAnswers; 
 	//Original: private Map<String, SubmittedAnswer> submittedAnswers; //String is questionText. Improve: Change to enum or class.
 	@Transient
 	private Matcher matcher;
+
+	public User() {
+		super();
+	}
 
 	public User(Long id, String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {
 		this.id = id;

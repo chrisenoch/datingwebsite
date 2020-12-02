@@ -2,6 +2,7 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,11 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
 
 //This is for questions with no options. E.g. profile questions where user writes about himself/herself
 @Entity
-public class OpenQuestionImpl implements Question{
+@DiscriminatorValue("open_question")
+public class OpenQuestionImpl extends Question{
 
 	
 	@Id
@@ -53,14 +54,9 @@ public class OpenQuestionImpl implements Question{
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
-	public OpenQuestionImpl(String questionText) {
-		this.questionText = questionText;
-	}
 
 	public OpenQuestionImpl(String questionText, Category category) {
-		this.questionText = questionText;
-		this.category = category;
+		super(questionText, category);
 	}
 
 
