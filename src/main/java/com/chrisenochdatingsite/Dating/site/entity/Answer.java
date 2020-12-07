@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 @DiscriminatorColumn(name = "answer_type")
 public abstract class Answer {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="id")
 	private long id;
 	

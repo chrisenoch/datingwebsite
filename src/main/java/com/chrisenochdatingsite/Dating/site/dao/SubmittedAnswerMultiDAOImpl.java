@@ -26,10 +26,10 @@ public class SubmittedAnswerMultiDAOImpl implements SubmittedAnswerMultiDAO {
 				currentSession.createQuery("from SubmittedAnswerMultiImpl", SubmittedAnswerMultiImpl.class);
 		
 		// execute query and get result list
-		List<SubmittedAnswerMultiImpl> answers = theQuery.getResultList();
+		List<SubmittedAnswerMultiImpl> submittedAnswersMultiImpls = theQuery.getResultList();
 		
 		// return the results		
-		return answers;
+		return submittedAnswersMultiImpls;
 	}
 
 	@Override

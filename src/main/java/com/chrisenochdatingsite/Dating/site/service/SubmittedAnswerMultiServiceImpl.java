@@ -14,12 +14,12 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 public class SubmittedAnswerMultiServiceImpl implements SubmittedAnswerMultiService{
 
 	@Autowired
-	SubmittedAnswerMultiDAO sAMDAO;
+	SubmittedAnswerMultiDAO submittedAnswerMultiDAO;
 	
 	@Override
 	@Transactional
 	public void save(SubmittedAnswerMultiImpl subAMulti) {
-		sAMDAO.save(subAMulti);
+		submittedAnswerMultiDAO.save(subAMulti);
 
 	}
 
@@ -27,7 +27,7 @@ public class SubmittedAnswerMultiServiceImpl implements SubmittedAnswerMultiServ
 	@Transactional
 	public List<SubmittedAnswerMultiImpl> findAll() {
 		
-		return sAMDAO.findAll();
+		return submittedAnswerMultiDAO.findAll();
 	}
 
 }

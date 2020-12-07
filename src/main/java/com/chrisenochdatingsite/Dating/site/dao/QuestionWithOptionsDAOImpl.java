@@ -17,13 +17,13 @@ public class QuestionWithOptionsDAOImpl implements QuestionWithOptionsDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public void save(QuestionWithOptionsImpl q) {
+	public void save(QuestionWithOptionsImpl questionWithOptionsImpl) {
 
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// save employee
-		currentSession.saveOrUpdate(q);
+		currentSession.saveOrUpdate(questionWithOptionsImpl);
 	}
 	
 	public List<Question> findAll() {
@@ -36,10 +36,10 @@ public class QuestionWithOptionsDAOImpl implements QuestionWithOptionsDAO {
 				currentSession.createQuery("from Question", Question.class);
 		
 		// execute query and get result list
-		List<Question> qs = theQuery.getResultList();
+		List<Question> questions = theQuery.getResultList();
 		
 		// return the results		
-		return qs;
+		return questions;
 	}
 	
 

@@ -13,12 +13,14 @@ import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
+import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
 import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.service.AnswerWeightService;
+import com.chrisenochdatingsite.Dating.site.service.AnswerWeightedService;
+import com.chrisenochdatingsite.Dating.site.service.BatchUpdateService;
 import com.chrisenochdatingsite.Dating.site.service.CategoryService;
 import com.chrisenochdatingsite.Dating.site.service.QuestionWithOptionsService;
 import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswerMultiService;
@@ -30,23 +32,35 @@ public class HomeController {
 	
 	CategoryService categoryService;
 	UserService userService;
-	AnswerWeightService aWService;
-	QuestionWithOptionsService qOpsService;
-	SubmittedAnswerMultiService sAMSService;
+	AnswerWeightedService answerWeightedService;
+	QuestionWithOptionsService questionWithOptionsService;
+	SubmittedAnswerMultiService submittedAnswerMultiService;
 	UtilService utilService;
+	BatchUpdateService batchUpdateService;
 	
 	@Autowired
 	public HomeController(CategoryService categoryService, UserService userService
-			, AnswerWeightService aWService, QuestionWithOptionsService qOpsService
-			, SubmittedAnswerMultiService sAMS, UtilService utilService) {
+			, AnswerWeightedService answerWeightedService, QuestionWithOptionsService questionWithOptionsService
+			, SubmittedAnswerMultiService submittedAnswersMultiService, UtilService utilService
+			, BatchUpdateService batchUpdateService) {
 		this.categoryService = categoryService;
 		this.userService = userService;
-		this.aWService = aWService;
-		this.qOpsService = qOpsService;
-		this.sAMSService = sAMS;
+		this.answerWeightedService = answerWeightedService;
+		this.questionWithOptionsService = questionWithOptionsService;
+		this.submittedAnswerMultiService = submittedAnswersMultiService;
 		this.utilService = utilService;
+		this.batchUpdateService = batchUpdateService;
 	}
-
+	
+	@GetMapping("/batchupdate")
+	public String batchUpdateMembershipType() {
+		System.out.println("Inside batchUpdateMembershipType");
+		
+		batchUpdateService.batchUpdateMembershipType();
+		
+		return "index";
+	}
+	
 	@GetMapping("/addcategory")
 	public String addCategory() {
 		System.out.println("Inside addCategory");
@@ -64,12 +78,9 @@ public class HomeController {
 	public String addUser() {
 		System.out.println("Inside addUser");
 		
-		User user = new User("Chris", "Enoch", "chris@yahoo.com", LocalDate.now(), Sex.MALE);
+		User user = new User("Chris", "Enoch", "chris@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
 
 		userService.save(user);
-		
-		//List<User> users = userService.findAll();
-		//System.out.println(users);
 
 		return "index";
 	}
@@ -78,13 +89,14 @@ public class HomeController {
 	public String addAnswerWeighted() {
 		System.out.println("Inside addAnswerweighted");
 		
-		AnswerWeightedImpl aW = new AnswerWeightedImpl("Basketball", AnswerWeight.TWO);
+		AnswerWeightedImpl answerWeightedImpl = new AnswerWeightedImpl("Basketball", AnswerWeight.TWO);
 
-		aWService.save(aW);
+		answerWeightedService.save(answerWeightedImpl );
 		
-		System.out.println("AnswerWeight int value: " + aW.getAnswerWeight().getWeight());
+		System.out.println("AnswerWeight int value: " + answerWeightedImpl.getAnswerWeight().getWeight());
+		System.out.println("mod test: " + 0%7);
 		
-		List<Answer> answers = aWService.findAll();
+		List<Answer> answers = answerWeightedService.findAll();
 		System.out.println(answers);
 
 		return "index";
@@ -104,9 +116,9 @@ public class HomeController {
 		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
 				, category, Arrays.asList(aW1, aW2, aW3));
 
-		qOpsService.save(qops);
+		questionWithOptionsService.save(qops);
 		
-		List<Question> qs = qOpsService.findAll();
+		List<Question> qs = questionWithOptionsService.findAll();
 		System.out.println(qs);
 
 		return "index";
@@ -118,23 +130,23 @@ public class HomeController {
 
 		Category category = utilService.getReference(Category.class, 1);
 
-		AnswerWeightedImpl aW1 =  new AnswerWeightedImpl("Hockey");
-		AnswerWeightedImpl aW2 =  new AnswerWeightedImpl("Waterpolo");
-		AnswerWeightedImpl aW3 =  new AnswerWeightedImpl("Gymnastics");
+		AnswerWeightedImpl aWHockey =  new AnswerWeightedImpl("Hockey");
+		AnswerWeightedImpl aWWaterpolo =  new AnswerWeightedImpl("Waterpolo");
+		AnswerWeightedImpl aWGymnastics =  new AnswerWeightedImpl("Gymnastics");
 		
 		List<Answer> answers = new ArrayList<>();
-		answers.add(aW1);
-		answers.add(aW2);
-		answers.add(aW3);
+		answers.add(aWHockey);
+		answers.add(aWWaterpolo);
+		answers.add(aWGymnastics);
 		
 		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
 				, category, answers);
 		
 
-		qOpsService.save(qops);
+		questionWithOptionsService.save(qops);
 		
-		List<Question> qs = qOpsService.findAll();
-		System.out.println(qs);
+		List<Question> questions = questionWithOptionsService.findAll();
+		System.out.println(questions);
 
 		return "index";
 	}
@@ -145,14 +157,14 @@ public class HomeController {
 
 		Category category = utilService.getReference(Category.class, 1);
 		
-		AnswerWeightedImpl aW1 =  new AnswerWeightedImpl("Hockey");
-		AnswerWeightedImpl aW2 =  new AnswerWeightedImpl("Waterpolo");
-		AnswerWeightedImpl aW3 =  new AnswerWeightedImpl("Gymnastics");
+		AnswerWeightedImpl aWHockey =  new AnswerWeightedImpl("Hockey");
+		AnswerWeightedImpl aWWaterpolo =  new AnswerWeightedImpl("Waterpolo");
+		AnswerWeightedImpl aWGymnastics =  new AnswerWeightedImpl("Gymnastics");
 		
 		List<Answer> answers = new ArrayList<>();
-		answers.add(aW1);
-		answers.add(aW2);
-		answers.add(aW3);
+		answers.add(aWHockey);
+		answers.add(aWWaterpolo);
+		answers.add(aWGymnastics);
 
 		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
 				, category, answers);
@@ -161,16 +173,16 @@ public class HomeController {
 		qops.getPossibleAnswers().forEach(System.out::println);
 		System.out.println("after");
 		
-		qOpsService.save(qops);
+		questionWithOptionsService.save(qops);
 		
-		List<Question> qs = qOpsService.findAll();
+		List<Question> qs = questionWithOptionsService.findAll();
 		System.out.println(qs);
 
 		return "index";
 	}
 	
 	@GetMapping("/addsubmultiimpl")
-	public String addsams() {
+	public String addsubmittedAnswersMultiService() {
 		System.out.println("Inside add answerweighted");
 		
 		List<User> users = userService.findAll();
@@ -178,16 +190,17 @@ public class HomeController {
 		
 		Question q = utilService.getReference(Question.class, 10);
 		
-		AnswerWeightedImpl aW1 = new AnswerWeightedImpl("Basketball", AnswerWeight.FIVE);
-		AnswerWeightedImpl aW2 = new AnswerWeightedImpl("Football", AnswerWeight.FOUR);
-		AnswerWeightedImpl aW3 = new AnswerWeightedImpl("Swimming", AnswerWeight.SIX);
+		AnswerWeightedImpl aWBasketball = new AnswerWeightedImpl("Basketball", AnswerWeight.FIVE);
+		AnswerWeightedImpl aWFootball = new AnswerWeightedImpl("Football", AnswerWeight.FOUR);
+		AnswerWeightedImpl aWSwimming = new AnswerWeightedImpl("Swimming", AnswerWeight.SIX);
 		
-		aWService.save(aW1);
-		aWService.save(aW2);
-		aWService.save(aW3);
+		answerWeightedService.save(aWBasketball);
+		answerWeightedService.save(aWFootball);
+		answerWeightedService.save(aWSwimming);
 		
-		var submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(q, user, Arrays.asList(aW1, aW2, aW3));
-		sAMSService.save(submittedAnswerMultiImpl);
+		var submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(q, user, Arrays.asList(aWBasketball
+				, aWFootball, aWSwimming));
+		submittedAnswerMultiService.save(submittedAnswerMultiImpl);
 
 
 		return "index";

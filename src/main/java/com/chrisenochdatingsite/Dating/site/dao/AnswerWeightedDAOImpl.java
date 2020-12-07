@@ -12,7 +12,7 @@ import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 
 @Repository
-public class AnswerWeightDAOImpl implements AnswerWeightDAO {
+public class AnswerWeightedDAOImpl implements AnswerWeightedDAO {
 	
 	@Autowired
 	private SessionFactory sessionFactory;

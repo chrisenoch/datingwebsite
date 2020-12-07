@@ -14,12 +14,12 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 public class QuestionWithoptionsServiceImpl implements QuestionWithOptionsService {
 
 	@Autowired
-	QuestionWithOptionsDAO qDAO;
+	QuestionWithOptionsDAO questionWithOptionsDAO ;
 	
 	@Override
 	@Transactional
-	public void save(QuestionWithOptionsImpl q) {
-		qDAO.save(q);
+	public void save(QuestionWithOptionsImpl questionWithOptionsImpl) {
+		questionWithOptionsDAO.save(questionWithOptionsImpl);
 
 	}
 
@@ -27,7 +27,7 @@ public class QuestionWithoptionsServiceImpl implements QuestionWithOptionsServic
 	@Transactional
 	public List<Question> findAll() {
 		
-		return qDAO.findAll();
+		return questionWithOptionsDAO.findAll();
 	}
 
 }

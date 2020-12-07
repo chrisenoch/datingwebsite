@@ -1,11 +1,11 @@
-package com.chrisenochdatingsite.Dating.site.service;
+package com.chrisenochdatingsite.Dating.site.dao;
 
 import java.util.List;
 
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 
-public interface AnswerWeightService {
+public interface AnswerWeightedDAO {
 	
 	public void save(AnswerWeightedImpl answerWeightedImpl);
 	

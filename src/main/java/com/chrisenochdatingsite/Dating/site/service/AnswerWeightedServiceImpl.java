@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.chrisenochdatingsite.Dating.site.dao.AnswerWeightDAO;
+import com.chrisenochdatingsite.Dating.site.dao.AnswerWeightedDAO;
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 
 @Service
-public class AnswerWeightServiceImpl implements AnswerWeightService {
+public class AnswerWeightedServiceImpl implements AnswerWeightedService {
 
 	@Autowired
-	AnswerWeightDAO answerWeightDAO;
+	AnswerWeightedDAO answerWeightDAO;
 	
 	@Override
 	@Transactional

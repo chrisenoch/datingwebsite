@@ -1,0 +1,1189 @@
+2020-12-07 14:17:49,261 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DatingSiteApplication on LAPTOP-N48LAB97 with PID 16024 (D:\Dating-site\target\classes started by chris in D:\Dating-site)
+2020-12-07 14:17:49,263 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-12-07 14:17:49,746 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-07 14:17:49,764 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 17ms. Found 0 JPA repository interfaces.
+2020-12-07 14:17:49,949 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8081 (http)
+2020-12-07 14:17:49,951 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2020-12-07 14:17:49,951 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-12-07 14:17:50,091 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-12-07 14:17:50,095 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2020-12-07 14:17:50,096 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 827 ms
+2020-12-07 14:17:50,140 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:17:50,141 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:17:50,142 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:17:50,142 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@669ee105
+2020-12-07 14:17:50,142 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration true_false -> org.hibernate.type.TrueFalseType@4ea8d734
+2020-12-07 14:17:50,143 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration yes_no -> org.hibernate.type.YesNoType@a02c5fe
+2020-12-07 14:17:50,143 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:17:50,144 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:17:50,145 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:17:50,145 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration character -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:17:50,145 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration char -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:17:50,146 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:17:50,146 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:17:50,146 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:17:50,147 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:17:50,147 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration integer -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:17:50,148 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration int -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:17:50,148 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:17:50,149 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:17:50,149 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:17:50,149 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:17:50,149 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:17:50,150 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:17:50,151 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:17:50,151 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:17:50,152 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:17:50,152 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:17:50,152 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@3588d78f
+2020-12-07 14:17:50,152 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@3588d78f
+2020-12-07 14:17:50,153 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration big_integer -> org.hibernate.type.BigIntegerType@2d4ee2d4
+2020-12-07 14:17:50,154 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@2d4ee2d4
+2020-12-07 14:17:50,155 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration string -> org.hibernate.type.StringType@10290b6d
+2020-12-07 14:17:50,155 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.String -> org.hibernate.type.StringType@10290b6d
+2020-12-07 14:17:50,156 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration nstring -> org.hibernate.type.StringNVarcharType@74cb8f76
+2020-12-07 14:17:50,157 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@5687a9da
+2020-12-07 14:17:50,158 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration url -> org.hibernate.type.UrlType@10bd0685
+2020-12-07 14:17:50,158 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.net.URL -> org.hibernate.type.UrlType@10bd0685
+2020-12-07 14:17:50,159 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Duration -> org.hibernate.type.DurationType@7dca7d33
+2020-12-07 14:17:50,159 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.Duration -> org.hibernate.type.DurationType@7dca7d33
+2020-12-07 14:17:50,159 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Instant -> org.hibernate.type.InstantType@6b1f0645
+2020-12-07 14:17:50,160 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.Instant -> org.hibernate.type.InstantType@6b1f0645
+2020-12-07 14:17:50,161 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@5d921725
+2020-12-07 14:17:50,161 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@5d921725
+2020-12-07 14:17:50,161 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalDate -> org.hibernate.type.LocalDateType@2429bac0
+2020-12-07 14:17:50,161 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@2429bac0
+2020-12-07 14:17:50,162 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@3bbca040
+2020-12-07 14:17:50,164 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@3bbca040
+2020-12-07 14:17:50,165 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2c641443
+2020-12-07 14:17:50,165 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2c641443
+2020-12-07 14:17:50,165 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@1d4fc7e2
+2020-12-07 14:17:50,166 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@1d4fc7e2
+2020-12-07 14:17:50,166 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@78fdc588
+2020-12-07 14:17:50,166 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@78fdc588
+2020-12-07 14:17:50,167 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration date -> org.hibernate.type.DateType@6719603a
+2020-12-07 14:17:50,168 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Date -> org.hibernate.type.DateType@6719603a
+2020-12-07 14:17:50,168 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration time -> org.hibernate.type.TimeType@21fa2b20
+2020-12-07 14:17:50,169 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Time -> org.hibernate.type.TimeType@21fa2b20
+2020-12-07 14:17:50,169 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration timestamp -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:17:50,169 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:17:50,170 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Date -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:17:50,170 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@7ceae9cd
+2020-12-07 14:17:50,170 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:17:50,170 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:17:50,171 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:17:50,171 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@74cf533c
+2020-12-07 14:17:50,172 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@786c2582
+2020-12-07 14:17:50,172 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration locale -> org.hibernate.type.LocaleType@131e8d02
+2020-12-07 14:17:50,172 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@131e8d02
+2020-12-07 14:17:50,172 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration currency -> org.hibernate.type.CurrencyType@51444ed3
+2020-12-07 14:17:50,172 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@51444ed3
+2020-12-07 14:17:50,172 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration timezone -> org.hibernate.type.TimeZoneType@55b037a7
+2020-12-07 14:17:50,173 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@55b037a7
+2020-12-07 14:17:50,174 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration class -> org.hibernate.type.ClassType@3995eba4
+2020-12-07 14:17:50,174 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Class -> org.hibernate.type.ClassType@3995eba4
+2020-12-07 14:17:50,174 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@5f19653
+2020-12-07 14:17:50,175 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@5f19653
+2020-12-07 14:17:50,175 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@4dc52e90
+2020-12-07 14:17:50,176 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration binary -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:17:50,176 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte[] -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:17:50,176 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [B -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:17:50,177 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:17:50,177 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:17:50,177 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:17:50,178 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration row_version -> org.hibernate.type.RowVersionType@6376fe4d
+2020-12-07 14:17:50,178 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration image -> org.hibernate.type.ImageType@5f8167b0
+2020-12-07 14:17:50,178 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration characters -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:17:50,179 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration char[] -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:17:50,180 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [C -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:17:50,180 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:17:50,181 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:17:50,183 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:17:50,183 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration text -> org.hibernate.type.TextType@21f20dc6
+2020-12-07 14:17:50,183 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ntext -> org.hibernate.type.NTextType@590cc65b
+2020-12-07 14:17:50,183 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration blob -> org.hibernate.type.BlobType@57ccac08
+2020-12-07 14:17:50,184 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@57ccac08
+2020-12-07 14:17:50,184 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@3e42f3a4
+2020-12-07 14:17:50,184 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration clob -> org.hibernate.type.ClobType@45a51810
+2020-12-07 14:17:50,184 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@45a51810
+2020-12-07 14:17:50,186 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration nclob -> org.hibernate.type.NClobType@44d721c1
+2020-12-07 14:17:50,187 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@44d721c1
+2020-12-07 14:17:50,213 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@51fe16d5
+2020-12-07 14:17:50,213 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@130c0fa3
+2020-12-07 14:17:50,214 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration serializable -> org.hibernate.type.SerializableType@3e5056bd
+2020-12-07 14:17:50,214 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration object -> org.hibernate.type.ObjectType@61691164
+2020-12-07 14:17:50,214 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@61691164
+2020-12-07 14:17:50,214 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@13e9ea97
+2020-12-07 14:17:50,215 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@2b25533e
+2020-12-07 14:17:50,215 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@16fdc594
+2020-12-07 14:17:50,215 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@7351af1a
+2020-12-07 14:17:50,216 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@2fb05eb5
+2020-12-07 14:17:50,216 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@2e8d54de
+2020-12-07 14:17:50,216 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@56a4e5fe
+2020-12-07 14:17:50,216 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@28f3a94f
+2020-12-07 14:17:50,226 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-07 14:17:50,237 DEBUG org.hibernate.type.spi.TypeConfiguration [restartedMain] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@58327b92] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@192511d1]
+2020-12-07 14:17:50,281 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,281 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,282 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,285 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,304 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,305 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,308 DEBUG org.hibernate.type.spi.TypeConfiguration [restartedMain] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@58327b92] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@3a9df01]
+2020-12-07 14:17:50,322 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.AnswerImpl (class must be instantiated by Interceptor)
+2020-12-07 14:17:50,346 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,346 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,361 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,362 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,367 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl (class must be instantiated by Interceptor)
+2020-12-07 14:17:50,414 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,415 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,415 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,416 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,495 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,496 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,496 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,497 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,510 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-07 14:17:50,617 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,618 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,655 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,657 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,657 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:17:50,662 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,662 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,663 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:17:50,663 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,663 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:50,664 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:17:51,101 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table Answer add constraint FKfiomvt17psxodcis3d8nmopx8 foreign key (question_id) references Question (id)
+2020-12-07 14:17:51,610 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table Question add constraint FKcfk2lqxngafrq0vyrjemeiu4r foreign key (category_id) references Category (id)
+2020-12-07 14:17:52,536 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswer add constraint FK8i9ejrqkhs1mpqgif48rvfigk foreign key (question_id) references Question (id)
+2020-12-07 14:17:54,483 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswer add constraint FK2s5uximqywj1qasoiwvrjiil6 foreign key (user_id) references User (id)
+2020-12-07 14:17:55,255 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl add constraint FKmtidkcvcpqorbaokhobxjtchm foreign key (question_id) references Question (id)
+2020-12-07 14:17:55,994 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl add constraint FK1mi9m8irj261yw7rgs2mq81c3 foreign key (user_id) references User (id)
+2020-12-07 14:17:57,153 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl_Answer add constraint FKsv890p4q2ffjrk6ese795o990 foreign key (selectedAnswers_id) references Answer (id)
+2020-12-07 14:17:57,637 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl_Answer add constraint FKnxyb5ysfkn4697hg6a4u3r5vt foreign key (SubmittedAnswerMultiImpl_id) references SubmittedAnswerMultiImpl (id)
+2020-12-07 14:17:58,307 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-07 14:17:58,308 TRACE org.hibernate.type.spi.TypeConfiguration [restartedMain] Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@3a9df01] for TypeConfiguration
+2020-12-07 14:17:58,408 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-07 14:17:58,524 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-07 14:17:58,548 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page template: index
+2020-12-07 14:17:58,691 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2020-12-07 14:17:58,709 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8081 (http) with context path ''
+2020-12-07 14:17:58,710 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Triggering deferred initialization of Spring Data repositories…
+2020-12-07 14:17:58,712 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Spring Data repositories initialized!
+2020-12-07 14:17:58,717 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DatingSiteApplication in 9.564 seconds (JVM running for 4571.556)
+2020-12-07 14:17:58,719 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2020-12-07 14:20:31,189 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-13] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-07 14:20:31,190 TRACE org.hibernate.type.spi.TypeConfiguration [Thread-13] Handling #sessionFactoryClosed from [org.hibernate.internal.SessionFactoryImpl@3a9df01] for TypeConfiguration
+2020-12-07 14:20:31,191 DEBUG org.hibernate.type.spi.TypeConfiguration$Scope [Thread-13] Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@3e7bdebf] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@3a9df01]
+2020-12-07 14:20:31,297 ERROR org.springframework.boot.SpringApplication [restartedMain] Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@49:39 - no applicable action for [AppenderRef], current ElementPath  is [[configuration][Logger][AppenderRef]]
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:306)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:281)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.chrisenochdatingsite.Dating.site.DatingSiteApplication.main(DatingSiteApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2020-12-07 14:23:54,602 ERROR org.springframework.boot.SpringApplication [restartedMain] Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@49:42 - no applicable action for [AppenderRef], current ElementPath  is [[configuration][Logger][AppenderRef]]
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:306)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:281)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.chrisenochdatingsite.Dating.site.DatingSiteApplication.main(DatingSiteApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2020-12-07 14:24:17,553 ERROR org.springframework.boot.SpringApplication [restartedMain] Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@43:42 - no applicable action for [AppenderRef], current ElementPath  is [[configuration][Logger][AppenderRef]]
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:306)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:281)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.chrisenochdatingsite.Dating.site.DatingSiteApplication.main(DatingSiteApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2020-12-07 14:24:51,749 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DatingSiteApplication on LAPTOP-N48LAB97 with PID 16024 (D:\Dating-site\target\classes started by chris in D:\Dating-site)
+2020-12-07 14:24:51,750 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-12-07 14:24:52,115 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-07 14:24:52,131 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 15ms. Found 0 JPA repository interfaces.
+2020-12-07 14:24:52,301 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8081 (http)
+2020-12-07 14:24:52,302 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2020-12-07 14:24:52,302 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-12-07 14:24:52,434 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-12-07 14:24:52,437 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2020-12-07 14:24:52,437 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 683 ms
+2020-12-07 14:24:52,476 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:24:52,476 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:24:52,477 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:24:52,477 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@669ee105
+2020-12-07 14:24:52,477 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration true_false -> org.hibernate.type.TrueFalseType@4ea8d734
+2020-12-07 14:24:52,477 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration yes_no -> org.hibernate.type.YesNoType@a02c5fe
+2020-12-07 14:24:52,478 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:24:52,479 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:24:52,479 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:24:52,479 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration character -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:24:52,480 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration char -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:24:52,481 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:24:52,481 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:24:52,482 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:24:52,482 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:24:52,482 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration integer -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:24:52,482 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration int -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:24:52,483 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:24:52,483 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:24:52,483 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:24:52,483 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:24:52,484 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:24:52,484 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:24:52,484 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:24:52,485 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:24:52,485 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:24:52,485 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:24:52,486 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@3588d78f
+2020-12-07 14:24:52,486 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@3588d78f
+2020-12-07 14:24:52,486 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration big_integer -> org.hibernate.type.BigIntegerType@2d4ee2d4
+2020-12-07 14:24:52,486 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@2d4ee2d4
+2020-12-07 14:24:52,487 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration string -> org.hibernate.type.StringType@10290b6d
+2020-12-07 14:24:52,487 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.String -> org.hibernate.type.StringType@10290b6d
+2020-12-07 14:24:52,487 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration nstring -> org.hibernate.type.StringNVarcharType@74cb8f76
+2020-12-07 14:24:52,488 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@5687a9da
+2020-12-07 14:24:52,488 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration url -> org.hibernate.type.UrlType@10bd0685
+2020-12-07 14:24:52,488 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.net.URL -> org.hibernate.type.UrlType@10bd0685
+2020-12-07 14:24:52,488 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Duration -> org.hibernate.type.DurationType@7dca7d33
+2020-12-07 14:24:52,489 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.Duration -> org.hibernate.type.DurationType@7dca7d33
+2020-12-07 14:24:52,489 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Instant -> org.hibernate.type.InstantType@6b1f0645
+2020-12-07 14:24:52,489 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.Instant -> org.hibernate.type.InstantType@6b1f0645
+2020-12-07 14:24:52,490 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@5d921725
+2020-12-07 14:24:52,490 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@5d921725
+2020-12-07 14:24:52,490 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalDate -> org.hibernate.type.LocalDateType@2429bac0
+2020-12-07 14:24:52,490 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@2429bac0
+2020-12-07 14:24:52,491 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@3bbca040
+2020-12-07 14:24:52,491 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@3bbca040
+2020-12-07 14:24:52,491 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2c641443
+2020-12-07 14:24:52,491 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2c641443
+2020-12-07 14:24:52,492 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@1d4fc7e2
+2020-12-07 14:24:52,492 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@1d4fc7e2
+2020-12-07 14:24:52,492 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@78fdc588
+2020-12-07 14:24:52,493 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@78fdc588
+2020-12-07 14:24:52,493 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration date -> org.hibernate.type.DateType@6719603a
+2020-12-07 14:24:52,494 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Date -> org.hibernate.type.DateType@6719603a
+2020-12-07 14:24:52,494 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration time -> org.hibernate.type.TimeType@21fa2b20
+2020-12-07 14:24:52,494 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Time -> org.hibernate.type.TimeType@21fa2b20
+2020-12-07 14:24:52,494 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration timestamp -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:24:52,495 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:24:52,496 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Date -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:24:52,496 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@7ceae9cd
+2020-12-07 14:24:52,497 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:24:52,497 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:24:52,501 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:24:52,502 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@74cf533c
+2020-12-07 14:24:52,502 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@786c2582
+2020-12-07 14:24:52,502 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration locale -> org.hibernate.type.LocaleType@131e8d02
+2020-12-07 14:24:52,503 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@131e8d02
+2020-12-07 14:24:52,503 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration currency -> org.hibernate.type.CurrencyType@51444ed3
+2020-12-07 14:24:52,503 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@51444ed3
+2020-12-07 14:24:52,504 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration timezone -> org.hibernate.type.TimeZoneType@55b037a7
+2020-12-07 14:24:52,504 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@55b037a7
+2020-12-07 14:24:52,504 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration class -> org.hibernate.type.ClassType@3995eba4
+2020-12-07 14:24:52,504 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Class -> org.hibernate.type.ClassType@3995eba4
+2020-12-07 14:24:52,505 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@5f19653
+2020-12-07 14:24:52,505 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@5f19653
+2020-12-07 14:24:52,505 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@4dc52e90
+2020-12-07 14:24:52,516 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration binary -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:24:52,530 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte[] -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:24:52,531 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [B -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:24:52,531 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:24:52,532 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:24:52,532 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:24:52,532 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration row_version -> org.hibernate.type.RowVersionType@6376fe4d
+2020-12-07 14:24:52,532 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration image -> org.hibernate.type.ImageType@5f8167b0
+2020-12-07 14:24:52,533 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration characters -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:24:52,533 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration char[] -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:24:52,533 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [C -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:24:52,534 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:24:52,534 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:24:52,534 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:24:52,534 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration text -> org.hibernate.type.TextType@21f20dc6
+2020-12-07 14:24:52,535 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ntext -> org.hibernate.type.NTextType@590cc65b
+2020-12-07 14:24:52,535 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration blob -> org.hibernate.type.BlobType@57ccac08
+2020-12-07 14:24:52,536 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@57ccac08
+2020-12-07 14:24:52,536 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@3e42f3a4
+2020-12-07 14:24:52,536 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration clob -> org.hibernate.type.ClobType@45a51810
+2020-12-07 14:24:52,536 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@45a51810
+2020-12-07 14:24:52,537 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration nclob -> org.hibernate.type.NClobType@44d721c1
+2020-12-07 14:24:52,537 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@44d721c1
+2020-12-07 14:24:52,537 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@51fe16d5
+2020-12-07 14:24:52,537 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@130c0fa3
+2020-12-07 14:24:52,538 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration serializable -> org.hibernate.type.SerializableType@3e5056bd
+2020-12-07 14:24:52,538 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration object -> org.hibernate.type.ObjectType@61691164
+2020-12-07 14:24:52,538 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@61691164
+2020-12-07 14:24:52,538 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@280608ef
+2020-12-07 14:24:52,539 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@52064d38
+2020-12-07 14:24:52,539 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@290250da
+2020-12-07 14:24:52,539 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@7477ecfa
+2020-12-07 14:24:52,539 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@6c2ec3eb
+2020-12-07 14:24:52,539 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@c213cdb
+2020-12-07 14:24:52,541 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@371e2905
+2020-12-07 14:24:52,542 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@7c450320
+2020-12-07 14:24:52,550 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-07 14:24:52,563 DEBUG org.hibernate.type.spi.TypeConfiguration [restartedMain] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@6426d9fb] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@5ad5f9]
+2020-12-07 14:24:52,597 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,598 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,599 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,601 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,606 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,607 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,613 DEBUG org.hibernate.type.spi.TypeConfiguration [restartedMain] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@6426d9fb] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@5646d12d]
+2020-12-07 14:24:52,621 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.AnswerImpl (class must be instantiated by Interceptor)
+2020-12-07 14:24:52,642 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,643 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,651 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,652 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,653 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl (class must be instantiated by Interceptor)
+2020-12-07 14:24:52,681 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,682 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,683 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,692 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,702 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,702 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,702 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,703 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,716 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-07 14:24:52,733 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,733 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,800 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,800 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,800 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:24:52,805 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,806 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,806 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:24:52,806 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,807 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,807 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:24:52,854 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table Answer add constraint FKfiomvt17psxodcis3d8nmopx8 foreign key (question_id) references Question (id)
+2020-12-07 14:24:53,972 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table Question add constraint FKcfk2lqxngafrq0vyrjemeiu4r foreign key (category_id) references Category (id)
+2020-12-07 14:24:54,870 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswer add constraint FK8i9ejrqkhs1mpqgif48rvfigk foreign key (question_id) references Question (id)
+2020-12-07 14:24:55,220 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswer add constraint FK2s5uximqywj1qasoiwvrjiil6 foreign key (user_id) references User (id)
+2020-12-07 14:24:55,809 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl add constraint FKmtidkcvcpqorbaokhobxjtchm foreign key (question_id) references Question (id)
+2020-12-07 14:24:56,458 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl add constraint FK1mi9m8irj261yw7rgs2mq81c3 foreign key (user_id) references User (id)
+2020-12-07 14:24:56,822 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl_Answer add constraint FKsv890p4q2ffjrk6ese795o990 foreign key (selectedAnswers_id) references Answer (id)
+2020-12-07 14:24:57,333 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl_Answer add constraint FKnxyb5ysfkn4697hg6a4u3r5vt foreign key (SubmittedAnswerMultiImpl_id) references SubmittedAnswerMultiImpl (id)
+2020-12-07 14:24:57,805 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-07 14:24:57,805 TRACE org.hibernate.type.spi.TypeConfiguration [restartedMain] Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@5646d12d] for TypeConfiguration
+2020-12-07 14:24:57,876 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-07 14:24:57,941 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-07 14:24:57,958 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page template: index
+2020-12-07 14:24:58,092 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2020-12-07 14:24:58,122 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8081 (http) with context path ''
+2020-12-07 14:24:58,124 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Triggering deferred initialization of Spring Data repositories…
+2020-12-07 14:24:58,124 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Spring Data repositories initialized!
+2020-12-07 14:24:58,128 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DatingSiteApplication in 6.414 seconds (JVM running for 4990.967)
+2020-12-07 14:24:58,131 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2020-12-07 14:28:05,548 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-22] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-07 14:28:05,556 TRACE org.hibernate.type.spi.TypeConfiguration [Thread-22] Handling #sessionFactoryClosed from [org.hibernate.internal.SessionFactoryImpl@5646d12d] for TypeConfiguration
+2020-12-07 14:28:05,557 DEBUG org.hibernate.type.spi.TypeConfiguration$Scope [Thread-22] Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@4d5d51bb] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@5646d12d]
+2020-12-07 14:28:05,704 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DatingSiteApplication on LAPTOP-N48LAB97 with PID 16024 (D:\Dating-site\target\classes started by chris in D:\Dating-site)
+2020-12-07 14:28:05,705 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-12-07 14:28:05,931 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-07 14:28:05,945 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 13ms. Found 0 JPA repository interfaces.
+2020-12-07 14:28:06,063 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8081 (http)
+2020-12-07 14:28:06,064 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2020-12-07 14:28:06,065 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-12-07 14:28:06,207 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-12-07 14:28:06,213 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2020-12-07 14:28:06,214 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 507 ms
+2020-12-07 14:28:06,256 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:28:06,257 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:28:06,257 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@1aa80fdb
+2020-12-07 14:28:06,257 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@669ee105
+2020-12-07 14:28:06,258 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration true_false -> org.hibernate.type.TrueFalseType@4ea8d734
+2020-12-07 14:28:06,258 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration yes_no -> org.hibernate.type.YesNoType@a02c5fe
+2020-12-07 14:28:06,258 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:28:06,258 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:28:06,258 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@193e6666
+2020-12-07 14:28:06,259 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration character -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:28:06,260 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration char -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:28:06,260 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@4e10fcca
+2020-12-07 14:28:06,261 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:28:06,261 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:28:06,261 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Short -> org.hibernate.type.ShortType@1f83857a
+2020-12-07 14:28:06,262 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration integer -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:28:06,262 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration int -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:28:06,263 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@7f792297
+2020-12-07 14:28:06,263 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:28:06,263 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:28:06,263 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Long -> org.hibernate.type.LongType@4cbce050
+2020-12-07 14:28:06,264 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:28:06,264 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:28:06,264 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Float -> org.hibernate.type.FloatType@22a1ee91
+2020-12-07 14:28:06,264 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:28:06,265 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:28:06,265 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@12b57b21
+2020-12-07 14:28:06,265 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@3588d78f
+2020-12-07 14:28:06,266 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@3588d78f
+2020-12-07 14:28:06,266 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration big_integer -> org.hibernate.type.BigIntegerType@2d4ee2d4
+2020-12-07 14:28:06,266 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@2d4ee2d4
+2020-12-07 14:28:06,266 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration string -> org.hibernate.type.StringType@10290b6d
+2020-12-07 14:28:06,267 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.String -> org.hibernate.type.StringType@10290b6d
+2020-12-07 14:28:06,267 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration nstring -> org.hibernate.type.StringNVarcharType@74cb8f76
+2020-12-07 14:28:06,267 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@5687a9da
+2020-12-07 14:28:06,267 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration url -> org.hibernate.type.UrlType@10bd0685
+2020-12-07 14:28:06,267 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.net.URL -> org.hibernate.type.UrlType@10bd0685
+2020-12-07 14:28:06,268 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Duration -> org.hibernate.type.DurationType@7dca7d33
+2020-12-07 14:28:06,269 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.Duration -> org.hibernate.type.DurationType@7dca7d33
+2020-12-07 14:28:06,269 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Instant -> org.hibernate.type.InstantType@6b1f0645
+2020-12-07 14:28:06,269 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.Instant -> org.hibernate.type.InstantType@6b1f0645
+2020-12-07 14:28:06,270 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@5d921725
+2020-12-07 14:28:06,270 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@5d921725
+2020-12-07 14:28:06,270 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalDate -> org.hibernate.type.LocalDateType@2429bac0
+2020-12-07 14:28:06,271 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@2429bac0
+2020-12-07 14:28:06,271 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@3bbca040
+2020-12-07 14:28:06,272 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@3bbca040
+2020-12-07 14:28:06,272 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2c641443
+2020-12-07 14:28:06,272 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2c641443
+2020-12-07 14:28:06,272 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@1d4fc7e2
+2020-12-07 14:28:06,272 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@1d4fc7e2
+2020-12-07 14:28:06,273 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@78fdc588
+2020-12-07 14:28:06,273 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@78fdc588
+2020-12-07 14:28:06,273 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration date -> org.hibernate.type.DateType@6719603a
+2020-12-07 14:28:06,273 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Date -> org.hibernate.type.DateType@6719603a
+2020-12-07 14:28:06,274 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration time -> org.hibernate.type.TimeType@21fa2b20
+2020-12-07 14:28:06,274 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Time -> org.hibernate.type.TimeType@21fa2b20
+2020-12-07 14:28:06,274 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration timestamp -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:28:06,274 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:28:06,274 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Date -> org.hibernate.type.TimestampType@39576229
+2020-12-07 14:28:06,275 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@7ceae9cd
+2020-12-07 14:28:06,275 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:28:06,275 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:28:06,275 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@51ec702a
+2020-12-07 14:28:06,276 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@74cf533c
+2020-12-07 14:28:06,276 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@786c2582
+2020-12-07 14:28:06,276 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration locale -> org.hibernate.type.LocaleType@131e8d02
+2020-12-07 14:28:06,276 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@131e8d02
+2020-12-07 14:28:06,277 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration currency -> org.hibernate.type.CurrencyType@51444ed3
+2020-12-07 14:28:06,277 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@51444ed3
+2020-12-07 14:28:06,277 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration timezone -> org.hibernate.type.TimeZoneType@55b037a7
+2020-12-07 14:28:06,277 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@55b037a7
+2020-12-07 14:28:06,278 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration class -> org.hibernate.type.ClassType@3995eba4
+2020-12-07 14:28:06,278 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Class -> org.hibernate.type.ClassType@3995eba4
+2020-12-07 14:28:06,278 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@5f19653
+2020-12-07 14:28:06,279 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@5f19653
+2020-12-07 14:28:06,279 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@4dc52e90
+2020-12-07 14:28:06,279 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration binary -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:28:06,279 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration byte[] -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:28:06,280 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [B -> org.hibernate.type.BinaryType@758a6196
+2020-12-07 14:28:06,280 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:28:06,280 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:28:06,280 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@68886ba
+2020-12-07 14:28:06,281 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration row_version -> org.hibernate.type.RowVersionType@6376fe4d
+2020-12-07 14:28:06,281 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration image -> org.hibernate.type.ImageType@5f8167b0
+2020-12-07 14:28:06,281 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration characters -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:28:06,281 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration char[] -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:28:06,282 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [C -> org.hibernate.type.CharArrayType@5cc6d752
+2020-12-07 14:28:06,282 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:28:06,283 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:28:06,283 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@270a05a7
+2020-12-07 14:28:06,283 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration text -> org.hibernate.type.TextType@21f20dc6
+2020-12-07 14:28:06,284 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration ntext -> org.hibernate.type.NTextType@590cc65b
+2020-12-07 14:28:06,284 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration blob -> org.hibernate.type.BlobType@57ccac08
+2020-12-07 14:28:06,286 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@57ccac08
+2020-12-07 14:28:06,286 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@3e42f3a4
+2020-12-07 14:28:06,286 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration clob -> org.hibernate.type.ClobType@45a51810
+2020-12-07 14:28:06,287 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@45a51810
+2020-12-07 14:28:06,287 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration nclob -> org.hibernate.type.NClobType@44d721c1
+2020-12-07 14:28:06,287 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@44d721c1
+2020-12-07 14:28:06,287 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@51fe16d5
+2020-12-07 14:28:06,288 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@130c0fa3
+2020-12-07 14:28:06,288 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration serializable -> org.hibernate.type.SerializableType@3e5056bd
+2020-12-07 14:28:06,288 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration object -> org.hibernate.type.ObjectType@61691164
+2020-12-07 14:28:06,288 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@61691164
+2020-12-07 14:28:06,288 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@2b7e3ea9
+2020-12-07 14:28:06,288 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@4528b5ca
+2020-12-07 14:28:06,288 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@3358bc10
+2020-12-07 14:28:06,289 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@6dd69522
+2020-12-07 14:28:06,289 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@37876547
+2020-12-07 14:28:06,289 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@37011098
+2020-12-07 14:28:06,289 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@414f8254
+2020-12-07 14:28:06,289 DEBUG org.hibernate.type.BasicTypeRegistry [restartedMain] Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@18e970da
+2020-12-07 14:28:06,296 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-07 14:28:06,300 DEBUG org.hibernate.type.spi.TypeConfiguration [restartedMain] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1c19cbd6] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@76deaa2d]
+2020-12-07 14:28:06,322 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,323 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,323 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,325 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,326 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,327 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,328 DEBUG org.hibernate.type.spi.TypeConfiguration [restartedMain] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1c19cbd6] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@3a9d1ea2]
+2020-12-07 14:28:06,335 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.AnswerImpl (class must be instantiated by Interceptor)
+2020-12-07 14:28:06,341 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,342 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,351 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,352 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,355 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl (class must be instantiated by Interceptor)
+2020-12-07 14:28:06,383 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,384 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,385 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,386 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,393 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,394 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,394 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,395 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,403 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-07 14:28:06,417 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,418 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,433 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,433 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,433 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.AnswerWeight
+2020-12-07 14:28:06,437 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,438 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,439 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.MembershipType
+2020-12-07 14:28:06,440 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,440 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,441 DEBUG org.hibernate.type.EnumType [restartedMain] Using NAMED-based conversion for Enum com.chrisenochdatingsite.Dating.site.entity.User$Sex
+2020-12-07 14:28:06,483 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table Answer add constraint FKfiomvt17psxodcis3d8nmopx8 foreign key (question_id) references Question (id)
+2020-12-07 14:28:09,130 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table Question add constraint FKcfk2lqxngafrq0vyrjemeiu4r foreign key (category_id) references Category (id)
+2020-12-07 14:28:09,994 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswer add constraint FK8i9ejrqkhs1mpqgif48rvfigk foreign key (question_id) references Question (id)
+2020-12-07 14:28:10,766 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswer add constraint FK2s5uximqywj1qasoiwvrjiil6 foreign key (user_id) references User (id)
+2020-12-07 14:28:11,718 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl add constraint FKmtidkcvcpqorbaokhobxjtchm foreign key (question_id) references Question (id)
+2020-12-07 14:28:12,423 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl add constraint FK1mi9m8irj261yw7rgs2mq81c3 foreign key (user_id) references User (id)
+2020-12-07 14:28:13,543 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl_Answer add constraint FKsv890p4q2ffjrk6ese795o990 foreign key (selectedAnswers_id) references Answer (id)
+2020-12-07 14:28:14,021 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [restartedMain] alter table SubmittedAnswerMultiImpl_Answer add constraint FKnxyb5ysfkn4697hg6a4u3r5vt foreign key (SubmittedAnswerMultiImpl_id) references SubmittedAnswerMultiImpl (id)
+2020-12-07 14:28:14,638 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-07 14:28:14,638 TRACE org.hibernate.type.spi.TypeConfiguration [restartedMain] Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@3a9d1ea2] for TypeConfiguration
+2020-12-07 14:28:14,756 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-07 14:28:14,796 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-07 14:28:14,817 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page template: index
+2020-12-07 14:28:14,885 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2020-12-07 14:28:14,897 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8081 (http) with context path ''
+2020-12-07 14:28:14,898 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Triggering deferred initialization of Spring Data repositories…
+2020-12-07 14:28:14,898 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Spring Data repositories initialized!
+2020-12-07 14:28:14,901 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DatingSiteApplication in 9.236 seconds (JVM running for 5187.74)
+2020-12-07 14:28:14,903 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2020-12-07 14:28:59,102 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8081-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-07 14:28:59,103 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8081-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-12-07 14:28:59,106 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8081-exec-1] Completed initialization in 3 ms
+2020-12-07 14:28:59,134 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] select distinct user0_.id as id1_6_, user0_.dateOfBirth as dateofbi2_6_, user0_.email as email3_6_, user0_.firstName as firstnam4_6_, user0_.membershipType as membersh5_6_, user0_.sex as sex6_6_, user0_.surname as surname7_6_ from User user0_ where MembershipType=?
+2020-12-07 14:28:59,135 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [VARCHAR] - [BASIC]
+2020-12-07 14:28:59,140 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [9]
+2020-12-07 14:28:59,141 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,141 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,142 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,142 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,143 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,144 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,145 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [10]
+2020-12-07 14:28:59,146 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,146 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,146 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,146 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,147 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,147 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,147 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [11]
+2020-12-07 14:28:59,148 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,148 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,148 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,149 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,149 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,149 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,150 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [12]
+2020-12-07 14:28:59,150 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,150 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,150 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,151 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,151 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,151 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,151 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [13]
+2020-12-07 14:28:59,152 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,152 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,152 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,152 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,152 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,153 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,153 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [14]
+2020-12-07 14:28:59,153 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,154 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,154 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,154 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,154 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,155 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,155 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [15]
+2020-12-07 14:28:59,156 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,156 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,156 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,157 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,157 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,157 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,157 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [16]
+2020-12-07 14:28:59,158 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,158 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,159 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,159 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,160 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,160 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,161 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [17]
+2020-12-07 14:28:59,162 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,162 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,162 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,163 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,163 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,163 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,163 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [18]
+2020-12-07 14:28:59,164 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,164 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,164 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,165 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,165 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,165 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,166 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [19]
+2020-12-07 14:28:59,166 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,167 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,167 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,167 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,168 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,168 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,169 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [20]
+2020-12-07 14:28:59,169 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,170 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,170 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,171 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,171 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,171 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,172 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [21]
+2020-12-07 14:28:59,172 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,173 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,173 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,173 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,174 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,174 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,174 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [22]
+2020-12-07 14:28:59,175 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,175 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,176 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,176 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,176 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,177 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,178 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [23]
+2020-12-07 14:28:59,180 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,180 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,181 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,181 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,181 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,182 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,182 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [24]
+2020-12-07 14:28:59,183 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,183 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,183 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,184 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,184 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,184 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,184 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [25]
+2020-12-07 14:28:59,185 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,185 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,186 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,186 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,186 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,186 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,187 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [26]
+2020-12-07 14:28:59,187 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,187 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,188 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,188 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,189 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,189 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,189 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [27]
+2020-12-07 14:28:59,190 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,190 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,190 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,191 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,191 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,191 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,191 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [28]
+2020-12-07 14:28:59,192 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,193 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,193 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,194 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,194 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,194 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,195 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [29]
+2020-12-07 14:28:59,195 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,195 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,195 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,196 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,198 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,198 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,198 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [30]
+2020-12-07 14:28:59,199 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,199 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,199 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,199 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,200 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,200 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,200 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [31]
+2020-12-07 14:28:59,200 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,200 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,201 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,201 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,201 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,201 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,201 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [32]
+2020-12-07 14:28:59,202 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,202 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,202 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,203 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,203 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,203 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,203 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [33]
+2020-12-07 14:28:59,204 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,204 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,205 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,205 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,205 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,205 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,206 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [34]
+2020-12-07 14:28:59,206 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,206 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,206 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,207 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,207 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,207 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,207 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [35]
+2020-12-07 14:28:59,208 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,208 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,208 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,208 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,209 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,209 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,210 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [36]
+2020-12-07 14:28:59,211 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,212 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,212 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,212 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,213 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,213 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,213 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [37]
+2020-12-07 14:28:59,215 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,215 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,216 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,216 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,216 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,217 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,217 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [38]
+2020-12-07 14:28:59,217 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,218 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,218 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,219 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,219 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,219 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,220 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [39]
+2020-12-07 14:28:59,221 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,221 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,221 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,222 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,222 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,222 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,222 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [40]
+2020-12-07 14:28:59,223 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,223 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,223 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,223 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,223 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,224 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,224 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([id1_6_] : [BIGINT]) - [41]
+2020-12-07 14:28:59,225 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([dateofbi2_6_] : [DATE]) - [2020-12-07]
+2020-12-07 14:28:59,226 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([email3_6_] : [VARCHAR]) - [chris@yahoo.com]
+2020-12-07 14:28:59,226 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([firstnam4_6_] : [VARCHAR]) - [Chris]
+2020-12-07 14:28:59,226 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([membersh5_6_] : [VARCHAR]) - [BASIC]
+2020-12-07 14:28:59,227 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([sex6_6_] : [VARCHAR]) - [MALE]
+2020-12-07 14:28:59,227 TRACE org.hibernate.type.descriptor.sql.BasicExtractor [http-nio-8081-exec-1] extracted value ([surname7_6_] : [VARCHAR]) - [Enoch]
+2020-12-07 14:28:59,227 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#9]
+2020-12-07 14:28:59,228 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#10]
+2020-12-07 14:28:59,228 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#11]
+2020-12-07 14:28:59,229 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#12]
+2020-12-07 14:28:59,229 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#13]
+2020-12-07 14:28:59,230 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#14]
+2020-12-07 14:28:59,230 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#15]
+2020-12-07 14:28:59,230 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#16]
+2020-12-07 14:28:59,231 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#17]
+2020-12-07 14:28:59,232 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#18]
+2020-12-07 14:28:59,232 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#19]
+2020-12-07 14:28:59,233 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#20]
+2020-12-07 14:28:59,233 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#21]
+2020-12-07 14:28:59,234 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#22]
+2020-12-07 14:28:59,234 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#23]
+2020-12-07 14:28:59,234 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#24]
+2020-12-07 14:28:59,235 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#25]
+2020-12-07 14:28:59,235 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#26]
+2020-12-07 14:28:59,235 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#27]
+2020-12-07 14:28:59,236 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#28]
+2020-12-07 14:28:59,236 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#29]
+2020-12-07 14:28:59,236 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#30]
+2020-12-07 14:28:59,237 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#31]
+2020-12-07 14:28:59,237 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#32]
+2020-12-07 14:28:59,238 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#33]
+2020-12-07 14:28:59,238 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#34]
+2020-12-07 14:28:59,238 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#35]
+2020-12-07 14:28:59,239 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#36]
+2020-12-07 14:28:59,239 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#37]
+2020-12-07 14:28:59,239 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#38]
+2020-12-07 14:28:59,240 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#39]
+2020-12-07 14:28:59,240 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#40]
+2020-12-07 14:28:59,241 TRACE org.hibernate.type.CollectionType [http-nio-8081-exec-1] Created collection wrapper: [com.chrisenochdatingsite.Dating.site.entity.User.submittedAnswers#41]
+2020-12-07 14:28:59,246 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,247 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,248 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,248 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,249 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,249 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,249 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,249 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [9]
+2020-12-07 14:28:59,250 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,250 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,250 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,251 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,251 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,252 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,253 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,253 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [10]
+2020-12-07 14:28:59,253 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,253 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,254 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,254 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,254 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,254 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,254 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,255 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [11]
+2020-12-07 14:28:59,255 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,256 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,256 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,256 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,256 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,257 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,257 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,257 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [12]
+2020-12-07 14:28:59,257 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,257 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,258 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,259 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,259 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,260 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,260 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,260 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [13]
+2020-12-07 14:28:59,260 DEBUG org.jboss.logging.DelegatingBasicLogger [http-nio-8081-exec-1] Executing batch size: 5
+2020-12-07 14:28:59,474 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,476 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,478 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,479 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,480 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,480 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,481 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,482 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [14]
+2020-12-07 14:28:59,483 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,484 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,485 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,486 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,486 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,487 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,488 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,488 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [15]
+2020-12-07 14:28:59,489 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,490 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,490 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,491 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,492 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,492 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,493 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,494 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [16]
+2020-12-07 14:28:59,496 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,498 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,499 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,500 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,500 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,501 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,502 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,502 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [17]
+2020-12-07 14:28:59,503 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,504 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,505 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,506 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,506 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,506 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,507 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,507 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [18]
+2020-12-07 14:28:59,508 DEBUG org.jboss.logging.DelegatingBasicLogger [http-nio-8081-exec-1] Executing batch size: 5
+2020-12-07 14:28:59,701 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,701 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,702 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,702 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,702 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,703 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,703 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,703 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [19]
+2020-12-07 14:28:59,704 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,704 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,704 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,705 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,705 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,705 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,705 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,706 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [20]
+2020-12-07 14:28:59,706 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,707 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,707 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,707 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,707 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,708 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,708 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,708 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [21]
+2020-12-07 14:28:59,708 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,709 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,709 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,710 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,710 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,710 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,710 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,710 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [22]
+2020-12-07 14:28:59,711 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,711 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,711 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,711 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,712 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,712 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,712 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,712 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [23]
+2020-12-07 14:28:59,712 DEBUG org.jboss.logging.DelegatingBasicLogger [http-nio-8081-exec-1] Executing batch size: 5
+2020-12-07 14:28:59,969 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,970 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,970 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,971 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,971 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,971 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,971 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,971 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [24]
+2020-12-07 14:28:59,972 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,972 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,972 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,972 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,973 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,973 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,973 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,973 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [25]
+2020-12-07 14:28:59,973 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,974 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,974 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,974 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,974 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,974 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,975 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,975 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [26]
+2020-12-07 14:28:59,975 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,976 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,976 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,976 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,977 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,977 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,977 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,977 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [27]
+2020-12-07 14:28:59,977 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:28:59,977 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:28:59,978 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:28:59,978 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:28:59,978 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:28:59,978 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:28:59,978 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:28:59,978 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [28]
+2020-12-07 14:28:59,979 DEBUG org.jboss.logging.DelegatingBasicLogger [http-nio-8081-exec-1] Executing batch size: 5
+2020-12-07 14:29:00,223 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,224 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,224 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,224 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,224 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,225 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,225 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,225 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [29]
+2020-12-07 14:29:00,225 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,225 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,226 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,226 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,226 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,226 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,227 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,227 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [30]
+2020-12-07 14:29:00,228 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,228 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,229 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,229 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,229 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,229 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,230 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,230 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [31]
+2020-12-07 14:29:00,230 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,230 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,230 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,231 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,231 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,231 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,231 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,231 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [32]
+2020-12-07 14:29:00,231 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,231 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,232 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,232 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,232 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,232 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,232 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,232 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [33]
+2020-12-07 14:29:00,233 DEBUG org.jboss.logging.DelegatingBasicLogger [http-nio-8081-exec-1] Executing batch size: 5
+2020-12-07 14:29:00,380 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,380 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,381 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,381 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,382 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,382 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,383 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,383 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [34]
+2020-12-07 14:29:00,383 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,384 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,384 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,384 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,384 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,384 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,384 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,385 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [35]
+2020-12-07 14:29:00,385 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,385 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,385 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,385 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,386 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,386 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,386 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,386 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [36]
+2020-12-07 14:29:00,386 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,386 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,387 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,387 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,387 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,387 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,387 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,387 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [37]
+2020-12-07 14:29:00,387 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,388 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,388 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,388 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,388 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,388 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,388 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,389 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [38]
+2020-12-07 14:29:00,389 DEBUG org.jboss.logging.DelegatingBasicLogger [http-nio-8081-exec-1] Executing batch size: 5
+2020-12-07 14:29:00,553 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,553 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,553 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,554 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,554 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,554 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,554 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,554 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [39]
+2020-12-07 14:29:00,555 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,555 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,555 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,555 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,556 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,556 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,556 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,556 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [40]
+2020-12-07 14:29:00,556 DEBUG org.hibernate.engine.jdbc.spi.SqlStatementLogger [http-nio-8081-exec-1] update User set dateOfBirth=?, email=?, firstName=?, membershipType=?, sex=?, surname=? where id=?
+2020-12-07 14:29:00,557 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [1] as [DATE] - [2020-12-07]
+2020-12-07 14:29:00,557 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [2] as [VARCHAR] - [chris@yahoo.com]
+2020-12-07 14:29:00,557 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [3] as [VARCHAR] - [Chris]
+2020-12-07 14:29:00,557 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [4] as [VARCHAR] - [TRIAL]
+2020-12-07 14:29:00,557 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [5] as [VARCHAR] - [MALE]
+2020-12-07 14:29:00,558 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [6] as [VARCHAR] - [Enoch]
+2020-12-07 14:29:00,558 TRACE org.hibernate.type.descriptor.sql.BasicBinder [http-nio-8081-exec-1] binding parameter [7] as [BIGINT] - [41]
+2020-12-07 14:29:00,558 DEBUG org.jboss.logging.DelegatingBasicLogger [http-nio-8081-exec-1] Executing batch size: 3
+2020-12-07 14:30:15,742 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-33] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-07 14:30:15,743 TRACE org.hibernate.type.spi.TypeConfiguration [Thread-33] Handling #sessionFactoryClosed from [org.hibernate.internal.SessionFactoryImpl@3a9d1ea2] for TypeConfiguration
+2020-12-07 14:30:15,743 DEBUG org.hibernate.type.spi.TypeConfiguration$Scope [Thread-33] Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@22721b8] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@3a9d1ea2]
+2020-12-07 14:30:15,842 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting DatingSiteApplication on LAPTOP-N48LAB97 with PID 16024 (D:\Dating-site\target\classes started by chris in D:\Dating-site)
+2020-12-07 14:30:15,842 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-12-07 14:30:16,074 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-07 14:30:16,085 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 10ms. Found 0 JPA repository interfaces.
+2020-12-07 14:30:16,181 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8081 (http)
+2020-12-07 14:30:16,182 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2020-12-07 14:30:16,182 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-12-07 14:30:16,272 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-12-07 14:30:16,276 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2020-12-07 14:30:16,276 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 426 ms
+2020-12-07 14:30:16,319 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-07 14:30:16,351 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.AnswerImpl (class must be instantiated by Interceptor)
+2020-12-07 14:30:16,362 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl (class must be instantiated by Interceptor)
+2020-12-07 14:30:16,384 INFO org.hibernate.tuple.PojoInstantiator [restartedMain] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-07 14:30:22,039 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-07 14:30:22,111 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-07 14:30:22,143 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-07 14:30:22,155 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page template: index
+2020-12-07 14:30:22,191 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2020-12-07 14:30:22,200 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8081 (http) with context path ''
+2020-12-07 14:30:22,201 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Triggering deferred initialization of Spring Data repositories…
+2020-12-07 14:30:22,202 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Spring Data repositories initialized!
+2020-12-07 14:30:22,206 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started DatingSiteApplication in 6.399 seconds (JVM running for 5315.046)
+2020-12-07 14:30:22,208 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2020-12-07 14:30:49,291 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8081-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-07 14:30:49,292 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8081-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-12-07 14:30:49,295 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8081-exec-1] Completed initialization in 3 ms
+2020-12-07 14:33:04,733 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-38] Shutting down ExecutorService 'applicationTaskExecutor'

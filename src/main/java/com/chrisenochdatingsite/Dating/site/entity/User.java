@@ -6,11 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -19,14 +20,19 @@ import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="id")
 	private Long id;
 	private String firstName;
 	private String surname;
 	private String email;
 	private LocalDate dateOfBirth;
+	
+	@Enumerated(EnumType.STRING)
 	private Sex sex;
+	
+	@Enumerated(EnumType.STRING)
+	private MembershipType membershipType;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<SubmittedAnswer> submittedAnswers; 
@@ -38,22 +44,26 @@ public class User {
 		super();
 	}
 
-	public User(Long id, String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {
+	public User(Long id, String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex
+			, MembershipType memebrshipType) {
 		this.id = id;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 		this.sex = sex;
+		this.membershipType = memebrshipType;
 		
 	}
 
-	public User(String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex) {
+	public User(String firstName, String surname, String email, LocalDate dateOfBirth, Sex sex
+			, MembershipType memebrshipType) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 		this.sex = sex;
+		this.membershipType = memebrshipType;
 	}
 
 	public Long getId() {
@@ -120,23 +130,30 @@ public class User {
 		this.matcher = matcher;
 	}
 
+	
+
+	public MembershipType getMembershipType() {
+		return membershipType;
+	}
+
+	public void setMembershipType(MembershipType membershipType) {
+		this.membershipType = membershipType;
+	}
+
+
 
 	public enum Sex{
 		MALE, FEMALE
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", surname=" + surname + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", surname=" + surname + ", email=" + email
+				+ ", dateOfBirth=" + dateOfBirth + ", sex=" + sex + ", membershipType=" + membershipType + "]";
 	}
 
-
-	
-	
-	
-	
-	
 
 }
 
