@@ -78,9 +78,22 @@ public class HomeController {
 	public String addUser() {
 		System.out.println("Inside addUser");
 		
-		User user = new User("Chris", "Enoch", "chris@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
+		User user = new User("James", "Enoch", "chris@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
+		User user2 = new User("Pete", "Enoch", "pete@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
+		User user3 = new User("Sarah", "Enoch", "sarah@yahoo.com", LocalDate.now(), Sex.FEMALE, MembershipType.TRIAL);
+		User user4 = new User("Molly", "Enoch", "molly@yahoo.com", LocalDate.now(), Sex.FEMALE, MembershipType.TRIAL);
+		User user5 = new User("TJ", "Enoch", "tj@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
+		User user6 = new User("Lee", "Enoch", "lee@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
+		User user7 = new User("Jane", "Enoch", "jane@yahoo.com", LocalDate.now(), Sex.FEMALE, MembershipType.TRIAL);
 
 		userService.save(user);
+		userService.save(user2);
+		userService.save(user3);
+		userService.save(user4);
+		userService.save(user5);
+		userService.save(user6);
+		userService.save(user7);
+		
 
 		return "index";
 	}
@@ -90,8 +103,12 @@ public class HomeController {
 		System.out.println("Inside addAnswerweighted");
 		
 		AnswerWeightedImpl answerWeightedImpl = new AnswerWeightedImpl("Basketball", AnswerWeight.TWO);
+		AnswerWeightedImpl answerWeightedImpl2 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
+		AnswerWeightedImpl answerWeightedImpl3 = new AnswerWeightedImpl("Swimming", AnswerWeight.SIX);
 
 		answerWeightedService.save(answerWeightedImpl );
+		answerWeightedService.save(answerWeightedImpl2 );
+		answerWeightedService.save(answerWeightedImpl3 );
 		
 		System.out.println("AnswerWeight int value: " + answerWeightedImpl.getAnswerWeight().getWeight());
 		System.out.println("mod test: " + 0%7);
@@ -106,11 +123,11 @@ public class HomeController {
 	public String addQOpsWithrefs() {
 		System.out.println("Inside add answerweighted");
 		
-		Answer aW1 =  utilService.getReference(Answer.class, 7L);
-		Answer aW2 =  utilService.getReference(Answer.class, 5L);
-		Answer aW3 =  utilService.getReference(Answer.class, 6L);
+		Answer aW1 =  utilService.getReference(Answer.class, 51L);
+		Answer aW2 =  utilService.getReference(Answer.class, 52L);
+		Answer aW3 =  utilService.getReference(Answer.class, 53L);
 		
-		Category category = utilService.getReference(Category.class, 1);
+		Category category = utilService.getReference(Category.class, 42);
 		
 		
 		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
