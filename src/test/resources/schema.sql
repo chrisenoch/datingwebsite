@@ -6,7 +6,7 @@ CREATE TABLE Category (
 
 );
 
-INSERT INTO `category` VALUES (42,'Movies');
+INSERT INTO `category` VALUES (1,'Movies');
 
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 );
 
-INSERT INTO `user` VALUES (50,'2020-12-07','jane@yahoo.com','Jane','FEMALE','Enoch','TRIAL'),(49,'2020-12-07','lee@yahoo.com','Lee','MALE','Enoch','TRIAL'),(48,'2020-12-07','tj@yahoo.com','TJ','MALE','Enoch','TRIAL'),(47,'2020-12-07','molly@yahoo.com','Molly','FEMALE','Enoch','TRIAL'),(46,'2020-12-07','sarah@yahoo.com','Sarah','FEMALE','Enoch','TRIAL'),(45,'2020-12-07','pete@yahoo.com','Pete','MALE','Enoch','TRIAL'),(44,'2020-12-07','chris@yahoo.com','James','MALE','Enoch','TRIAL'),(43,'2020-12-07','chris@yahoo.com','Chris','MALE','Enoch','TRIAL');
+INSERT INTO `user` VALUES (8,'2020-12-07','jane@yahoo.com','Jane','FEMALE','Enoch','TRIAL'),(7,'2020-12-07','lee@yahoo.com','Lee','MALE','Enoch','TRIAL'),(6,'2020-12-07','tj@yahoo.com','TJ','MALE','Enoch','TRIAL'),(5,'2020-12-07','molly@yahoo.com','Molly','FEMALE','Enoch','TRIAL'),(4,'2020-12-07','sarah@yahoo.com','Sarah','FEMALE','Enoch','TRIAL'),(3,'2020-12-07','pete@yahoo.com','Pete','MALE','Enoch','TRIAL'),(2,'2020-12-07','chris@yahoo.com','James','MALE','Enoch','TRIAL');
 
 DROP TABLE IF EXISTS `submittedanswermultiimpl_answer`; 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -30,7 +30,7 @@ CREATE TABLE `submittedanswermultiimpl_answer` (
   UNIQUE KEY `UK_s4um8aslw2bkha2k234kr7q9b` (`selectedAnswers_id`)
 );
 
-INSERT INTO `submittedanswermultiimpl_answer` VALUES (66,63),(66,64),(66,65);
+INSERT INTO `submittedanswermultiimpl_answer` VALUES (17,14),(17,15),(17,16);
 
 
 DROP TABLE IF EXISTS `submittedanswermultiimpl`;
@@ -43,7 +43,7 @@ CREATE TABLE `submittedanswermultiimpl` (
   PRIMARY KEY (`id`)
 
 );
-INSERT INTO `submittedanswermultiimpl` VALUES (66,56,50);
+INSERT INTO `submittedanswermultiimpl` VALUES (17,13,2);
 
 DROP TABLE IF EXISTS `submittedanswer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -75,7 +75,7 @@ CREATE TABLE `question` (
   PRIMARY KEY (`id`)
 );
 
-INSERT INTO `question` VALUES ('question_with_options',56,'How much do you like these sports?',42);
+INSERT INTO `question` VALUES ('question_with_options',13,'How much do you like these sports?',1);
 
 DROP TABLE IF EXISTS `hibernate_sequence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -84,7 +84,7 @@ CREATE TABLE `hibernate_sequence` (
   `next_val` bigint DEFAULT NULL
 );
 
-INSERT INTO `hibernate_sequence` VALUES (67);
+INSERT INTO `hibernate_sequence` VALUES (18);
 
 DROP TABLE IF EXISTS `answer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -99,7 +99,7 @@ CREATE TABLE `answer` (
  
 );
 
-INSERT INTO `answer` VALUES ('answer_weighted',51,'Basketball', NULL ,56),('answer_weighted',52,'Football', NULL,56),('answer_weighted',53,'Swimming',NULL ,56),('answer_weighted',64,'Football','FOUR',NULL),('answer_weighted',63,'Basketball','FIVE',NULL),('answer_weighted',65,'Swimming','SIX',NULL);
+INSERT INTO `answer` VALUES ('standard_answer',10,'Basketball', NULL ,13),('standard_answer',11,'Football', NULL,13),('standard_answer',12,'Swimming',NULL ,13),('answer_weighted',14,'Basketball','FIVE',NULL),('answer_weighted',15,'Football','FOUR',NULL),('answer_weighted',16,'Swimming','SIX',NULL);
 
 
 

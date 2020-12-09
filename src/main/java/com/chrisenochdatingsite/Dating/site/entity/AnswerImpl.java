@@ -7,10 +7,20 @@ import javax.persistence.Entity;
 @DiscriminatorValue("standard_answer")
 public class AnswerImpl extends Answer{
 
+	public AnswerImpl() {
+	}
+	
 	public AnswerImpl(int id, String answerText) {
 		super(id, answerText);
 
 	}
+	
+	public AnswerImpl(String answerText) {
+		super(answerText);
+
+	}
+	
+	
 
 	@Override
 	public String toString() {

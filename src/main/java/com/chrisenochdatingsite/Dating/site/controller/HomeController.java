@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
@@ -19,6 +20,7 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
+import com.chrisenochdatingsite.Dating.site.service.AnswerImplService;
 import com.chrisenochdatingsite.Dating.site.service.AnswerWeightedService;
 import com.chrisenochdatingsite.Dating.site.service.BatchUpdateService;
 import com.chrisenochdatingsite.Dating.site.service.CategoryService;
@@ -37,12 +39,13 @@ public class HomeController {
 	SubmittedAnswerMultiService submittedAnswerMultiService;
 	UtilService utilService;
 	BatchUpdateService batchUpdateService;
+	AnswerImplService answerImplService;
 	
 	@Autowired
 	public HomeController(CategoryService categoryService, UserService userService
 			, AnswerWeightedService answerWeightedService, QuestionWithOptionsService questionWithOptionsService
 			, SubmittedAnswerMultiService submittedAnswersMultiService, UtilService utilService
-			, BatchUpdateService batchUpdateService) {
+			, BatchUpdateService batchUpdateService, AnswerImplService answerImplService) {
 		this.categoryService = categoryService;
 		this.userService = userService;
 		this.answerWeightedService = answerWeightedService;
@@ -50,6 +53,7 @@ public class HomeController {
 		this.submittedAnswerMultiService = submittedAnswersMultiService;
 		this.utilService = utilService;
 		this.batchUpdateService = batchUpdateService;
+		this.answerImplService = answerImplService;
 	}
 	
 	@GetMapping("/batchupdate")
@@ -73,6 +77,16 @@ public class HomeController {
 
 		return "index";
 	}
+	
+//	@GetMapping("/addusernomembertype")
+//	public String addUserNoMemberType() {
+//		System.out.println("Inside addUser");	
+//		//User user = new User("James", "Enoch", "chris@yahoo.com", LocalDate.now(), Sex.MALE);
+//
+//		//userService.save(user);
+//
+//		return "index";
+//	}
 	
 	@GetMapping("/adduser")
 	public String addUser() {
@@ -119,15 +133,39 @@ public class HomeController {
 		return "index";
 	}
 	
+	@GetMapping("/addansimpl")
+	public String addansimpl() {
+		System.out.println("Inside addansimpl");
+		
+		AnswerImpl ans = new AnswerImpl("Basketball");
+		AnswerImpl ans2 = new AnswerImpl("Football");
+		AnswerImpl ans3 = new AnswerImpl("Swimming");
+		answerImplService.save(ans);
+		answerImplService.save(ans2);
+		answerImplService.save(ans3);
+
+		return "index";
+	}
+	
+	@GetMapping("/addansweightedwrong")
+	public String addansweightedwrong() {
+		System.out.println("Inside addansweightedwrong");
+		
+		AnswerWeightedImpl ans = new AnswerWeightedImpl("Polo");
+		answerWeightedService.save(ans);
+
+		return "index";
+	}
+	
 	@GetMapping("/addqopswithrefs")
 	public String addQOpsWithrefs() {
 		System.out.println("Inside add answerweighted");
 		
-		Answer aW1 =  utilService.getReference(Answer.class, 51L);
-		Answer aW2 =  utilService.getReference(Answer.class, 52L);
-		Answer aW3 =  utilService.getReference(Answer.class, 53L);
+		Answer aW1 =  utilService.getReference(Answer.class, 10L);
+		Answer aW2 =  utilService.getReference(Answer.class, 11L);
+		Answer aW3 =  utilService.getReference(Answer.class, 12L);
 		
-		Category category = utilService.getReference(Category.class, 42);
+		Category category = utilService.getReference(Category.class, 1);
 		
 		
 		QuestionWithOptionsImpl qops = new QuestionWithOptionsImpl("How much do you like these sports?"
@@ -200,12 +238,12 @@ public class HomeController {
 	
 	@GetMapping("/addsubmultiimpl")
 	public String addsubmittedAnswersMultiService() {
-		System.out.println("Inside add answerweighted");
+		System.out.println("Inside addsubmittedAnswersMultiService");
 		
 		List<User> users = userService.findAll();
 		User user = users.get(0);
 		
-		Question q = utilService.getReference(Question.class, 56);
+		Question q = utilService.getReference(Question.class, 13);
 		
 		AnswerWeightedImpl aWBasketball = new AnswerWeightedImpl("Basketball", AnswerWeight.FIVE);
 		AnswerWeightedImpl aWFootball = new AnswerWeightedImpl("Football", AnswerWeight.FOUR);

@@ -65,6 +65,8 @@ public class User {
 		this.sex = sex;
 		this.membershipType = memebrshipType;
 	}
+	
+
 
 	public Long getId() {
 		return id;
