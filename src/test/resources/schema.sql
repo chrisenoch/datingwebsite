@@ -99,7 +99,7 @@ CREATE TABLE `answer` (
  
 );
 
-INSERT INTO `answer` VALUES ('answer_weighted',51,'Basketball','NULL',56),('answer_weighted',52,'Football','NULL',56),('answer_weighted',53,'Swimming','NULL',56),('answer_weighted',64,'Football','FOUR',NULL),('answer_weighted',63,'Basketball','FIVE',NULL),('answer_weighted',65,'Swimming','SIX',NULL);
+INSERT INTO `answer` VALUES ('answer_weighted',51,'Basketball', NULL ,56),('answer_weighted',52,'Football', NULL,56),('answer_weighted',53,'Swimming',NULL ,56),('answer_weighted',64,'Football','FOUR',NULL),('answer_weighted',63,'Basketball','FIVE',NULL),('answer_weighted',65,'Swimming','SIX',NULL);
 
 
 
