@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -17,11 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
-import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
-import com.chrisenochdatingsite.Dating.site.service.AnswerWeightedService;
+import com.chrisenochdatingsite.Dating.site.service.AnswerService;
 import com.chrisenochdatingsite.Dating.site.service.CategoryService;
 
 //@RunWith(SpringRunner.class)
@@ -32,12 +30,12 @@ public class TestH2 {
 	
 	//AnswerWeightedService answerWeightedService;
 	CategoryService categoryService;
-	AnswerWeightedService answerWeightedService;
+	AnswerService answerService;
 	
 	@Autowired
-	public TestH2(CategoryService categoryService,  AnswerWeightedService answerWeightedService) {
+	public TestH2(CategoryService categoryService,  AnswerService answerService) {
 		this.categoryService = categoryService;
-		this.answerWeightedService = answerWeightedService;
+		this.answerService = answerService;
 	}
 	
 	@Test
@@ -72,7 +70,7 @@ public class TestH2 {
 	@Order(1) 
 	//Java 8
 	public void getAnswerWeighted() throws Exception {
-		List<Answer> answers = answerWeightedService.findAll();
+		List<Answer> answers = answerService.findAll();
 		
 //		Order of retrieval from MySQL not guarenteed so sort list by id
 		List<AnswerWeightedImpl> answersWeightedSortedByIdAsc = answers.stream().sorted(Comparator.comparing(Answer::getId)
@@ -103,8 +101,8 @@ public class TestH2 {
 	public void saveAnswerWeighted() {
 		AnswerWeightedImpl ansWeighted = new AnswerWeightedImpl("Polo", AnswerWeight.TWO);
 		
-		answerWeightedService.save(ansWeighted);
-		List<Answer> answers = answerWeightedService.findAll();
+		answerService.save(ansWeighted);
+		List<Answer> answers = answerService.findAll();
 		
 		//Order of retrieval from MySQL not guarenteed so sort list by id
 		List<AnswerWeightedImpl> answersWeightedSortedByIdAsc = answers.stream().sorted(Comparator.comparing(Answer::getId)

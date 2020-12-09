@@ -9,21 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
-import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 
 @Repository
-public class AnswerWeightedDAOImpl implements AnswerWeightedDAO {
+public class AnswerDAOImpl implements AnswerDAO {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public void save(AnswerWeightedImpl answerWeightedImpl) {
+	public void save(Answer answer) {
 
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// save employee
-		currentSession.saveOrUpdate(answerWeightedImpl);
+		currentSession.saveOrUpdate(answer);
 	}
 	
 	public List<Answer> findAll() {

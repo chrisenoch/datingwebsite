@@ -1,13 +1,13 @@
-package com.chrisenochdatingsite.Dating.site.dao;
+package com.chrisenochdatingsite.Dating.site.service;
 
 import java.util.List;
 
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 
-public interface AnswerImplDAO {
+public interface AnswerService {
 	
-	public void save(AnswerImpl answerImpl);
+	public void save(Answer answer);
 	
 	public List<Answer> findAll();
 

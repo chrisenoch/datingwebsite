@@ -6,20 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.chrisenochdatingsite.Dating.site.dao.AnswerWeightedDAO;
+import com.chrisenochdatingsite.Dating.site.dao.AnswerDAO;
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
-import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 
 @Service
-public class AnswerWeightedServiceImpl implements AnswerWeightedService {
+public class AnswerServiceImpl implements AnswerService {
 
 	@Autowired
-	AnswerWeightedDAO answerWeightDAO;
+	AnswerDAO answerImplDAO;
 	
 	@Override
 	@Transactional
-	public void save(AnswerWeightedImpl answerWeightedImpl) {
-		answerWeightDAO.save(answerWeightedImpl);
+	public void save(Answer answer) {
+		answerImplDAO.save(answer);
 
 	}
 
@@ -27,7 +27,7 @@ public class AnswerWeightedServiceImpl implements AnswerWeightedService {
 	@Transactional
 	public List<Answer> findAll() {
 		// TODO Auto-generated method stub
-		return answerWeightDAO.findAll();
+		return answerImplDAO.findAll();
 	}
 
 }

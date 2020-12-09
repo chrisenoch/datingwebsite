@@ -20,8 +20,7 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.service.AnswerImplService;
-import com.chrisenochdatingsite.Dating.site.service.AnswerWeightedService;
+import com.chrisenochdatingsite.Dating.site.service.AnswerService;
 import com.chrisenochdatingsite.Dating.site.service.BatchUpdateService;
 import com.chrisenochdatingsite.Dating.site.service.CategoryService;
 import com.chrisenochdatingsite.Dating.site.service.QuestionWithOptionsService;
@@ -34,26 +33,25 @@ public class HomeController {
 	
 	CategoryService categoryService;
 	UserService userService;
-	AnswerWeightedService answerWeightedService;
+	AnswerService answerService;
 	QuestionWithOptionsService questionWithOptionsService;
 	SubmittedAnswerMultiService submittedAnswerMultiService;
 	UtilService utilService;
 	BatchUpdateService batchUpdateService;
-	AnswerImplService answerImplService;
+
 	
 	@Autowired
 	public HomeController(CategoryService categoryService, UserService userService
-			, AnswerWeightedService answerWeightedService, QuestionWithOptionsService questionWithOptionsService
+			,  QuestionWithOptionsService questionWithOptionsService
 			, SubmittedAnswerMultiService submittedAnswersMultiService, UtilService utilService
-			, BatchUpdateService batchUpdateService, AnswerImplService answerImplService) {
+			, BatchUpdateService batchUpdateService, AnswerService answerService) {
 		this.categoryService = categoryService;
 		this.userService = userService;
-		this.answerWeightedService = answerWeightedService;
 		this.questionWithOptionsService = questionWithOptionsService;
 		this.submittedAnswerMultiService = submittedAnswersMultiService;
 		this.utilService = utilService;
 		this.batchUpdateService = batchUpdateService;
-		this.answerImplService = answerImplService;
+		this.answerService = answerService;
 	}
 	
 	@GetMapping("/batchupdate")
@@ -120,14 +118,14 @@ public class HomeController {
 		AnswerWeightedImpl answerWeightedImpl2 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
 		AnswerWeightedImpl answerWeightedImpl3 = new AnswerWeightedImpl("Swimming", AnswerWeight.SIX);
 
-		answerWeightedService.save(answerWeightedImpl );
-		answerWeightedService.save(answerWeightedImpl2 );
-		answerWeightedService.save(answerWeightedImpl3 );
+		answerService.save(answerWeightedImpl );
+		answerService.save(answerWeightedImpl2 );
+		answerService.save(answerWeightedImpl3 );
 		
 		System.out.println("AnswerWeight int value: " + answerWeightedImpl.getAnswerWeight().getWeight());
 		System.out.println("mod test: " + 0%7);
 		
-		List<Answer> answers = answerWeightedService.findAll();
+		List<Answer> answers = answerService.findAll();
 		System.out.println(answers);
 
 		return "index";
@@ -140,9 +138,9 @@ public class HomeController {
 		AnswerImpl ans = new AnswerImpl("Basketball");
 		AnswerImpl ans2 = new AnswerImpl("Football");
 		AnswerImpl ans3 = new AnswerImpl("Swimming");
-		answerImplService.save(ans);
-		answerImplService.save(ans2);
-		answerImplService.save(ans3);
+		answerService.save(ans);
+		answerService.save(ans2);
+		answerService.save(ans3);
 
 		return "index";
 	}
@@ -152,7 +150,7 @@ public class HomeController {
 		System.out.println("Inside addansweightedwrong");
 		
 		AnswerWeightedImpl ans = new AnswerWeightedImpl("Polo");
-		answerWeightedService.save(ans);
+		answerService.save(ans);
 
 		return "index";
 	}
@@ -249,9 +247,9 @@ public class HomeController {
 		AnswerWeightedImpl aWFootball = new AnswerWeightedImpl("Football", AnswerWeight.FOUR);
 		AnswerWeightedImpl aWSwimming = new AnswerWeightedImpl("Swimming", AnswerWeight.SIX);
 		
-		answerWeightedService.save(aWBasketball);
-		answerWeightedService.save(aWFootball);
-		answerWeightedService.save(aWSwimming);
+		answerService.save(aWBasketball);
+		answerService.save(aWFootball);
+		answerService.save(aWSwimming);
 		
 		var submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(q, user, Arrays.asList(aWBasketball
 				, aWFootball, aWSwimming));
