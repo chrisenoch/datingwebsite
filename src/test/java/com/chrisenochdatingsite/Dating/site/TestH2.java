@@ -84,15 +84,12 @@ public class TestH2 {
 		categoryService.save(category);
 		List<Category> categories = categoryService.findAll();
 		
-		//Order of retrieval from MySQL not guarenteed so convert list to map.
-		Map<String, Category> categoriesMap = categories.stream().collect(Collectors.toMap(a-> a.getCategory(), a-> a));
-
-		//Map<String, Category> categoriesMap = categories.stream().map(a-> categoriesMap.put(a.getCategory(), a)).collect(Collectors.toMap());
-
-		Category lifestyle = categoriesMap.get("Lifestyle");
+		//Order of retrieval from MySQL not guarenteed so sort list.
+		List<Category> categoriesSortedByIdAsc = categories.stream()
+				.sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
 		
-		assertEquals("Lifestyle", lifestyle.getCategory());
-		assertEquals(2, categoriesMap.size());
+		assertEquals("Lifestyle", categoriesSortedByIdAsc.get(1).getCategory());
+		assertEquals(2, categoriesSortedByIdAsc.size());
 	}
 	
 	@Test
