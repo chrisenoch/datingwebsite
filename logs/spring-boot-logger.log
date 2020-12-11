@@ -1228,3 +1228,59 @@ org.hibernate.ObjectNotFoundException: No row with the given identifier exists: 
 2020-12-11 16:07:23,455 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
 2020-12-11 16:07:23,469 INFO org.springframework.boot.StartupInfoLogger [main] Started TestH2 in 5.966 seconds (JVM running for 7.412)
 2020-12-11 16:07:24,544 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-11 16:28:43,571 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestH2 on LAPTOP-N48LAB97 with PID 14156 (started by chris in D:\Dating-site)
+2020-12-11 16:28:43,576 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-11 16:28:44,793 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-11 16:28:44,852 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 44ms. Found 0 JPA repository interfaces.
+2020-12-11 16:28:45,885 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-11 16:28:46,120 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-11 16:28:46,389 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-11 16:28:47,259 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-11 16:28:47,466 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-11 16:28:48,043 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-11 16:28:48,409 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-11 16:28:48,494 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-11 16:28:49,019 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-11 16:28:49,023 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-11 16:28:49,034 INFO org.springframework.boot.StartupInfoLogger [main] Started TestH2 in 5.969 seconds (JVM running for 7.471)
+2020-12-11 16:28:50,000 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [main] SQL Error: 42122, SQLState: 42S22
+2020-12-11 16:28:50,001 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [main] Columna "FK_SUBMITTEDANSWERMULTIIMPL" no encontrada
+Column "FK_SUBMITTEDANSWERMULTIIMPL" not found; SQL statement:
+insert into submittedanswermultiimpl_answer (fk_submittedanswermultiimpl, fk_answer) values (?, ?) [42122-200]
+2020-12-11 16:28:50,036 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-11 16:29:40,780 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestH2 on LAPTOP-N48LAB97 with PID 14888 (started by chris in D:\Dating-site)
+2020-12-11 16:29:40,783 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-11 16:29:41,856 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-11 16:29:41,915 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 43ms. Found 0 JPA repository interfaces.
+2020-12-11 16:29:42,961 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-11 16:29:43,207 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-11 16:29:43,471 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-11 16:29:44,340 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-11 16:29:44,546 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-11 16:29:45,119 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-11 16:29:45,495 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-11 16:29:45,587 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-11 16:29:46,083 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-11 16:29:46,085 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-11 16:29:46,098 INFO org.springframework.boot.StartupInfoLogger [main] Started TestH2 in 5.876 seconds (JVM running for 7.374)
+2020-12-11 16:29:47,084 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [main] SQL Error: 42122, SQLState: 42S22
+2020-12-11 16:29:47,085 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [main] Columna "FK_SUBMITTEDANSWERMULTIIMPL" no encontrada
+Column "FK_SUBMITTEDANSWERMULTIIMPL" not found; SQL statement:
+insert into submittedanswermultiimpl_answer (fk_submittedanswermultiimpl, fk_answer) values (?, ?) [42122-200]
+2020-12-11 16:29:47,132 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-11 16:41:27,617 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestH2 on LAPTOP-N48LAB97 with PID 6940 (started by chris in D:\Dating-site)
+2020-12-11 16:41:27,619 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-11 16:41:28,693 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-11 16:41:28,763 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 54ms. Found 0 JPA repository interfaces.
+2020-12-11 16:41:29,847 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-11 16:41:30,107 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-11 16:41:30,379 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-11 16:41:31,289 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-11 16:41:31,502 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-11 16:41:32,068 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-11 16:41:32,424 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-11 16:41:32,515 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-11 16:41:33,044 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-11 16:41:33,047 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-11 16:41:33,065 INFO org.springframework.boot.StartupInfoLogger [main] Started TestH2 in 6.12 seconds (JVM running for 7.608)
+2020-12-11 16:41:34,131 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'

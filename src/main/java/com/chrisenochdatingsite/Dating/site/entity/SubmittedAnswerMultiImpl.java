@@ -40,8 +40,8 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	@ManyToMany(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}) 
 	@JoinTable(name = "submittedanswermultiimpl_answer",
-			joinColumns = {@JoinColumn(name = "fk_submittedanswermultiimpl")},
-			inverseJoinColumns = {@JoinColumn(name = "fk_answer")}		
+			joinColumns = {@JoinColumn(name = "SubmittedAnswerMultiImpl_id")},
+			inverseJoinColumns = {@JoinColumn(name = "selectedAnswers_id")}		
 			)
 	private Set<Answer> selectedAnswers; //Might need to include mappedBy here, but to abstract superclass? mappedBy using both answer types?
 	//private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText

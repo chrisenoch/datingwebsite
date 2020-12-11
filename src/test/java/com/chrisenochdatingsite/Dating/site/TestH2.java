@@ -266,7 +266,7 @@ public class TestH2 {
 		SubmittedAnswerMultiImpl submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(questionWithOptionsImpl, user, selectedAnswers);
 		
 //		//Act
-		submittedAnswerMultiService.save( submittedAnswerMultiImpl);	
+		submittedAnswerMultiService.save(submittedAnswerMultiImpl);	
 		List<SubmittedAnswerMultiImpl> submittedAnswerMultiImpls = submittedAnswerMultiService.findAll();
 		
 		//Order of retrieval from MySQL not guarenteed so sort list by id
