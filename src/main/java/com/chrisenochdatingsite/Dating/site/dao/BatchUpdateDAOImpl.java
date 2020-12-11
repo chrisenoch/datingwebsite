@@ -24,15 +24,15 @@ public class BatchUpdateDAOImpl implements BatchUpdateDAO {
 	
 	//Change to selecting only those that have trial membership .. and paid member = no?
 	@Override
-	public void batchUpdateMembershipType() {
+	public void batchUpdateMembershipType(MembershipType typeToBeUpdated, MembershipType newType) {
 		Session session = sessionFactory.getCurrentSession();
 		List<User> users = session.createQuery(
 		        "select distinct u " +
-		        "from User u where MembershipType = :MembershipType", User.class).setParameter("MembershipType", "TRIAL")
+		        "from User u where MembershipType = :MembershipType", User.class).setParameter("MembershipType", typeToBeUpdated.toString())
 		    .list();
 			
 		for (User user : users) {
-			user.setMembershipType(MembershipType.BASIC);
+			user.setMembershipType(newType);
 			System.out.println("End of a cycle");
 		}
 	}

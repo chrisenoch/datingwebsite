@@ -2,7 +2,9 @@ package com.chrisenochdatingsite.Dating.site;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -23,14 +25,18 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
+import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
 import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
+import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.AnswerService;
+import com.chrisenochdatingsite.Dating.site.service.BatchUpdateService;
 import com.chrisenochdatingsite.Dating.site.service.CategoryService;
 import com.chrisenochdatingsite.Dating.site.service.QuestionWithOptionsService;
 import com.chrisenochdatingsite.Dating.site.service.SubmittedAnswerMultiService;
+import com.chrisenochdatingsite.Dating.site.service.UserService;
 import com.chrisenochdatingsite.Dating.site.service.UtilService;
 
 //@RunWith(SpringRunner.class)
@@ -45,16 +51,21 @@ public class TestH2 {
 	QuestionWithOptionsService questionWithOptionsService;
 	UtilService utilService;
 	SubmittedAnswerMultiService submittedAnswerMultiService; 
+	UserService userService;
+	BatchUpdateService batchUpdateService;
 	
 	@Autowired
 	public TestH2(CategoryService categoryService,  AnswerService answerService
 			, QuestionWithOptionsService questionWithOptionsService, UtilService utilService
-			, SubmittedAnswerMultiService submittedAnswerMultiService) {
+			, SubmittedAnswerMultiService submittedAnswerMultiService, UserService userService
+			, BatchUpdateService batchUpdateService) {
 		this.categoryService = categoryService;
 		this.answerService = answerService;
 		this.questionWithOptionsService = questionWithOptionsService;
 		this.utilService = utilService;
 		this.submittedAnswerMultiService =submittedAnswerMultiService;
+		this.userService = userService;
+		this.batchUpdateService = batchUpdateService;
 	}
 	
 	@Test
@@ -83,6 +94,41 @@ public class TestH2 {
 		assertEquals("Lifestyle", lifestyle.getCategory());
 		assertEquals(2, categoriesMap.size());
 	}
+	
+	@Test
+	@Order(1) 
+	public void getUser() {
+		List<User> users = userService.findAll();
+		
+		assertEquals("James", users.get(0).getFirstName());
+		assertEquals(2, users.get(0).getId());
+		assertEquals(7, users.size());
+	}
+	
+	@Test
+	@Order(2) 
+	public void saveUser() {
+		User user = new User("Jim", "Jackson", "jim@yahoo.com", LocalDate.of(1989,  12,  2), Sex.MALE, MembershipType.TRIAL);
+		userService.save(user);
+		List<User> users = userService.findAll();
+		
+		//Order of retrieval from MySQL not guarenteed so sort list
+		List<User> usersSortedByIdAsc = users.stream().sorted(Comparator.comparing(User::getId)
+				).collect(Collectors.toList());
+		
+		assertEquals("Jim", usersSortedByIdAsc.get(7).getFirstName());
+		assertEquals(8, users.size());
+	}
+	
+	public void getReference() {
+		User user = utilService.getReference(User.class, 3);
+		User user2 = utilService.getReference(User.class, 3);
+		
+		assertEquals("Pete", user.getFirstName());
+		assertTrue(user.equals(user2));
+
+	}
+	
 	
 	@Test
 	@Order(1) 
@@ -247,8 +293,16 @@ public class TestH2 {
 	@Test
 	@Order(2) 
 	public void saveSubmittedAnswerMultiServiceImpl() {
-		
 		//Arrange
+		
+//		Answer answer = utilService.getReference(Answer.class, 10L);
+//		Answer answer2 = utilService.getReference(Answer.class, 11L);
+//		
+//		Set<Answer> answers2 = new HashSet<>();
+//		answers2.add(answer);
+//		answers2.add(answer2);
+		
+		
 		Answer aW1 =  answerService.getById(10L);
 		Answer aW2 =  answerService.getById(11L);
 		Answer aW3 =  answerService.getById(12L);
@@ -281,6 +335,14 @@ public class TestH2 {
 			
 	}
 	
-	
+	@Test
+	public void batchUpdate() {
+		//batchUpdateService.batchUpdateMembershipType("BASIC");
+		batchUpdateService.batchUpdateMembershipType(MembershipType.TRIAL, MembershipType.BASIC);
+		
+		List<User> users = userService.findAll();
+		
+		assertEquals(MembershipType.BASIC, users.get(0).getMembershipType());	
+	}
 		
 }
