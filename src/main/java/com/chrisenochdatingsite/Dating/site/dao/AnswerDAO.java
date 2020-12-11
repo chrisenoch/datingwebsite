@@ -10,5 +10,7 @@ public interface AnswerDAO {
 	public void save(Answer answer);
 	
 	public List<Answer> findAll();
+	
+	public Answer getById(long id);
 
 }

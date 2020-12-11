@@ -16,6 +16,7 @@ public class SubmittedAnswerMultiDAOImpl implements SubmittedAnswerMultiDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public List<SubmittedAnswerMultiImpl> findAll() {
 
 		// get the current hibernate session

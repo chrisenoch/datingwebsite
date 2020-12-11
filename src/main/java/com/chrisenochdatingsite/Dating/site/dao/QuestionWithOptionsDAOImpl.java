@@ -17,6 +17,7 @@ public class QuestionWithOptionsDAOImpl implements QuestionWithOptionsDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public void save(QuestionWithOptionsImpl questionWithOptionsImpl) {
 
 		// get the current hibernate session
@@ -26,6 +27,7 @@ public class QuestionWithOptionsDAOImpl implements QuestionWithOptionsDAO {
 		currentSession.saveOrUpdate(questionWithOptionsImpl);
 	}
 	
+	@Override
 	public List<Question> findAll() {
 
 		// get the current hibernate session

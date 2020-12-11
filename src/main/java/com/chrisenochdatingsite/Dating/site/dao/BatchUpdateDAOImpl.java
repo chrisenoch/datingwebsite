@@ -23,6 +23,7 @@ public class BatchUpdateDAOImpl implements BatchUpdateDAO {
 	//loop and update
 	
 	//Change to selecting only those that have trial membership .. and paid member = no?
+	@Override
 	public void batchUpdateMembershipType() {
 		Session session = sessionFactory.getCurrentSession();
 		List<User> users = session.createQuery(

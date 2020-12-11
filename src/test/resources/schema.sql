@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `submittedanswermultiimpl_answer`;
 CREATE TABLE `submittedanswermultiimpl_answer` (
   `SubmittedAnswerMultiImpl_id` bigint NOT NULL,
   `selectedAnswers_id` bigint NOT NULL,
-  UNIQUE KEY `UK_s4um8aslw2bkha2k234kr7q9b` (`selectedAnswers_id`)
+  PRIMARY KEY (`SubmittedAnswerMultiImpl_id`,`selectedAnswers_id`)
 );
 
 INSERT INTO `submittedanswermultiimpl_answer` VALUES (17,14),(17,15),(17,16);

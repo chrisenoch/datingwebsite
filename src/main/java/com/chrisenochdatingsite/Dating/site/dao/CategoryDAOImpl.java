@@ -18,6 +18,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public void save(Category theCategory) {
 
 		// get the current hibernate session
@@ -27,6 +28,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		currentSession.saveOrUpdate(theCategory);
 	}
 	
+	@Override
 	public List<Category> findAll() {
 
 		// get the current hibernate session

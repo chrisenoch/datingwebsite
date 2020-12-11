@@ -3,6 +3,7 @@ package com.chrisenochdatingsite.Dating.site.controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,9 +160,9 @@ public class HomeController {
 	public String addQOpsWithrefs() {
 		System.out.println("Inside addqopswithrefs");
 		
-		Answer aW1 =  utilService.getReference(Answer.class, 10L);
-		Answer aW2 =  utilService.getReference(Answer.class, 11L);
-		Answer aW3 =  utilService.getReference(Answer.class, 12L);
+		Answer aW1 =  utilService.getReference(Answer.class, 9L);
+		Answer aW2 =  utilService.getReference(Answer.class, 10L);
+		Answer aW3 =  utilService.getReference(Answer.class, 11L);
 		
 		Category category = utilService.getReference(Category.class, 1);
 		
@@ -251,8 +252,8 @@ public class HomeController {
 		answerService.save(aWFootball);
 		answerService.save(aWSwimming);
 		
-		var submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(q, user, Arrays.asList(aWBasketball
-				, aWFootball, aWSwimming));
+		var submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(q, user, new HashSet<>(Arrays.asList(aWBasketball
+				, aWFootball, aWSwimming)));
 		submittedAnswerMultiService.save(submittedAnswerMultiImpl);
 
 

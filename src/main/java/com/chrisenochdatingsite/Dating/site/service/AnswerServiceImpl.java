@@ -26,8 +26,14 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	@Transactional
 	public List<Answer> findAll() {
-		// TODO Auto-generated method stub
 		return answerImplDAO.findAll();
+	}
+
+	@Override
+	@Transactional
+	public Answer getById(long id) {
+
+		return  answerImplDAO.getById(id);
 	}
 
 }

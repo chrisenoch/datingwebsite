@@ -1,7 +1,8 @@
  package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,8 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswersMulti;
 
@@ -35,9 +37,13 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
-			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	private List<Answer> selectedAnswers; //Might need to include mappedBy here, but to abstract superclass? mappedBy using both answer types?
+	@ManyToMany(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
+			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}) 
+	@JoinTable(name = "submittedanswermultiimpl_answer",
+			joinColumns = {@JoinColumn(name = "fk_submittedanswermultiimpl")},
+			inverseJoinColumns = {@JoinColumn(name = "fk_answer")}		
+			)
+	private Set<Answer> selectedAnswers; //Might need to include mappedBy here, but to abstract superclass? mappedBy using both answer types?
 	//private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText
 
 	public long getId() {
@@ -60,17 +66,17 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 		this.user = user;
 	}
 	
-	public List<Answer> getSelectedAnswers() {
+	public Set<Answer> getSelectedAnswers() {
 		return selectedAnswers;
 	}
-	public void setSelectedAnswers(List<Answer> selectedAnswers) {
+	public void setSelectedAnswers(Set<Answer> selectedAnswers) {
 		this.selectedAnswers = selectedAnswers;
 	}
 
 	public SubmittedAnswerMultiImpl() {
 		super();
 	}
-	public SubmittedAnswerMultiImpl(Question question, User user, List<Answer> selectedAnswers) {
+	public SubmittedAnswerMultiImpl(Question question, User user, Set<Answer> selectedAnswers) {
 		this.question = question;
 		this.user = user;
 		this.selectedAnswers = selectedAnswers; 
@@ -80,7 +86,7 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 		this.question = question;
 		this.user = user;
 		
-		this.selectedAnswers = Arrays.asList(selectedAnswers);				
+		this.selectedAnswers = Arrays.stream(selectedAnswers).collect(Collectors.toSet());	
 	}
 	
 	

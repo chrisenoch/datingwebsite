@@ -3,11 +3,12 @@ package com.chrisenochdatingsite.Dating.site;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -22,12 +23,10 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
-import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
 import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
-import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.service.AnswerService;
 import com.chrisenochdatingsite.Dating.site.service.CategoryService;
 import com.chrisenochdatingsite.Dating.site.service.QuestionWithOptionsService;
@@ -250,18 +249,23 @@ public class TestH2 {
 	public void saveSubmittedAnswerMultiServiceImpl() {
 		
 		//Arrange
-		Answer aW1 =  utilService.getReference(Answer.class, 10L);
-		Answer aW2 =  utilService.getReference(Answer.class, 11L);
-		Answer aW3 =  utilService.getReference(Answer.class, 12L);
+		Answer aW1 =  answerService.getById(10L);
+		Answer aW2 =  answerService.getById(11L);
+		Answer aW3 =  answerService.getById(12L);
+		
+		List<Answer> answers = Arrays.asList(aW1, aW2, aW3);
+		Set<Answer> selectedAnswers = new HashSet<>();
+		selectedAnswers.add(aW1);
+		selectedAnswers.add(aW2);
+		selectedAnswers.add(aW3);
 
-		List<Answer> selectedAnswers = Arrays.asList(aW1, aW2, aW3);
 		Category category = utilService.getReference(Category.class, 1);
 		Question questionWithOptionsImpl = utilService.getReference(Question.class, 13);
 		User user = utilService.getReference(User.class, 4L);
 			
 		SubmittedAnswerMultiImpl submittedAnswerMultiImpl = new SubmittedAnswerMultiImpl(questionWithOptionsImpl, user, selectedAnswers);
 		
-		//Act
+//		//Act
 		submittedAnswerMultiService.save( submittedAnswerMultiImpl);	
 		List<SubmittedAnswerMultiImpl> submittedAnswerMultiImpls = submittedAnswerMultiService.findAll();
 		

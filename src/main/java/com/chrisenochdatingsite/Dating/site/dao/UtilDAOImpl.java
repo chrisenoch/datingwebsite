@@ -11,6 +11,7 @@ public class UtilDAOImpl implements UtilDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public <T> T getReference(Class<T> entityClass, Object primaryKey) {
 		
 		// get the current hibernate session

@@ -17,6 +17,7 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public void save(User theUser) {
 
 		// get the current hibernate session
@@ -26,6 +27,7 @@ public class UserDAOImpl implements UserDAO {
 		currentSession.saveOrUpdate(theUser);
 	}
 	
+	@Override
 	public List<User> findAll() {
 
 		// get the current hibernate session

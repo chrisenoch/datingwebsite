@@ -17,6 +17,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public void save(Answer answer) {
 
 		// get the current hibernate session
@@ -26,6 +27,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 		currentSession.saveOrUpdate(answer);
 	}
 	
+	@Override
 	public List<Answer> findAll() {
 
 		// get the current hibernate session
@@ -40,6 +42,19 @@ public class AnswerDAOImpl implements AnswerDAO {
 		
 		// return the results		
 		return answers;
+	}
+	
+	@Override
+	public Answer getById(long id) {
+
+		// get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		// create a query
+		Answer answer = currentSession.get(Answer.class, id);
+		
+		// return the results		
+		return answer;
 	}
 	
 
