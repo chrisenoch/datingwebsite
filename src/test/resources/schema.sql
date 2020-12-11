@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS `Category`;
 CREATE TABLE Category (
   id INTEGER NOT NULL AUTO_INCREMENT,
   `category` varchar(255) DEFAULT NULL,
@@ -8,6 +8,7 @@ CREATE TABLE Category (
 
 INSERT INTO `category` VALUES (1,'Movies');
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `dateOfBirth` date DEFAULT NULL,

@@ -157,7 +157,7 @@ public class HomeController {
 	
 	@GetMapping("/addqopswithrefs")
 	public String addQOpsWithrefs() {
-		System.out.println("Inside add answerweighted");
+		System.out.println("Inside addqopswithrefs");
 		
 		Answer aW1 =  utilService.getReference(Answer.class, 10L);
 		Answer aW2 =  utilService.getReference(Answer.class, 11L);
@@ -179,7 +179,7 @@ public class HomeController {
 	
 	@GetMapping("/addqops")
 	public String addQOps() {
-		System.out.println("Inside add answerweighted");
+		System.out.println("Inside addqops");
 
 		Category category = utilService.getReference(Category.class, 1);
 
@@ -206,7 +206,7 @@ public class HomeController {
 	
 	@GetMapping("/checkforeach") //Add as a test method
 	public String checkforeach() {
-		System.out.println("Inside add answerweighted");
+		System.out.println("Inside checkforeach");
 
 		Category category = utilService.getReference(Category.class, 1);
 		

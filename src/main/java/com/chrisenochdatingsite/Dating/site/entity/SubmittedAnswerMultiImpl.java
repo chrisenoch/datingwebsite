@@ -66,6 +66,10 @@ public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements Sub
 	public void setSelectedAnswers(List<Answer> selectedAnswers) {
 		this.selectedAnswers = selectedAnswers;
 	}
+
+	public SubmittedAnswerMultiImpl() {
+		super();
+	}
 	public SubmittedAnswerMultiImpl(Question question, User user, List<Answer> selectedAnswers) {
 		this.question = question;
 		this.user = user;

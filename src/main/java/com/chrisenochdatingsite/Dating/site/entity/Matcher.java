@@ -388,7 +388,7 @@ public class Matcher {
 					//Loop through and compare scores and add to right category.
 					
 					for (Map.Entry<String, Answer> map : searchingUserSelectedAnswers.entrySet()) {
-						Answer ans = map.getValue();
+						Answer ans = map.getValue();   
 						
 						int convertedScore;
 						if (ans instanceof AnswerWeightedImpl) {
