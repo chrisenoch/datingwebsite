@@ -2,13 +2,11 @@ package com.chrisenochdatingsite.Dating.site;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
+
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
-import com.chrisenochdatingsite.Dating.site.entity.Category;
-import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
 
 public class AnswerSingleTest {
 	

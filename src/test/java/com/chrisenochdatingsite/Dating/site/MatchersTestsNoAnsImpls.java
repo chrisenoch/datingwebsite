@@ -2,10 +2,8 @@ package com.chrisenochdatingsite.Dating.site;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -16,15 +14,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher;
-import com.chrisenochdatingsite.Dating.site.entity.Matcher.ConvertToPercent;
+import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
-import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
+import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 
 @ExtendWith( UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver.class)
@@ -48,11 +45,18 @@ public class MatchersTestsNoAnsImpls {
 	
 	
 	@BeforeEach
-	void init(Map<String, User> usersNoAnsImpls) {
+	void init(List<User> usersNoAnsImpls) {
 		
-		this.daveNoAnsImpls = usersNoAnsImpls.get("Dave");
-		this.janeNoAnsImpls = usersNoAnsImpls.get("Jane");
-		this.peterNoAnsImpls = usersNoAnsImpls.get("Peter");
+		this.daveNoAnsImpls = usersNoAnsImpls.get(0);
+		this.janeNoAnsImpls = usersNoAnsImpls.get(1);
+		this.peterNoAnsImpls = usersNoAnsImpls.get(2);
+		
+		//Debugging
+		System.out.println("Print user: " +  daveNoAnsImpls);
+		List<SubmittedAnswer> davesSubmittedAnswers = daveNoAnsImpls.getSubmittedAnswers();
+		System.out.println("daves submitetd answers");
+		davesSubmittedAnswers.forEach(System.out::println);
+				
 		
 		Map<Category, Map<Question, Map<String, Integer>>> emptyMap = new HashMap<>();
 		
@@ -81,35 +85,27 @@ public class MatchersTestsNoAnsImpls {
 		var action =  new AnswerWeightedImpl("Action");
 		var romance = new AnswerWeightedImpl("Romance");
 		
-		Map<String, Answer> movieAnswerOptions = new HashMap<>();
-		movieAnswerOptions.put(horror.getAnswerText(), horror);
-		movieAnswerOptions.put(action.getAnswerText(), action);
-		movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
+		List<Answer> movieAnswerOptions = Arrays.asList(horror, action, romance);
 
 		var basketball = new AnswerWeightedImpl("Basketball");
 		var football = new AnswerWeightedImpl("Football");
 		var swimming = new AnswerWeightedImpl("Swimming");
 			
-		Map<String, Answer> sportsAnswerOptions = new HashMap<>();
-		sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
-		sportsAnswerOptions.put(football.getAnswerText(), football);
-		sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
+		List<Answer> sportsAnswerOptions = Arrays.asList(basketball, football, swimming);
 		
 		var hiking = 	new AnswerWeightedImpl("Hiking");
 		var sightseeing =  new AnswerWeightedImpl("Sightseeing");
 		var camping =  new AnswerWeightedImpl("Camping");
 
-		Map<String, Answer> travelAnswerOptions = new HashMap<>();
-		travelAnswerOptions.put(hiking.getAnswerText(), hiking);
-		travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
-		travelAnswerOptions.put(camping.getAnswerText(), camping);
+		List<Answer> travelAnswerOptions = Arrays.asList(hiking, sightseeing, camping);
+				
 		
 		this.questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
-				, movieAnswerOptions, movies);
+				,movies, movieAnswerOptions);
 		this.questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
-				, sportsAnswerOptions, sports);
+				 ,sports, sportsAnswerOptions);
 		this.questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
-				, travelAnswerOptions, travel);
+				,travel, travelAnswerOptions);
 		
 	}
 	

@@ -32,6 +32,11 @@ public class AnswerWeightedImpl extends Answer{
 		super(answerText);
 		this.answerWeight = answerWeight;
 	}
+	
+	public AnswerWeightedImpl(long id, String answerText, AnswerWeight answerWeight) {
+		super(id, answerText);
+		this.answerWeight = answerWeight;
+	}
 
 	@Override
 	public String toString() {

@@ -2,20 +2,21 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
+import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 
 public class MatcherPractice {
 	
-	//private static Set<SubmittedAnswer> init()
+	//private static Set<SubmittedAnswer> init() 
 			private static Map<String, User> init() {
 				
 				Category movies = new Category("Movies");
@@ -29,40 +30,31 @@ public class MatcherPractice {
 				var action =  new AnswerWeightedImpl("Action");
 				var romance = new AnswerWeightedImpl("Romance");
 				
-				Map<String, Answer> movieAnswerOptions = new HashMap<>();
-				movieAnswerOptions.put(horror.getAnswerText(), horror);
-				movieAnswerOptions.put(action.getAnswerText(), action);
-				movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
+				List<Answer> movieAnswerOptions = Arrays.asList(horror, action, romance);
 
 				var basketball = new AnswerWeightedImpl("Basketball");
 				var football = new AnswerWeightedImpl("Football");
 				var swimming = new AnswerWeightedImpl("Swimming");
 					
-				Map<String, Answer> sportsAnswerOptions = new HashMap<>();
-				sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
-				sportsAnswerOptions.put(football.getAnswerText(), football);
-				sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
+				List<Answer> sportsAnswerOptions = Arrays.asList(basketball, football, swimming);	
 				
 				var hiking = 	new AnswerWeightedImpl("Hiking");
 				var sightseeing =  new AnswerWeightedImpl("Sightseeing");
 				var camping =  new AnswerWeightedImpl("Camping");
 		
-				Map<String, Answer> travelAnswerOptions = new HashMap<>();
-				travelAnswerOptions.put(hiking.getAnswerText(), hiking);
-				travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
-				travelAnswerOptions.put(camping.getAnswerText(), camping);
+				List<Answer> travelAnswerOptions = Arrays.asList(hiking, sightseeing, camping);
 				
 				//Set up questions objects ready to be inserted into SubmitAnswer constructors
 				var questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
-						, movieAnswerOptions, movies);
+						, movies, movieAnswerOptions);
 				var questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
-						, sportsAnswerOptions, sports);
+						, sports, sportsAnswerOptions);
 				var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
-						, travelAnswerOptions, travel);
+						, travel, travelAnswerOptions);
 				
-				User dave = new User(1L, "Dave", "Smith", "dave@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
-				User jane = new User(2L, "Jane", "Jones", "jane@yahoo.com", LocalDate.of(1984,  10,  24), Sex.FEMALE);
-				User peter = new User(3L, "Peter", "Hanks", "peter@yahoo.com", LocalDate.of(1982,  8,  22), Sex.MALE);
+				User dave = new User(1L, "Dave", "Smith", "dave@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE, MembershipType.TRIAL);
+				User jane = new User(2L, "Jane", "Jones", "jane@yahoo.com", LocalDate.of(1984,  10,  24), Sex.FEMALE, MembershipType.TRIAL);
+				User peter = new User(3L, "Peter", "Hanks", "peter@yahoo.com", LocalDate.of(1982,  8,  22), Sex.MALE, MembershipType.TRIAL);
 				
 				//USER 1
 				//Create answer objects with weight
@@ -75,21 +67,18 @@ public class MatcherPractice {
 				var movieChoiceDave2 = new AnswerImpl(2, "Action");
 				var movieChoiceDave3 = new AnswerImpl(3,"Romance");
 				
-				var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
-				var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-				var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
-				var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
-				var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
-				var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
+				var sportsChoiceDave1 = new AnswerWeightedImpl(4, "Football", AnswerWeight.THREE);
+				var sportsChoiceDave2 = new AnswerWeightedImpl(5, "Swimming", AnswerWeight.ONE);
+				var sportsChoiceDave3 = new AnswerWeightedImpl(6, "Basketball", AnswerWeight.SIX);
+				var travelStyleChoiceDave1= new AnswerWeightedImpl(7, "Camping", AnswerWeight.TWO);
+				var travelStyleChoiceDave2= new AnswerWeightedImpl(8, "Hiking", AnswerWeight.FIVE);
+				var travelStyleChoiceDave3= new AnswerWeightedImpl(9, "Sightseeing", AnswerWeight.ONE);
 				
 				var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2);
 				var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
 				var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
 				
-				Map<String, SubmittedAnswer> daveAns = new HashMap<>();
-				daveAns.put(submittedAnsDaveMovies1.getQuestion().getQuestionText(), submittedAnsDaveMovies1);
-				daveAns.put(submittedAnsDaveSports1.getQuestion().getQuestionText(), submittedAnsDaveSports1);
-				daveAns.put(submittedAnsDaveTravel1.getQuestion().getQuestionText(), submittedAnsDaveTravel1);
+				List<SubmittedAnswer> daveAns = Arrays.asList(submittedAnsDaveMovies1, submittedAnsDaveSports1,submittedAnsDaveTravel1 );
 				
 				dave.setSubmittedAnswers(daveAns);
 				
@@ -112,10 +101,7 @@ public class MatcherPractice {
 				var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
 				var submittedAnsJaneTravel1 = new SubmittedAnswerMultiImpl(questionTravel, jane, travelStyleChoiceJane1, travelStyleChoiceJane2, travelStyleChoiceJane3);
 	 			
-				Map<String, SubmittedAnswer> janeAns = new HashMap<>();
-				janeAns.put(submittedAnsJaneMovies1.getQuestion().getQuestionText(), submittedAnsJaneMovies1);
-				janeAns.put(submittedAnsJaneSports1.getQuestion().getQuestionText(), submittedAnsJaneSports1);
-				janeAns.put(submittedAnsJaneTravel1.getQuestion().getQuestionText(), submittedAnsJaneTravel1 );
+				List<SubmittedAnswer> janeAns = Arrays.asList(submittedAnsJaneMovies1, submittedAnsJaneSports1,submittedAnsJaneTravel1 );	
 				
 				jane.setSubmittedAnswers(janeAns); 
 				
@@ -128,22 +114,19 @@ public class MatcherPractice {
 				var movieChoicePeter3 = new AnswerImpl(3, "Romance");
 				
 		
-				var sportsChoicePeter1 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-				var sportsChoicePeter2 = new AnswerWeightedImpl("Football", AnswerWeight.FIVE);
-				var sportsChoicePeter3 = new AnswerWeightedImpl("Basketball", AnswerWeight.FOUR);
+				var sportsChoicePeter1 = new AnswerWeightedImpl(10, "Swimming", AnswerWeight.ONE);
+				var sportsChoicePeter2 = new AnswerWeightedImpl(11, "Football", AnswerWeight.FIVE);
+				var sportsChoicePeter3 = new AnswerWeightedImpl(12, "Basketball", AnswerWeight.FOUR);
 				
-				var travelStyleChoicePeter1 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.SIX);
-				var travelStyleChoicePeter2 = new AnswerWeightedImpl("Camping", AnswerWeight.SIX);
-				var travelStyleChoicePeter3 = new AnswerWeightedImpl("Hiking", AnswerWeight.THREE);
+				var travelStyleChoicePeter1 = new AnswerWeightedImpl(13, "Sightseeing", AnswerWeight.SIX);
+				var travelStyleChoicePeter2 = new AnswerWeightedImpl(14, "Camping", AnswerWeight.SIX);
+				var travelStyleChoicePeter3 = new AnswerWeightedImpl(15, "Hiking", AnswerWeight.THREE);
 				
 				var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter, movieChoicePeter2, movieChoicePeter3);
 				var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 				var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 				
-				Map<String, SubmittedAnswer> peterAns = new HashMap<>();
-				peterAns.put(submittedAnsPeterMovies1.getQuestion().getQuestionText(), submittedAnsPeterMovies1);
-				peterAns.put(submittedAnsPeterSports1 .getQuestion().getQuestionText(), submittedAnsPeterSports1);
-				peterAns.put(submittedAnsPeterTravel1.getQuestion().getQuestionText(), submittedAnsPeterTravel1);
+				List<SubmittedAnswer> peterAns = Arrays.asList(submittedAnsPeterMovies1, submittedAnsPeterSports1, submittedAnsPeterTravel1);				
 				
 				peter.setSubmittedAnswers(peterAns);
 				
@@ -182,36 +165,27 @@ public class MatcherPractice {
 				var action =  new AnswerWeightedImpl("Action"); 
 				var romance = new AnswerWeightedImpl("Romance");
 				
-				Map<String, Answer> movieAnswerOptions = new HashMap<>();
-				movieAnswerOptions.put(horror.getAnswerText(), horror);
-				movieAnswerOptions.put(action.getAnswerText(), action);
-				movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
+				List<Answer> movieAnswerOptions = Arrays.asList(horror, action, romance);
 
 				var basketball = new AnswerWeightedImpl("Basketball");
 				var football = new AnswerWeightedImpl("Football");
 				var swimming = new AnswerWeightedImpl("Swimming");
 					
-				Map<String, Answer> sportsAnswerOptions = new HashMap<>();
-				sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
-				sportsAnswerOptions.put(football.getAnswerText(), football);
-				sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
+				List<Answer> sportsAnswerOptions = Arrays.asList(basketball, football, swimming);
 				
 				var hiking = 	new AnswerWeightedImpl("Hiking");
 				var sightseeing =  new AnswerWeightedImpl("Sightseeing");
 				var camping =  new AnswerWeightedImpl("Camping");
 		
-				Map<String, Answer> travelAnswerOptions = new HashMap<>();
-				travelAnswerOptions.put(hiking.getAnswerText(), hiking);
-				travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
-				travelAnswerOptions.put(camping.getAnswerText(), camping);
+				List<Answer> travelAnswerOptions = Arrays.asList(hiking, sightseeing, camping);
 				
 				//Set up questions objects ready to be inserted into SubmitAnswer constructors
 				var questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
-						, movieAnswerOptions, movies);
+						, movies, movieAnswerOptions);
 				var questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
-						, sportsAnswerOptions, sports);
+						, sports, sportsAnswerOptions);
 				var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
-						, travelAnswerOptions, travel);
+						, travel, travelAnswerOptions);
 				
 				//Prepopulate map
 				//preSetMovieAnswers

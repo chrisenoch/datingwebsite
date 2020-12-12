@@ -55,11 +55,19 @@ public class HomeController {
 		this.answerService = answerService;
 	}
 	
+	
+	@GetMapping("/home")
+	public String home() {
+		System.out.println("Inside home");
+		
+		return "index";
+	}
+	
 	@GetMapping("/batchupdate")
 	public String batchUpdateMembershipType() {
 		System.out.println("Inside batchUpdateMembershipType");
 		
-		batchUpdateService.batchUpdateMembershipType();
+		batchUpdateService.batchUpdateMembershipType(MembershipType.TRIAL, MembershipType.TRIAL);
 		
 		return "index";
 	}

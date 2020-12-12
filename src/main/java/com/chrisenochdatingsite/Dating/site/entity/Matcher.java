@@ -377,15 +377,18 @@ public class Matcher {
 						continue; //Not all users will have submitted the same answers. If no matching SubmittedAnswer, go on to the next one.
 					}
 					
-					List<Answer> searchingUserSelectedAnswersList = searchingUserAnsMultiImpl.getSelectedAnswers();
-					List<Answer> comparedUserSelectedAnswersList = comparedUserAnsMultiImpl.getSelectedAnswers();
+					Set<Answer> searchingUserSelectedAnswersSet = searchingUserAnsMultiImpl.getSelectedAnswers();
+					Set<Answer> comparedUserSelectedAnswersSet = comparedUserAnsMultiImpl.getSelectedAnswers();
 					
 					Map<String, Answer> searchingUserSelectedAnswers = convertToAnswerTextAnswerMap(
-							searchingUserSelectedAnswersList);
+							searchingUserSelectedAnswersSet);
 					Map<String, Answer> comparedUserSelectedAnswers = convertToAnswerTextAnswerMap(
-							comparedUserSelectedAnswersList);
+							comparedUserSelectedAnswersSet);
 							
 					//Loop through and compare scores and add to right category.
+					//Debugging:
+					System.out.println("Contents of comparedUserSelectedAnswers");
+					 comparedUserSelectedAnswers .forEach((a, b)-> System.out.println(a + " " +  b));
 					
 					for (Map.Entry<String, Answer> map : searchingUserSelectedAnswers.entrySet()) {
 						Answer ans = map.getValue();   
@@ -393,16 +396,20 @@ public class Matcher {
 						int convertedScore;
 						if (ans instanceof AnswerWeightedImpl) {
 							
+							System.out.println("Instance of answerweightedimp"); //debugging
+							
 							AnswerWeightedImpl searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
 
 							AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) comparedUserSelectedAnswers.get(searchingUserAnsWeighted.getAnswerText());
 							int diffInWeight; 
-							if (comparedUserAnswerWeighted != null) {								
+							if (comparedUserAnswerWeighted != null) {		
+								System.out.println("doesn't equal null"); //debugging
 								diffInWeight = Math.abs(searchingUserAnsWeighted.getAnswerWeight().getWeight() - comparedUserAnswerWeighted.getAnswerWeight().getWeight());
 							
 								convertedScore = convertWeightedAns.apply(diffInWeight);
 							
 							} else {
+								System.out.println("equals null so continue"); 
 								//throw exception. Do custom exception? / continue loop?
 								continue;
 							}
@@ -439,10 +446,11 @@ public class Matcher {
 			return matchScoresByCategory;
 		}
 
-		private Map<String, Answer> convertToAnswerTextAnswerMap(List<Answer> userSelectedAnswersList) {
+		private Map<String, Answer> convertToAnswerTextAnswerMap(Set<Answer> userSelectedAnswersSet) {
 			Map<String, Answer> userSelectedAnswers = new HashMap<>();
-			for (Answer ans : userSelectedAnswersList) {
+			for (Answer ans : userSelectedAnswersSet) {
 				userSelectedAnswers.put(ans.getAnswerText(), ans);
+				System.out.println("Answer text: " + ans.getAnswerText());//debugging
 			}
 			return userSelectedAnswers;
 		}

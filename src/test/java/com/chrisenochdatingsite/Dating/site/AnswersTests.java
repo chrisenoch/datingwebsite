@@ -2,16 +2,16 @@ package com.chrisenochdatingsite.Dating.site;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Map;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
+import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
-import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
+
 
 public class AnswersTests {
 	
@@ -29,7 +29,7 @@ public class AnswersTests {
 		
 		var subAnsMultImpl = new SubmittedAnswerMultiImpl(question, user, ans1, ans2);
 		
-		Map<String, Answer> selectedAnswers = subAnsMultImpl.getSelectedAnswers();
+		Set<Answer> selectedAnswers = subAnsMultImpl.getSelectedAnswers();
 		
 		assertEquals(2,selectedAnswers.size());
 		
