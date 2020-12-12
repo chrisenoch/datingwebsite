@@ -23,11 +23,12 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher.ConvertToPercent;
+import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.interfaces.Answer;
-import com.chrisenochdatingsite.Dating.site.interfaces.Question;
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
+import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.util.NoAnswersSubmittedException;
 
 
@@ -49,19 +50,52 @@ public class MatchersTests {
 	private Question questionSports;
 	private Question questionTravel;
 	
-	private Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
+	Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
 	
 	
 	@BeforeEach
-	void init(Map<String, User> users) {
+	void init(List<User> users) {
 
-		this.dave = users.get("Dave");
-		this.peter = users.get("Peter");
-		this.jane = users.get("Jane");
+		this.dave = users.get(0);	
+		this.jane = users.get(1);
+		this.peter = users.get(2);
 		
 		this.matcher = new Matcher();
 		this.matcher.setSearchingUser(peter);
 		
+		//Setup for testing Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer
+		this.movies = new Category(1,  "Movies");
+		this.sports = new Category(2,  "Sports");
+		this.travel = new Category(3, "Travel");
+		
+		var horror = new AnswerWeightedImpl("Horror");
+		var action =  new AnswerWeightedImpl("Action");
+		var romance = new AnswerWeightedImpl("Romance");
+		
+		List<Answer> movieAnswerOptions = Arrays.asList(horror, action, romance);
+
+		var basketball = new AnswerWeightedImpl("Basketball");
+		var football = new AnswerWeightedImpl("Football");
+		var swimming = new AnswerWeightedImpl("Swimming");
+			
+		List<Answer> sportsAnswerOptions = Arrays.asList(basketball, football, swimming);
+		
+		var hiking = 	new AnswerWeightedImpl("Hiking");
+		var sightseeing =  new AnswerWeightedImpl("Sightseeing");
+		var camping =  new AnswerWeightedImpl("Camping");
+
+		List<Answer> travelAnswerOptions = Arrays.asList(hiking, sightseeing, camping);
+		
+		this.questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
+				, movies, movieAnswerOptions);
+		this.questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
+				, sports, sportsAnswerOptions);
+		this.questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
+				, travel, travelAnswerOptions);
+		
+		this.prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
+		
+
 		//One of the main methods to be tested in this class. 
 		try {
 			this.matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave
@@ -75,44 +109,7 @@ public class MatchersTests {
 			}
 
 		
-		//Setup for testing Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer
-		this.movies = new Category( "Movies");
-		this.sports = new Category( "Sports");
-		this.travel = new Category( "Travel");
 		
-		var horror = new AnswerWeightedImpl("Horror");
-		var action =  new AnswerWeightedImpl("Action");
-		var romance = new AnswerWeightedImpl("Romance");
-		
-		Map<String, Answer> movieAnswerOptions = new HashMap<>();
-		movieAnswerOptions.put(horror.getAnswerText(), horror);
-		movieAnswerOptions.put(action.getAnswerText(), action);
-		movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
-
-		var basketball = new AnswerWeightedImpl("Basketball");
-		var football = new AnswerWeightedImpl("Football");
-		var swimming = new AnswerWeightedImpl("Swimming");
-			
-		Map<String, Answer> sportsAnswerOptions = new HashMap<>();
-		sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
-		sportsAnswerOptions.put(football.getAnswerText(), football);
-		sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
-		
-		var hiking = 	new AnswerWeightedImpl("Hiking");
-		var sightseeing =  new AnswerWeightedImpl("Sightseeing");
-		var camping =  new AnswerWeightedImpl("Camping");
-
-		Map<String, Answer> travelAnswerOptions = new HashMap<>();
-		travelAnswerOptions.put(hiking.getAnswerText(), hiking);
-		travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
-		travelAnswerOptions.put(camping.getAnswerText(), camping);
-		
-		this.questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
-				, movieAnswerOptions, movies);
-		this.questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
-				, sportsAnswerOptions, sports);
-		this.questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
-				, travelAnswerOptions, travel);
 		
 	}
 	
@@ -240,8 +237,8 @@ public class MatchersTests {
 		
 	@Test
 	public void shouldThrowExceptionIfNoAnswersSubmitted() {
-		User noSubmittedAnswersHarold = new User("Harold", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
-		User noSubmittedAnswersMike = new User("Mike", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE);
+		User noSubmittedAnswersHarold = new User("Harold", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE.FEMALE, MembershipType.TRIAL);
+		User noSubmittedAnswersMike = new User("Mike", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE, MembershipType.TRIAL);
 		
 		
 		Exception exc = assertThrows(NoAnswersSubmittedException.class, ()-> matcher.matchPercentageByCategoryAndAnswer(noSubmittedAnswersHarold, dave
@@ -452,15 +449,14 @@ public class MatchersTests {
 		assertThat(totalMatchPercentageByUserForEveryCategory).doesNotContainKeys(peter);
 		assertThat(totalMatchPercentagesByUser).doesNotContainKeys(peter).containsKeys(dave, jane);
 		assertThat(movieCategory).doesNotContainKey(peter).containsKeys(dave, jane);
-		assertThat(sportsCategory).doesNotContainKey(peter).containsKeys(dave, jane);
-		assertThat(travelCategory).doesNotContainKey(peter).containsKeys(dave, jane);
+ 		assertThat(travelCategory).doesNotContainKey(peter).containsKeys(dave, jane);
 	}
 	
 	@Test
 	@DisplayName("Should ignore any user who hasn't submitted any answers and calculate the match scores for the others.")
 	public void shouldIgnoreUserIfUserHasNotSubmittedAnyAnswers() throws Exception {
 		//Arrange
-		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE);
+		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
 		List<User> users = Arrays.asList(peter, dave, jane, userWithNoAns);
 		
 		//Act
@@ -486,7 +482,7 @@ public class MatchersTests {
 	
 	public void shouldThrowNoAnswersSubmittedException() throws Exception {
 		//Arrange
-		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE);
+		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
 		List<User> users = Arrays.asList(peter, dave, jane, userWithNoAns);
 		
 		//Act
@@ -509,48 +505,13 @@ public class MatchersTests {
 
 	}
 	
-	public static Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {
-		Category movies = new Category("Movies");
-		Category sports = new Category("Sports");
-		Category travel = new Category("Travel");
-		
-		//Set up answer objects ready to insert into QuestionWithObjects object constructor
-		//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
-		//Weight selected at runtime by user.
-		var horror = new AnswerWeightedImpl("Horror");
-		var action =  new AnswerWeightedImpl("Action"); 
-		var romance = new AnswerWeightedImpl("Romance");
-		
-		Map<String, Answer> movieAnswerOptions = new HashMap<>();
-		movieAnswerOptions.put(horror.getAnswerText(), horror);
-		movieAnswerOptions.put(action.getAnswerText(), action);
-		movieAnswerOptions.put(romance.getAnswerText(), romance);  //Good candidate for test.
-
-		var basketball = new AnswerWeightedImpl("Basketball");
-		var football = new AnswerWeightedImpl("Football");
-		var swimming = new AnswerWeightedImpl("Swimming");
-			
-		Map<String, Answer> sportsAnswerOptions = new HashMap<>();
-		sportsAnswerOptions.put(basketball.getAnswerText(), basketball);
-		sportsAnswerOptions.put(football.getAnswerText(), football);
-		sportsAnswerOptions.put(swimming.getAnswerText(), swimming);
-		
-		var hiking = 	new AnswerWeightedImpl("Hiking");
-		var sightseeing =  new AnswerWeightedImpl("Sightseeing");
-		var camping =  new AnswerWeightedImpl("Camping");
-
-		Map<String, Answer> travelAnswerOptions = new HashMap<>();
-		travelAnswerOptions.put(hiking.getAnswerText(), hiking);
-		travelAnswerOptions.put(sightseeing.getAnswerText(), sightseeing);
-		travelAnswerOptions.put(camping.getAnswerText(), camping);
+	public  Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {
+		Category movies = new Category(1, "Movies");
+		Category sports = new Category(2, "Sports");
+		Category travel = new Category(3, "Travel");
 		
 		//Set up questions objects ready to be inserted into SubmitAnswer constructors
-		var questionMovies = new QuestionWithOptionsImpl("Please indicate how much you like the following movie genres."
-				, movieAnswerOptions, movies);
-		var questionSports = new QuestionWithOptionsImpl("Please indicate how much you like the following sport."
-				, sportsAnswerOptions, sports);
-		var questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
-				, travelAnswerOptions, travel);
+
 		
 		//Pre-populate map
 		//preset movie answers
@@ -565,12 +526,30 @@ public class MatchersTests {
 		Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = new HashMap<>();
 		prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero.put(movies, presetQuestionsAndAnswers);
 		
+		System.out.println("print prepopulated map");
+		System.out.println(questionMovies);
+		debugPrintMatchScoresByCategory(prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero);
+		
 		return prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
 		
 	}
 	
 
-	
+	private void debugPrintMatchScoresByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory) {
+		for (Map.Entry map1 : matchScoresByCategory.entrySet()) {
+			System.out.println("Category: " + map1.getKey());
+			
+			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+				System.out.println("Question: " + map2.getKey());
+				
+				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+						
+				}
+				System.out.println("------------------------------");
+			}	
+		}
+	}
 	
 		
 

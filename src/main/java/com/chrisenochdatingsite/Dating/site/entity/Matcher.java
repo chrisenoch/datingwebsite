@@ -436,6 +436,15 @@ public class Matcher {
 							Question question = searchingUserAns.getQuestion();
 							//Improve code: get comparedUser category and only proceed if categories match? Perhaps unnecessary
 							
+							
+							System.out.println("BEFORE addScoresToMapinvoked");
+							
+							debugPrintMatchScoresByCategory(matchScoresByCategory);
+							
+							System.out.println("BEFORE addScoresToMap invoked: Printing finioshed");
+							System.out.println();
+							
+							
 							//Dont overwrite current entries for specified category
 							addScoresToMap(matchScoresByCategory, ans, convertedScore, category, question);
 								
@@ -447,6 +456,22 @@ public class Matcher {
 			}
 			
 			return matchScoresByCategory;
+		}
+		
+		private void debugPrintMatchScoresByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory) {
+			for (Map.Entry map1 : matchScoresByCategory.entrySet()) {
+				System.out.println("Category: " + map1.getKey());
+				
+				for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+					System.out.println("Question: " + map2.getKey());
+					
+					for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+						System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+							
+					}
+					System.out.println("------------------------------");
+				}	
+			}
 		}
 
 		private Map<String, Answer> convertToAnswerTextAnswerMap(Set<Answer> userSelectedAnswersSet) {
@@ -471,12 +496,27 @@ public class Matcher {
 
 		private void addScoresToMap(Map<Category, Map<Question, Map<String, Integer>>> matchWeightsByCategory,
 				Answer ans, int convertedScore, Category category, Question question) {
+			
 			if (matchWeightsByCategory.containsKey(category)) {
 				
 				if (matchWeightsByCategory.get(category).containsKey(question)) {
+					
+					System.out.println("In addScoresToMap: Start of: if (matchWeightsByCategory.get(category).containsKey(question)) ");
+					
+					debugPrintMatchScoresByCategory(matchWeightsByCategory);
+					
+					System.out.println("********************************");
+					System.out.println();
+					
+					
 					//fetch answer map
 					Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
+					System.out.println("tempAnswerMap before addition");
+					tempAnswerMap.forEach((a, b)-> System.out.println(a + " " + b));
+					
 					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
+					System.out.println("tempAnswerMap after addition");
+					tempAnswerMap.forEach((a, b)-> System.out.println(a + " " + b));
 					
 					//add answer to question map
 					
@@ -486,10 +526,25 @@ public class Matcher {
 					//add to category map
 					//Overwrite category key in map with new updated question (and thus answer) information
 					matchWeightsByCategory.put(category,tempMapWithQuestion);
+					
+					System.out.println("In addScoresToMap: End of: if (matchWeightsByCategory.get(category).containsKey(question)) ");
+					
+					debugPrintMatchScoresByCategory(matchWeightsByCategory);
+					
+					System.out.println("********************************");
+					System.out.println();
+					
 						
 				} else { //if contains category but doesn't contain question
 					//Add new answer to answer map
-				 	Map<String, Integer> tempAnswerMap = new HashMap<>();
+					System.out.println("In addScoresToMap: Start of: else (matchWeightsByCategory.get(category).containsKey(question)) ");
+					
+					debugPrintMatchScoresByCategory(matchWeightsByCategory);
+					
+					System.out.println("********************************");
+					System.out.println();
+					
+					Map<String, Integer> tempAnswerMap = new HashMap<>();
 					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
 					
 					//Add question to appropriate category
@@ -498,9 +553,24 @@ public class Matcher {
 					
 					matchWeightsByCategory.put(category,tempQuestionMap);
 					
+					System.out.println("In addScoresToMap: End of: else (matchWeightsByCategory.get(category).containsKey(question)) ");
+					
+					debugPrintMatchScoresByCategory(matchWeightsByCategory);
+					
+					System.out.println("********************************");
+					System.out.println();
+					
 				}					
 				
 			} else { //doesn't contain category
+				
+				System.out.println("In addScoresToMap: Start of final else  ");
+				
+				debugPrintMatchScoresByCategory(matchWeightsByCategory);
+				
+				System.out.println("********************************");
+				System.out.println();
+				
 				Map<String, Integer> tempMap = new HashMap<>(); 
 				tempMap.put(ans.getAnswerText(), convertedScore);
 				
@@ -510,6 +580,13 @@ public class Matcher {
 				
 				//Create category key in map and add question (and thus answer) information
 				matchWeightsByCategory.put(category,tempMapWithQuestion);
+				
+				System.out.println("In addScoresToMap: End of final else ");
+				
+				debugPrintMatchScoresByCategory(matchWeightsByCategory);
+				
+				System.out.println("********************************");
+				System.out.println();
 			}
 		}
 
