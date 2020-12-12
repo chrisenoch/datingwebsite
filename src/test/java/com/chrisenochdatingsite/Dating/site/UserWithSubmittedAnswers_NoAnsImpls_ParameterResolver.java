@@ -84,16 +84,16 @@ public class UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver implements Pa
 		//Create answer objects with weight
 		//Set selected answers for questions objects. Set here to reflect real-life flow of control.
 
-		var movieChoiceDave1 = new AnswerWeightedImpl("Horror", AnswerWeight.FIVE);
-		var movieChoiceDave2 = new AnswerWeightedImpl("Action", AnswerWeight.FOUR);
-		var movieChoiceDave3 = new AnswerWeightedImpl("Romance", AnswerWeight.THREE);
+		var movieChoiceDave1 = new AnswerWeightedImpl(1, "Horror", AnswerWeight.FIVE);
+		var movieChoiceDave2 = new AnswerWeightedImpl(2, "Action", AnswerWeight.FOUR);
+		var movieChoiceDave3 = new AnswerWeightedImpl(3, "Romance", AnswerWeight.THREE);
 		
-		var sportsChoiceDave1 = new AnswerWeightedImpl("Football", AnswerWeight.THREE);
-		var sportsChoiceDave2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-		var sportsChoiceDave3 = new AnswerWeightedImpl("Basketball", AnswerWeight.SIX);
-		var travelStyleChoiceDave1= new AnswerWeightedImpl("Camping", AnswerWeight.TWO);
-		var travelStyleChoiceDave2= new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
-		var travelStyleChoiceDave3= new AnswerWeightedImpl("Sightseeing", AnswerWeight.ONE);
+		var sportsChoiceDave1 = new AnswerWeightedImpl(4, "Football", AnswerWeight.THREE);
+		var sportsChoiceDave2 = new AnswerWeightedImpl(5, "Swimming", AnswerWeight.ONE);
+		var sportsChoiceDave3 = new AnswerWeightedImpl(6, "Basketball", AnswerWeight.SIX);
+		var travelStyleChoiceDave1= new AnswerWeightedImpl(7, "Camping", AnswerWeight.TWO);
+		var travelStyleChoiceDave2= new AnswerWeightedImpl(8, "Hiking", AnswerWeight.FIVE);
+		var travelStyleChoiceDave3= new AnswerWeightedImpl(9, "Sightseeing", AnswerWeight.ONE);
 		
 		var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
 		var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
@@ -104,16 +104,16 @@ public class UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver implements Pa
 		dave.setSubmittedAnswers(daveAns);
 		
 		//USER 2
-		var movieChoiceJane1 = new AnswerWeightedImpl("Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
-		var movieChoiceJane2 = new AnswerWeightedImpl("Action", AnswerWeight.FIVE);
-		var movieChoiceJane3 = new AnswerWeightedImpl("Romance", AnswerWeight.FOUR);
+		var movieChoiceJane1 = new AnswerWeightedImpl(10,  "Horror", AnswerWeight.SIX); //Improve code: Could mistakingly add a string that does not exist as answer option.
+		var movieChoiceJane2 = new AnswerWeightedImpl(11,  "Action", AnswerWeight.FIVE);
+		var movieChoiceJane3 = new AnswerWeightedImpl(12, "Romance", AnswerWeight.FOUR);
 		
-		var sportsChoiceJane1 = new AnswerWeightedImpl("Basketball", AnswerWeight.ZERO);
-		var sportsChoiceJane2 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-		var sportsChoiceJane3 = new AnswerWeightedImpl("Football", AnswerWeight.SIX);	
-		var travelStyleChoiceJane1 = new AnswerWeightedImpl("Hiking", AnswerWeight.FIVE);
-		var travelStyleChoiceJane2 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.FIVE);
-		var travelStyleChoiceJane3 = new AnswerWeightedImpl("Camping", AnswerWeight.FIVE);
+		var sportsChoiceJane1 = new AnswerWeightedImpl(13, "Basketball", AnswerWeight.ZERO);
+		var sportsChoiceJane2 = new AnswerWeightedImpl(14, "Swimming", AnswerWeight.ONE);
+		var sportsChoiceJane3 = new AnswerWeightedImpl(15, "Football", AnswerWeight.SIX);	
+		var travelStyleChoiceJane1 = new AnswerWeightedImpl(16, "Hiking", AnswerWeight.FIVE);
+		var travelStyleChoiceJane2 = new AnswerWeightedImpl(17, "Sightseeing", AnswerWeight.FIVE);
+		var travelStyleChoiceJane3 = new AnswerWeightedImpl(18, "Camping", AnswerWeight.FIVE);
 
 		var submittedAnsJaneMovies1 = new SubmittedAnswerMultiImpl(questionMovies, jane, movieChoiceJane1);
 		var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
@@ -124,18 +124,18 @@ public class UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver implements Pa
 		jane.setSubmittedAnswers(janeAns); 
 		
 		//USER 3
-		var movieChoicePeter1 = new AnswerWeightedImpl("Horror", AnswerWeight.ZERO); //Improve code: Could mistakingly add a string that does not exist as answer option.
-		var movieChoicePeter2 = new AnswerWeightedImpl("Romance", AnswerWeight.ZERO);
-		var movieChoicePeter3 = new AnswerWeightedImpl("Action", AnswerWeight.SIX);
+		var movieChoicePeter1 = new AnswerWeightedImpl(19, "Horror", AnswerWeight.ZERO); //Improve code: Could mistakingly add a string that does not exist as answer option.
+		var movieChoicePeter2 = new AnswerWeightedImpl(20, "Romance", AnswerWeight.ZERO);
+		var movieChoicePeter3 = new AnswerWeightedImpl(21, "Action", AnswerWeight.SIX);
 		
 
-		var sportsChoicePeter1 = new AnswerWeightedImpl("Swimming", AnswerWeight.ONE);
-		var sportsChoicePeter2 = new AnswerWeightedImpl("Football", AnswerWeight.FIVE);
-		var sportsChoicePeter3 = new AnswerWeightedImpl("Basketball", AnswerWeight.FOUR);
+		var sportsChoicePeter1 = new AnswerWeightedImpl(22, "Swimming", AnswerWeight.ONE);
+		var sportsChoicePeter2 = new AnswerWeightedImpl(23, "Football", AnswerWeight.FIVE);
+		var sportsChoicePeter3 = new AnswerWeightedImpl(24, "Basketball", AnswerWeight.FOUR);
 		
-		var travelStyleChoicePeter1 = new AnswerWeightedImpl("Sightseeing", AnswerWeight.SIX);
-		var travelStyleChoicePeter2 = new AnswerWeightedImpl("Camping", AnswerWeight.SIX);
-		var travelStyleChoicePeter3 = new AnswerWeightedImpl("Hiking", AnswerWeight.THREE);
+		var travelStyleChoicePeter1 = new AnswerWeightedImpl(25, "Sightseeing", AnswerWeight.SIX);
+		var travelStyleChoicePeter2 = new AnswerWeightedImpl(26, "Camping", AnswerWeight.SIX);
+		var travelStyleChoicePeter3 = new AnswerWeightedImpl(27, "Hiking", AnswerWeight.THREE);
 		
 		var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter, movieChoicePeter2, movieChoicePeter3);
 		var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);

@@ -379,6 +379,9 @@ public class Matcher {
 					
 					Set<Answer> searchingUserSelectedAnswersSet = searchingUserAnsMultiImpl.getSelectedAnswers();
 					Set<Answer> comparedUserSelectedAnswersSet = comparedUserAnsMultiImpl.getSelectedAnswers();
+					System.out.println("Print set debugging");
+					comparedUserSelectedAnswersSet.forEach(System.out::println);
+					
 					
 					Map<String, Answer> searchingUserSelectedAnswers = convertToAnswerTextAnswerMap(
 							searchingUserSelectedAnswersSet);
@@ -449,8 +452,7 @@ public class Matcher {
 		private Map<String, Answer> convertToAnswerTextAnswerMap(Set<Answer> userSelectedAnswersSet) {
 			Map<String, Answer> userSelectedAnswers = new HashMap<>();
 			for (Answer ans : userSelectedAnswersSet) {
-				userSelectedAnswers.put(ans.getAnswerText(), ans);
-				System.out.println("Answer text: " + ans.getAnswerText());//debugging
+				userSelectedAnswers.put(ans.getAnswerText(), ans);		
 			}
 			return userSelectedAnswers;
 		}

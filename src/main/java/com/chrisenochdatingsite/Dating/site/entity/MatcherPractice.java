@@ -261,15 +261,16 @@ public class MatcherPractice {
 				 System.out.println("Run time: " + (finishTime - startTime)/1000.0);
 				
 				 
+				 System.out.println("Start matchPercentageByCategoryAndAnswer");
 				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
 				Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 				try {
 					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave
 							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
 							, a -> a.booleanValue() == true? 100 : 0 );
-					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane
-							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero,  new Matcher().new ConvertToPercent()
-							, a -> a.booleanValue() == true? 100 : 0 );
+//					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane
+//							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero,  new Matcher().new ConvertToPercent()
+//							, a -> a.booleanValue() == true? 100 : 0 );
 			
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -277,7 +278,7 @@ public class MatcherPractice {
 					//e.getMessage();
 				} 
 				
-				System.out.println("This should print");
+				System.out.println("Print the contents");
 				
 				
 				for (Map.Entry map1 : matchesDave.entrySet()) {
