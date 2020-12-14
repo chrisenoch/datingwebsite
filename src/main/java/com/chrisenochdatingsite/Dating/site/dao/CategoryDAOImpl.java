@@ -15,9 +15,14 @@ import com.chrisenochdatingsite.Dating.site.entity.Category;
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
 	
-	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Autowired
+	public CategoryDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public void save(Category theCategory) {
 

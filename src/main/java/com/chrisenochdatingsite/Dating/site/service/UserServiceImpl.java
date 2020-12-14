@@ -12,9 +12,13 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
 	UserDAO userDAO;
 	
+	@Autowired
+	public UserServiceImpl(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+
 	@Override
 	@Transactional
 	public void save(User theUser) {

@@ -12,17 +12,15 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 
 @Repository
 public class BatchUpdateDAOImpl implements BatchUpdateDAO {
-	
-	
-	@Autowired
+
 	private SessionFactory sessionFactory;
-	
-	//Method
-	//Arguments: batch size, 
-	//select all from db
-	//loop and update
-	
-	//Change to selecting only those that have trial membership .. and paid member = no?
+
+	@Autowired
+	public BatchUpdateDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public void batchUpdateMembershipType(MembershipType typeToBeUpdated, MembershipType newType) {
 		Session session = sessionFactory.getCurrentSession();

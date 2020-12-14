@@ -7,10 +7,17 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UtilDAOImpl implements UtilDAO{
-	
-	@Autowired
+
 	private SessionFactory sessionFactory;
 	
+	@Autowired
+	public UtilDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
+
+
 	@Override
 	public <T> T getReference(Class<T> entityClass, Object primaryKey) {
 		

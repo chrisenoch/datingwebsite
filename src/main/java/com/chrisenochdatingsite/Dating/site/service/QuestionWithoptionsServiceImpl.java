@@ -13,9 +13,14 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 @Service
 public class QuestionWithoptionsServiceImpl implements QuestionWithOptionsService {
 
-	@Autowired
 	QuestionWithOptionsDAO questionWithOptionsDAO ;
 	
+	@Autowired
+	public QuestionWithoptionsServiceImpl(QuestionWithOptionsDAO questionWithOptionsDAO) {
+		super();
+		this.questionWithOptionsDAO = questionWithOptionsDAO;
+	}
+
 	@Override
 	@Transactional
 	public void save(QuestionWithOptionsImpl questionWithOptionsImpl) {

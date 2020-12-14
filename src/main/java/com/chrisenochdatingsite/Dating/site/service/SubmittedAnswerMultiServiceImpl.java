@@ -13,9 +13,14 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 @Service
 public class SubmittedAnswerMultiServiceImpl implements SubmittedAnswerMultiService{
 
-	@Autowired
 	SubmittedAnswerMultiDAO submittedAnswerMultiDAO;
 	
+	@Autowired
+	public SubmittedAnswerMultiServiceImpl(SubmittedAnswerMultiDAO submittedAnswerMultiDAO) {
+		super();
+		this.submittedAnswerMultiDAO = submittedAnswerMultiDAO;
+	}
+
 	@Override
 	@Transactional
 	public void save(SubmittedAnswerMultiImpl subAMulti) {

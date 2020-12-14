@@ -93,6 +93,7 @@ public class MatchersTests {
 		this.questionTravel = new QuestionWithOptionsImpl("Please indicate how much you like the following type of travel."
 				, travel, travelAnswerOptions);
 		
+		//This must be initialised after the other variables because this method relies on the other variables having been set.
 		this.prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
 		
 
@@ -506,13 +507,6 @@ public class MatchersTests {
 	}
 	
 	public  Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {
-		Category movies = new Category(1, "Movies");
-		Category sports = new Category(2, "Sports");
-		Category travel = new Category(3, "Travel");
-		
-		//Set up questions objects ready to be inserted into SubmitAnswer constructors
-
-		
 		//Pre-populate map
 		//preset movie answers
 		Map<String, Integer> presetMovieAnswers = new HashMap<>();

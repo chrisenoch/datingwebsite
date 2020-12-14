@@ -12,9 +12,13 @@ import com.chrisenochdatingsite.Dating.site.entity.Category;
 @Service
 public class CateogoryServiceImpl implements CategoryService {
 
-	@Autowired
 	CategoryDAO categoryDAO;
 	
+	@Autowired
+	public CateogoryServiceImpl(CategoryDAO categoryDAO) {
+		this.categoryDAO = categoryDAO;
+	}
+
 	@Override
 	@Transactional
 	public void save(Category theCategory) {

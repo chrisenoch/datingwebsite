@@ -13,9 +13,15 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 
 @Repository
 public class AnswerDAOImpl implements AnswerDAO {
+
+	private SessionFactory sessionFactory;
 	
 	@Autowired
-	private SessionFactory sessionFactory;
+	public AnswerDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	
 	
 	@Override
 	public void save(Answer answer) {

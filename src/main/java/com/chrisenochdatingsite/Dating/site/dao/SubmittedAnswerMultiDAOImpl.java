@@ -13,9 +13,14 @@ import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
 @Repository
 public class SubmittedAnswerMultiDAOImpl implements SubmittedAnswerMultiDAO {
 	
-	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Autowired
+	public SubmittedAnswerMultiDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public List<SubmittedAnswerMultiImpl> findAll() {
 

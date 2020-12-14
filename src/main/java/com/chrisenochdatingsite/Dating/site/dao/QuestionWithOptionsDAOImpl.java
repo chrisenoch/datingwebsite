@@ -14,9 +14,14 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 @Repository
 public class QuestionWithOptionsDAOImpl implements QuestionWithOptionsDAO {
 	
-	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Autowired
+	public QuestionWithOptionsDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public void save(QuestionWithOptionsImpl questionWithOptionsImpl) {
 

@@ -10,9 +10,15 @@ import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
 @Service
 public class BatchUpdateServiceImpl implements BatchUpdateService {
 	
-	@Autowired
 	BatchUpdateDAO batchUpDateDAO;
 	
+	@Autowired
+	public BatchUpdateServiceImpl(BatchUpdateDAO batchUpDateDAO) {
+		this.batchUpDateDAO = batchUpDateDAO;
+	}
+
+
+
 	@Override
 	@Transactional
 	public void batchUpdateMembershipType(MembershipType typeToBeUpdated, MembershipType newType) {

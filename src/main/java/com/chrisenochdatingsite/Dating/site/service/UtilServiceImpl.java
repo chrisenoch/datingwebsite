@@ -9,8 +9,14 @@ import com.chrisenochdatingsite.Dating.site.dao.UtilDAO;
 @Service
 public class UtilServiceImpl implements UtilService {
 	
-	@Autowired
 	UtilDAO utilDAO;
+
+	@Autowired
+	public UtilServiceImpl(UtilDAO utilDAO) {
+		this.utilDAO = utilDAO;
+	}
+
+
 
 	@Override
 	@Transactional

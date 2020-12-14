@@ -13,10 +13,15 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-	
-	@Autowired
+
 	private SessionFactory sessionFactory;
-	
+
+	@Autowired
+	public UserDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public void save(User theUser) {
 

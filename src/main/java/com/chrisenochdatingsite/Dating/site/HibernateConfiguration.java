@@ -13,9 +13,16 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @Configuration
 public class HibernateConfiguration{
+	
+	private Environment env;
 
 	@Autowired
-	private Environment env;
+	public HibernateConfiguration(Environment env) {
+		super();
+		this.env = env;
+	}
+
+	
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {

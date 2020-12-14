@@ -1,0 +1,113 @@
+2020-12-12 11:30:31,608 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestH2 on LAPTOP-N48LAB97 with PID 11628 (started by chris in D:\Dating-site)
+2020-12-12 11:30:31,612 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-12 11:30:32,666 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-12 11:30:32,728 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 50ms. Found 0 JPA repository interfaces.
+2020-12-12 11:30:34,107 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-12 11:30:34,379 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-12 11:30:35,384 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-12 11:30:36,475 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-12 11:30:36,684 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-12 11:30:37,250 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-12 11:30:37,970 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:30:38,243 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-12 11:30:38,820 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-12 11:30:38,823 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-12 11:30:38,841 INFO org.springframework.boot.StartupInfoLogger [main] Started TestH2 in 8.821 seconds (JVM running for 10.851)
+2020-12-12 11:30:41,275 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:30:53,072 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestHomeController on LAPTOP-N48LAB97 with PID 1620 (started by chris in D:\Dating-site)
+2020-12-12 11:30:53,078 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-12 11:30:54,693 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'homeController' defined in file [D:\Dating-site\target\classes\com\chrisenochdatingsite\Dating\site\controller\HomeController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.chrisenochdatingsite.Dating.site.service.CategoryService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-12-12 11:30:54,705 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-12-12 11:30:54,805 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [main] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.chrisenochdatingsite.Dating.site.controller.HomeController required a bean of type 'com.chrisenochdatingsite.Dating.site.service.CategoryService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.chrisenochdatingsite.Dating.site.service.CategoryService' in your configuration.
+
+2020-12-12 11:34:27,775 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestHomeController on LAPTOP-N48LAB97 with PID 10328 (started by chris in D:\Dating-site)
+2020-12-12 11:34:27,799 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-12 11:34:28,797 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-12 11:34:28,841 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 32ms. Found 0 JPA repository interfaces.
+2020-12-12 11:34:29,843 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-12 11:34:30,099 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-12 11:34:30,337 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-12 11:34:31,504 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-12 11:34:31,714 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-12 11:34:32,236 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-12 11:34:32,591 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:34:32,680 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-12 11:34:33,291 INFO org.springframework.mock.web.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2020-12-12 11:34:33,292 INFO org.springframework.web.servlet.FrameworkServlet [main] Initializing Servlet ''
+2020-12-12 11:34:33,309 INFO org.springframework.web.servlet.FrameworkServlet [main] Completed initialization in 15 ms
+2020-12-12 11:34:33,324 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-12 11:34:33,326 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-12 11:34:33,335 INFO org.springframework.boot.StartupInfoLogger [main] Started TestHomeController in 6.05 seconds (JVM running for 7.604)
+2020-12-12 11:34:34,635 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:34:58,485 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestHomeController on LAPTOP-N48LAB97 with PID 17960 (started by chris in D:\Dating-site)
+2020-12-12 11:34:58,488 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-12 11:34:59,485 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-12 11:34:59,542 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 43ms. Found 0 JPA repository interfaces.
+2020-12-12 11:35:00,589 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-12 11:35:00,853 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-12 11:35:01,094 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-12 11:35:01,856 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-12 11:35:02,068 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-12 11:35:02,575 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-12 11:35:02,903 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:35:02,977 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-12 11:35:03,463 INFO org.springframework.mock.web.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2020-12-12 11:35:03,464 INFO org.springframework.web.servlet.FrameworkServlet [main] Initializing Servlet ''
+2020-12-12 11:35:03,490 INFO org.springframework.web.servlet.FrameworkServlet [main] Completed initialization in 24 ms
+2020-12-12 11:35:03,505 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-12 11:35:03,506 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-12 11:35:03,519 INFO org.springframework.boot.StartupInfoLogger [main] Started TestHomeController in 5.721 seconds (JVM running for 7.267)
+2020-12-12 11:35:04,060 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:39:45,665 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestHomeController on LAPTOP-N48LAB97 with PID 13140 (started by chris in D:\Dating-site)
+2020-12-12 11:39:45,669 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-12 11:39:46,730 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-12 11:39:46,907 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 45ms. Found 0 JPA repository interfaces.
+2020-12-12 11:39:48,373 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-12 11:39:48,619 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-12 11:39:48,848 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-12 11:39:49,561 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-12 11:39:50,455 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-12 11:39:50,992 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-12 11:39:51,350 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:39:51,432 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-12 11:39:51,967 INFO org.springframework.mock.web.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2020-12-12 11:39:51,968 INFO org.springframework.web.servlet.FrameworkServlet [main] Initializing Servlet ''
+2020-12-12 11:39:51,984 INFO org.springframework.web.servlet.FrameworkServlet [main] Completed initialization in 16 ms
+2020-12-12 11:39:51,998 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-12 11:39:51,999 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-12 11:39:52,011 INFO org.springframework.boot.StartupInfoLogger [main] Started TestHomeController in 6.868 seconds (JVM running for 8.248)
+2020-12-12 11:39:52,601 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:42:06,840 INFO org.springframework.boot.StartupInfoLogger [main] Starting TestHomeController on LAPTOP-N48LAB97 with PID 2768 (started by chris in D:\Dating-site)
+2020-12-12 11:42:06,843 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-12-12 11:42:07,884 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-12-12 11:42:07,960 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 62ms. Found 0 JPA repository interfaces.
+2020-12-12 11:42:08,950 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-12 11:42:09,189 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-12 11:42:09,440 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-12 11:42:10,267 INFO org.hibernate.tuple.PojoInstantiator [main] HHH000182: No default (no-argument) constructor for class: com.chrisenochdatingsite.Dating.site.entity.OpenQuestionImpl (class must be instantiated by Interceptor)
+2020-12-12 11:42:10,468 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-12 11:42:10,994 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-12 11:42:11,383 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-12 11:42:11,468 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-12-12 11:42:11,990 INFO org.springframework.mock.web.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2020-12-12 11:42:11,991 INFO org.springframework.web.servlet.FrameworkServlet [main] Initializing Servlet ''
+2020-12-12 11:42:12,008 INFO org.springframework.web.servlet.FrameworkServlet [main] Completed initialization in 17 ms
+2020-12-12 11:42:12,024 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Triggering deferred initialization of Spring Data repositories…
+2020-12-12 11:42:12,025 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [main] Spring Data repositories initialized!
+2020-12-12 11:42:12,038 INFO org.springframework.boot.StartupInfoLogger [main] Started TestHomeController in 5.715 seconds (JVM running for 7.131)
+2020-12-12 11:42:12,578 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'

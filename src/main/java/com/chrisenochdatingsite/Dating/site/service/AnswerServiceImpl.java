@@ -12,10 +12,15 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
-
-	@Autowired
-	AnswerDAO answerImplDAO;
 	
+	AnswerDAO answerImplDAO;
+		
+	@Autowired
+	public AnswerServiceImpl(AnswerDAO answerImplDAO) {
+		super();
+		this.answerImplDAO = answerImplDAO;
+	}
+
 	@Override
 	@Transactional
 	public void save(Answer answer) {
