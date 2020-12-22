@@ -6,7 +6,7 @@ CREATE TABLE Category (
 
 );
 
-INSERT INTO `category` VALUES (1,'Movies');
+INSERT INTO `category` VALUES (1,'Movies'),(18, 'Sports');
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -85,7 +85,7 @@ CREATE TABLE `hibernate_sequence` (
   `next_val` bigint DEFAULT NULL
 );
 
-INSERT INTO `hibernate_sequence` VALUES (18);
+INSERT INTO `hibernate_sequence` VALUES (19);
 
 DROP TABLE IF EXISTS `answer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

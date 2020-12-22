@@ -3,6 +3,7 @@ package com.chrisenochdatingsite.Dating.site;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -74,7 +75,7 @@ public class TestH2 {
 		List<Category> categories = categoryService.findAll();
 		assertEquals("Movies", categories.get(0).getCategory());
 		assertEquals(1, categories.get(0).getId());
-		assertEquals(1, categories.size());
+		assertEquals(2, categories.size());
 	}
 	
 	@Test
@@ -88,8 +89,8 @@ public class TestH2 {
 		List<Category> categoriesSortedByIdAsc = categories.stream()
 				.sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
 		
-		assertEquals("Lifestyle", categoriesSortedByIdAsc.get(1).getCategory());
-		assertEquals(2, categoriesSortedByIdAsc.size());
+		assertEquals("Lifestyle", categoriesSortedByIdAsc.get(2).getCategory());
+		assertEquals(3, categoriesSortedByIdAsc.size());
 	}
 	
 	@Test
@@ -117,14 +118,6 @@ public class TestH2 {
 		assertEquals(8, users.size());
 	}
 	
-	public void getReference() {
-		User user = utilService.getReference(User.class, 3);
-		User user2 = utilService.getReference(User.class, 3);
-		
-		assertEquals("Pete", user.getFirstName());
-		assertTrue(user.equals(user2));
-
-	}
 	
 	
 	@Test
@@ -334,12 +327,16 @@ public class TestH2 {
 	
 	@Test
 	public void batchUpdate() {
-		//batchUpdateService.batchUpdateMembershipType("BASIC");
+
 		batchUpdateService.batchUpdateMembershipType(MembershipType.TRIAL, MembershipType.BASIC);
 		
 		List<User> users = userService.findAll();
 		
-		assertEquals(MembershipType.BASIC, users.get(0).getMembershipType());	
+		//Get Membership Types
+		List<MembershipType> membershipTypes = users.stream().map(User::getMembershipType).collect(Collectors.toList());
+		
+		assertEquals(MembershipType.BASIC, users.get(0).getMembershipType());
+		assertThat(membershipTypes).containsOnly(MembershipType.BASIC);
 	}
 		
 }
