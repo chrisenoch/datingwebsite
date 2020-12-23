@@ -67,7 +67,8 @@ public class HomeController {
 	public String batchUpdateMembershipType() {
 		System.out.println("Inside batchUpdateMembershipType");
 		
-		batchUpdateService.batchUpdateMembershipType(MembershipType.TRIAL, MembershipType.TRIAL);
+		batchUpdateService.batchUpdateMembershipType(MembershipType.TRIAL, MembershipType.BASIC);
+		batchUpdateService.batchUpdateMembershipType(MembershipType.BASIC, MembershipType.TRIAL);
 		
 		return "index";
 	}
