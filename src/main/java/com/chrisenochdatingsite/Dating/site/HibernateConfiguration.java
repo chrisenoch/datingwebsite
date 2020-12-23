@@ -49,8 +49,8 @@ public class HibernateConfiguration{
 		Properties hibernate = new Properties();
 		hibernate.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 		hibernate.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		hibernate.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-		hibernate.setProperty("hibernate.jdbc.batch_size", "10");
+		//hibernate.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+		hibernate.setProperty("hibernate.jdbc.batch_size", env.getProperty("hibernate.jdbc.batch_size"));
 		hibernate.setProperty("hibernate.jdbc.batch_versioned_data", "true");
 
 		return hibernate;
