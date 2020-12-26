@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
-import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 
 @Repository
 public class AnswerDAOImpl implements AnswerDAO {
@@ -25,11 +26,9 @@ public class AnswerDAOImpl implements AnswerDAO {
 	
 	@Override
 	public void save(Answer answer) {
-
-		// get the current hibernate session
+	
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		// save employee
+				
 		currentSession.saveOrUpdate(answer);
 	}
 	

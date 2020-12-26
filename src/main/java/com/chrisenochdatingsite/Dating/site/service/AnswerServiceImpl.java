@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.chrisenochdatingsite.Dating.site.dao.AnswerDAO;
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
