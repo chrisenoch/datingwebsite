@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("standard_answer")
-public class AnswerImpl extends Answer{
+public class AnswerImpl extends Answer implements AnswerVisitable{
 
 	public AnswerImpl() {
 	}
@@ -26,6 +26,12 @@ public class AnswerImpl extends Answer{
 	public String toString() {
 		return "AnswerImpl [getId()=" + getId() + ", getAnswerText()=" + getAnswerText() + ", hashCode()=" + hashCode()
 				+ ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
+	}
+
+	@Override
+	public int accept(AnswerVisitor answerVisitor) {
+		return answerVisitor.visit(this);
+		
 	}
 
 

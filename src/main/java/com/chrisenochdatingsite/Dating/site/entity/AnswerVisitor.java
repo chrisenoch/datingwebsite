@@ -1,8 +1,11 @@
 package com.chrisenochdatingsite.Dating.site.entity;
 
+import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
+
 public interface AnswerVisitor {
 	
-	public void visit (AnswerWeightedImpl answerWeightedImpl, int convertedScore);
-	public void visit (AnswerImpl answerWeightedImpl, int convertedScore);
+	public int visit(AnswerWeightedImpl answerWeightedImpl) throws NoEquivalentAnswerException;
+	
+	public int visit (AnswerImpl answerImpl);
 
 }

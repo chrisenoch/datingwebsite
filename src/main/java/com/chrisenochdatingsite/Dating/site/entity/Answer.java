@@ -12,11 +12,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
 //Check constraint added to database to ensure AnswerWeighted always inserts an AnswerWeight value.
 @DiscriminatorColumn(name = "answer_type")
-public abstract class Answer {
+public abstract class Answer implements AnswerVisitable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="id")
@@ -27,6 +29,20 @@ public abstract class Answer {
 	@ManyToOne(fetch = FetchType.LAZY, cascade= {CascadeType.DETACH, 
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private Question question;
+	
+	private AnswerVisitorHelper answerVisitorHelper;
+	
+	
+	public abstract int accept (AnswerVisitor answerVisitor) throws NoEquivalentAnswerException;
+
+	public AnswerVisitorHelper getAnswerVisitorHelper() {
+		return answerVisitorHelper;
+	}
+
+
+	public void setAnswerVisitorHelper(AnswerVisitorHelper answerVisitorHelper) {
+		this.answerVisitorHelper = answerVisitorHelper;
+	}
 
 
 	public long getId() {

@@ -1,24 +1,21 @@
   package com.chrisenochdatingsite.Dating.site.entity;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.Map.Entry;
-import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
+
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 import com.chrisenochdatingsite.Dating.site.util.NoAmountFoundException;
 import com.chrisenochdatingsite.Dating.site.util.NoAnswersSubmittedException;
+import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
 
 
 public class Matcher {
@@ -364,7 +361,7 @@ public class Matcher {
 			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserSubmittedAnswers.entrySet()) { //String is questionText
 				SubmittedAnswer searchingUserAns = pair.getValue();
 				
-				if (searchingUserAns instanceof SubmittedAnswerMultiImpl) {
+				if (searchingUserAns instanceof SubmittedAnswerMultiImpl) { 
 					SubmittedAnswerMultiImpl searchingUserAnsMultiImpl = (SubmittedAnswerMultiImpl) searchingUserAns;
 					
 					String searchingUserQuestionText = searchingUserAns.getQuestion().getQuestionText();		
@@ -393,42 +390,23 @@ public class Matcher {
 					System.out.println("Contents of comparedUserSelectedAnswers");
 					 comparedUserSelectedAnswers .forEach((a, b)-> System.out.println(a + " " +  b));
 					
+					 
+					 AnswerVisitorHelper ansVisitorHelper = new AnswerVisitorHelper(comparedUserSelectedAnswers , convertCheckboxAns
+								, convertWeightedAns);
+					 
+					
 					for (Map.Entry<String, Answer> map : searchingUserSelectedAnswers.entrySet()) {
 						Answer ans = map.getValue();   
-						
+						ans.setAnswerVisitorHelper(ansVisitorHelper);
+
 						int convertedScore;
-						if (ans instanceof AnswerWeightedImpl) {
-							
-							System.out.println("Instance of answerweightedimp"); //debugging
-							
-							AnswerWeightedImpl searchingUserAnsWeighted = (AnswerWeightedImpl) ans;
-
-							AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) comparedUserSelectedAnswers.get(searchingUserAnsWeighted.getAnswerText());
-							int diffInWeight; 
-							if (comparedUserAnswerWeighted != null) {		
-								System.out.println("doesn't equal null"); //debugging
-								diffInWeight = Math.abs(searchingUserAnsWeighted.getAnswerWeight().getWeight() - comparedUserAnswerWeighted.getAnswerWeight().getWeight());
-							
-								convertedScore = convertWeightedAns.apply(diffInWeight);
-							
-							} else {
-								System.out.println("equals null so continue"); 
-								//throw exception. Do custom exception? / continue loop?
-								continue;
-							}
-							
-							
-						} else if (ans instanceof AnswerImpl) { 
-							//loop through 
-
-							boolean isMatch = scoreAnswerImpls(comparedUserSelectedAnswers, ans); 
-							
-							convertedScore = convertCheckboxAns.apply(isMatch);
-							
-		
-						} else {
-							//Do logic for other answer types later
-						  continue; // THIS MUST BE CHANGED. ONLY ADDED TEMPRARILY WHILE NO OTHER ANSWER TYPES.
+						
+						AnswerVisitor answerVisitor = new AnswerVisitorImpl();
+						
+						try {
+							convertedScore = ans.accept(answerVisitor);
+						} catch (NoEquivalentAnswerException exc) {
+							continue;
 						}
 
 							//Get category and add score to Map<Category, Map<Question, AnswerWeight>> matchWeightsByCategory;

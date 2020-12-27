@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
@@ -205,7 +206,7 @@ public class MatcherPractice {
 			}
 			
 			public static void main(String[] args) {
-
+				
 				//calculateMatch6(init());
 				Map<String, User> users = init();
 				User dave = users.get("Dave");

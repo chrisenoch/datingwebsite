@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
+
 @Entity
 @DiscriminatorValue("answer_weighted")
-public class AnswerWeightedImpl extends Answer{
+public class AnswerWeightedImpl extends Answer implements AnswerVisitable{
 
 	@Enumerated(EnumType.STRING)
 	private AnswerWeight answerWeight;
@@ -41,6 +43,12 @@ public class AnswerWeightedImpl extends Answer{
 	@Override
 	public String toString() {
 		return super.toString() + " AnswerWeightedImpl [answerWeight=" + answerWeight + "]";
+	}
+
+	@Override
+	public int accept(AnswerVisitor answerVisitor) throws NoEquivalentAnswerException {
+		return answerVisitor.visit(this);
+		
 	}
 
 
