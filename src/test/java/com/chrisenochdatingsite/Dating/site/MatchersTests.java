@@ -60,6 +60,8 @@ public class MatchersTests {
 		this.jane = users.get(1);
 		this.peter = users.get(2);
 		
+		System.out.println("User debugging: " + dave.getFirstName());
+		
 		this.matcher = new Matcher();
 		this.matcher.setSearchingUser(peter);
 		
@@ -116,7 +118,6 @@ public class MatchersTests {
 	
 	@Test
 	public void shouldReturnPercentageRoundedUp() {
-		
 		ConvertToPercent convertToPercent = new Matcher().new ConvertToPercent();
 		
 		int percentage = convertToPercent.apply(1);
@@ -171,7 +172,7 @@ public class MatchersTests {
 			
 		assertThat(categories).contains(movies, sports, travel);
 		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
-		assertThat(answers).contains(entry("Basketball", 67), entry("Football", 67), entry("Swimming", 100)
+		assertThat(answers).contains(entry("Basketball", 67), entry("Football", 67)
 				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
 				);

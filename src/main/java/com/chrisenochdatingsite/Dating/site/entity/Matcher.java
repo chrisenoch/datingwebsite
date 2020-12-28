@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.function.Function;
@@ -189,9 +190,7 @@ public class Matcher {
 	        return sortedByValue;
 	        
 		}
-		
-		
-		
+			
 		
 		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory) throws Exception{	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
@@ -334,17 +333,13 @@ public class Matcher {
 			//Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
 			Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory = prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
 			
-			List<SubmittedAnswer> searchingUserSubmittedAnswersList = searchingUser.getSubmittedAnswers();
-			List<SubmittedAnswer> comparedUserSubmittedAnswersList = comparedUser.getSubmittedAnswers();
+			List<SubmittedAnswer> searchingUserSubmittedAnswersList = searchingUser.getSubmittedAnswers()
+					.orElseThrow(()-> new NoAnswersSubmittedException(searchingUser.getFirstName() 
+					+ " has not submitted any answers so compatibility cannot be calculated."));
+			List<SubmittedAnswer>  comparedUserSubmittedAnswersList = comparedUser.getSubmittedAnswers()
+					.orElseThrow(()-> new NoAnswersSubmittedException(comparedUser.getFirstName() 
+					+ " has not submitted any answers so compatibility cannot be calculated."));		
 			
-			if (searchingUserSubmittedAnswersList == null) { 
-				throw new NoAnswersSubmittedException(searchingUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
-			}
-			if (comparedUserSubmittedAnswersList == null) {
-				throw new NoAnswersSubmittedException(comparedUser.getFirstName() + " has not submitted any answers so compatibility cannot be calculated.");
-			}
-			
-			//Extract to method
 			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = convertToQuestionTextSubmittedAnswerMap(
 					searchingUserSubmittedAnswersList);	
 			
@@ -352,16 +347,9 @@ public class Matcher {
 					comparedUserSubmittedAnswersList);	
 			
 			
-//			Map<String, SubmittedAnswer> searchingUserSubmittedAnswers = searchingUser.getSubmittedAnswers();
-//			Map<String, SubmittedAnswer> comparedUserSubmittedAnswers = comparedUser.getSubmittedAnswers();
-			
-		
-
-			
 			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserSubmittedAnswers.entrySet()) { //String is questionText
 				SubmittedAnswer searchingUserAns = pair.getValue();
 				
-				if (searchingUserAns instanceof SubmittedAnswerMultiImpl) { 
 					SubmittedAnswerMultiImpl searchingUserAnsMultiImpl = (SubmittedAnswerMultiImpl) searchingUserAns;
 					
 					String searchingUserQuestionText = searchingUserAns.getQuestion().getQuestionText();		
@@ -375,32 +363,23 @@ public class Matcher {
 					}
 					
 					Set<Answer> searchingUserSelectedAnswersSet = searchingUserAnsMultiImpl.getSelectedAnswers();
-					Set<Answer> comparedUserSelectedAnswersSet = comparedUserAnsMultiImpl.getSelectedAnswers();
-					System.out.println("Print set debugging");
-					comparedUserSelectedAnswersSet.forEach(System.out::println);
-					
+					Set<Answer> comparedUserSelectedAnswersSet = comparedUserAnsMultiImpl.getSelectedAnswers();		
 					
 					Map<String, Answer> searchingUserSelectedAnswers = convertToAnswerTextAnswerMap(
 							searchingUserSelectedAnswersSet);
 					Map<String, Answer> comparedUserSelectedAnswers = convertToAnswerTextAnswerMap(
 							comparedUserSelectedAnswersSet);
-							
-					//Loop through and compare scores and add to right category.
-					//Debugging:
-					System.out.println("Contents of comparedUserSelectedAnswers");
-					 comparedUserSelectedAnswers .forEach((a, b)-> System.out.println(a + " " +  b));
-					
+											
 					 
 					 AnswerVisitorHelper ansVisitorHelper = new AnswerVisitorHelper(comparedUserSelectedAnswers , convertCheckboxAns
 								, convertWeightedAns);
 					 
-					
 					for (Map.Entry<String, Answer> map : searchingUserSelectedAnswers.entrySet()) {
 						Answer ans = map.getValue();   
-						ans.setAnswerVisitorHelper(ansVisitorHelper);
 
 						int convertedScore;
 						
+						ans.setAnswerVisitorHelper(ansVisitorHelper);
 						AnswerVisitor answerVisitor = new AnswerVisitorImpl();
 						
 						try {
@@ -409,28 +388,14 @@ public class Matcher {
 							continue;
 						}
 
-							//Get category and add score to Map<Category, Map<Question, AnswerWeight>> matchWeightsByCategory;
-							Category category = searchingUserAns.getQuestion().getCategory();
-							Question question = searchingUserAns.getQuestion();
-							//Improve code: get comparedUser category and only proceed if categories match? Perhaps unnecessary
+						//Get category and add score to Map<Category, Map<Question, AnswerWeight>> matchWeightsByCategory;
+						Category category = searchingUserAns.getQuestion().getCategory();
+						Question question = searchingUserAns.getQuestion();	
+						
+						//Dont overwrite current entries for specified category
+						addScoresToMap(matchScoresByCategory, ans, convertedScore, category, question);
 							
-							
-							System.out.println("BEFORE addScoresToMapinvoked");
-							
-							debugPrintMatchScoresByCategory(matchScoresByCategory);
-							
-							System.out.println("BEFORE addScoresToMap invoked: Printing finioshed");
-							System.out.println();
-							
-							
-							//Dont overwrite current entries for specified category
-							addScoresToMap(matchScoresByCategory, ans, convertedScore, category, question);
-								
-					}
-					
-			
-				} else { //If not instanceof SubmittedAnswerMultiImpl- Still need to do this.	
-						}							
+					}									
 			}
 			
 			return matchScoresByCategory;

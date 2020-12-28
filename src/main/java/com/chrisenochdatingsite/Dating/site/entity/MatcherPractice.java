@@ -7,11 +7,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.Optional;
 
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.entity.Answer;
-import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 
@@ -76,10 +74,10 @@ public class MatcherPractice {
 				var travelStyleChoiceDave3= new AnswerWeightedImpl(9, "Sightseeing", AnswerWeight.ONE);
 				
 				var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
-				var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
+				var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave,  sportsChoiceDave2, sportsChoiceDave3);
 				var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
 				
-				List<SubmittedAnswer> daveAns = Arrays.asList(submittedAnsDaveMovies1, submittedAnsDaveSports1,submittedAnsDaveTravel1 );
+				Optional<List<SubmittedAnswer>> daveAns = Optional.of(Arrays.asList(submittedAnsDaveMovies1, submittedAnsDaveSports1,submittedAnsDaveTravel1) );
 				
 				dave.setSubmittedAnswers(daveAns);
 				
@@ -102,7 +100,7 @@ public class MatcherPractice {
 				var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
 				var submittedAnsJaneTravel1 = new SubmittedAnswerMultiImpl(questionTravel, jane, travelStyleChoiceJane1, travelStyleChoiceJane2, travelStyleChoiceJane3);
 	 			
-				List<SubmittedAnswer> janeAns = Arrays.asList(submittedAnsJaneMovies1, submittedAnsJaneSports1,submittedAnsJaneTravel1 );	
+				Optional<List<SubmittedAnswer>> janeAns = Optional.of(Arrays.asList(submittedAnsJaneMovies1, submittedAnsJaneSports1,submittedAnsJaneTravel1 ));	
 				
 				jane.setSubmittedAnswers(janeAns); 
 				
@@ -124,10 +122,10 @@ public class MatcherPractice {
 				var travelStyleChoicePeter3 = new AnswerWeightedImpl(15, "Hiking", AnswerWeight.THREE);
 				
 				var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter, movieChoicePeter2, movieChoicePeter3);
-				var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
+				var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter, sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 				var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 				
-				List<SubmittedAnswer> peterAns = Arrays.asList(submittedAnsPeterMovies1, submittedAnsPeterSports1, submittedAnsPeterTravel1);				
+				Optional<List<SubmittedAnswer>>  peterAns = Optional.of(Arrays.asList(submittedAnsPeterMovies1, submittedAnsPeterSports1, submittedAnsPeterTravel1));				
 				
 				peter.setSubmittedAnswers(peterAns);
 				
@@ -216,7 +214,7 @@ public class MatcherPractice {
 				long startTime = System.currentTimeMillis();
 				
 				Matcher matcher = new Matcher();
-				matcher.setSearchingUser(peter);
+				matcher.setSearchingUser(dave);
 				
 				List<User> usersForTesting = new ArrayList<>(users.values());
 				
@@ -266,7 +264,7 @@ public class MatcherPractice {
 				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
 				Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 				try {
-					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), dave
+					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), peter
 							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
 							, a -> a.booleanValue() == true? 100 : 0 );
 //					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane
@@ -279,7 +277,7 @@ public class MatcherPractice {
 					//e.getMessage();
 				} 
 				
-				System.out.println("Print the contents");
+				System.out.println("Print the contentst of matchesDave");
 				
 				
 				for (Map.Entry map1 : matchesDave.entrySet()) {
@@ -293,6 +291,8 @@ public class MatcherPractice {
 					}		
 
 				}
+				
+				System.out.println("End of printing matchesDave");
 //				
 //				System.out.println("------------------------------");
 //				LinkedHashMap<Category, Integer> percentagesByCategoryDave = matcher.totalMatchPercentageByCategory(matchesDave);

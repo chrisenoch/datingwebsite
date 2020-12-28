@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -53,9 +54,9 @@ public class MatchersTestsNoAnsImpls {
 		
 		//Debugging
 		System.out.println("Print user: " +  daveNoAnsImpls);
-		List<SubmittedAnswer> davesSubmittedAnswers = daveNoAnsImpls.getSubmittedAnswers();
-		System.out.println("daves submitetd answers");
-		davesSubmittedAnswers.forEach(System.out::println);
+		Optional<List<SubmittedAnswer>> davesSubmittedAnswers = daveNoAnsImpls.getSubmittedAnswers();
+		System.out.println("daves submitted answers");
+		davesSubmittedAnswers.get().forEach(System.out::println);
 				
 		
 		Map<Category, Map<Question, Map<String, Integer>>> emptyMap = new HashMap<>();

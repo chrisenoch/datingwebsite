@@ -2,6 +2,7 @@ package com.chrisenochdatingsite.Dating.site.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,7 +36,7 @@ public class User {
 	private MembershipType membershipType;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<SubmittedAnswer> submittedAnswers; 
+	private Optional<List<SubmittedAnswer>> submittedAnswers = Optional.empty();
 	//Original: private Map<String, SubmittedAnswer> submittedAnswers; //String is questionText. Improve: Change to enum or class.
 	@Transient
 	private Matcher matcher;
@@ -116,11 +117,11 @@ public class User {
 		this.sex = sex;
 	}
 
-	public List<SubmittedAnswer> getSubmittedAnswers() {
+	public Optional<List<SubmittedAnswer>>  getSubmittedAnswers() {
 		return submittedAnswers;
 	}
 
-	public void setSubmittedAnswers(List<SubmittedAnswer> submittedAnswers) {
+	public void setSubmittedAnswers(Optional<List<SubmittedAnswer>>  submittedAnswers) {
 		this.submittedAnswers = submittedAnswers;
 	}
 

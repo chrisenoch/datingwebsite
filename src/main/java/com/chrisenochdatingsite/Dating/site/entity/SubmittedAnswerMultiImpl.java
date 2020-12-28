@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswersMulti;
 
 @Entity
-public class SubmittedAnswerMultiImpl extends SubmittedAnswerImpl implements SubmittedAnswersMulti {
+public class SubmittedAnswerMultiImpl implements SubmittedAnswersMulti {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
