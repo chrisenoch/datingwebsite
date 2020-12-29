@@ -6,6 +6,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitable;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitor;
 
 @Entity
 @DiscriminatorValue("answer_weighted")

@@ -1,4 +1,4 @@
-package com.chrisenochdatingsite.Dating.site.entity;
+package com.chrisenochdatingsite.Dating.site.visitor;
 
 import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
 

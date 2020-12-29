@@ -1,7 +1,9 @@
-package com.chrisenochdatingsite.Dating.site.entity;
+package com.chrisenochdatingsite.Dating.site.visitor;
 
 import java.util.Map;
 import java.util.function.Function;
+
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
 
 public class AnswerVisitorHelper {
 	

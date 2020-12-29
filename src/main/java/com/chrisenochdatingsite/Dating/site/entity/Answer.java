@@ -13,6 +13,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitable;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitor;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitorHelper;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) 

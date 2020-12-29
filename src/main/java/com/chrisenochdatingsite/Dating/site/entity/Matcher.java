@@ -17,6 +17,9 @@ import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 import com.chrisenochdatingsite.Dating.site.util.NoAmountFoundException;
 import com.chrisenochdatingsite.Dating.site.util.NoAnswersSubmittedException;
 import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitor;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitorHelper;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitorImpl;
 
 
 public class Matcher {
@@ -156,6 +159,7 @@ public class Matcher {
 				
 				
 				} catch (NoAnswersSubmittedException e) {
+					System.out.println("Debugging: + entered catch: NoAnswersSubmittedException" + user + " " + this.searchingUser);
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					continue;

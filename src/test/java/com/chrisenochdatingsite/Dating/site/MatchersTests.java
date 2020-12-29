@@ -141,43 +141,23 @@ public class MatchersTests {
 	public void shouldReturnCorrectValuesDependingOnAnswerType() {	
 		//Testing method matchPercentageByCategoryAndAnswer, which can be found in @BeforeEach
 		
-		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer and will be used for testing.
-		Set<Category> categories = new HashSet<>();
-		Set<Question> questions = new HashSet<>();
-		Map<String, Integer> answers = new HashMap<>();
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer	
+		Map<String, Object> mapInfo = extractedMapInformation(matchesDave);
 		
-		System.out.println("matches dave: " + matchesDave);
+		Set<Category> categoriesSet = (Set<Category>) mapInfo.get("categories");
+		Set<Question> questionsSet = (Set<Question>) mapInfo.get("questions");
+		Map<String, Integer> answersSet = (Map<String, Integer>) mapInfo.get("answers");
 		
-		//Add values to collections ready for testing 
-		for (Map.Entry map1 : matchesDave.entrySet()) {
-			
-			System.out.println("Category: " + map1.getKey());
-			
-			categories.add((Category) map1.getKey());
-			
-			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-				System.out.println("Question: " + map2.getKey());
-				
-				questions.add((Question) map2.getKey());
-				
-				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
-					
-					answers.put((String)map3.getKey(), (Integer)map3.getValue());
-						
-				}
-				System.out.println("------------------------------");
-			}		
-
-		}
-			
-		assertThat(categories).contains(movies, sports, travel);
-		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
-		assertThat(answers).contains(entry("Basketball", 67), entry("Swimming", 100)
+		assertThat(categoriesSet).contains(movies, sports, travel);
+		assertThat(questionsSet).contains(questionMovies, questionSports, questionTravel);
+		assertThat(answersSet).contains(entry("Basketball", 67), entry("Swimming", 100)
 				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
 				).doesNotContainKey("Football");
 	}
+	
+	
+	
 	
 	@Test
 	@DisplayName("Should not score omitted AnswerWeightedImpls regardless of who the searchingUser is")
@@ -185,107 +165,62 @@ public class MatchersTests {
 			@UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters List<User> usersSwapped) throws Exception {
 		
 		//Searching user is Peter. Compared user Dave has selected all 3 sports choices. Peter has omitted sportsChoicePeter1 
-		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer and will be used for testing.
-				Set<Category> categoriesPeterSearching = new HashSet<>();
-				Set<Question> questionsPeterSearching  = new HashSet<>();
-				Map<String, Integer> answersPeterSearching  = new HashMap<>();
-				
-				System.out.println("matches dave: " + matchesDave);
-				
-				//Add values to collections ready for testing 
-				for (Map.Entry map1 : matchesDave.entrySet()) {
-					
-					System.out.println("Category: " + map1.getKey());
-					
-					categoriesPeterSearching.add((Category) map1.getKey());
-					
-					for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-						System.out.println("Question: " + map2.getKey());
-						
-						questionsPeterSearching.add((Question) map2.getKey());
-						
-						for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-							System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
-							
-							answersPeterSearching.put((String)map3.getKey(), (Integer)map3.getValue());
-								
-						}
-						System.out.println("------------------------------");
-					}		
-
-				}
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer
+		Map<String, Object> mapInfo = extractedMapInformation(matchesDave);
 		
-				//Searching user is Dave. Compared user Peter has selected all 3 sports choices. Dave has omitted sportsChoiceDave1.
-				//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer and will be used for testing.
-				
-				User daveSportsSwapped = usersSwapped.get(0);	
-				User peterSportsSwapped = usersSwapped.get(2);
-				
-				Matcher matcherNew = new Matcher();
-				matcherNew.setSearchingUser(daveSportsSwapped);
-				
-				//Reinitialise map. If don't do this, it will have the values of the previous returned map as 
-				//it is pointing to the returned map in Matcher.matchPercentageByCategoryAndAnswer			
-				Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
-				= createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
-				
-				Map<Category, Map<Question, Map<String, Integer>>> matchesComparedUserPeter = null;
-				try {
-					 matchesComparedUserPeter = 
-							matcherNew.matchPercentageByCategoryAndAnswer(matcherNew.getSearchingUser(), peterSportsSwapped
-							, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
-							, a -> a.booleanValue() == true? 100 : 0 );
-			
-				} catch (Exception e) {
-						// TODO Auto-generated catch block
-					e.printStackTrace();
-						//e.getMessage();
-					}
-				
-				
-				Set<Category> categoriesDaveSearching = new HashSet<>();
-				Set<Question> questionsDaveSearching = new HashSet<>();
-				Map<String, Integer> answersDaveSearching = new HashMap<>();
-				
-				System.out.println("matchesComparedUserPeter: " + matchesComparedUserPeter);
-				
-				//Add values to collections ready for testing 
-				for (Map.Entry map1 : matchesComparedUserPeter.entrySet()) {
-					
-					System.out.println("CategoryNew: " + map1.getKey());
-					
-					categoriesDaveSearching.add((Category) map1.getKey());
-					
-					for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-						System.out.println("QuestionNew: " + map2.getKey());
-						
-						questionsDaveSearching.add((Question) map2.getKey());
-						
-						for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-							System.out.println("AnswerTxtNew: " + map3.getKey() + " WeightNew: " + map3.getValue());
-							
-							answersDaveSearching.put((String)map3.getKey(), (Integer)map3.getValue());
-								
-						}
-						System.out.println("------------------------------");
-					}		
-
-				}
-				
-				assertThat(categoriesPeterSearching).contains(movies, sports, travel);
-				assertThat(questionsPeterSearching).contains(questionMovies, questionSports, questionTravel);
-				assertThat(answersPeterSearching).contains(entry("Basketball", 67), entry("Swimming", 100)
-						, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
-						, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
-						).doesNotContainKey("Football");
-				
-				assertThat(categoriesDaveSearching).contains(movies, sports, travel);
-				assertThat(questionsDaveSearching).contains(questionMovies, questionSports, questionTravel);
-				assertThat(answersDaveSearching).contains(entry("Basketball", 67),entry("Swimming", 100)
-						, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
-						, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
-						).doesNotContainKey("Football");
-		//matchPercentageByCategoryAndAnswer
+		Set<Category> categoriesPeterSearching = (Set<Category>) mapInfo.get("categories");
+		Set<Question> questionsPeterSearching = (Set<Question>) mapInfo.get("questions");
+		Map<String, Integer> answersPeterSearching = (Map<String, Integer>) mapInfo.get("answers");
+		
+		//Searching user is Dave. Compared user Peter has selected all 3 sports choices. Dave has omitted sportsChoiceDave1.
+		
+		User daveSportsSwapped = usersSwapped.get(0);	
+		User peterSportsSwapped = usersSwapped.get(2);
+		
+		Matcher matcherNew = new Matcher();
+		matcherNew.setSearchingUser(daveSportsSwapped);
+		
+		//Reinitialise map. If don't do this, it will have the values of the previous returned map as 
+		//it is pointing to the returned map in Matcher.matchPercentageByCategoryAndAnswer			
+		Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+		= createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
+		
+		Map<Category, Map<Question, Map<String, Integer>>> matchesComparedUserPeter = null;
+		try {
+			 matchesComparedUserPeter = 
+					matcherNew.matchPercentageByCategoryAndAnswer(matcherNew.getSearchingUser(), peterSportsSwapped
+					, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
+					, a -> a.booleanValue() == true? 100 : 0 );
+	
+		} catch (Exception e) {
+				// TODO Auto-generated catch block
+			e.printStackTrace();
+				//e.getMessage();
+			}
+		
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer
+		Map<String, Object> mapInfoComparedUserPeter = extractedMapInformation(matchesComparedUserPeter);
+		
+		Set<Category> categoriesDaveSearching = (Set<Category>) mapInfo.get("categories");
+		Set<Question> questionsDaveSearching = (Set<Question>) mapInfo.get("questions");
+		Map<String, Integer> answersDaveSearching = (Map<String, Integer>) mapInfo.get("answers");
+		
+		System.out.println("matchesComparedUserPeter: " + matchesComparedUserPeter);
+		
+		assertThat(categoriesPeterSearching).contains(movies, sports, travel);
+		assertThat(questionsPeterSearching).contains(questionMovies, questionSports, questionTravel);
+		assertThat(answersPeterSearching).contains(entry("Basketball", 67), entry("Swimming", 100)
+				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
+				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
+				).doesNotContainKey("Football");
+		
+		assertThat(categoriesDaveSearching).contains(movies, sports, travel);
+		assertThat(questionsDaveSearching).contains(questionMovies, questionSports, questionTravel);
+		assertThat(answersDaveSearching).contains(entry("Basketball", 67),entry("Swimming", 100)
+				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
+				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
+				).doesNotContainKey("Football");
+//matchPercentageByCategoryAndAnswer
 
 	}
 	
@@ -590,20 +525,43 @@ public class MatchersTests {
 		assertThat(travelCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
 	}
 	
-	@Test
-	public void shouldThrowNoAnswersSubmittedException() throws Exception {
-		//Arrange
-		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
-		List<User> users = Arrays.asList(peter, dave, jane, userWithNoAns);
+	
+	private Map<String,Object> extractedMapInformation(Map<Category, Map<Question, Map<String, Integer>>> matches) {
+		Set<Category> categories = new HashSet<>();
+		Set<Question> questions = new HashSet<>();
+		Map<String, Integer> answers = new HashMap<>();
 		
-		//Act
-		matcher.updateAllMatches(users, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
-				, new Matcher().new ConvertToPercent() , a -> a.booleanValue() == true? 100 : 0);
+		System.out.println("matches: " + matches);
 		
-		Exception exc = assertThrows(NoAnswersSubmittedException.class, ()-> matcher.updateAllMatches(users, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
-				, new Matcher().new ConvertToPercent() , a -> a.booleanValue() == true? 100 : 0));
+		//Add values to collections ready for testing 
+		for (Map.Entry map1 : matches.entrySet()) {
+			
+			System.out.println("Category: " + map1.getKey());
+			
+			categories.add((Category) map1.getKey());
+			
+			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+				System.out.println("Question: " + map2.getKey());
+				
+				questions.add((Question) map2.getKey());
+				
+				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+					
+					answers.put((String)map3.getKey(), (Integer)map3.getValue());
+						
+				}
+				System.out.println("------------------------------");
+			}		
+
+		}
 		
-		assertEquals("Tom has not submitted any answers so compatibility cannot be calculated.", exc.getMessage());
+		Map<String,Object> theExtractedMapInformation = new HashMap<>();
+		theExtractedMapInformation.put("categories", categories);
+		theExtractedMapInformation.put("questions", questions);
+		theExtractedMapInformation.put("answers", answers);
+		
+		return theExtractedMapInformation;
 	}
 	
 	
@@ -611,13 +569,6 @@ public class MatchersTests {
 	public void shouldReturnValuesInDescendingOrder() {
 		//Test inner private class
 
-	}
-	
-	void davidSportsChoicesSwappedWithPeters(
-			@UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters List<User> users) {
-		this.dave = users.get(0);	
-		this.jane = users.get(1);
-		this.peter = users.get(2);
 	}
 	
 	public  Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {

@@ -3,6 +3,9 @@ package com.chrisenochdatingsite.Dating.site.entity;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitable;
+import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitor;
+
 @Entity
 @DiscriminatorValue("standard_answer")
 public class AnswerImpl extends Answer implements AnswerVisitable{
