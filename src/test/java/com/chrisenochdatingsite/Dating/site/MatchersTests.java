@@ -241,33 +241,12 @@ public class MatchersTests {
 			e.printStackTrace();
 		}
 		
-
-		//Collections gather data from the nested map matchesJane and will be used for testing.
-		Set<Category> categories = new HashSet<>();
-		Set<Question> questions = new HashSet<>();
-		Map<String, Integer> answers = new HashMap<>();
-		
-		//Add values to collections ready for testing 
-		for (Map.Entry map1 : matchesJane.entrySet()) {
-			System.out.println("Category: " + map1.getKey());
-			
-			categories.add((Category) map1.getKey());
-			
-			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-				System.out.println("Question: " + map2.getKey());
-				
-				questions.add((Question) map2.getKey());
-				
-				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
-					
-					answers.put((String)map3.getKey(), (Integer)map3.getValue());
-						
-				}
-				System.out.println("------------------------------");
-			}		
-
-		}
+		//Collections gather data from the nested map matchesJane, which will be used for testing.
+		Map<String, Object> mapInfoComparedUserPeter = extractedMapInformation(matchesJane);
+	
+		Set<Category> categories = (Set<Category>) mapInfoComparedUserPeter .get("categories");
+		Set<Question> questions = (Set<Question>) mapInfoComparedUserPeter .get("questions");
+		Map<String, Integer> answers = (Map<String, Integer>) mapInfoComparedUserPeter .get("answers");
 
 		assertThat(categories).contains(movies, sports, travel);
 		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
