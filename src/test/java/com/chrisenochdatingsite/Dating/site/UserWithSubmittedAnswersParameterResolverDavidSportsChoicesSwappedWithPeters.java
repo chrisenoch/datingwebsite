@@ -118,12 +118,14 @@ public class UserWithSubmittedAnswersParameterResolverDavidSportsChoicesSwappedW
 		var movieChoiceJane2 = new AnswerImpl(2, "Action");
 		var movieChoiceJane3 = new AnswerImpl(3, "Romance");
 		
-		var sportsChoiceJane1 = new AnswerWeightedImpl(10, "Basketball", AnswerWeight.ZERO);
+		var sportsChoiceJane1 = new AnswerWeightedImpl(10, "Football", AnswerWeight.SIX);
 		var sportsChoiceJane2 = new AnswerWeightedImpl(11, "Swimming", AnswerWeight.ONE);
-		var sportsChoiceJane3 = new AnswerWeightedImpl(12, "Football", AnswerWeight.SIX);	
-		var travelStyleChoiceJane1 = new AnswerWeightedImpl(13, "Hiking", AnswerWeight.FIVE);
-		var travelStyleChoiceJane2 = new AnswerWeightedImpl(14, "Sightseeing", AnswerWeight.FIVE);
-		var travelStyleChoiceJane3 = new AnswerWeightedImpl(15, "Camping", AnswerWeight.FIVE);
+		var sportsChoiceJane3 = new AnswerWeightedImpl(12, "Basketball", AnswerWeight.ZERO);
+		
+		var travelStyleChoiceJane1 = new AnswerWeightedImpl(13, "Camping", AnswerWeight.FIVE);
+		var travelStyleChoiceJane2 = new AnswerWeightedImpl(14, "Hiking", AnswerWeight.FIVE);
+		var travelStyleChoiceJane3 = new AnswerWeightedImpl(15, "Sightseeing", AnswerWeight.FIVE);
+		
 
 		var submittedAnsJaneMovies1 = new SubmittedAnswerMultiImpl(questionMovies, jane, movieChoiceJane1);
 		var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
@@ -141,14 +143,13 @@ public class UserWithSubmittedAnswersParameterResolverDavidSportsChoicesSwappedW
 		var movieChoicePeter2 = new AnswerImpl(2, "Action");
 		var movieChoicePeter3 = new AnswerImpl(3, "Romance");
 		
-
-		var sportsChoicePeter1 = new AnswerWeightedImpl(16, "Swimming", AnswerWeight.ONE);
-		var sportsChoicePeter2 = new AnswerWeightedImpl(17, "Football", AnswerWeight.FIVE);
+		var sportsChoicePeter1 = new AnswerWeightedImpl(16, "Football", AnswerWeight.FIVE);
+		var sportsChoicePeter2 = new AnswerWeightedImpl(17, "Swimming", AnswerWeight.ONE);
 		var sportsChoicePeter3 = new AnswerWeightedImpl(18, "Basketball", AnswerWeight.FOUR);
-		
-		var travelStyleChoicePeter1 = new AnswerWeightedImpl(19, "Sightseeing", AnswerWeight.SIX);
-		var travelStyleChoicePeter2 = new AnswerWeightedImpl(20, "Camping", AnswerWeight.SIX);
-		var travelStyleChoicePeter3 = new AnswerWeightedImpl(21, "Hiking", AnswerWeight.THREE);
+			
+		var travelStyleChoicePeter1 = new AnswerWeightedImpl(19, "Camping", AnswerWeight.SIX);
+		var travelStyleChoicePeter2 = new AnswerWeightedImpl(20, "Hiking", AnswerWeight.THREE);
+		var travelStyleChoicePeter3 = new AnswerWeightedImpl(21, "Sightseeing", AnswerWeight.SIX);
 		
 		var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter, movieChoicePeter2, movieChoicePeter3);
 		var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter, sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);

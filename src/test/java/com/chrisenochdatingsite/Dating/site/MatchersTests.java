@@ -119,7 +119,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldReturnPercentageRoundedUp() {
 		ConvertToPercent convertToPercent = new Matcher().new ConvertToPercent();
 		
@@ -133,15 +132,12 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldReturnCorrectNumberofCategoriesInMap() {
 		assertThat(matchesDave).isNotEmpty().hasSize(3);
 	}
 	
 	
-	//Test use case
 	@Test
-	@Disabled
 	public void shouldReturnCorrectValuesDependingOnAnswerType() {	
 		//Testing method matchPercentageByCategoryAndAnswer, which can be found in @BeforeEach
 		
@@ -177,10 +173,10 @@ public class MatchersTests {
 			
 		assertThat(categories).contains(movies, sports, travel);
 		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
-		assertThat(answers).contains(entry("Basketball", 67), entry("Football", 67)
+		assertThat(answers).contains(entry("Basketball", 67), entry("Swimming", 100)
 				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
-				).doesNotContainKey("Swimming");
+				).doesNotContainKey("Football");
 	}
 	
 	@Test
@@ -278,14 +274,14 @@ public class MatchersTests {
 				
 				assertThat(categoriesPeterSearching).contains(movies, sports, travel);
 				assertThat(questionsPeterSearching).contains(questionMovies, questionSports, questionTravel);
-				assertThat(answersPeterSearching).contains(entry("Basketball", 67), entry("Football", 67)
+				assertThat(answersPeterSearching).contains(entry("Basketball", 67), entry("Swimming", 100)
 						, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 						, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
-						).doesNotContainKey("Swimming");
+						).doesNotContainKey("Football");
 				
 				assertThat(categoriesDaveSearching).contains(movies, sports, travel);
 				assertThat(questionsDaveSearching).contains(questionMovies, questionSports, questionTravel);
-				assertThat(answersDaveSearching).contains(entry("Basketball", 67)
+				assertThat(answersDaveSearching).contains(entry("Basketball", 67),entry("Swimming", 100)
 						, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 						, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
 						).doesNotContainKey("Football");
@@ -293,11 +289,7 @@ public class MatchersTests {
 
 	}
 	
-	
-	
-	
 	@Test
-	@Disabled
 	public void shouldReturnZeroWhenNoAnswersMatch() {
 		//Jane and Peter (the searchingUser) have no movie answers in common
 		Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
@@ -351,13 +343,8 @@ public class MatchersTests {
 		System.out.println(answers);		
 		
 	}
-
 	
-	//Test with SubmittedAnswerSingleImpl
-
-		
 	@Test
-	@Disabled
 	public void shouldThrowExceptionIfNoAnswersSubmitted() {
 		User noSubmittedAnswersHarold = new User("Harold", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE.FEMALE, MembershipType.TRIAL);
 		User noSubmittedAnswersMike = new User("Mike", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE, MembershipType.TRIAL);
@@ -379,7 +366,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldReturnTotalPercentageByUserForEveryCategory() {
 		//Arrange
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -407,7 +393,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldReturnUsersAndTotalScoresInDescendingOrder() throws Exception {
 		//Init
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -441,7 +426,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldReturnAverage() throws Exception {
 		//Init
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -452,17 +436,16 @@ public class MatchersTests {
 		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);		
 		
 		//Method being tested
-		matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave);
+		matcher.updateTotalMatchPercentagesByUser(dave, totalPercentagesByCategoryDave);
 		
 		//get updated field from Matcher class
 		LinkedHashMap<User, Integer> totalMatchPercentagesByUserUpdated = matcher.getTotalMatchPercentagesByUser();
-		assertEquals(55, totalMatchPercentagesByUserUpdated.containsValue(55));
+		assertEquals(totalMatchPercentagesByUserUpdated.get(dave), 55);
 		
 	}
 	
 	
 	@Test
-	@Disabled
 	public void shouldThrowExceptionIfAverageIsEmpty() throws Exception {
 		//Init
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -475,7 +458,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldReturnRoundedUpTotalMatchPercentageByCategory() throws Exception {
 		//Arrange
 		Map<Category, Map<Question,Map<String,Integer>>> map = new HashMap<>();
@@ -510,7 +492,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldReturnTotalMatchPercentagesByCategoryForEveryUserInDescendingOrder() {
 		//Arrange
 		LinkedHashMap<Category, Integer> totalMatchPercentageByCategoryDave = new LinkedHashMap<>();
@@ -556,7 +537,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	@DisplayName("Should not add searchingUser to maps but should add all other users.")
 	public void shouldNotAddSearchingUserToMaps() throws Exception {
 		//Arrange
@@ -583,7 +563,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	@DisplayName("Should ignore any user who hasn't submitted any answers and calculate the match scores for the others.")
 	public void shouldIgnoreUserIfUserHasNotSubmittedAnyAnswers() throws Exception {
 		//Arrange
@@ -612,7 +591,6 @@ public class MatchersTests {
 	}
 	
 	@Test
-	@Disabled
 	public void shouldThrowNoAnswersSubmittedException() throws Exception {
 		//Arrange
 		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
@@ -628,8 +606,6 @@ public class MatchersTests {
 		assertEquals("Tom has not submitted any answers so compatibility cannot be calculated.", exc.getMessage());
 	}
 	
-	
-
 	
 	//@Test
 	public void shouldReturnValuesInDescendingOrder() {
