@@ -384,7 +384,9 @@ public class Matcher {
 						
 						try {
 							convertedScore = ans.accept(answerVisitor);
+							System.out.println("Debugging: no equiv ans not thrown" + convertedScore);
 						} catch (NoEquivalentAnswerException exc) {
+							System.out.println("Debugging: no equiv ans");
 							continue;
 						}
 

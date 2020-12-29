@@ -11,7 +11,9 @@ public class AnswerVisitorImpl implements AnswerVisitor {
 		
 		AnswerWeightedImpl searchingUserAnsWeighted = answerWeightedImpl;
 
-		AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) answerWeightedImpl.getAnswerVisitorHelper().getComparedUserSelectedAnswers().get(searchingUserAnsWeighted.getAnswerText());
+		AnswerWeightedImpl comparedUserAnswerWeighted = (AnswerWeightedImpl) answerWeightedImpl
+				.getAnswerVisitorHelper().getComparedUserSelectedAnswers().get(searchingUserAnsWeighted
+						.getAnswerText());
 		int diffInWeight; 
 		
 		int convertedScore;

@@ -15,24 +15,28 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import com.chrisenochdatingsite.Dating.site.UserWithSubmittedAnswersParameterResolver.UserWithSubmittedAnswers;
+import com.chrisenochdatingsite.Dating.site.UserWithSubmittedAnswersParameterResolverDavidSportsChoicesSwappedWithPeters.UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters;
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher.ConvertToPercent;
 import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
+import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
-import com.chrisenochdatingsite.Dating.site.entity.Answer;
-import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.util.NoAnswersSubmittedException;
 
 
 @ExtendWith(UserWithSubmittedAnswersParameterResolver.class)
+@ExtendWith(UserWithSubmittedAnswersParameterResolverDavidSportsChoicesSwappedWithPeters.class)
 public class MatchersTests {
 	
 	private User dave;
@@ -54,13 +58,11 @@ public class MatchersTests {
 	
 	
 	@BeforeEach
-	void init(List<User> users) {
+	void init(@UserWithSubmittedAnswers List<User> users) {
 
 		this.dave = users.get(0);	
 		this.jane = users.get(1);
 		this.peter = users.get(2);
-		
-		System.out.println("User debugging: " + dave.getFirstName());
 		
 		this.matcher = new Matcher();
 		this.matcher.setSearchingUser(peter);
@@ -117,6 +119,7 @@ public class MatchersTests {
 	}
 	
 	@Test
+	@Disabled
 	public void shouldReturnPercentageRoundedUp() {
 		ConvertToPercent convertToPercent = new Matcher().new ConvertToPercent();
 		
@@ -129,7 +132,8 @@ public class MatchersTests {
 		assertEquals(50, defaultPercentageMinus);
 	}
 	
-	
+	@Test
+	@Disabled
 	public void shouldReturnCorrectNumberofCategoriesInMap() {
 		assertThat(matchesDave).isNotEmpty().hasSize(3);
 	}
@@ -137,6 +141,7 @@ public class MatchersTests {
 	
 	//Test use case
 	@Test
+	@Disabled
 	public void shouldReturnCorrectValuesDependingOnAnswerType() {	
 		//Testing method matchPercentageByCategoryAndAnswer, which can be found in @BeforeEach
 		
@@ -175,10 +180,124 @@ public class MatchersTests {
 		assertThat(answers).contains(entry("Basketball", 67), entry("Football", 67)
 				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
-				);
+				).doesNotContainKey("Swimming");
 	}
 	
 	@Test
+	@DisplayName("Should not score omitted AnswerWeightedImpls regardless of who the searchingUser is")
+	public void shouldNotScoreOmittedAnswerWeightedImpls(
+			@UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters List<User> usersSwapped) throws Exception {
+		
+		//Searching user is Peter. Compared user Dave has selected all 3 sports choices. Peter has omitted sportsChoicePeter1 
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer and will be used for testing.
+				Set<Category> categoriesPeterSearching = new HashSet<>();
+				Set<Question> questionsPeterSearching  = new HashSet<>();
+				Map<String, Integer> answersPeterSearching  = new HashMap<>();
+				
+				System.out.println("matches dave: " + matchesDave);
+				
+				//Add values to collections ready for testing 
+				for (Map.Entry map1 : matchesDave.entrySet()) {
+					
+					System.out.println("Category: " + map1.getKey());
+					
+					categoriesPeterSearching.add((Category) map1.getKey());
+					
+					for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+						System.out.println("Question: " + map2.getKey());
+						
+						questionsPeterSearching.add((Question) map2.getKey());
+						
+						for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+							System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+							
+							answersPeterSearching.put((String)map3.getKey(), (Integer)map3.getValue());
+								
+						}
+						System.out.println("------------------------------");
+					}		
+
+				}
+		
+				//Searching user is Dave. Compared user Peter has selected all 3 sports choices. Dave has omitted sportsChoiceDave1.
+				//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer and will be used for testing.
+				
+				User daveSportsSwapped = usersSwapped.get(0);	
+				User peterSportsSwapped = usersSwapped.get(2);
+				
+				Matcher matcherNew = new Matcher();
+				matcherNew.setSearchingUser(daveSportsSwapped);
+				
+				//Reinitialise map. If don't do this, it will have the values of the previous returned map as 
+				//it is pointing to the returned map in Matcher.matchPercentageByCategoryAndAnswer			
+				Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
+				= createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
+				
+				Map<Category, Map<Question, Map<String, Integer>>> matchesComparedUserPeter = null;
+				try {
+					 matchesComparedUserPeter = 
+							matcherNew.matchPercentageByCategoryAndAnswer(matcherNew.getSearchingUser(), peterSportsSwapped
+							, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
+							, a -> a.booleanValue() == true? 100 : 0 );
+			
+				} catch (Exception e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+						//e.getMessage();
+					}
+				
+				
+				Set<Category> categoriesDaveSearching = new HashSet<>();
+				Set<Question> questionsDaveSearching = new HashSet<>();
+				Map<String, Integer> answersDaveSearching = new HashMap<>();
+				
+				System.out.println("matchesComparedUserPeter: " + matchesComparedUserPeter);
+				
+				//Add values to collections ready for testing 
+				for (Map.Entry map1 : matchesComparedUserPeter.entrySet()) {
+					
+					System.out.println("CategoryNew: " + map1.getKey());
+					
+					categoriesDaveSearching.add((Category) map1.getKey());
+					
+					for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+						System.out.println("QuestionNew: " + map2.getKey());
+						
+						questionsDaveSearching.add((Question) map2.getKey());
+						
+						for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+							System.out.println("AnswerTxtNew: " + map3.getKey() + " WeightNew: " + map3.getValue());
+							
+							answersDaveSearching.put((String)map3.getKey(), (Integer)map3.getValue());
+								
+						}
+						System.out.println("------------------------------");
+					}		
+
+				}
+				
+				assertThat(categoriesPeterSearching).contains(movies, sports, travel);
+				assertThat(questionsPeterSearching).contains(questionMovies, questionSports, questionTravel);
+				assertThat(answersPeterSearching).contains(entry("Basketball", 67), entry("Football", 67)
+						, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
+						, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
+						).doesNotContainKey("Swimming");
+				
+				assertThat(categoriesDaveSearching).contains(movies, sports, travel);
+				assertThat(questionsDaveSearching).contains(questionMovies, questionSports, questionTravel);
+				assertThat(answersDaveSearching).contains(entry("Basketball", 67)
+						, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
+						, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
+						).doesNotContainKey("Football");
+		//matchPercentageByCategoryAndAnswer
+
+	}
+	
+	
+	
+	
+	@Test
+	@Disabled
 	public void shouldReturnZeroWhenNoAnswersMatch() {
 		//Jane and Peter (the searchingUser) have no movie answers in common
 		Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
@@ -238,6 +357,7 @@ public class MatchersTests {
 
 		
 	@Test
+	@Disabled
 	public void shouldThrowExceptionIfNoAnswersSubmitted() {
 		User noSubmittedAnswersHarold = new User("Harold", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE.FEMALE, MembershipType.TRIAL);
 		User noSubmittedAnswersMike = new User("Mike", "Smith", "harold@yahoo.com", LocalDate.of(1983,  9,  23), Sex.MALE, MembershipType.TRIAL);
@@ -259,6 +379,7 @@ public class MatchersTests {
 	}
 	
 	@Test
+	@Disabled
 	public void shouldReturnTotalPercentageByUserForEveryCategory() {
 		//Arrange
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -286,6 +407,7 @@ public class MatchersTests {
 	}
 	
 	@Test
+	@Disabled
 	public void shouldReturnUsersAndTotalScoresInDescendingOrder() throws Exception {
 		//Init
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -318,6 +440,8 @@ public class MatchersTests {
 		
 	}
 	
+	@Test
+	@Disabled
 	public void shouldReturnAverage() throws Exception {
 		//Init
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -338,6 +462,7 @@ public class MatchersTests {
 	
 	
 	@Test
+	@Disabled
 	public void shouldThrowExceptionIfAverageIsEmpty() throws Exception {
 		//Init
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
@@ -350,6 +475,7 @@ public class MatchersTests {
 	}
 	
 	@Test
+	@Disabled
 	public void shouldReturnRoundedUpTotalMatchPercentageByCategory() throws Exception {
 		//Arrange
 		Map<Category, Map<Question,Map<String,Integer>>> map = new HashMap<>();
@@ -384,6 +510,7 @@ public class MatchersTests {
 	}
 	
 	@Test
+	@Disabled
 	public void shouldReturnTotalMatchPercentagesByCategoryForEveryUserInDescendingOrder() {
 		//Arrange
 		LinkedHashMap<Category, Integer> totalMatchPercentageByCategoryDave = new LinkedHashMap<>();
@@ -429,6 +556,7 @@ public class MatchersTests {
 	}
 	
 	@Test
+	@Disabled
 	@DisplayName("Should not add searchingUser to maps but should add all other users.")
 	public void shouldNotAddSearchingUserToMaps() throws Exception {
 		//Arrange
@@ -455,6 +583,7 @@ public class MatchersTests {
 	}
 	
 	@Test
+	@Disabled
 	@DisplayName("Should ignore any user who hasn't submitted any answers and calculate the match scores for the others.")
 	public void shouldIgnoreUserIfUserHasNotSubmittedAnyAnswers() throws Exception {
 		//Arrange
@@ -482,6 +611,8 @@ public class MatchersTests {
 		assertThat(travelCategory).doesNotContainKeys(peter, userWithNoAns).containsKeys(dave, jane);
 	}
 	
+	@Test
+	@Disabled
 	public void shouldThrowNoAnswersSubmittedException() throws Exception {
 		//Arrange
 		User userWithNoAns = new User("Tom", "Smith", "tom@yahoo.com", LocalDate.now(), Sex.MALE, MembershipType.TRIAL);
@@ -497,14 +628,20 @@ public class MatchersTests {
 		assertEquals("Tom has not submitted any answers so compatibility cannot be calculated.", exc.getMessage());
 	}
 	
+	
 
-	
-	
 	
 	//@Test
 	public void shouldReturnValuesInDescendingOrder() {
 		//Test inner private class
 
+	}
+	
+	void davidSportsChoicesSwappedWithPeters(
+			@UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters List<User> users) {
+		this.dave = users.get(0);	
+		this.jane = users.get(1);
+		this.peter = users.get(2);
 	}
 	
 	public  Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {

@@ -28,17 +28,17 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
-public class UserWithSubmittedAnswersParameterResolver implements ParameterResolver {
+public class UserWithSubmittedAnswersParameterResolverDavidSportsChoicesSwappedWithPeters implements ParameterResolver {
 
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.PARAMETER)
-	public @interface UserWithSubmittedAnswers {
+	public @interface UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters {
 	}
 	
 	@Override
 	public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
 			throws ParameterResolutionException {
-		return parameterContext.isAnnotated(UserWithSubmittedAnswers.class);
+		return parameterContext.isAnnotated(UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters.class);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class UserWithSubmittedAnswersParameterResolver implements ParameterResol
 		var travelStyleChoiceDave3= new AnswerWeightedImpl(9, "Sightseeing", AnswerWeight.ONE);
 		
 		var submittedAnsDaveMovies1 = new SubmittedAnswerMultiImpl(questionMovies, dave, movieChoiceDave1, movieChoiceDave2, movieChoiceDave3);
-		var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
+		var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave2, sportsChoiceDave3);
 		var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
 		
 		Optional<List<SubmittedAnswer>> daveAns = Optional.of(Arrays.asList(submittedAnsDaveMovies1, submittedAnsDaveSports1, submittedAnsDaveTravel1 ));
@@ -151,7 +151,7 @@ public class UserWithSubmittedAnswersParameterResolver implements ParameterResol
 		var travelStyleChoicePeter3 = new AnswerWeightedImpl(21, "Hiking", AnswerWeight.THREE);
 		
 		var submittedAnsPeterMovies1 = new SubmittedAnswerMultiImpl(questionMovies, peter, movieChoicePeter2, movieChoicePeter3);
-		var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter, sportsChoicePeter2, sportsChoicePeter3);
+		var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter, sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 		var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 		
 		Optional<List<SubmittedAnswer>> peterAns = Optional.of(Arrays.asList(submittedAnsPeterMovies1,submittedAnsPeterSports1,submittedAnsPeterTravel1  ));		
