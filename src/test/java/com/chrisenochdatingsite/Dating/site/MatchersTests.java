@@ -111,10 +111,7 @@ public class MatchersTests {
 				// TODO Auto-generated catch block
 			e.printStackTrace();
 				//e.getMessage();
-			}
-
-		
-		
+			}		
 		
 	}
 	
@@ -141,16 +138,16 @@ public class MatchersTests {
 	public void shouldReturnCorrectValuesDependingOnAnswerType() {	
 		//Testing method matchPercentageByCategoryAndAnswer, which can be found in @BeforeEach
 		
-		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer	
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer(matchesDave)	
 		Map<String, Object> mapInfo = extractedMapInformation(matchesDave);
 		
 		Set<Category> categoriesSet = (Set<Category>) mapInfo.get("categories");
 		Set<Question> questionsSet = (Set<Question>) mapInfo.get("questions");
-		Map<String, Integer> answersSet = (Map<String, Integer>) mapInfo.get("answers");
+		Map<String, Integer> answersMap = (Map<String, Integer>) mapInfo.get("answers");
 		
 		assertThat(categoriesSet).contains(movies, sports, travel);
 		assertThat(questionsSet).contains(questionMovies, questionSports, questionTravel);
-		assertThat(answersSet).contains(entry("Basketball", 67), entry("Swimming", 100)
+		assertThat(answersMap).contains(entry("Basketball", 67), entry("Swimming", 100)
 				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
 				).doesNotContainKey("Football");
@@ -165,7 +162,7 @@ public class MatchersTests {
 			@UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters List<User> usersSwapped) throws Exception {
 		
 		//Searching user is Peter. Compared user Dave has selected all 3 sports choices. Peter has omitted sportsChoicePeter1 
-		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer (matchesDave) to be used for testing 
 		Map<String, Object> mapInfo = extractedMapInformation(matchesDave);
 		
 		Set<Category> categoriesPeterSearching = (Set<Category>) mapInfo.get("categories");
@@ -173,7 +170,6 @@ public class MatchersTests {
 		Map<String, Integer> answersPeterSearching = (Map<String, Integer>) mapInfo.get("answers");
 		
 		//Searching user is Dave. Compared user Peter has selected all 3 sports choices. Dave has omitted sportsChoiceDave1.
-		
 		User daveSportsSwapped = usersSwapped.get(0);	
 		User peterSportsSwapped = usersSwapped.get(2);
 		
@@ -198,7 +194,7 @@ public class MatchersTests {
 				//e.getMessage();
 			}
 		
-		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer
+		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer to be used for testing
 		Map<String, Object> mapInfoComparedUserPeter = extractedMapInformation(matchesComparedUserPeter);
 		
 		Set<Category> categoriesDaveSearching = (Set<Category>) mapInfo.get("categories");
@@ -242,11 +238,11 @@ public class MatchersTests {
 		}
 		
 		//Collections gather data from the nested map matchesJane, which will be used for testing.
-		Map<String, Object> mapInfoComparedUserPeter = extractedMapInformation(matchesJane);
+		Map<String, Object> mapInfoJane = extractedMapInformation(matchesJane);
 	
-		Set<Category> categories = (Set<Category>) mapInfoComparedUserPeter .get("categories");
-		Set<Question> questions = (Set<Question>) mapInfoComparedUserPeter .get("questions");
-		Map<String, Integer> answers = (Map<String, Integer>) mapInfoComparedUserPeter .get("answers");
+		Set<Category> categories = (Set<Category>) mapInfoJane.get("categories");
+		Set<Question> questions = (Set<Question>) mapInfoJane.get("questions");
+		Map<String, Integer> answers = (Map<String, Integer>) mapInfoJane.get("answers");
 
 		assertThat(categories).contains(movies, sports, travel);
 		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
