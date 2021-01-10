@@ -1,4 +1,4 @@
-package com.chrisenochdatingsite.Dating.site.entity;
+package com.chrisenochdatingsite.Dating.site.demo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,6 +9,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.chrisenochdatingsite.Dating.site.entity.Answer;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
+import com.chrisenochdatingsite.Dating.site.entity.Category;
+import com.chrisenochdatingsite.Dating.site.entity.Matcher;
+import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
+import com.chrisenochdatingsite.Dating.site.entity.Question;
+import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
+import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
+import com.chrisenochdatingsite.Dating.site.entity.User;
 import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 

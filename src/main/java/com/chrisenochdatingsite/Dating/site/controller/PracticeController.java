@@ -30,7 +30,7 @@ import com.chrisenochdatingsite.Dating.site.service.UserService;
 import com.chrisenochdatingsite.Dating.site.service.UtilService;
 
 @Controller
-public class HomeController {
+public class PracticeController {
 	
 	CategoryService categoryService;
 	UserService userService;
@@ -42,7 +42,7 @@ public class HomeController {
 
 	
 	@Autowired
-	public HomeController(CategoryService categoryService, UserService userService
+	public PracticeController(CategoryService categoryService, UserService userService
 			,  QuestionWithOptionsService questionWithOptionsService
 			, SubmittedAnswerMultiService submittedAnswersMultiService, UtilService utilService
 			, BatchUpdateService batchUpdateService, AnswerService answerService) {

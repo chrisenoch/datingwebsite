@@ -96,7 +96,8 @@ CREATE TABLE `answer` (
   `answerText` varchar(255) DEFAULT NULL,
   `answerWeight` varchar(20) DEFAULT NULL,
   `question_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT `answer_content_check` CHECK (((case when (`Answer_Type` = 'answer_weighted') then (case when (`answerWeight` is not null) then 1 else 0 end) else 1 end) = 1))
  
 );
 

@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -20,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.orm.jpa.JpaSystemException;
 
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
@@ -337,6 +340,16 @@ public class TestH2 {
 		
 		assertEquals(MembershipType.BASIC, users.get(0).getMembershipType());
 		assertThat(membershipTypes).containsOnly(MembershipType.BASIC);
+	}
+	
+	@Test
+	public void shouldThrowJpaSystemIfAnswerWeightedSavedWithoutWeight() {
+		
+		AnswerWeightedImpl ans = new AnswerWeightedImpl("Polo");
+		
+		assertThrows(JpaSystemException.class, ()-> answerService.save(ans));
+
+		
 	}
 		
 }
