@@ -6,8 +6,8 @@ import com.chrisenochdatingsite.Dating.site.entity.User;
 
 public interface UserDAO {
 	
-	public void save(User theUser);
+	void save(User theUser);
 	
-	public List<User> findAll();
+	List<User> findAll();
 
 }

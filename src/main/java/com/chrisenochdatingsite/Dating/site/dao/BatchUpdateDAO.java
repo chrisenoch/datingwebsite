@@ -4,6 +4,6 @@ import com.chrisenochdatingsite.Dating.site.entity.MembershipType;
 
 public interface BatchUpdateDAO {
 	
-	public void batchUpdateMembershipType(MembershipType typeToBeUpdated, MembershipType newType);
+	void batchUpdateMembershipType(MembershipType typeToBeUpdated, MembershipType newType);
 
 }

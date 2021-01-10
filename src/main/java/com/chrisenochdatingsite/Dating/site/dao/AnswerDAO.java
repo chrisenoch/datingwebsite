@@ -6,13 +6,13 @@ import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 
-public interface AnswerDAO {
+ interface AnswerDAO {
 	
-	public void save(Answer answer);
+	 void save(Answer answer);
 	
-	public List<Answer> findAll();
+	 List<Answer> findAll();
 	
-	public Answer getById(long id);
+	 Answer getById(long id);
 
 
 }

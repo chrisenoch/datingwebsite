@@ -7,8 +7,8 @@ import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 
 public interface QuestionWithOptionsDAO {
 	
-	public void save(QuestionWithOptionsImpl q);
+	void save(QuestionWithOptionsImpl q);
 	
-	public List<Question> findAll();
+	List<Question> findAll();
 
 }

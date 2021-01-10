@@ -6,8 +6,8 @@ import com.chrisenochdatingsite.Dating.site.entity.Category;
 
 public interface CategoryDAO {
 	
-	public void save(Category theCategory);
+	void save(Category theCategory);
 	
-	public List<Category> findAll();
+	List<Category> findAll();
 
 }
