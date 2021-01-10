@@ -100,7 +100,7 @@ public class UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver implements Pa
 		var submittedAnsDaveSports1 = new SubmittedAnswerMultiImpl(questionSports, dave, sportsChoiceDave1, sportsChoiceDave2, sportsChoiceDave3);
 		var submittedAnsDaveTravel1 = new SubmittedAnswerMultiImpl(questionTravel, dave, travelStyleChoiceDave1, travelStyleChoiceDave2,travelStyleChoiceDave3);
 		
-		Optional<List<SubmittedAnswer>> daveAns = Optional.of(Arrays.asList(submittedAnsDaveMovies1,submittedAnsDaveSports1, submittedAnsDaveTravel1 ));
+		List<SubmittedAnswer> daveAns = Arrays.asList(submittedAnsDaveMovies1,submittedAnsDaveSports1, submittedAnsDaveTravel1 );
 		
 		dave.setSubmittedAnswers(daveAns);
 		
@@ -120,7 +120,7 @@ public class UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver implements Pa
 		var submittedAnsJaneSports1 = new SubmittedAnswerMultiImpl(questionSports, jane, sportsChoiceJane1,sportsChoiceJane2, sportsChoiceJane3);
 		var submittedAnsJaneTravel1 = new SubmittedAnswerMultiImpl(questionTravel, jane, travelStyleChoiceJane1, travelStyleChoiceJane2, travelStyleChoiceJane3);
 			
-		Optional<List<SubmittedAnswer>> janeAns = Optional.of(Arrays.asList(submittedAnsJaneMovies1, submittedAnsJaneSports1,submittedAnsJaneTravel1 ));
+		List<SubmittedAnswer> janeAns = Arrays.asList(submittedAnsJaneMovies1, submittedAnsJaneSports1,submittedAnsJaneTravel1 );
 		
 		jane.setSubmittedAnswers(janeAns); 
 		
@@ -142,7 +142,7 @@ public class UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver implements Pa
 		var submittedAnsPeterSports1 = new SubmittedAnswerMultiImpl(questionSports, peter,sportsChoicePeter1, sportsChoicePeter2, sportsChoicePeter3);
 		var submittedAnsPeterTravel1 = new SubmittedAnswerMultiImpl(questionTravel, peter, travelStyleChoicePeter1, travelStyleChoicePeter2, travelStyleChoicePeter3);
 		
-		Optional<List<SubmittedAnswer>> peterAns = Optional.of(Arrays.asList(submittedAnsPeterMovies1, submittedAnsPeterSports1, submittedAnsPeterTravel1));
+		List<SubmittedAnswer> peterAns = Arrays.asList(submittedAnsPeterMovies1, submittedAnsPeterSports1, submittedAnsPeterTravel1);
 		
 		peter.setSubmittedAnswers(peterAns);
 		

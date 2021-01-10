@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
 import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitable;
@@ -33,6 +34,7 @@ public abstract class Answer implements AnswerVisitable{
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private Question question;
 	
+	@Transient
 	private AnswerVisitorHelper answerVisitorHelper;
 	
 	

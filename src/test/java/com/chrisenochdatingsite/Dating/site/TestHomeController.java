@@ -73,7 +73,7 @@ public class TestHomeController {
 		 mockMvc.perform(get("/home"))
 	     .andExpect(status().isOk())
 	     .andExpect(view().name("index"))
-     .andExpect(forwardedUrl("index.jsp"));
+     .andExpect(forwardedUrl("index"));
 
 		 
 		 
