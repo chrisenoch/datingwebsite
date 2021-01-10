@@ -6,7 +6,7 @@ import com.chrisenochdatingsite.Dating.site.entity.Answer;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeight;
 
- interface AnswerDAO {
+ public interface AnswerDAO {
 	
 	 void save(Answer answer);
 	
