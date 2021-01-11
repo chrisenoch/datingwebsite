@@ -168,7 +168,6 @@ public class Matcher {
 		
 		public void updateTotalMatchPercentagesByCategoryForEveryUser(User userToAdd, LinkedHashMap<Category, 
 				Integer> totalMatchPercentageByCategory){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
-			System.out.println("updateTotalMatchPercentagesByCategoryAndUser" + userToAdd);
 		
 			for (Map.Entry<Category, Integer> map: totalMatchPercentageByCategory.entrySet()){
 				Category category = (Category) map.getKey();
@@ -199,7 +198,6 @@ public class Matcher {
 		}
 		
 		public void updateTotalPercentageByUserForEveryCategory(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory) {
-			System.out.println("updateTotalPercentageByCategory" + userToAdd);
 			
 			totalMatchPercentageByUserForEveryCategory.put(userToAdd, totalMatchPercentageByCategory);
 			
@@ -221,7 +219,6 @@ public class Matcher {
 				 for (Map.Entry pair2 : ((Map<String, Answer>) pair.getValue()).entrySet()) {
 					 for (Map.Entry pair3 :  ((Map<String, Answer>) pair2.getValue()).entrySet()) {
 						 sum += (Integer)pair3.getValue();
-						 System.out.println("Sum" + sum);
 						 answerCount++;
 					 }
 									 
@@ -354,50 +351,22 @@ public class Matcher {
 			if (matchWeightsByCategory.containsKey(category)) {
 				
 				if (matchWeightsByCategory.get(category).containsKey(question)) {
-					
-					System.out.println("In addScoresToMap: Start of: if (matchWeightsByCategory.get(category).containsKey(question)) ");
-					
-					debugPrintMatchScoresByCategory(matchWeightsByCategory);
-					
-					System.out.println("********************************");
-					System.out.println();
-					
-					
+
 					//fetch answer map
 					Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
-					System.out.println("tempAnswerMap before addition");
-					tempAnswerMap.forEach((a, b)-> System.out.println(a + " " + b));
 					
 					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
-					System.out.println("tempAnswerMap after addition");
-					tempAnswerMap.forEach((a, b)-> System.out.println(a + " " + b));
 					
-					//add answer to question map
-					
+					//add answer to question map				
 					Map<Question,Map<String, Integer>> tempMapWithQuestion = new HashMap<>(); 
 					tempMapWithQuestion.put(question, tempAnswerMap);
 					
 					//add to category map
 					//Overwrite category key in map with new updated question (and thus answer) information
 					matchWeightsByCategory.put(category,tempMapWithQuestion);
-					
-					System.out.println("In addScoresToMap: End of: if (matchWeightsByCategory.get(category).containsKey(question)) ");
-					
-					debugPrintMatchScoresByCategory(matchWeightsByCategory);
-					
-					System.out.println("********************************");
-					System.out.println();
-					
-						
+				
 				} else { //if contains category but doesn't contain question
-					//Add new answer to answer map
-					System.out.println("In addScoresToMap: Start of: else (matchWeightsByCategory.get(category).containsKey(question)) ");
-					
-					debugPrintMatchScoresByCategory(matchWeightsByCategory);
-					
-					System.out.println("********************************");
-					System.out.println();
-					
+					//Add new answer to answer map				
 					Map<String, Integer> tempAnswerMap = new HashMap<>();
 					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
 					
@@ -406,24 +375,10 @@ public class Matcher {
 					tempQuestionMap.put(question, tempAnswerMap);
 					
 					matchWeightsByCategory.put(category,tempQuestionMap);
-					
-					System.out.println("In addScoresToMap: End of: else (matchWeightsByCategory.get(category).containsKey(question)) ");
-					
-					debugPrintMatchScoresByCategory(matchWeightsByCategory);
-					
-					System.out.println("********************************");
-					System.out.println();
-					
+						
 				}					
 				
-			} else { //doesn't contain category
-				
-				System.out.println("In addScoresToMap: Start of final else  ");
-				
-				debugPrintMatchScoresByCategory(matchWeightsByCategory);
-				
-				System.out.println("********************************");
-				System.out.println();
+			} else { //doesn't contain category				
 				
 				Map<String, Integer> tempMap = new HashMap<>(); 
 				tempMap.put(ans.getAnswerText(), convertedScore);
@@ -435,12 +390,6 @@ public class Matcher {
 				//Create category key in map and add question (and thus answer) information
 				matchWeightsByCategory.put(category,tempMapWithQuestion);
 				
-				System.out.println("In addScoresToMap: End of final else ");
-				
-				debugPrintMatchScoresByCategory(matchWeightsByCategory);
-				
-				System.out.println("********************************");
-				System.out.println();
 			}
 		}
 
@@ -456,16 +405,14 @@ public class Matcher {
 				}
 			}
 			if (count >= 1) {
-				//If there should be duplicate answers, the score will only get counted once because after the first time, the entry int he map below ill simply be overwritten.
+				//If there should be duplicate answers, the score will only get counted once because after the first time, the entry in the map below will simply be overwritten.
 				//100% match, add to score variable. Score variable will then go through functional interface method to convert the score
 				//Add logging for duplicate answers to warn of potential problems? i.e. if count >= 1 ? Great idea, but extra step in the code...
 				isMatch = true;
-				System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
 			
 			} else  {
 				//0% match, add to score variable. Score variable will then go through functional interface method to convert the score
 				isMatch = false;
-				System.out.println("isMatch: " + isMatch + " " + ans.getAnswerText());
 			}
 			return isMatch;
 		}
@@ -480,44 +427,36 @@ public class Matcher {
 				
 				case 0: 
 					percentage = 6.0/6;
-					System.out.println(percentage);
 					break;
 					
 				case 1:
 					percentage = 5.0/6;
-					System.out.println(percentage);
 					break;
 				case 2: 
 					percentage = 4.0/6;
-					System.out.println(percentage);
 					break;
 					
 				case 3:
 					percentage = 3.0/6;
-					System.out.println(percentage);
 					break;
 				case 4: 
 					percentage = 2.0/6;
-					System.out.println(percentage);
 					break;
 					
 				case 5:
 					percentage = 1.0/6;
-					System.out.println(percentage);
 					break;
 				
 				case 6: 
 					percentage = 0;
-					System.out.println(percentage);
+	
 					break;
 					
 				default: 
 					percentage = 3.0/6; //Improve code. This switch statement should take an enum of AnswerWeighted?
 				
 				}
-				System.out.println(percentage);
 				percentage *= 100;
-				System.out.println(percentage);
 				percentage = Math.ceil(percentage);
 				
 				return (int) percentage;

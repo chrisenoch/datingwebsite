@@ -26,12 +26,11 @@ import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 public class DemoApp {
 	
-	//private static Set<SubmittedAnswer> init() 
 			private static Map<String, User> init() {
 				
-				Category movies = new Category("Movies");
-				Category sports = new Category("Sports");
-				Category travel = new Category("Travel");
+				Category movies = new Category(1, "Movies");
+				Category sports = new Category(2, "Sports");
+				Category travel = new Category(3, "Travel");
 				
 				//Set up answer objects ready to insert into QuestionWithObjects object constructor
 				//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
@@ -144,29 +143,15 @@ public class DemoApp {
 				users.put("Dave", dave);
 				users.put("Jane", jane);
 				users.put("Peter", peter);
-				
-				
-				//List<User> users = Arrays.asList(dave, jane, peter);
-				
-//				Set<SubmittedAnswer> submittedAnswers = new HashSet<>();
-//				//submittedAnswers.add(submittedAnsDaveMovies1);
-//				submittedAnswers.add(submittedAnsDaveSports1);
-//				submittedAnswers.add(submittedAnsDaveTravel1);
-//				//submittedAnswers.add(submittedAnsJaneMovies1);
-//				submittedAnswers.add(submittedAnsJaneSports1);
-//				submittedAnswers.add(submittedAnsJaneTravel1);
-//				//submittedAnswers.add(submittedAnsPeterMovies1);
-//				submittedAnswers.add(submittedAnsPeterSports1);
-//				submittedAnswers.add(submittedAnsPeterTravel1);
-				
+						
 				return users;
 			
 			}
 			
 			public static Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {
-				Category movies = new Category("Movies");
-				Category sports = new Category("Sports");
-				Category travel = new Category("Travel");
+				Category movies = new Category(1, "Movies");
+				Category sports = new Category(2, "Sports");
+				Category travel = new Category(3, "Travel");
 				
 				//Set up answer objects ready to insert into QuestionWithObjects object constructor
 				//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
@@ -198,7 +183,6 @@ public class DemoApp {
 						, travel, travelAnswerOptions);
 				
 				//Prepopulate map
-				//preSetMovieAnswers
 				Map<String, Integer> presetMovieAnswers = new HashMap<>();
 				presetMovieAnswers.put("Horror", 0);
 				presetMovieAnswers.put("Action", 0);
@@ -215,138 +199,81 @@ public class DemoApp {
 			}
 			
 			public static void main(String[] args) {
-				
-				//calculateMatch6(init());
+				//Fetch users, who have already answered various matching questions
 				Map<String, User> users = init();
 				User dave = users.get("Dave");
 				User jane = users.get("Jane");
 				User peter = users.get("Peter");
-				
-				long startTime = System.currentTimeMillis();
-				
+		
+				//Init Matcher and setSearchingUser
 				Matcher matcher = new Matcher();
 				matcher.setSearchingUser(dave);
 				
+				//Prepare users list and prepolutaed map. Both are needed for the matching algorithm
 				List<User> usersForTesting = new ArrayList<>(users.values());
+				Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
 				
-				
-				 Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
-				
-				
+				//This calculates the match scores. It compares searchingUser to the users in usersForTesting
 				try {
 					matcher.updateAllMatches(usersForTesting, prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
 							,new Matcher().new ConvertToPercent(), a -> a.booleanValue() == true? 100 : 0 );
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
+				//The match scores can be grouped in the following ways:
 				LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
 				Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
 				Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
-
-				totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
+				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer =
+						matcher.getMatchPercentageByCategoryAndAnswer();
 				
-				 System.out.println();
-				 
+				System.out.println("TOTAL MATCH PERCENTAGES BY USER:");
+				System.out.println("-----------------------------------------------");
+				totalMatchPercentagesByUser.entrySet().stream().forEach( System.out::println);
+		
+				System.out.println("\n\nTOTAL MATCH PERCENTAGES BY CATEGORY FOR EVERY USER:"); 
+				System.out.println("-----------------------------------------------");
 				 for (Map.Entry map : totalMatchPercentagesByCategoryForEveryUser.entrySet()) {
 						System.out.println("Category: " + map.getKey());
 						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
 							System.out.println("User: " + map2.getKey() + " " + map2.getValue());
 						}
-						
+						System.out.println();
+				 }	
+				 	 	  
+				 System.out.println("\n\nTOTAL MATCH PERCENTAGE BY USER FOR EVERY CATEGORY:"); 
+				 System.out.println("-----------------------------------------------");
+				 for (Map.Entry map :  totalMatchPercentageByUserForEveryCategory.entrySet()) {
+						System.out.println("User: " + map.getKey());
+						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
+							System.out.println("Category: " + map2.getKey() + " " + map2.getValue());
+						}
+						System.out.println();				
 				 }
 				 
-				 System.out.println();
-				 
-				 for (Map.Entry map3 :  totalMatchPercentageByUserForEveryCategory.entrySet()) {
-						System.out.println("User: " + map3.getKey());
-						for (Map.Entry map4 : ((Map<User, Integer>) map3.getValue()).entrySet()) {
-							System.out.println("Category: " + map4.getKey() + " " + map4.getValue());
+				 System.out.println("\n\nMATCH PERCENTAGE BY CATEGORY AND ANSWER:"); 
+				 System.out.println("-----------------------------------------------");
+				 for (Map.Entry map :  matchPercentageByCategoryAndAnswer.entrySet()) {
+						System.out.println("Category: " + map.getKey());
+						for (Map.Entry map2 :  ((Map<Question, Map<String, Integer>>) map.getValue()).entrySet()) {
+							System.out.println("Category: " + map2.getKey());
+							
+							for (Map.Entry map3 :  ((Map<String, Integer>) map2.getValue()).entrySet()) {
+								System.out.println("Question: " + map3.getKey() + " " + "Answer: " + map3.getValue());
+							}
+							System.out.println();
+							
 						}
-						
+						System.out.println();		
 				 }
 				 
-				 long finishTime = System.currentTimeMillis();
-				 System.out.println("Run time: " + (finishTime - startTime)/1000.0);
-				
+				 System.out.println("start of test no entryset");
+				 System.out.println(matchPercentageByCategoryAndAnswer);			 
+				 System.out.println("end of test");
 				 
-				 System.out.println("Start matchPercentageByCategoryAndAnswer");
-				Map<Category, Map<Question, Map<String, Integer>>> matchesDave = null;
-				Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
-				try {
-					matchesDave = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), peter
-							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero, new Matcher().new ConvertToPercent()
-							, a -> a.booleanValue() == true? 100 : 0 );
-//					matchesJane = matcher.matchPercentageByCategoryAndAnswer(matcher.getSearchingUser(), jane
-//							,prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero,  new Matcher().new ConvertToPercent()
-//							, a -> a.booleanValue() == true? 100 : 0 );
-			
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					//e.getMessage();
-				} 
-				
-				System.out.println("Print the contentst of matchesDave");
 				
 				
-				for (Map.Entry map1 : matchesDave.entrySet()) {
-					System.out.println("Category: " + map1.getKey());
-					for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-						System.out.println("Question: " + map2.getKey());
-						for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-							System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
-						}
-						System.out.println("------------------------------");
-					}		
-
-				}
-				
-				System.out.println("End of printing matchesDave");
-//				
-//				System.out.println("------------------------------");
-//				LinkedHashMap<Category, Integer> percentagesByCategoryDave = matcher.totalMatchPercentageByCategory(matchesDave);
-//				LinkedHashMap<Category, Integer> percentagesByCategoryJane = matcher.totalMatchPercentageByCategory(matchesJane);
-//				percentagesByCategoryDave.entrySet().stream().forEach(System.out::println);
-//				
-//				System.out.println("------------------------------");
-//				
-//				LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
-//				//TreeMap<Integer, User> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing(Integer::intValue()).reversed());
-//				//TreeMap<User, Integer> totalMatchPercentagesByUser = new TreeMap<>(Comparator.comparing((User a) -> a.getFirstName()).reversed());
-//				matcher.updateTotalMatchPercentagesByUser(dave, totalMatchPercentagesByUser, percentagesByCategoryDave);
-//				matcher.updateTotalMatchPercentagesByUser(jane, totalMatchPercentagesByUser, percentagesByCategoryJane);
-//				
-//				//totalMatchPercentagesByUser.entrySet().stream().forEach(System.out::println);
-//				
-//				//LinkedHashMap<User, Integer> totalMatchPercentagesByUserDescending = sortByPercentageDescending (totalMatchPercentagesByUser, new Matcher().new ValueComparator());
-//				
-//				for (Map.Entry map : totalMatchPercentagesByUser.entrySet()) {
-//					System.out.println("Total match Percentages By User: " + map.getKey() + " " + map.getValue());
-//				}
-//				
-//				System.out.println("TotalMatchPercentagesByUser set?" + matcher.getTotalMatchPercentagesByUser());
-//				
-//				//matcher.setTotalMatchPercentagesByUser(totalMatchPercentagesByUser);
-//				
-////				private void updateTotalMatchPercentagesByUser(User userToAdd, Map<User, Integer> totalMatchPercentagesByUser
-////						, Map<Category, Integer> matchPercentageByCategory){	
-//				
-//				Map<Category, LinkedHashMap<User, Integer>> totalMatchPercentagesByCategoryAndUser = matcher.getTotalMatchPercentagesByCategoryAndUser();
-//				matcher.updateTotalMatchPercentagesByCategoryAndUser(dave, percentagesByCategoryDave, totalMatchPercentagesByCategoryAndUser);
-//				matcher.updateTotalMatchPercentagesByCategoryAndUser(jane, percentagesByCategoryJane, totalMatchPercentagesByCategoryAndUser);
-//				
-//				for (Map.Entry map : totalMatchPercentagesByCategoryAndUser.entrySet()) {
-//					System.out.println("Category: " + map.getKey());
-//					for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
-//						System.out.println("User: " + map2.getKey() + " " + map2.getValue());
-//					}
-//					
-//				}
-//				
-//				System.out.println("TotalMatchPercentagesByCategoryAndUser set?" + matcher.getTotalMatchPercentagesByCategoryAndUser());
-//				
 			}
 			
 			
