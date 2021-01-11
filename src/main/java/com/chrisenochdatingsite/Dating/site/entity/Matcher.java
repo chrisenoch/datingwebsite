@@ -23,61 +23,15 @@ import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitorImpl;
 
 
 public class Matcher {
-		//Improve code: Add id field here?
-		//private Set<SubmittedAnswer> submittedAnswers;	
+	
 		private User searchingUser;
 		
 		//Need questions to be in order
-		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();
-		
+		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();		
 		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
 		private LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();
 		private Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser = new LinkedHashMap<>();
-		
-		
-		
-		//IDEAS
-		//Match formulas should be lambdas so can always change easily?
-		//Thoughts. If i use answerkey as key for hashmap.
-		//then when I check that answerkey exist in list of answers in questions class, can 
-		
-		//Category may be better being the final operation as it is a terminal operation.
-		//Arguments List<SubmittedAnswer> userAnswer, <SubmittedAnswer> otherPeoplesAnswers>, 
-		//First pair each SubmittedAnswer with each SubmittedAnswerList //Would TreeMap be useful here? make method faster? //Hashmap quicker
-			//Find question element in Hashset using contains. if true add to collection
-			//NEED FAST SEARCH
-			//End up with map questionid, SubmittedAnswer userAnswer, List<SubmittedAnswer>>
-			//NEED FAST ITERATION, FAST LOOKUP 
-		//Check question and answer coincide  //Do I need the question? If just matching, do not need.If going to display, need.
-		//What about if user has selected multiple answers? In that case, need to be able search by question id?
-		//Need Question for multiselect answers. But will have different answerkeys?, so need by questionid
-		//End up with matching result for each category
-		//Separate map for each category
-		//End up with total matching percentage
-		//Do by means of smaller methods?
-		//Some people may have answered more questions than others. How to account for this?
-		
-		
-		
-		//SIMPLE VERISON: One type of question
-		
-		//Map <User, Double percentage> for each category
-		//First group by category and then groupBy User
-		//Map <Category, Map <User, Double>> matchPercentageByCategory
-		
-		 //This compares one user with one other user.
-		//Later this method will be fed into a another in order to calculate matches with all users.
-		//This is the one I will want to use parallel programming for as the user list could be in the millions.
-		// usersList.parallelstream().map(a-> Matchers.matchPercentageByCategory(a)  ..., groupBy category
-		//Map<Category, Map<User,Map<Question, AnswerWeight>>>
-		//First assume that all the same type of answer?
-		//Real return type: Map<Category, Map<Question, AnswerWeight>> 
-		/*
-
-		 * Do iteratively first and then change to streams.
-
-		 */
-
+			
 		public User getSearchingUser() {
 			return searchingUser;
 		}
@@ -94,33 +48,23 @@ public class Matcher {
 			this.totalMatchPercentagesByUser = totalMatchPercentagesByUser;
 		}
 
-
-
 		public Map<User, LinkedHashMap<Category, Integer>> getTotalMatchPercentageByUserForEveryCategory() {
 			return totalMatchPercentageByUserForEveryCategory;
 		}
-
-
 
 		public void setTotalMatchPercentageByUserForEveryCategory(
 				Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory) {
 			this.totalMatchPercentageByUserForEveryCategory = totalMatchPercentageByUserForEveryCategory;
 		}
 
-
-
 		public Map<Category, LinkedHashMap<User, Integer>> getTotalMatchPercentagesByCategoryForEveryUser() {
 			return totalMatchPercentagesByCategoryForEveryUser;
 		}
-
-
 
 		public void setTotalMatchPercentagesByCategoryForEveryUser(
 				Map<Category, LinkedHashMap<User, Integer>> totalMatchPercentagesByCategoryForEveryUser) {
 			this.totalMatchPercentagesByCategoryForEveryUser = totalMatchPercentagesByCategoryForEveryUser;
 		}
-
-
 
 		public Map<Category, Map<Question, Map<String, Integer>>> getMatchPercentageByCategoryAndAnswer() {
 			return matchPercentageByCategoryAndAnswer;
@@ -139,7 +83,7 @@ public class Matcher {
 			for (User user : users) {
 				
 				//Do not compare searchingUser with him/herself
-				if (user.equals(this.searchingUser)) { //Test equals method works.
+				if (user.equals(this.searchingUser)) { 
 					continue;
 				}
 				
@@ -160,7 +104,7 @@ public class Matcher {
 				
 				} catch (NoAnswersSubmittedException e) {
 					System.out.println("Debugging: + entered catch: NoAnswersSubmittedException" + user + " " + this.searchingUser);
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 					continue;
 				} catch (NoAmountFoundException e) {
@@ -176,14 +120,13 @@ public class Matcher {
 		}
 		
 		
-		private LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> totalMatchPercentagesByUser
-				, Comparator<Entry<User, Integer>> valueComparator) {
-			//Set<Map.Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
+		private LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> 
+		totalMatchPercentagesByUser) {
+			
 			Set<Entry<User, Integer>> entries = totalMatchPercentagesByUser.entrySet();
 			List<Entry<User, Integer>> listOfEntries = new ArrayList<Entry<User, Integer>>(entries);
 			
-			//Collections.sort(listOfEntries, Comparator.comparing((Integer a)-> a.intValue()));
-			Collections.sort(listOfEntries, valueComparator);
+			Collections.sort(listOfEntries, new ValueComparator());
 			
 			LinkedHashMap<User, Integer> sortedByValue = new LinkedHashMap<User, Integer>(listOfEntries.size());
 			// copying entries from List to Map
@@ -196,7 +139,8 @@ public class Matcher {
 		}
 			
 		
-		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory) throws Exception{	
+		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<Category, Integer> 
+		totalMatchPercentageByCategory) throws Exception{	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
 			
 			//Integer total = matchPercentageByCategory.entrySet().stream().map(a-> a.getValue()).reduce(0, Integer::sum);
@@ -211,7 +155,7 @@ public class Matcher {
 			totalMatchPercentagesByUser.put(userToAdd, averageAsInt);
 			
 			//Sort map so that higher match percentages are displayed first.
-			LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(totalMatchPercentagesByUser, new Matcher().new ValueComparator()); //Improve code
+			LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(totalMatchPercentagesByUser); //Improve code
 			
 			//
 			//Update original map with values of the sorted map.
@@ -238,7 +182,7 @@ public class Matcher {
 				scoresByUser.put(userToAdd, (Integer) map.getValue()); 
 				
 				//Sort map so that higher match percentages are displayed first.
-				LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(scoresByUser, new Matcher().new ValueComparator()); //Improve code
+				LinkedHashMap<User, Integer> sortedMap = sortByPercentageDescending(scoresByUser); //Improve code
 				
 				//
 				//Update original map with values of the sorted map.
@@ -252,16 +196,12 @@ public class Matcher {
 				//this.setTotalMatchPercentagesByCategoryForEveryUser(totalMatchPercentagesByCategoryForEveryUser);
 				
 			}
-			//Will also need to sort
-			//Will need to be LinkedHashMap. First get working, then sort.
 		}
 		
 		public void updateTotalPercentageByUserForEveryCategory(User userToAdd, LinkedHashMap<Category, Integer> totalMatchPercentageByCategory) {
 			System.out.println("updateTotalPercentageByCategory" + userToAdd);
 			
 			totalMatchPercentageByUserForEveryCategory.put(userToAdd, totalMatchPercentageByCategory);
-			
-			//sort by value
 			
 			
 		}
@@ -297,44 +237,12 @@ public class Matcher {
 			return totals;
 		}
 		
-	
-		
-		
-//		Return sorted list of best matches, all categories considered sorted by best to worst matching.
-		
-//		Map<User,Map<Category, Map<Question,Map<String,Integer>>>>
-//		Method structure
-		//get all Users (separate method). This becomes outerloop
-		//matchPercentageByCategory, searchignUser stays same, comparingUser changes depending on outerloop
-		//Results of previous method put into totalMatchPercentageByCategory method
-		//Add info to map: Map<Category, Map<User>, total>
-		//When user loop finished return Map<Category, TreeMap<User>, total> //Or some sorted map,
-		//Separate method: Total can be got from previous map easily? hash lookup so should be fast?
-			//Average total of all categories for each user and put into TreeMap?
-		//Could fill in two maps on one pass through loop but breaks single responsibility principle.
-		
-		//Go through matchPercentagebyCategory, return: Map<Category, Map<Question,Map<String,Integer>>>
-		//enter result into total method 
-		//Extra method to then extract results from total and add to: Map<Category, Map<User>, Integer  total> and returns this
-		//Another method takes previous returned statement as argument: Method to get absolute totals and put into another map
-		//add User into new map, along with corresponding total Map<Category, Map<User>, total>
-		// If comparing all, do not need keep record of answers and questions, so Map<Category, Map<User, Integer total>>
-		
-		//Problem is that userToAdd and totalMatchPercentageByCategory may end up out of sync
-		//User has knowledge of a MatchInfo class which holds all this info
-		//Keep this as match calculation class? 
-		
-		//Will need to instantiate new Match objects every loop. Is this necessary?
-		//get Users
-		//Get all of their match objects
-		//Check userToAdd and totalMatchPercentageByCategory don't equal null, if they do, throw exception
-		
 		
 		public Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
 				, User comparedUser, Map<Category, Map<Question,Map<String,Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
 				, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
-			//Map<Category, Map<Question,Map<String,Integer>>> matchWeightsByCategory = new HashMap<>(); //Integer = diffInWeight
+			
 			Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory = prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
 			
 			List<SubmittedAnswer> searchingUserSubmittedAnswersList = searchingUser.getSubmittedAnswers()
@@ -361,7 +269,6 @@ public class Matcher {
 					 
 					SubmittedAnswerMultiImpl comparedUserAnsMultiImpl = (SubmittedAnswerMultiImpl) comparedUserAns;
 					
-					//do null check
 					if (comparedUserAns == null) { 
 						continue; //Not all users will have submitted the same answers. If no matching SubmittedAnswer, go on to the next one.
 					}
@@ -388,9 +295,7 @@ public class Matcher {
 						
 						try {
 							convertedScore = ans.accept(answerVisitor);
-							System.out.println("Debugging: no equiv ans not thrown" + convertedScore);
 						} catch (NoEquivalentAnswerException exc) {
-							System.out.println("Debugging: no equiv ans");
 							continue;
 						}
 

@@ -24,7 +24,7 @@ import com.chrisenochdatingsite.Dating.site.entity.User.Sex;
 import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 
-public class MatcherPractice {
+public class DemoApp {
 	
 	//private static Set<SubmittedAnswer> init() 
 			private static Map<String, User> init() {
