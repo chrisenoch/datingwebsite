@@ -27,7 +27,7 @@ public class Matcher {
 		private User searchingUser;
 		
 		//Need questions to be in order
-		private Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer = new HashMap<>();		
+	
 		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
 		private LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();
 		private Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser = new LinkedHashMap<>();
@@ -66,16 +66,7 @@ public class Matcher {
 			this.totalMatchPercentagesByCategoryForEveryUser = totalMatchPercentagesByCategoryForEveryUser;
 		}
 
-		public Map<Category, Map<Question, Map<String, Integer>>> getMatchPercentageByCategoryAndAnswer() {
-			return matchPercentageByCategoryAndAnswer;
-		}
 
-		public void setMatchPercentageByCategoryAndAnswer(
-				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer) {
-			this.matchPercentageByCategoryAndAnswer = matchPercentageByCategoryAndAnswer;
-		}
-
-		
 		public void  updateAllMatches(List<User> users, Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
 				, Function<Integer,Integer> convertWeightedAns
 				, Function<Boolean,Integer> convertCheckboxAns ) {

@@ -225,8 +225,6 @@ public class DemoApp {
 				LinkedHashMap<User, Integer> totalMatchPercentagesByUser = matcher.getTotalMatchPercentagesByUser();
 				Map<Category, LinkedHashMap<User, Integer>>totalMatchPercentagesByCategoryForEveryUser = matcher.getTotalMatchPercentagesByCategoryForEveryUser();
 				Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = matcher.getTotalMatchPercentageByUserForEveryCategory();
-				Map<Category, Map<Question, Map<String, Integer>>> matchPercentageByCategoryAndAnswer =
-						matcher.getMatchPercentageByCategoryAndAnswer();
 				
 				System.out.println("TOTAL MATCH PERCENTAGES BY USER:");
 				System.out.println("-----------------------------------------------");
@@ -252,28 +250,7 @@ public class DemoApp {
 						System.out.println();				
 				 }
 				 
-				 System.out.println("\n\nMATCH PERCENTAGE BY CATEGORY AND ANSWER:"); 
-				 System.out.println("-----------------------------------------------");
-				 for (Map.Entry map :  matchPercentageByCategoryAndAnswer.entrySet()) {
-						System.out.println("Category: " + map.getKey());
-						for (Map.Entry map2 :  ((Map<Question, Map<String, Integer>>) map.getValue()).entrySet()) {
-							System.out.println("Category: " + map2.getKey());
-							
-							for (Map.Entry map3 :  ((Map<String, Integer>) map2.getValue()).entrySet()) {
-								System.out.println("Question: " + map3.getKey() + " " + "Answer: " + map3.getValue());
-							}
-							System.out.println();
-							
-						}
-						System.out.println();		
-				 }
-				 
-				 System.out.println("start of test no entryset");
-				 System.out.println(matchPercentageByCategoryAndAnswer);			 
-				 System.out.println("end of test");
-				 
-				
-				
+	
 			}
 			
 			
