@@ -46,8 +46,8 @@ public class UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver implements Pa
 		Category sports = new Category("Sports");
 		Category travel = new Category( "Travel");
 		
-		//Set up answer objects ready to insert into QuestionWithObjects object constructor
-		//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
+		//Set up answer objects ready to insert into QuestionWithOptionsImplconstructor
+		//Weight not set at this point because at first the answer objects will be added to question class as possible answers.
 		//Weight selected at runtime by user.
 		
 		var horror = new AnswerWeightedImpl("Horror");

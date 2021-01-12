@@ -239,14 +239,12 @@ public class TestH2 {
 		answerService.save(aW1);
 		answerService.save(aW2);
 		answerService.save(aW3);
-		
-		List<Answer> possibleAnswers = Arrays.asList(aW1, aW2, aW3);
 
 		Category category = new Category("Movies");
 		categoryService.save(category);
 		
 		QuestionWithOptionsImpl questionWithOptionsImpl = new QuestionWithOptionsImpl("How much do you like the following genres?"
-				, category, Arrays.asList(aW1));
+				, category, Arrays.asList(aW1, aW2, aW3));
 			 
 		
 		//Act
@@ -287,15 +285,7 @@ public class TestH2 {
 	@Order(2) 
 	public void saveSubmittedAnswerMultiServiceImpl() {
 		//Arrange
-		
-//		Answer answer = utilService.getReference(Answer.class, 10L);
-//		Answer answer2 = utilService.getReference(Answer.class, 11L);
-//		
-//		Set<Answer> answers2 = new HashSet<>();
-//		answers2.add(answer);
-//		answers2.add(answer2);
-		
-		
+
 		Answer aW1 =  answerService.getById(10L);
 		Answer aW2 =  answerService.getById(11L);
 		Answer aW3 =  answerService.getById(12L);

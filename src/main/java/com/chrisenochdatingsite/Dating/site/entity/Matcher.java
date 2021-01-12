@@ -204,11 +204,11 @@ public class Matcher {
 							
 			 LinkedHashMap<Category, Integer> totals = new LinkedHashMap<>();
 			 Double sum = 0.0;
-			 for (Map.Entry pair : matchPercentageByCategoryAndAnswer.entrySet()) {	 
+			 for (Map.Entry<Category, Map<Question,Map<String,Integer>>> pair : matchPercentageByCategoryAndAnswer.entrySet()) {	 
 				 Category category = (Category) pair.getKey();
 				 int answerCount = 0;
-				 for (Map.Entry pair2 : ((Map<String, Answer>) pair.getValue()).entrySet()) {
-					 for (Map.Entry pair3 :  ((Map<String, Answer>) pair2.getValue()).entrySet()) {
+				 for (Map.Entry<Question,Map<String,Integer>> pair2 : pair.getValue().entrySet()) {
+					 for (Map.Entry<String,Integer> pair3 :   pair2.getValue().entrySet()) {
 						 sum += (Integer)pair3.getValue();
 						 answerCount++;
 					 }
@@ -301,13 +301,13 @@ public class Matcher {
 		}
 		
 		private void debugPrintMatchScoresByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory) {
-			for (Map.Entry map1 : matchScoresByCategory.entrySet()) {
+			for (Map.Entry<Category, Map<Question,Map<String,Integer>>>map1 : matchScoresByCategory.entrySet()) {
 				System.out.println("Category: " + map1.getKey());
 				
-				for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+				for (Map.Entry<Question,Map<String,Integer>>map2 : map1.getValue().entrySet()) {
 					System.out.println("Question: " + map2.getKey());
 					
-					for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+					for (Map.Entry<String,Integer>map3 : map2.getValue().entrySet()) {
 						System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
 							
 					}
@@ -466,118 +466,7 @@ public class Matcher {
 	            }      
 		}
 		
-		//Separate/Partition by category
-			//Use map function for if statements. Extract into method reference 
-			//If instanceof AnswerWeightedimpl
-				//Create map, <User, Double percentage>
-					//Testing, use double with margin for error. e.g. hamcrest Closeto method.
-				
-				//calculate matches method (could be added as a filter? via method reference?)BiFunction?
-					//Check to see if weight is set, if not, skip/continue
-				//Find difference between each score, if diff 0 100%, if difference 5-0% match
-					//find weight of Person A, find weight of Person B, map subtract one from other, 
-					//map convert into percentage double
-					//make sure ends up as stream, so can plug in the method to larger method?
-				//could be adding to existing map? (Pearl: Only calculate newly-answered questions/uncached results)
-		
-			//If instanceof SubmittedAnswerMulti (AnswerWeighted)
-					//Need to add to same map as previous one. if same answer 100%, if diff answer 0% this matching algorithm seems to harsh. Maybe user doesn't care about other person beig difefrent.
-					//Create new map of answers. <User, Double percentage>
-					//Merge this map with previous map, combination part calculates new percentage based on the two percentages for each map
-					//Separate methods for? /Take into account if multianswer or singleanswer. Maybe SubmittedAnswerMulti should be subclass of SubmittedAnswerSingle? Or maybe they should implement a common inetrface. Abstract class Submitetd Answer
-					
-			//If instance of SubmittedAnswerMulti (singleAnswer) - match formula different
-					//For which questions are we going to have multianswers? looking for relationship status, if one selects one and other selects all, if anymatch then should be calculated as 100% compatible
-					//100% match if any coincide. if user chooses any/all, then 100% match
-		
-				//merge the 3 maps into one. combine by finding the mean percentage. this part could be doe by multithreading and custom combiner?
-				
-				
-		
-		
-		//
-//		Set<Answer> sportsAnswerOptions = new HashSet<>(
-//				Arrays.asList(
-//				new AnswerWeightedImpl("Basketball", sports)
-//				, new AnswerWeightedImpl("Football", sports)
-//				, new AnswerWeightedImpl("Swimming", sports)
-//				));
-		
-		
-//		private void matchPercentageByCategoryOld(User searchingUser, User comparedUser){
-//			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
-//			Map<Category, Map<Question, AnswerWeight>> matchScoresByCategory;
-//			
-//			Map<String, SubmittedAnswer> searchingUserAnswers = searchingUser.getSubmittedAnswers();
-//			Map<String, SubmittedAnswer> comparedUserAnswers = searchingUser.getSubmittedAnswers();
-//			
-//			//String is questionText
-//			//Don't like have to loop through all for each question. Should be able to access directly.
-//			//Need add a check that SubmittedAnswer is of the right type.
-//			for (Map.Entry<String, SubmittedAnswer> pair : searchingUserAnswers.entrySet()) {
-//				SubmittedAnswer searchingUserAns = pair.getValue();
-//				String searchingUserQuestionText = searchingUserAns.getQuestion().getQuestionText();
-//				
-//				SubmittedAnswer comparedUserAns = comparedUserAnswers.get(searchingUserQuestionText);
-//				
-//				//do null check
-//				if (comparedUserAns == null) {
-//					continue; //Not all users will have submitted the same answers. If no matching SubmitetdAnswer, go on to the next one.
-//				}
-//				
-//				Set<Answer> searchingUserSelectedAnswers = searchingUserAns.get
-//				
-//					//String searchingUserQuestionText = ans.getQuestion().getQuestionText();
-//					//Use above String to find matching Submitted Answer from commparedUser
-//					//Loop though selectedAnswers
-//					//get category from SubmittedAnswer.question.category
-//					//If you insert into a map key/category that doesn't/already exists, what happens?
-//								
-//			}
-//			
-//			
-//			submittedAnswers.stream().map(a-> {
-//				if (a instanceof SubmittedAnswerMultiImpl) {
-//					//Method to calculate match
-//
-//					//get selected answers. Loop through and do instanceof check again
-//					Set<Answer> subAnsMultiImplSet = ((SubmittedAnswerMultiImpl) a).getSelectedAnswers();
-//					
-//					subAnsMultiImplSet.stream()
-//					.map((b)-> { 
-//						if (b instanceof AnswerWeightedImpl) {
-//							//Extract to local method?
-//							
-//							
-//						
-//							
-//							return b; //Return Map <User, Double>
-//						} else if (b instanceof AnswerImpl) {
-//							
-//							return b; //Return Map <User, Double>
-//						} else {
-//							
-//							return b; //Return Map <User, Double>
-//						}		
-//					}
-//					).forEach(System.out::println); //Change this line
-//					
-//		
-//				} else if (a instanceof SubmittedAnswerSingleImpl){
-//					return a;
-//				} else {
-//					return a;
-//				}
-//				
-//			}	
-//			) //Continue stream logic here
-//			
-//			//get instance of SubmittedAnsMulti
-//			//All go into the same map, regardless of question type.
-//			//What changes with question type is the matching algorithm
-//			
-//			return null;
-//		}
+	
 		
 		
 		

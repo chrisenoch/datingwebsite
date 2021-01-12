@@ -32,8 +32,8 @@ public class DemoApp {
 				Category sports = new Category(2, "Sports");
 				Category travel = new Category(3, "Travel");
 				
-				//Set up answer objects ready to insert into QuestionWithObjects object constructor
-				//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
+				//Set up answer objects ready to insert into QuestionWithOptionsImplconstructor
+				//Weight not set at this point because at first the answer objects will be added to question class as possible answers.
 				//Weight selected at runtime by user.
 				var horror = new AnswerWeightedImpl("Horror");
 				var action =  new AnswerWeightedImpl("Action");
@@ -153,8 +153,8 @@ public class DemoApp {
 				Category sports = new Category(2, "Sports");
 				Category travel = new Category(3, "Travel");
 				
-				//Set up answer objects ready to insert into QuestionWithObjects object constructor
-				//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
+				//Set up answer objects ready to insert into QuestionWithOptionsImplconstructor
+				//Weight not set at this point because at first the answer objects will be added to question class as possible answers.
 				//Weight selected at runtime by user.
 				var horror = new AnswerWeightedImpl("Horror");
 				var action =  new AnswerWeightedImpl("Action"); 
@@ -232,9 +232,9 @@ public class DemoApp {
 		
 				System.out.println("\n\nTOTAL MATCH PERCENTAGES BY CATEGORY FOR EVERY USER:"); 
 				System.out.println("-----------------------------------------------");
-				 for (Map.Entry map : totalMatchPercentagesByCategoryForEveryUser.entrySet()) {
+				 for (Map.Entry<Category, LinkedHashMap<User, Integer>> map : totalMatchPercentagesByCategoryForEveryUser.entrySet()) {
 						System.out.println("Category: " + map.getKey());
-						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
+						for (Map.Entry<User, Integer> map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
 							System.out.println("User: " + map2.getKey() + " " + map2.getValue());
 						}
 						System.out.println();
@@ -242,9 +242,9 @@ public class DemoApp {
 				 	 	  
 				 System.out.println("\n\nTOTAL MATCH PERCENTAGE BY USER FOR EVERY CATEGORY:"); 
 				 System.out.println("-----------------------------------------------");
-				 for (Map.Entry map :  totalMatchPercentageByUserForEveryCategory.entrySet()) {
+				 for (Map.Entry<User, LinkedHashMap<Category, Integer>> map :  totalMatchPercentageByUserForEveryCategory.entrySet()) {
 						System.out.println("User: " + map.getKey());
-						for (Map.Entry map2 : ((Map<User, Integer>) map.getValue()).entrySet()) {
+						for (Map.Entry<Category, Integer> map2 : map.getValue().entrySet()) {
 							System.out.println("Category: " + map2.getKey() + " " + map2.getValue());
 						}
 						System.out.println();				

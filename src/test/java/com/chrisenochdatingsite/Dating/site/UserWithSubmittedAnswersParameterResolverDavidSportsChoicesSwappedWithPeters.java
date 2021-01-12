@@ -1,4 +1,4 @@
-package com.chrisenochdatingsite.Dating.site;
+ package com.chrisenochdatingsite.Dating.site;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -50,8 +50,8 @@ public class UserWithSubmittedAnswersParameterResolverDavidSportsChoicesSwappedW
 		Category sports = new Category(2, "Sports");
 		Category travel = new Category(3,  "Travel");
 		
-		//Set up answer objects ready to insert into QuestionWithObjects object constructor
-		//Weight not set because at this point because at first the answer objects will be added to question class as possible answers.
+		//Set up answer objects ready to insert into QuestionWithOptionsImplconstructor
+		//Weight not set at this point because at first the answer objects will be added to question class as possible answers.
 		//Weight selected at runtime by user.
 		
 		var horror = new AnswerWeightedImpl("Horror");

@@ -197,11 +197,9 @@ public class MatchersTests {
 		//Collections gather data from the nested map returned by matchPercentageByCategoryAndAnswer to be used for testing
 		Map<String, Object> mapInfoComparedUserPeter = extractedMapInformation(matchesComparedUserPeter);
 		
-		Set<Category> categoriesDaveSearching = (Set<Category>) mapInfo.get("categories");
-		Set<Question> questionsDaveSearching = (Set<Question>) mapInfo.get("questions");
-		Map<String, Integer> answersDaveSearching = (Map<String, Integer>) mapInfo.get("answers");
-		
-		System.out.println("matchesComparedUserPeter: " + matchesComparedUserPeter);
+		Set<Category> categoriesDaveSearching = (Set<Category>) mapInfoComparedUserPeter.get("categories");
+		Set<Question> questionsDaveSearching = (Set<Question>) mapInfoComparedUserPeter.get("questions");
+		Map<String, Integer> answersDaveSearching = (Map<String, Integer>) mapInfoComparedUserPeter.get("answers");
 		
 		assertThat(categoriesPeterSearching).contains(movies, sports, travel);
 		assertThat(questionsPeterSearching).contains(questionMovies, questionSports, questionTravel);
@@ -216,7 +214,6 @@ public class MatchersTests {
 				, entry("Action", 100), entry("Horror", 0), entry("Romance", 100)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
 				).doesNotContainKey("Football");
-//matchPercentageByCategoryAndAnswer
 
 	}
 	
@@ -225,7 +222,6 @@ public class MatchersTests {
 		//Jane and Peter (the searchingUser) have no movie answers in common
 		Map<Category, Map<Question, Map<String, Integer>>> matchesJane = null;
 		Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2 = createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero();
-		System.out.println("prep in method: " + prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero2);
 		
 		//Act
 		try {
@@ -247,11 +243,7 @@ public class MatchersTests {
 		assertThat(categories).contains(movies, sports, travel);
 		assertThat(questions).contains(questionMovies, questionSports, questionTravel);
 		assertThat(answers).contains(entry("Action", 0), entry("Romance", 0), entry("Horror", 0));
-		
-		System.out.println(categories);
-		System.out.println(questions);
-		System.out.println(answers);		
-		
+
 	}
 	
 	@Test
@@ -337,7 +329,7 @@ public class MatchersTests {
 	
 	@Test
 	public void shouldReturnAverage() throws Exception {
-		//Init
+		//Arrange
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
 		totalPercentagesByCategoryDave.put(movies, 45);
 		totalPercentagesByCategoryDave.put(sports, 55);
@@ -345,10 +337,10 @@ public class MatchersTests {
 		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
 		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);		
 		
-		//Method being tested
+		//Act
 		matcher.updateTotalMatchPercentagesByUser(dave, totalPercentagesByCategoryDave);
 		
-		//get updated field from Matcher class
+		//Assert - get updated field from Matcher class
 		LinkedHashMap<User, Integer> totalMatchPercentagesByUserUpdated = matcher.getTotalMatchPercentagesByUser();
 		assertEquals(totalMatchPercentagesByUserUpdated.get(dave), 55);
 		
@@ -357,12 +349,12 @@ public class MatchersTests {
 	
 	@Test
 	public void shouldThrowExceptionIfAverageIsEmpty() throws Exception {
-		//Init
+		//Arrange
 		LinkedHashMap<Category, Integer> totalPercentagesByCategoryDave = new LinkedHashMap<>();
 		Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
 		totalMatchPercentageByUserForEveryCategory.put(dave,totalPercentagesByCategoryDave);
 		
-		
+		//Act and assert
 		Exception exc = assertThrows(Exception.class, ()-> matcher.updateTotalMatchPercentagesByUser(dave,  totalPercentagesByCategoryDave));
 		assertEquals("More information needed in order to calculate match percentage.", exc.getMessage());	
 	}
@@ -403,7 +395,7 @@ public class MatchersTests {
 	
 	@Test
 	public void shouldReturnTotalMatchPercentagesByCategoryForEveryUserInDescendingOrder() {
-		//Arrange
+		//Arrange data to be added to totalMatchPercentagesByCategoryForEveryUser 
 		LinkedHashMap<Category, Integer> totalMatchPercentageByCategoryDave = new LinkedHashMap<>();
 		 totalMatchPercentageByCategoryDave.put(movies, 20);
 		 totalMatchPercentageByCategoryDave.put(sports, 40);
@@ -413,6 +405,18 @@ public class MatchersTests {
 		 totalMatchPercentageByCategoryJane.put(movies, 50);
 		 totalMatchPercentageByCategoryJane.put(sports, 10);
 		 totalMatchPercentageByCategoryJane.put(travel, 70);
+		 
+		 //Arrange expected values
+		 LinkedHashMap<User, Integer> moviesExpected = new LinkedHashMap<>();
+		 LinkedHashMap<User, Integer> sportsExpected = new LinkedHashMap<>();
+		 LinkedHashMap<User, Integer> travelExpected = new LinkedHashMap<>();
+		 
+		 moviesExpected.put(jane, 50);
+		 moviesExpected.put(dave, 20);
+		 sportsExpected.put(dave, 40);
+		 sportsExpected.put(jane, 10);	 
+		 travelExpected.put(jane, 70);
+		 travelExpected.put(dave, 50);
 		 
 		 //Act
 		 matcher.updateTotalMatchPercentagesByCategoryForEveryUser(dave, totalMatchPercentageByCategoryDave);
@@ -427,19 +431,7 @@ public class MatchersTests {
 		 LinkedHashMap<User, Integer> sportsCategory = totalMatchPercentagesByCategoryForEveryUser.get(sports);
 		 LinkedHashMap<User, Integer> travelCategory = totalMatchPercentagesByCategoryForEveryUser.get(travel);
 		 
-		 //Expected values
-		 LinkedHashMap<User, Integer> moviesExpected = new LinkedHashMap<>();
-		 LinkedHashMap<User, Integer> sportsExpected = new LinkedHashMap<>();
-		 LinkedHashMap<User, Integer> travelExpected = new LinkedHashMap<>();
-		 
-		 moviesExpected.put(jane, 50);
-		 moviesExpected.put(dave, 20);
-		 sportsExpected.put(dave, 40);
-		 sportsExpected.put(jane, 10);	 
-		 travelExpected.put(jane, 70);
-		 travelExpected.put(dave, 50);
-
-		 //Act
+		 //Assert
 		 assertThat(moviesCategory).containsExactlyEntriesOf(moviesExpected);
 		 assertThat(sportsCategory).containsExactlyEntriesOf(sportsExpected);
 		 assertThat(travelCategory).containsExactlyEntriesOf(travelExpected);
@@ -466,7 +458,7 @@ public class MatchersTests {
 		LinkedHashMap<User, Integer> sportsCategory = totalMatchPercentagesByCategoryForEveryUser.get(sports);
 		LinkedHashMap<User, Integer> travelCategory = totalMatchPercentagesByCategoryForEveryUser.get(travel);
 		
-		assertThat(totalMatchPercentageByUserForEveryCategory).doesNotContainKeys(peter);
+		assertThat(totalMatchPercentageByUserForEveryCategory).doesNotContainKeys(peter).containsKeys(dave, jane);
 		assertThat(totalMatchPercentagesByUser).doesNotContainKeys(peter).containsKeys(dave, jane);
 		assertThat(movieCategory).doesNotContainKey(peter).containsKeys(dave, jane);
  		assertThat(travelCategory).doesNotContainKey(peter).containsKeys(dave, jane);
@@ -506,27 +498,20 @@ public class MatchersTests {
 		Set<Question> questions = new HashSet<>();
 		Map<String, Integer> answers = new HashMap<>();
 		
-		System.out.println("matches: " + matches);
-		
 		//Add values to collections ready for testing 
-		for (Map.Entry map1 : matches.entrySet()) {
-			
-			System.out.println("Category: " + map1.getKey());
+		for (Map.Entry<Category, Map<Question, Map<String, Integer>>> map1 : matches.entrySet()) {
 			
 			categories.add((Category) map1.getKey());
 			
-			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-				System.out.println("Question: " + map2.getKey());
+			for (Map.Entry<Question, Map<String, Integer>> map2 : map1.getValue().entrySet()) {
 				
 				questions.add((Question) map2.getKey());
 				
-				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+				for (Map.Entry<String, Integer> map3 : map2.getValue().entrySet()) {
 					
 					answers.put((String)map3.getKey(), (Integer)map3.getValue());
 						
 				}
-				System.out.println("------------------------------");
 			}		
 
 		}
@@ -540,13 +525,7 @@ public class MatchersTests {
 	}
 	
 	
-	//@Test
-	public void shouldReturnValuesInDescendingOrder() {
-		//Test inner private class
-
-	}
-	
-	public  Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {
+	private  Map<Category, Map<Question, Map<String, Integer>>> createPrepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero() {
 		//Pre-populate map
 		//preset movie answers
 		Map<String, Integer> presetMovieAnswers = new HashMap<>();
@@ -559,24 +538,20 @@ public class MatchersTests {
 
 		Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero = new HashMap<>();
 		prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero.put(movies, presetQuestionsAndAnswers);
-		
-		System.out.println("print prepopulated map");
-		System.out.println(questionMovies);
-		debugPrintMatchScoresByCategory(prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero);
-		
+
 		return prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
 		
 	}
 	
 
 	private void debugPrintMatchScoresByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory) {
-		for (Map.Entry map1 : matchScoresByCategory.entrySet()) {
+		for (Map.Entry<Category, Map<Question,Map<String,Integer>>> map1 : matchScoresByCategory.entrySet()) {
 			System.out.println("Category: " + map1.getKey());
 			
-			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
+			for (Map.Entry<Question,Map<String,Integer>>map2 : map1.getValue().entrySet()) {
 				System.out.println("Question: " + map2.getKey());
 				
-				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
+				for (Map.Entry<String,Integer> map3 : map2.getValue().entrySet()) {
 					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
 						
 				}

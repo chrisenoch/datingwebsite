@@ -51,14 +51,7 @@ public class MatchersTestsNoAnsImpls {
 		this.daveNoAnsImpls = usersNoAnsImpls.get(0);
 		this.janeNoAnsImpls = usersNoAnsImpls.get(1);
 		this.peterNoAnsImpls = usersNoAnsImpls.get(2);
-		
-		//Debugging
-		System.out.println("Print user: " +  daveNoAnsImpls);
-		Optional<List<SubmittedAnswer>> davesSubmittedAnswers = daveNoAnsImpls.getSubmittedAnswers();
-		System.out.println("daves submitted answers");
-		davesSubmittedAnswers.get().forEach(System.out::println);
-				
-		
+
 		Map<Category, Map<Question, Map<String, Integer>>> emptyMap = new HashMap<>();
 		
 		this.matcher = new Matcher();
@@ -125,24 +118,19 @@ public class MatchersTestsNoAnsImpls {
 		Set<Question> questions = new HashSet<>();
 		Map<String, Integer> answers = new HashMap<>();
 		
-		for (Map.Entry map1 : matchesDaveNoAnsImpls.entrySet()) {
-			
-			System.out.println("Category: " + map1.getKey());
+		for (Map.Entry<Category, Map<Question, Map<String, Integer>>> map1 : matchesDaveNoAnsImpls.entrySet()) {
 			
 			categories.add((Category) map1.getKey());
 			
-			for (Map.Entry map2 : ((Map<String, Answer>) map1.getValue()).entrySet()) {
-				System.out.println("Question: " + map2.getKey());
+			for (Map.Entry<Question, Map<String, Integer>> map2 :  map1.getValue().entrySet()) {
 				
 				questions.add((Question) map2.getKey());
 				
-				for (Map.Entry map3 : ((Map<String, Answer>) map2.getValue()).entrySet()) {
-					System.out.println("AnswerTxt: " + map3.getKey() + " Weight: " + map3.getValue());
+				for (Map.Entry<String, Integer> map3 : map2.getValue().entrySet()) {
 					
 					answers.put((String)map3.getKey(), (Integer)map3.getValue());
 						
 				}
-				System.out.println("------------------------------");
 			}		
 	
 		}
@@ -152,11 +140,7 @@ public class MatchersTestsNoAnsImpls {
 		assertThat(answers).contains(entry("Basketball", 67), entry("Football", 67), entry("Swimming", 100)
 				, entry("Action", 67), entry("Romance", 50)
 				, entry("Sightseeing", 17), entry("Camping", 34), entry("Hiking", 67)
-				).doesNotContainKey("Horror");
-		
-		System.out.println(categories);
-		System.out.println(questions);
-		System.out.println(answers);
+				).doesNotContainKey("Horror");	
 
 	}
 

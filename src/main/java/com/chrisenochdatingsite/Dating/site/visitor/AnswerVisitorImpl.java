@@ -31,7 +31,7 @@ public class AnswerVisitorImpl implements AnswerVisitor {
 
 	}
 
-	//@Override
+	@Override
 	public int visit (AnswerImpl ansImpl) {
 		
 		boolean isMatch = scoreAnswerImpls(ansImpl.getAnswerVisitorHelper().getComparedUserSelectedAnswers(), ansImpl);
@@ -50,7 +50,7 @@ public class AnswerVisitorImpl implements AnswerVisitor {
 			}
 		}
 		if (count >= 1) {
-			//If there should be duplicate answers, the score will only get counted once because after the first time, the entry int he map below ill simply be overwritten.
+			//If there should be duplicate answers, the score will only get counted once because after the first time, the entry in the map below will simply be overwritten.
 			//100% match, add to score variable. Score variable will then go through functional interface method to convert the score
 			//Add logging for duplicate answers to warn of potential problems? i.e. if count >= 1 ? Great idea, but extra step in the code...
 			isMatch = true;
