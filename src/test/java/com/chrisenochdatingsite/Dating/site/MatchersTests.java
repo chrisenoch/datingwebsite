@@ -22,6 +22,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import com.chrisenochdatingsite.Dating.site.UserWithSubmittedAnswersParameterResolver.UserWithSubmittedAnswers;
 import com.chrisenochdatingsite.Dating.site.UserWithSubmittedAnswersParameterResolverDavidSportsChoicesSwappedWithPeters.UserWithSubmittedAnswersDavidSportsChoicesSwappedWithPeters;
 import com.chrisenochdatingsite.Dating.site.entity.Answer;
+import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.entity.Category;
 import com.chrisenochdatingsite.Dating.site.entity.Matcher;
@@ -71,21 +72,21 @@ public class MatchersTests {
 		this.sports = new Category(2,  "Sports");
 		this.travel = new Category(3, "Travel");
 		
-		var horror = new AnswerWeightedImpl("Horror");
-		var action =  new AnswerWeightedImpl("Action");
-		var romance = new AnswerWeightedImpl("Romance");
+		var horror = new AnswerImpl("Horror");
+		var action =  new AnswerImpl("Action");
+		var romance = new AnswerImpl("Romance");
 		
 		List<Answer> movieAnswerOptions = Arrays.asList(horror, action, romance);
 
-		var basketball = new AnswerWeightedImpl("Basketball");
-		var football = new AnswerWeightedImpl("Football");
-		var swimming = new AnswerWeightedImpl("Swimming");
+		var basketball = new AnswerImpl("Basketball");
+		var football = new AnswerImpl("Football");
+		var swimming = new AnswerImpl("Swimming");
 			
 		List<Answer> sportsAnswerOptions = Arrays.asList(basketball, football, swimming);
 		
-		var hiking = 	new AnswerWeightedImpl("Hiking");
-		var sightseeing =  new AnswerWeightedImpl("Sightseeing");
-		var camping =  new AnswerWeightedImpl("Camping");
+		var hiking = 	new AnswerImpl("Hiking");
+		var sightseeing =  new AnswerImpl("Sightseeing");
+		var camping =  new AnswerImpl("Camping");
 
 		List<Answer> travelAnswerOptions = Arrays.asList(hiking, sightseeing, camping);
 		

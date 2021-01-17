@@ -31,23 +31,23 @@ public class DemoApp {
 				Category travel = new Category(3, "Travel");
 				
 				//Set up answer objects ready to insert into QuestionWithOptionsImplconstructor
-				//Weight not set at this point because at first the answer objects will be added to question class as possible answers.
-				//Weight selected at runtime by user.
-				var horror = new AnswerWeightedImpl("Horror");
-				var action =  new AnswerWeightedImpl("Action");
-				var romance = new AnswerWeightedImpl("Romance");
+				//AnswerWeightedImpl cannot be added to database without weight due to check constraint
+				//Weight selected at runtime by user if answer requires it.
+				var horror = new AnswerImpl("Horror");
+				var action =  new AnswerImpl("Action");
+				var romance = new AnswerImpl("Romance");
 				
 				List<Answer> movieAnswerOptions = Arrays.asList(horror, action, romance);
 
-				var basketball = new AnswerWeightedImpl("Basketball");
-				var football = new AnswerWeightedImpl("Football");
-				var swimming = new AnswerWeightedImpl("Swimming");
+				var basketball = new AnswerImpl("Basketball");
+				var football = new AnswerImpl("Football");
+				var swimming = new AnswerImpl("Swimming");
 					
 				List<Answer> sportsAnswerOptions = Arrays.asList(basketball, football, swimming);	
 				
-				var hiking = 	new AnswerWeightedImpl("Hiking");
-				var sightseeing =  new AnswerWeightedImpl("Sightseeing");
-				var camping =  new AnswerWeightedImpl("Camping");
+				var hiking = 	new AnswerImpl("Hiking");
+				var sightseeing =  new AnswerImpl("Sightseeing");
+				var camping =  new AnswerImpl("Camping");
 		
 				List<Answer> travelAnswerOptions = Arrays.asList(hiking, sightseeing, camping);
 				
