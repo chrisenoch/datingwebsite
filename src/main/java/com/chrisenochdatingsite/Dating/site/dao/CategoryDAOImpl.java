@@ -2,8 +2,6 @@ package com.chrisenochdatingsite.Dating.site.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

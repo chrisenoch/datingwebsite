@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.chrisenochdatingsite.Dating.site.dao.SubmittedAnswerMultiDAO;
 import com.chrisenochdatingsite.Dating.site.entity.SubmittedAnswerMultiImpl;
-import com.chrisenochdatingsite.Dating.site.entity.User;
 
 @Service
 public class SubmittedAnswerMultiServiceImpl implements SubmittedAnswerMultiService{

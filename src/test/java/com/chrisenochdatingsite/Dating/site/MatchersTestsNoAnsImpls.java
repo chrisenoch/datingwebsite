@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +21,6 @@ import com.chrisenochdatingsite.Dating.site.entity.Matcher;
 import com.chrisenochdatingsite.Dating.site.entity.Question;
 import com.chrisenochdatingsite.Dating.site.entity.QuestionWithOptionsImpl;
 import com.chrisenochdatingsite.Dating.site.entity.User;
-import com.chrisenochdatingsite.Dating.site.interfaces.SubmittedAnswer;
 
 
 @ExtendWith( UserWithSubmittedAnswers_NoAnsImpls_ParameterResolver.class)
