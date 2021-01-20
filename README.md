@@ -2,6 +2,7 @@
 
 Skills demonstrated in this project:
 
+- Spring Boot
 - Hibernate 
   - CRUD operations
   - Batch updates
@@ -20,5 +21,8 @@ Skills demonstrated in this project:
   
  -  Maven
  
- - Design patetrns
-   - Visitor pattern
+- Design patterns
+  - Visitor pattern
+  - Dependency Injection
+  - Service-DAO
+  - Composite
