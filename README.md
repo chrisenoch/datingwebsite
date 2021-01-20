@@ -20,5 +20,5 @@ Skills demonstrated in this project:
   
  -  Maven
  
-Design patetrns:
- - Visitor pattern
+ - Design patetrns:
+   - Visitor pattern
