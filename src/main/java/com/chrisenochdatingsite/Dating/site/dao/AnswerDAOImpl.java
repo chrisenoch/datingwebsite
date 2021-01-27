@@ -19,8 +19,6 @@ public class AnswerDAOImpl implements AnswerDAO {
 	public AnswerDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
-	
 	
 	@Override
 	public void save(Answer answer) {
@@ -33,30 +31,23 @@ public class AnswerDAOImpl implements AnswerDAO {
 	@Override
 	public List<Answer> findAll() {
 
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// create a query
 		Query<Answer> theQuery =
 				currentSession.createQuery("from Answer", Answer.class);
 		
-		// execute query and get result list
 		List<Answer> answers = theQuery.getResultList();
-		
-		// return the results		
+			
 		return answers;
 	}
 	
 	@Override
 	public Answer getById(long id) {
 
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		// create a query
+
 		Answer answer = currentSession.get(Answer.class, id);
-		
-		// return the results		
+			
 		return answer;
 	}
 	

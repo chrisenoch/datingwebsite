@@ -25,27 +25,21 @@ public class QuestionWithOptionsDAOImpl implements QuestionWithOptionsDAO {
 	@Override
 	public void save(QuestionWithOptionsImpl questionWithOptionsImpl) {
 
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		// save employee
+
 		currentSession.saveOrUpdate(questionWithOptionsImpl);
 	}
 	
 	@Override
 	public List<Question> findAll() {
 
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// create a query
 		Query<Question> theQuery =
 				currentSession.createQuery("from Question", Question.class);
 		
-		// execute query and get result list
 		List<Question> questions = theQuery.getResultList();
 		
-		// return the results		
 		return questions;
 	}
 	

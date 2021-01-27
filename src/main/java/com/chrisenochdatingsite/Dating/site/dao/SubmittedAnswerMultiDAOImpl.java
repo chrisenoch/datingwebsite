@@ -24,27 +24,21 @@ public class SubmittedAnswerMultiDAOImpl implements SubmittedAnswerMultiDAO {
 	@Override
 	public List<SubmittedAnswerMultiImpl> findAll() {
 
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// create a query
 		Query<SubmittedAnswerMultiImpl> theQuery =
 				currentSession.createQuery("from SubmittedAnswerMultiImpl", SubmittedAnswerMultiImpl.class);
 		
-		// execute query and get result list
 		List<SubmittedAnswerMultiImpl> submittedAnswersMultiImpls = theQuery.getResultList();
-		
-		// return the results		
+			
 		return submittedAnswersMultiImpls;
 	}
 
 	@Override
 	public void save(SubmittedAnswerMultiImpl subAMulti) {
-		
-		// get the current hibernate session
+
 				Session currentSession = sessionFactory.getCurrentSession();
-				
-				// save employee
+
 				currentSession.saveOrUpdate(subAMulti);
 		
 	}

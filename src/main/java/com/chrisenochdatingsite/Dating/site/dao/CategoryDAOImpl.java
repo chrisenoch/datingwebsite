@@ -24,27 +24,21 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 	public void save(Category theCategory) {
 
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// save employee
 		currentSession.saveOrUpdate(theCategory);
 	}
 	
 	@Override
 	public List<Category> findAll() {
 
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// create a query
 		Query<Category> theQuery =
 				currentSession.createQuery("from Category", Category.class);
 		
-		// execute query and get result list
 		List<Category> categories = theQuery.getResultList();
-		
-		// return the results		
+			
 		return categories;
 	}
 	

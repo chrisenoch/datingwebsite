@@ -21,7 +21,6 @@ public class UtilDAOImpl implements UtilDAO{
 	@Override
 	public <T> T getReference(Class<T> entityClass, Object primaryKey) {
 		
-		// get the current hibernate session
 				Session currentSession = sessionFactory.getCurrentSession();
 
 		return currentSession.getReference(entityClass, primaryKey);

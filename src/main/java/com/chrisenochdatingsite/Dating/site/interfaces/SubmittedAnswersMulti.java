@@ -6,6 +6,6 @@ import com.chrisenochdatingsite.Dating.site.entity.Answer;
 
 public interface SubmittedAnswersMulti extends SubmittedAnswer {
 	
-	Set<Answer> getSelectedAnswers(); //Improve code, change String to questionText
+	Set<Answer> getSelectedAnswers(); 
 		
 }

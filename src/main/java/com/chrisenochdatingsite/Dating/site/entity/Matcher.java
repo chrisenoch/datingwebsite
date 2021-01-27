@@ -24,8 +24,6 @@ import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitorImpl;
 public class Matcher {
 	
 		private User searchingUser;
-		
-		//Need questions to be in order
 	
 		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
 		private LinkedHashMap<User, Integer> totalMatchPercentagesByUser = new LinkedHashMap<>();

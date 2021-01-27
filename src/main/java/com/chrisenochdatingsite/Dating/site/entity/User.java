@@ -37,7 +37,6 @@ public class User {
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<SubmittedAnswer> submittedAnswers;
-	//Original: private Map<String, SubmittedAnswer> submittedAnswers; //String is questionText. Improve: Change to enum or class.
 	@Transient
 	private Matcher matcher;
 

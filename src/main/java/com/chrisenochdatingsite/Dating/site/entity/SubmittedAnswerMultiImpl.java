@@ -43,8 +43,7 @@ public class SubmittedAnswerMultiImpl implements SubmittedAnswersMulti {
 			joinColumns = {@JoinColumn(name = "SubmittedAnswerMultiImpl_id")},
 			inverseJoinColumns = {@JoinColumn(name = "selectedAnswers_id")}		
 			)
-	private Set<Answer> selectedAnswers; //Might need to include mappedBy here, but to abstract superclass? mappedBy using both answer types?
-	//private Map<String, Answer> selectedAnswers; //String = answerText. Improve code: Change String to questionText
+	private Set<Answer> selectedAnswers; 
 
 	public long getId() {
 		return id;
