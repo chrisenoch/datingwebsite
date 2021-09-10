@@ -23,6 +23,9 @@ import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitorImpl;
 
 public class Matcher {
 	
+		/**
+		 * The user conducting the search
+		 */
 		private User searchingUser;
 	
 		private Map<User, LinkedHashMap<Category, Integer>> totalMatchPercentageByUserForEveryCategory = new HashMap<>();
@@ -63,7 +66,15 @@ public class Matcher {
 			this.totalMatchPercentagesByCategoryForEveryUser = totalMatchPercentagesByCategoryForEveryUser;
 		}
 
-
+		
+		/**
+		 * 
+		 * @param users
+		 * @param prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero - if this map is not added or if all answer options of AnswerImpls
+		 * are not set to zero, this method will not work correctly. This map is required because it boosts performance considerably.
+		 * @param convertWeightedAns - the algorithm to be applied when scoring AnswerWeighetedImpls
+		 * @param convertCheckboxAns - the algorithm to be applied when scoring AnswerImpls
+		 */
 		public void  updateAllMatches(List<User> users, Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
 				, Function<Integer,Integer> convertWeightedAns
 				, Function<Boolean,Integer> convertCheckboxAns ) {
@@ -107,7 +118,11 @@ public class Matcher {
 			
 		}
 		
-		
+		/**
+		 * Sorts the map so that entries with higher percentages are displayed first.
+		 * @param totalMatchPercentagesByUser
+		 * @return
+		 */
 		private LinkedHashMap<User, Integer> sortByPercentageDescending (LinkedHashMap<User, Integer> 
 		totalMatchPercentagesByUser) {
 			
@@ -126,9 +141,16 @@ public class Matcher {
 	        
 		}
 			
-		
+		/**
+		 * Updates totalMatchPercentagesByUser of {@link  com.chrisenochdatingsite.Dating.site.entity.Matcher}. 
+		 * Entries with the highest match percentages come earlier in the totalMatchPercentagesByUser map than entries 
+		 * with lower match percentages.
+		 * @param userToAdd
+		 * @param totalMatchPercentageByCategory
+		 * @throws NoAmountFoundException
+		 */
 		public void updateTotalMatchPercentagesByUser(User userToAdd, LinkedHashMap<Category, Integer> 
-		totalMatchPercentageByCategory) throws Exception{	
+		totalMatchPercentageByCategory) throws NoAmountFoundException{	
 			//Map added as argument to avoid many object creations as this method could process tens of thousands of users.
 			
 			//Integer total = matchPercentageByCategory.entrySet().stream().map(a-> a.getValue()).reduce(0, Integer::sum);
@@ -154,6 +176,13 @@ public class Matcher {
 
 		}
 		
+		/**
+		 * Updates totalMatchPercentagesByCategoryForEveryUser of {@link  com.chrisenochdatingsite.Dating.site.entity.Matcher}. 
+		 * Entries with the highest match percentages come earlier in the totalMatchPercentagesByCategoryForEveryUser map than entries 
+		 * with lower match percentages.
+		 * @param userToAdd
+		 * @param totalMatchPercentageByCategory
+		 */
 		public void updateTotalMatchPercentagesByCategoryForEveryUser(User userToAdd, LinkedHashMap<Category, 
 				Integer> totalMatchPercentageByCategory){ //Last field would be got from User map, which is updated every session.Add the results to the maps of MatchInfo.
 		
@@ -193,7 +222,6 @@ public class Matcher {
 		}
 		
 
-		
 		public LinkedHashMap<Category, Integer> totalMatchPercentageByCategory(Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer) {
 			//Change to mapToInt
 //			 matchPercentageByCategory.entrySet().stream().map(a-> a.getValue().entrySet().stream()
@@ -222,10 +250,21 @@ public class Matcher {
 			return totals;
 		}
 		
-		
+		/**
+		 * 
+		 * @param searchingUser - the user performing the search
+		 * @param comparedUser - the user who is being compared
+		 * @param prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero - if this map is not added or if all answer options of AnswerImpls
+		 * are not set to zero, this method will not work correctly. This map is required because it increases performance considerably.
+		 * @param convertWeightedAns - the algorithm to be applied when scoring AnswerWeighetedImpls
+		 * @param convertCheckboxAns - the algorithm to be applied when scoring AnswerImpls
+		 * @return Map<Category, Map<Question,Map<String,Integer>>> 
+		 * @throws NoAnswersSubmittedException 
+		 * @throws Exception
+		 */
 		public Map<Category, Map<Question,Map<String,Integer>>> matchPercentageByCategoryAndAnswer(User searchingUser
 				, User comparedUser, Map<Category, Map<Question,Map<String,Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
-				, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws Exception{ //String = answerText. Improve code: update this to ANswerText class
+				, Function<Integer,Integer> convertWeightedAns, Function<Boolean,Integer> convertCheckboxAns) throws NoEquivalentAnswerException, NoAnswersSubmittedException { //String = answerText. Improve code: update this to ANswerText class
 			//Improve, maybe map already exists in database. Get from there, use caching and only calculate changed values?
 			
 			Map<Category, Map<Question,Map<String,Integer>>> matchScoresByCategory = prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero;
@@ -332,16 +371,24 @@ public class Matcher {
 
 
 
-
-		private void addScoresToMap(Map<Category, Map<Question, Map<String, Integer>>> matchWeightsByCategory,
+		/**
+		 * This method ensures that scores are added to the Map<Category, Map<Question, Map<String, Integer>>> matchScoresByCategory map,
+		 * and that the original map or entries in the original map are not overwritten unless necessary.
+		 * @param matchScoresByCategory
+		 * @param ans
+		 * @param convertedScore
+		 * @param category
+		 * @param question
+		 */
+		private void addScoresToMap(Map<Category, Map<Question, Map<String, Integer>>> matchScoresByCategory,
 				Answer ans, int convertedScore, Category category, Question question) {
 			
-			if (matchWeightsByCategory.containsKey(category)) {
+			if (matchScoresByCategory.containsKey(category)) {
 				
-				if (matchWeightsByCategory.get(category).containsKey(question)) {
+				if (matchScoresByCategory.get(category).containsKey(question)) {
 
 					//fetch answer map
-					Map<String, Integer> tempAnswerMap = matchWeightsByCategory.get(category).get(question);
+					Map<String, Integer> tempAnswerMap = matchScoresByCategory.get(category).get(question);
 					
 					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
 					
@@ -351,7 +398,7 @@ public class Matcher {
 					
 					//add to category map
 					//Overwrite category key in map with new updated question (and thus answer) information
-					matchWeightsByCategory.put(category,tempMapWithQuestion);
+					matchScoresByCategory.put(category,tempMapWithQuestion);
 				
 				} else { //if contains category but doesn't contain question
 					//Add new answer to answer map				
@@ -359,10 +406,10 @@ public class Matcher {
 					tempAnswerMap.put(ans.getAnswerText(), convertedScore);
 					
 					//Add question to appropriate category
-					Map<Question,Map<String, Integer>> tempQuestionMap = matchWeightsByCategory.get(category);
+					Map<Question,Map<String, Integer>> tempQuestionMap = matchScoresByCategory.get(category);
 					tempQuestionMap.put(question, tempAnswerMap);
 					
-					matchWeightsByCategory.put(category,tempQuestionMap);
+					matchScoresByCategory.put(category,tempQuestionMap);
 						
 				}					
 				
@@ -376,7 +423,7 @@ public class Matcher {
 				tempMapWithQuestion.put(question, tempMap);
 				
 				//Create category key in map and add question (and thus answer) information
-				matchWeightsByCategory.put(category,tempMapWithQuestion);
+				matchScoresByCategory.put(category,tempMapWithQuestion);
 				
 			}
 		}
@@ -384,26 +431,26 @@ public class Matcher {
 
 
 
-		private boolean scoreAnswerImpls(Map<String, Answer> comparedUserSelectedAnswers, Answer ans) {
-			int count = 0;
-			boolean isMatch;
-			for (Map.Entry<String, Answer> map2 : comparedUserSelectedAnswers.entrySet()) {
-				if (map2.getValue() instanceof AnswerImpl && ans.equals(map2.getValue()) ) { //Debugging: Will probably have to override equals method (and thus hash), compare by id
-					count++;
-				}
-			}
-			if (count >= 1) {
-				//If there should be duplicate answers, the score will only get counted once because after the first time, the entry in the map below will simply be overwritten.
-				//100% match, add to score variable. Score variable will then go through functional interface method to convert the score
-				//Add logging for duplicate answers to warn of potential problems? i.e. if count >= 1 ? Great idea, but extra step in the code...
-				isMatch = true;
-			
-			} else  {
-				//0% match, add to score variable. Score variable will then go through functional interface method to convert the score
-				isMatch = false;
-			}
-			return isMatch;
-		}
+//		private boolean scoreAnswerImpls(Map<String, Answer> comparedUserSelectedAnswers, Answer ans) {
+//			int count = 0;
+//			boolean isMatch;
+//			for (Map.Entry<String, Answer> map2 : comparedUserSelectedAnswers.entrySet()) {
+//				if (map2.getValue() instanceof AnswerImpl && ans.equals(map2.getValue()) ) { //Debugging: Will probably have to override equals method (and thus hash), compare by id
+//					count++;
+//				}
+//			}
+//			if (count >= 1) {
+//				//If there should be duplicate answers, the score will only get counted once because after the first time, the entry in the map below will simply be overwritten.
+//				//100% match, add to score variable. Score variable will then go through functional interface method to convert the score
+//				//Add logging for duplicate answers to warn of potential problems? i.e. if count >= 1 ? Great idea, but extra step in the code...
+//				isMatch = true;
+//			
+//			} else  {
+//				//0% match, add to score variable. Score variable will then go through functional interface method to convert the score
+//				isMatch = false;
+//			}
+//			return isMatch;
+//		}
 		
 
 		public class ConvertToPercent implements Function<Integer, Integer> {

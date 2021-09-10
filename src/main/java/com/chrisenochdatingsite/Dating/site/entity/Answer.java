@@ -18,6 +18,13 @@ import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitable;
 import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitor;
 import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitorHelper;
 
+/**
+ * @Inheritance(strategy = InheritanceType.SINGLE_TABLE) used to boost performance. A Check constraint 
+ * can be added to the database to ensure AnswerWeighted always inserts an AnswerWeight value, 
+ * thus avoiding the insertion of NULL values.
+ * @author chris
+ *
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
 //Check constraint added to database to ensure AnswerWeighted always inserts an AnswerWeight value.

@@ -2,6 +2,9 @@
 
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class BatchUpdateDAOImpl implements BatchUpdateDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	/**
+	 * Does not work if @GeneratedValue is set to GenerationType.IDENTITY.
+	 */
 	@Override
 	public void batchUpdateMembershipType(MembershipType typeToBeUpdated, MembershipType newType) {
 		Session session = sessionFactory.getCurrentSession();

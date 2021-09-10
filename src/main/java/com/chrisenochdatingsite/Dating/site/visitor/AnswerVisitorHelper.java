@@ -7,7 +7,7 @@ import com.chrisenochdatingsite.Dating.site.entity.Answer;
 
 public class AnswerVisitorHelper {
 	
-	private int convertedScore;
+	//private int convertedScore;
 	private Answer ans;
 	private Map<String, Answer> comparedUserSelectedAnswers;
 	private Function<Boolean,Integer> convertCheckboxAns;
@@ -28,13 +28,13 @@ public class AnswerVisitorHelper {
 		this.convertWeightedAns = convertWeightedAns;
 		return this;
 	}
-	public int getConvertedScore() {
-		return convertedScore;
-	}
-	public AnswerVisitorHelper setConvertedScore(int convertedScore) {
-		this.convertedScore = convertedScore;
-		return this;
-	}
+//	public int getConvertedScore() {
+//		return convertedScore;
+//	}
+//	public AnswerVisitorHelper setConvertedScore(int convertedScore) {
+//		this.convertedScore = convertedScore;
+//		return this;
+//	}
 	public Answer getAns() {
 		return ans;
 	}

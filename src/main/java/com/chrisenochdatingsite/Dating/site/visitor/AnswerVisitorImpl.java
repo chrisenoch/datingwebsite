@@ -7,6 +7,11 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerImpl;
 import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
 
+/**
+ * Applies different scoring algorithms to different types of answers.
+ * @author chris
+ *
+ */
 public class AnswerVisitorImpl implements AnswerVisitor {
 
 	@Override
@@ -40,7 +45,13 @@ public class AnswerVisitorImpl implements AnswerVisitor {
 		
 
 	}
-	
+	/**
+	 * If there is a matching score, a value of true is assigned to isMatch. A value of false is given to isMatch if either the users 
+	 * select different answers of if one user answers the question and the other user does not.
+	 * @param comparedUserSelectedAnswers
+	 * @param ans
+	 * @return
+	 */
 	private boolean scoreAnswerImpls(Map<String, Answer> comparedUserSelectedAnswers, Answer ans) {
 		int count = 0;
 		boolean isMatch;

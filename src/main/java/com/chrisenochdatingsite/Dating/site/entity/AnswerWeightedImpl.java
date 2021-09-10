@@ -9,6 +9,12 @@ import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
 import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitable;
 import com.chrisenochdatingsite.Dating.site.visitor.AnswerVisitor;
 
+/**
+ * This is for answer options that require a weighted answer. For instance, "Please indicate how much you like X on a scale
+ * of 0 to 6, 0 being hate and 6 being love.
+ * @author chris
+ *
+ */
 @Entity
 @DiscriminatorValue("answer_weighted")
 public class AnswerWeightedImpl extends Answer implements AnswerVisitable{
