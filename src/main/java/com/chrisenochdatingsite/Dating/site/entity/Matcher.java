@@ -70,10 +70,11 @@ public class Matcher {
 		/**
 		 * 
 		 * @param users
-		 * @param prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero - if this map is not added or if all answer options of AnswerImpls
+		 * @param prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero - if this map is not added or if all answer options of {@code AnswerImpls}
 		 * are not set to zero, this method will not work correctly. This map is required because it boosts performance considerably.
-		 * @param convertWeightedAns - the algorithm to be applied when scoring AnswerWeighetedImpls
-		 * @param convertCheckboxAns - the algorithm to be applied when scoring AnswerImpls
+		 * @param convertWeightedAns - the algorithm to be applied when scoring an
+		 * {@link com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl} 
+		 * @param convertCheckboxAns - the algorithm to be applied when an {@link com.chrisenochdatingsite.Dating.site.entity.AnswerImpl}
 		 */
 		public void  updateAllMatches(List<User> users, Map<Category, Map<Question, Map<String, Integer>>> prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero
 				, Function<Integer,Integer> convertWeightedAns
@@ -143,7 +144,7 @@ public class Matcher {
 			
 		/**
 		 * Updates totalMatchPercentagesByUser of {@link  com.chrisenochdatingsite.Dating.site.entity.Matcher}. 
-		 * Entries with the highest match percentages come earlier in the totalMatchPercentagesByUser map than entries 
+		 * Entries with the highest match percentages come earlier in the {@link #totalMatchPercentagesByUser} map than entries 
 		 * with lower match percentages.
 		 * @param userToAdd
 		 * @param totalMatchPercentageByCategory
@@ -178,7 +179,7 @@ public class Matcher {
 		
 		/**
 		 * Updates totalMatchPercentagesByCategoryForEveryUser of {@link  com.chrisenochdatingsite.Dating.site.entity.Matcher}. 
-		 * Entries with the highest match percentages come earlier in the totalMatchPercentagesByCategoryForEveryUser map than entries 
+		 * Entries with the highest match percentages come earlier in the the {@link #totalMatchPercentagesByCategoryForEveryUser} map than entries 
 		 * with lower match percentages.
 		 * @param userToAdd
 		 * @param totalMatchPercentageByCategory
@@ -254,10 +255,11 @@ public class Matcher {
 		 * 
 		 * @param searchingUser - the user performing the search
 		 * @param comparedUser - the user who is being compared
-		 * @param prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero - if this map is not added or if all answer options of AnswerImpls
+		 * @param prepolutatedWithAllAnswerOptionsOfAnsImplsSetToZero - if this map is not added or if all answer options of  {@code AnswerImpls}
 		 * are not set to zero, this method will not work correctly. This map is required because it increases performance considerably.
-		 * @param convertWeightedAns - the algorithm to be applied when scoring AnswerWeighetedImpls
-		 * @param convertCheckboxAns - the algorithm to be applied when scoring AnswerImpls
+		 * @param convertWeightedAns - the algorithm to be applied when scoring an
+		 * {@link com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl} 
+		 * @param convertCheckboxAns - the algorithm to be applied when an {@link com.chrisenochdatingsite.Dating.site.entity.AnswerImpl}
 		 * @return Map<Category, Map<Question,Map<String,Integer>>> 
 		 * @throws NoAnswersSubmittedException 
 		 * @throws Exception
@@ -372,7 +374,7 @@ public class Matcher {
 
 
 		/**
-		 * This method ensures that scores are added to the Map<Category, Map<Question, Map<String, Integer>>> matchScoresByCategory map,
+		 * This method ensures that scores are added to the {@code matchScoresByCategory} map argument
 		 * and that the original map or entries in the original map are not overwritten unless necessary.
 		 * @param matchScoresByCategory
 		 * @param ans

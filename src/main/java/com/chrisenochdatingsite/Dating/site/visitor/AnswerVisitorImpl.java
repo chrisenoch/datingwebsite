@@ -8,7 +8,7 @@ import com.chrisenochdatingsite.Dating.site.entity.AnswerWeightedImpl;
 import com.chrisenochdatingsite.Dating.site.util.NoEquivalentAnswerException;
 
 /**
- * Applies different scoring algorithms to different types of answers.
+ * Applies different scoring algorithms to different types of {@link com.chrisenochdatingsite.Dating.site.entity.Answer} 
  * @author chris
  *
  */
